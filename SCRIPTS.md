@@ -9,7 +9,7 @@ There are several scripts for end-user and developer.
 * `npm run build:examples`: build all js bundles from `examples/` to `examples/build/`.
 * `npm run build:test`: build all js bundles from `test/` to `test/build/`.
 * `npm run build`: build all above.
-* `npm run dev:browser`, `npm run dev:native`, `npm run dev:examples`, `npm run dev:test` are the watch mode for all build scripts, any file changes will automatically be built.
+* `npm run dev:browser`, `npm run dev:native`, `npm run dev:examples`, `npm run dev:test` are the watcher mode for all build scripts, any file changes will automatically be built.
 * `npm run serve`: run a http server so you can access all examples in browser through `http://localhost:12580/`. **note: you must run `npm run build` first to prepare all the built files.**
 * `npm run clean:examples`: clean `examples/build/`.
 * `npm run clean:test`: clean `test/build/`.
