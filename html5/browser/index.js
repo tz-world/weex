@@ -1,5 +1,7 @@
 'use strict'
 
+require('../native')
+
 require('./styles/base.css')
 
 require('./polyfill')
