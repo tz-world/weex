@@ -177,7 +177,6 @@ Component.prototype = {
       }
       children.splice(i, 0, child.data)
     }
-
   },
 
   removeChild: function (child) {
@@ -228,7 +227,6 @@ Component.prototype = {
   },
 
   updateStyle: function (style) {
-
     for (var key in style) {
       var value = style[key]
       var styleSetter = this.style[key]
@@ -336,7 +334,6 @@ Component.prototype = {
 }
 
 Component.prototype.style.position = function (value) {
-
   // For the elements who are fixed elements before, now
   // are not fixed: the fixedPlaceholder has to be replaced
   // by this element.

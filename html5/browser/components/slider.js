@@ -137,7 +137,6 @@ Slider.prototype.appendChild = function (data) {
 }
 
 Slider.prototype.createChildren = function () {
-
   var componentManager = this.getComponentManager()
 
   // recreate slider container.
@@ -265,7 +264,6 @@ Slider.prototype.onAppend = function () {
     }
     return true
   })
-
 }
 
 Slider.prototype._updateIndicators = function () {

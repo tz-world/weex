@@ -11,7 +11,6 @@ import { Document } from '../../vdom'
 global.callNative = function () {}
 
 describe('dom listener basic', () => {
-
   it('works with no handler', () => {
     const doc = new Document('foo')
     doc.createBody('r')

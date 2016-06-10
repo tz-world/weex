@@ -295,7 +295,6 @@ export function _compileCustomComponent (component, target, dest, type, meta) {
  * @param {string} type
  */
 export function _compileNativeComponent (template, dest, type) {
-
   this._applyNaitveComponentOptions(template)
 
   let element

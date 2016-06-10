@@ -62,7 +62,6 @@ describe('register', () => {
   })
 
   describe('module', () => {
-
     it('with a old format', () => {
       Ctx.registerModules({
         dom: [

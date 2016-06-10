@@ -22,7 +22,6 @@ describe('downgrade', () => {
 
         expect(test).to.be.equal(should)
       })
-
     })
   })
 
@@ -47,7 +46,6 @@ describe('downgrade', () => {
         expect(test.errorType).to.be.equal(1)
         expect(test.isDowngrade).to.be.equal(true)
       })
-
     })
   })
 
@@ -81,7 +79,6 @@ describe('downgrade', () => {
 
         expect(test.isDowngrade).to.be.equal(should)
       })
-
     })
 
     it('should be match config without app version', () => {
@@ -115,7 +112,6 @@ describe('downgrade', () => {
 
         expect(test.isDowngrade).to.be.equal(should)
       })
-
     })
 
     it('should be match config and deviceInfo from global var', () => {
@@ -150,7 +146,6 @@ describe('downgrade', () => {
 
         expect(test.isDowngrade).to.be.equal(should)
       })
-
     })
   })
 })

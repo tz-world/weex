@@ -213,7 +213,6 @@ function setClassStyle (el, css, classList) {
  * bind classnames to an element
  */
 export function _setClass (el, classList) {
-
   if (typeof classList !== 'function' && !Array.isArray(classList)) {
     return
   }

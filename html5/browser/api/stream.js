@@ -164,7 +164,6 @@ var stream = {
    * @param  {string} progressCallbackId
    */
   fetch: function (options, callbackId, progressCallbackId) {
-
     var DEFAULT_METHOD = 'GET'
     var DEFAULT_MODE = 'cors'
     var DEFAULT_TYPE = 'text'

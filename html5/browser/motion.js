@@ -33,7 +33,6 @@ function quadratic2cubicBezier (a, b) {
  *   - s: shifting
  */
 function Motion (config) {
-
   this.v = config.v || 0
   this.a = config.a || 0
 

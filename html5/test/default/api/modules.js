@@ -5,7 +5,6 @@ import * as modules from '../../../default/api/modules'
 import { registerModules, requireModule, clearModules } from '../../../default/app/register'
 
 describe('built-in modules', () => {
-
   before(() => {
     clearModules()
   })

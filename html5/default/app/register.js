@@ -1,9 +1,7 @@
 let nativeModules = {}
 
 function assignModules (modules, ifReplace) {
-
   for (const moduleName in modules) {
-
     // init `modules[moduleName][]`
     let methods = nativeModules[moduleName]
     if (!methods) {

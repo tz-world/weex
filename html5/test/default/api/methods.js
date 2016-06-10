@@ -78,7 +78,6 @@ describe('built-in', () => {
   })
 
   describe('common apis', () => {
-
     before(() => {
       sinon.stub(console, 'warn')
     })

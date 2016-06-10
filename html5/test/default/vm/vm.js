@@ -32,7 +32,6 @@ describe('generate virtual dom for a single vm', () => {
   })
 
   it('generate an single element', () => {
-
     customComponentMap.foo = {
       template: {
         type: 'container',
@@ -60,7 +59,6 @@ describe('generate virtual dom for a single vm', () => {
   })
 
   it('generate an element tree', () => {
-
     customComponentMap.foo = {
       template: {
         type: 'container', attr: { a: 1, b: 2 }, style: { c: 3, d: 4 },
@@ -91,7 +89,6 @@ describe('generate virtual dom for a single vm', () => {
   })
 
   it('generate an element tree with component options', () => {
-
     customComponentMap.foo = {
       template: {
         type: 'cell',
@@ -135,7 +132,6 @@ describe('generate virtual dom for a single vm', () => {
   })
 
   it('generate an element tree with data binding', () => {
-
     customComponentMap.foo = {
       template: {
         type: 'container', attr: { a: 1, b: 2 }, style: { c: 3, d: 4 },
@@ -224,7 +220,6 @@ describe('generate virtual dom for a single vm', () => {
   })
 
   it('generate an element tree with shown', () => {
-
     customComponentMap.foo = {
       template: {
         type: 'container',
@@ -293,7 +288,6 @@ describe('generate virtual dom for a single vm', () => {
   })
 
   it('generate an element tree with repeat', () => {
-
     customComponentMap.foo = {
       template: {
         type: 'container',
@@ -384,7 +378,6 @@ describe('generate virtual dom for a single vm', () => {
   })
 
   it('generate an element tree with shown and repeat', () => {
-
     customComponentMap.foo = {
       template: {
         type: 'container',
@@ -1045,7 +1038,6 @@ describe('generate dom actions', () => {
   })
 
   it('received actions for a template with if & repeat', () => {
-
     customComponentMap.foo = {
       template: {
         type: 'container',
@@ -1143,7 +1135,6 @@ describe('generate dom actions', () => {
   })
 
   it('received actions for element updates', () => {
-
     customComponentMap.foo = {
       template: {
         type: 'container', attr: { a: 1, b: 2 }, style: { c: 3, d: 4 },
@@ -1177,7 +1168,6 @@ describe('generate dom actions', () => {
   })
 
   it('received no action when no virtual dom different', () => {
-
     customComponentMap.foo = {
       template: {
         type: 'container', children: [
@@ -1227,7 +1217,6 @@ describe('generate dom actions', () => {
   })
 
   it('received actions for components', () => {
-
     customComponentMap.foo = {
       template: {
         type: 'container',
@@ -1258,7 +1247,6 @@ describe('generate dom actions', () => {
   })
 
   it('received actions for complicated components', () => {
-
     customComponentMap.foo = {
       data: () => {
         return { list: [{ uid: 1, a: 1 }, { uid: 2, a: 2 }, { uid: 3, a: 3 }] }
@@ -1307,7 +1295,6 @@ describe('generate dom actions', () => {
   })
 
   it('received actions for add a tree element', () => {
-
     customComponentMap.foo = {
       template: {
         type: 'r',

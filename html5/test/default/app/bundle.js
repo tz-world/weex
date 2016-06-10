@@ -245,7 +245,6 @@ describe('parsing a bundle file', () => {
           '@weex-component/main', { transformerVersion: '9.9.9' })
         expect(result).instanceof(Error)
       })
-
     })
   })
 

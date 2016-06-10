@@ -100,7 +100,6 @@ ComponentManager.prototype = {
       // remove _ref component
       delete self.componentMap[_ref]
     })(ref)
-
   },
 
   createElement: function (data, nodeType) {
@@ -123,7 +122,6 @@ ComponentManager.prototype = {
    * @param  {object} element
    */
   createBody: function (element) {
-
     // TODO: creatbody on document.body
     // no need to create a extra div
     var root, body, nodeType
@@ -239,7 +237,6 @@ ComponentManager.prototype = {
     newParent.insertBefore(component, before)
 
     component.onMove && component.onMove(parentRef, index)
-
   },
 
   insertBefore: function (ref, data) {

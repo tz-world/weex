@@ -310,8 +310,8 @@ describe('bind events', () => {
   var cb, vm, el
   var app = {}
   var methodNames = ['_setEvent', '_bindEvents']
-  beforeEach(() => {
 
+  beforeEach(() => {
     cb = sinon.spy()
     el = { event: {}}
     initElement(el)
@@ -331,6 +331,7 @@ describe('bind events', () => {
     el = null
     cb = null
   })
+
   // - bind method to eventManager
   it('add event to manager by type', () => {
     vm._bindEvents(el, { click: 'foo' })

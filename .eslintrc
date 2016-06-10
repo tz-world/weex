@@ -114,7 +114,7 @@
     "no-with": 2,
     "one-var": [2, { "initialized": "never" }],
     // "operator-linebreak": [2, "after", { "overrides": { "?": "before", ":": "before" } }],
-    // "padded-blocks": [2, "never"],
+    "padded-blocks": [2, "never"],
     "quotes": [2, "single", {"avoidEscape": true, "allowTemplateLiterals": true}],
     "semi": [2, "never"],
     "semi-spacing": [2, { "before": false, "after": true }],
@@ -127,7 +127,7 @@
     "template-curly-spacing": [2, "never"],
     "use-isnan": 2,
     "valid-typeof": 2,
-    // "wrap-iife": [2, "any"],
+    "wrap-iife": [2, "any"],
     "yield-star-spacing": [2, "both"],
     "yoda": [2, "never"],
 

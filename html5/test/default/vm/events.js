@@ -35,7 +35,6 @@ describe('bind and fire events', () => {
   })
 
   it('bind event and fire in a single dom', (done) => {
-
     customComponentMap.foo = {
       template: {
         type: 'container',
@@ -58,7 +57,6 @@ describe('bind and fire events', () => {
     const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
     checkReady(vm, function () {
-
       doc.close()
 
       expect(doc.body.event.click).a('function')
@@ -81,7 +79,6 @@ describe('bind and fire events', () => {
   })
 
   it('emit, broadcast and dispatch vm events', (done) => {
-
     customComponentMap.foo = {
       template: {
         type: 'aaa',
@@ -98,7 +95,6 @@ describe('bind and fire events', () => {
     const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
     checkReady(vm, function () {
-
       doc.close()
 
       expect(vm._childrenVms.length).eql(1)
@@ -382,7 +378,6 @@ describe('bind and fire events', () => {
     )
 
     checkReady(vm, function () {
-
       doc.close()
 
       expect(vmSpy.args.length).eql(4)

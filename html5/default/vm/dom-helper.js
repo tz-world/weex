@@ -81,7 +81,6 @@ export function _createBlockEnd () {
  * @param  {object} dest
  */
 export function _attachTarget (target, dest) {
-
   if (dest.element) {
     const before = dest.end
     const after = dest.updateMark
@@ -174,7 +173,6 @@ export function _moveBlock (fragBlock, after) {
  * @param  {object} target
  */
 export function _removeTarget (target) {
-
   if (target.element) {
     this._removeBlock(target)
   }

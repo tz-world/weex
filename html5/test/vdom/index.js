@@ -16,7 +16,6 @@ import {
 global.callNative = function () {}
 
 describe('document constructor', () => {
-
   it('create & destroy document', () => {
     const doc = new Document('foo', 'http://path/to/url')
     expect(doc).is.an.object

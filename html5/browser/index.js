@@ -45,8 +45,7 @@ var _downgrades = {}
 
 var downgradable = ['list', 'scroller']
 
-; (function initializeWithUrlParams () {
-
+function initializeWithUrlParams () {
   var params = lib.httpurl(location.href).params
   for (var k in params) {
     // Get global _downgrades from url's params.
@@ -68,13 +67,13 @@ var downgradable = ['list', 'scroller']
   if (debug === true || debug === 'true') {
     config.debug = true
   }
+}
 
-})()
+initializeWithUrlParams()
 
 require('./logger').init()
 
 function Weex (options) {
-
   if (!(this instanceof Weex)) {
     return new Weex(options)
   }
@@ -108,7 +107,6 @@ function Weex (options) {
       console.error('load bundle err:', err)
     }
   }.bind(this))
-
 }
 
 Weex.init = function (options) {
@@ -195,7 +193,6 @@ Weex.prototype = {
     // the window and the instance will not be recreated then.
     // window.addEventListener('beforeunload', function (e) {
     // })
-
   },
 
   initScale: function () {
@@ -285,7 +282,9 @@ Weex.stopTheWorld = function () {
       window.destroyInstance(instanceId)
     }
   }
-}(function startRefreshController () {
+}
+
+function startRefreshController () {
   if (location.search.indexOf('hot-reload_controller') === -1) {
     return
   }
@@ -307,7 +306,9 @@ Weex.stopTheWorld = function () {
       location.reload()
     }
   }
-}())
+}
+
+startRefreshController()
 
 // Weex.install(require('weex-components'))
 Weex.install(components)

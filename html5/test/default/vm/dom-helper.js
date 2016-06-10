@@ -212,7 +212,6 @@ describe('help move target', () => {
   })
 
   it('move an element to an element mark', () => {
-
     /* eslint-disable indent */
     expect(parent.children).eql([
       dest.start,

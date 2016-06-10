@@ -165,7 +165,6 @@ Marquee.prototype.reset = function () {
       self.timerId = setTimeout(loop, delay + interval)
     }
   }, 13)
-
 }
 
 /**

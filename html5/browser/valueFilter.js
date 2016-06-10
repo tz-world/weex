@@ -15,7 +15,6 @@ var valueFilter = {
   },
 
   getFilters: function (key, config) {
-
     if (NOT_PX_NUMBER_PROPERTIES.indexOf(key) !== -1) {
       return {}
     }

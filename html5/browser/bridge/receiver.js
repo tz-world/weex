@@ -51,7 +51,6 @@ function callNative (instanceId, tasks, callbackId) {
       processCall(instanceId, calls[i])
     }
   }
-
 }
 
 function processCallQueue () {
@@ -114,9 +113,7 @@ function exportsBridgeMethodsToGlobal () {
 }
 
 module.exports = {
-
   init: function () {
-
     // process callQueue every 16 milliseconds.
     FrameUpdater.addUpdateObserver(processCallQueue)
     FrameUpdater.start()
@@ -124,5 +121,4 @@ module.exports = {
     // exports methods to global(window).
     exportsBridgeMethodsToGlobal()
   }
-
 }
