@@ -12,9 +12,7 @@ import * as register from '../register'
 import {
   Document
 }
-from '../dom'
-import EventManager from '../event'
-import Listener from '../dom-listener'
+from '../../dom'
 import Vm from '../../vm'
 import pkg from '../../../package.json'
 
@@ -30,14 +28,12 @@ describe('parsing a bundle file', () => {
   }
 
   before(() => {
-    sinon.stub(console, 'log')
     sinon.stub(console, 'info')
     sinon.stub(console, 'warn')
     sinon.stub(console, 'error')
   })
 
   after(() => {
-    console.log.restore()
     console.info.restore()
     console.warn.restore()
     console.error.restore()
@@ -52,20 +48,13 @@ describe('parsing a bundle file', () => {
       const id = Date.now()
       callTasksSpy = sinon.spy()
 
-      let doc = new Document(id)
-      let eventManager = new EventManager()
-      let listener = new Listener(id, (tasks, callback) => {
+      let doc = new Document(id, '', (tasks, callback) => {
         app.callTasks(tasks, callback)
       })
-      doc.setEventManager(eventManager)
-      doc.setListener(listener)
 
       app = {
-        id,
+        id, doc,
         customComponentMap: {},
-        doc,
-        eventManager,
-        listener,
         callbacks: {},
         callTasks: (tasks, callback) => {
           callTasksSpy(tasks)
@@ -239,7 +228,7 @@ describe('parsing a bundle file', () => {
         expect(task2.method).to.be.equal('addElement')
         expect(task2.args[1]).to.deep.equal({
           type: 'text',
-          ref: '3',
+          ref: app.doc.body.children[0].ref,
           attr: {
             value: 'Hello World'
           },
@@ -285,20 +274,13 @@ describe('parsing a bundle file', () => {
       callTasksSpy = sinon.spy()
       readySpy = sinon.spy()
 
-      let doc = new Document(id)
-      let eventManager = new EventManager()
-      let listener = new Listener(id, (tasks, callback) => {
+      let doc = new Document(id, '', (tasks, callback) => {
         app.callTasks(tasks, callback)
       })
-      doc.setEventManager(eventManager)
-      doc.setListener(listener)
 
       app = {
-        id,
+        id, doc,
         customComponentMap: {},
-        doc,
-        eventManager,
-        listener,
         callbacks: {},
         callTasks: (tasks, callback) => {
           callTasksSpy(tasks)
@@ -411,7 +393,7 @@ describe('parsing a bundle file', () => {
           method: 'addElement',
           args: ['_root', {
             type: 'text',
-            ref: '3',
+            ref: app.doc.body.children[0].ref,
             attr: {
               value: 'Hello World'
             },
@@ -425,7 +407,7 @@ describe('parsing a bundle file', () => {
           method: 'addElement',
           args: ['_root', {
             type: 'container',
-            ref: '4',
+            ref: app.doc.body.children[1].ref,
             attr: {},
             style: {}
           }, -1]
@@ -435,9 +417,9 @@ describe('parsing a bundle file', () => {
         expect(task4).to.deep.equal({
           module: 'dom',
           method: 'addElement',
-          args: ['4', {
+          args: [app.doc.body.children[1].ref, {
             type: 'text',
-            ref: '5',
+            ref: app.doc.body.children[1].children[0].ref,
             attr: {
               value: 'Hello World'
             },
@@ -456,20 +438,13 @@ describe('parsing a bundle file', () => {
       const id = Date.now()
       callTasksSpy = sinon.spy()
 
-      let doc = new Document(id)
-      let eventManager = new EventManager()
-      let listener = new Listener(id, (tasks, callback) => {
+      let doc = new Document(id, '', (tasks, callback) => {
         app.callTasks(tasks, callback)
       })
-      doc.setEventManager(eventManager)
-      doc.setListener(listener)
 
       app = {
-        id,
+        id, doc,
         customComponentMap: {},
-        doc,
-        eventManager,
-        listener,
         callbacks: {},
         callTasks: (tasks, callback) => {
           callTasksSpy(tasks)
@@ -535,7 +510,7 @@ describe('parsing a bundle file', () => {
         expect(task2.method).to.be.equal('addElement')
         expect(task2.args[1]).to.deep.equal({
           type: 'text',
-          ref: '3',
+          ref: app.doc.body.children[0].ref,
           attr: {
             value: 'Hello World'
           },

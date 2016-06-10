@@ -22,7 +22,7 @@ Listener.prototype.refreshFinish = function (callback) {
   handler([createAction('refreshFinish', [])], callback)
 }
 
-Listener.prototype.createBody = function (element, ref) {
+Listener.prototype.createBody = function (element) {
   const actions = [createAction('createBody', [element.toJSON()])]
   this.addActions(actions)
 }

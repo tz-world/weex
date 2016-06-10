@@ -11,14 +11,13 @@
  */
 
 import * as _ from '../util'
-import Listener from './dom-listener'
 
 export function updateActions() {
   this.differ.flush()
   const tasks = []
-  if (this.listener && this.listener.updates.length) {
-    tasks.push(...this.listener.updates)
-    this.listener.updates = []
+  if (this.doc && this.doc.listener && this.doc.listener.updates.length) {
+    tasks.push(...this.doc.listener.updates)
+    this.doc.listener.updates = []
   }
   if (tasks.length) {
     this.callTasks(tasks)
@@ -90,7 +89,6 @@ export function destroy() {
   _.debug(`Destory an instance(${this.id})`)
 
   this.id = ''
-  this.eventManager = null
   this.options = null
   this.blocks = null
   this.vm = null
@@ -119,14 +117,7 @@ export function fireEvent(ref, type, e, domChanges) {
   const el = this.doc.getRef(ref)
 
   if (el) {
-    e = e || {}
-    e.type = type
-    e.target = el
-    e.timestamp = Date.now()
-    if (domChanges) {
-      updateElement(el, domChanges)
-    }
-    const result = this.eventManager.fire(el, type, e)
+    const result = this.doc.fireEvent(el, type, e, domChanges)
     this.updateActions()
     this.doc.listener.updateFinish()
     return result
@@ -175,15 +166,3 @@ export function refreshData(data) {
 
   return new Error(`invalid data "${data}"`)
 }
-
-function updateElement(el, changes) {
-  const attrs = changes.attrs || {}
-  for (const name in attrs) {
-    el.setAttr(name, attrs[name], true)
-  }
-  const style = changes.style || {}
-  for (const name in style) {
-    el.setStyle(name, style[name], true)
-  }
-}
-

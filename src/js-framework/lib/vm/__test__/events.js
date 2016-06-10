@@ -5,12 +5,10 @@ const expect = chai.expect
 chai.use(sinonChai)
 
 import Vm from '../'
-import {Document, destroyDocument} from '../../app/dom.js'
-import DomListener from '../../app/dom-listener.js'
-import EventManager from '../../app/event'
+import {Document} from '../../dom'
 
 describe('bind and fire events', () => {
-  let doc, customComponentMap, eventManager, listener, spy
+  let doc, customComponentMap, spy
 
   function checkReady(vm, handler) {
     /* istanbul ignore else */
@@ -23,19 +21,15 @@ describe('bind and fire events', () => {
   }
 
   beforeEach(() => {
-    doc = new Document('test')
-    eventManager = new EventManager()
-    doc.setEventManager(eventManager)
     spy = sinon.spy()
-    listener = new DomListener('test', (actions) => {
+    doc = new Document('test', '', (actions) => {
       spy(actions)
     })
-    doc.setListener(listener)
     customComponentMap = {}
   })
 
   afterEach(() => {
-    destroyDocument('test')
+    doc.destroy()
   })
 
   it('bind event and fire in a single dom', (done) => {
@@ -58,34 +52,25 @@ describe('bind and fire events', () => {
       }
     }
 
-    const app = {doc, customComponentMap, eventManager}
+    const app = {doc, customComponentMap}
     const vm = new Vm('foo', customComponentMap.foo, {_app: app})
 
     checkReady(vm, function () {
 
       doc.close()
 
-      expect(eventManager)
-      expect(eventManager.targets.length).equal(1)
+      expect(doc.body.event.click).a('function')
 
-      const target = eventManager.targets[0]
       const el = doc.body
-      expect(target).a('object')
-      expect(target.el).equal(el)
-      expect(target.events).a('object')
-      expect(target.events.click).a('function')
-      expect(el.event.length).equal(1)
-      expect(el.event[0]).equal('click')
-
       expect(el.attr.a).eql(1)
       expect(spy.args.length).eql(1)
-      expect(listener.updates.length).eql(0)
+      expect(doc.listener.updates.length).eql(0)
 
-      eventManager.fire(el, 'click', {xxx: 1})
+      el.event.click({xxx: 1})
 
       expect(el.attr.a).eql(2)
       expect(spy.args.length).eql(1)
-      expect(listener.updates).eql([
+      expect(doc.listener.updates).eql([
         {module: 'dom', method: 'updateAttrs', args: [el.ref, {a: 2}]}
       ])
 
@@ -107,7 +92,7 @@ describe('bind and fire events', () => {
       }
     }
 
-    const app = {doc, customComponentMap, eventManager}
+    const app = {doc, customComponentMap}
     const vm = new Vm('foo', customComponentMap.foo, {_app: app})
 
     checkReady(vm, function () {
@@ -249,7 +234,7 @@ describe('bind and fire events', () => {
       }
     }
 
-    const app = {doc, customComponentMap, eventManager}
+    const app = {doc, customComponentMap}
     const vm = new Vm('foo', customComponentMap.foo, {_app: app})
 
     checkReady(vm, function () {
@@ -311,7 +296,7 @@ describe('bind and fire events', () => {
       }
     }
 
-    const app = {doc, customComponentMap, eventManager}
+    const app = {doc, customComponentMap}
     const vm = new Vm('foo', customComponentMap.foo, {_app: app})
 
     checkReady(vm, function () {
@@ -384,7 +369,7 @@ describe('bind and fire events', () => {
       }
     }
 
-    const app = {doc, customComponentMap, eventManager}
+    const app = {doc, customComponentMap}
     const evSpy = sinon.spy()
     const vm = new Vm('foo', customComponentMap.foo, {_app: app}, null, null,
       {

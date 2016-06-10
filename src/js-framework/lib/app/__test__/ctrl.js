@@ -7,9 +7,7 @@ chai.use(sinonChai)
 import * as _ from '../../util'
 import * as ctrl from '../ctrl'
 import Differ from '../differ'
-import {Document} from '../dom'
-import Listener from '../dom-listener'
-import EventManager from '../event'
+import {Document} from '../../dom'
 import pkg from '../../../package.json'
 
 describe('the api of app', () => {
@@ -23,26 +21,17 @@ describe('the api of app', () => {
     var app = {
       id: id,
       customComponentMap: {},
-      doc: new Document(id),
-      eventManager: new EventManager(),
       define: sinon.spy(),
       bootstrap: sinon.stub(),
       callbacks: {
         1: spy2
       },
       vm: {},
-      differ: new Differ(id),
-      callTasks: function (tasks) {
-        spy1(tasks)
-      }
+      differ: new Differ(id)
     }
 
-    app.listener = new Listener(app.id, (tasks) => {
-      app.callTasks(tasks)
-    })
-    app.doc.setListener(app.listener)
+    app.doc = new Document(id, '', spy1)
     app.doc.createBody('div')
-    sinon.spy(app.eventManager, 'fire')
     app.bootstrap.returns()
 
     Object.assign(app, ctrl)
@@ -77,7 +66,7 @@ describe('the api of app', () => {
           "children": [{
             "type": "text",
             "attr": {
-                "value": "Hello World"
+              "value": "Hello World"
             }
           }]
         })
@@ -85,8 +74,7 @@ describe('the api of app', () => {
         bootstrap('main')
       `)
 
-      expect(app.doc.closed).to.be.true
-
+      expect(app.doc.listener.batched).to.be.true
       expect(app.define.calledOnce).to.be.true
       expect(app.bootstrap.calledOnce).to.be.true
 
@@ -112,9 +100,6 @@ describe('the api of app', () => {
   describe('fireEvent', () => {
     it('click on root', () => {
       app.fireEvent('_root', 'click')
-      expect(app.eventManager.fire.calledOnce).to.be.true
-      expect(app.eventManager.fire.args[0][1]).to.be.equal('click')
-
       const task = spy1.firstCall.args[0][0]
       expect(task.module).to.be.equal('dom')
       expect(task.method).to.be.equal('updateFinish')
@@ -185,7 +170,6 @@ describe('the api of app', () => {
     it('the simple data', () => {
       app.destroy()
       expect(app.id).to.be.empty
-      expect(app.eventManager).to.be.null
       expect(app.blocks).to.be.null
       expect(app.vm).to.be.null
       expect(app.doc).to.be.null

@@ -7,7 +7,7 @@ chai.use(sinonChai)
 import AppInstance from '../index'
 import * as bundle from '../bundle'
 import * as ctrl from '../ctrl'
-import {Node} from '../dom'
+import {Node} from '../../dom'
 import {
   registerComponent,
   requireComponent,
@@ -15,6 +15,7 @@ import {
 } from '../register'
 
 describe('App Instance', () => {
+  const oriCallNative = global.callNative
   const callNativeSpy = sinon.spy()
   let app
 
@@ -33,7 +34,7 @@ describe('App Instance', () => {
   })
 
   after(() => {
-    global.callNative = undefined
+    global.callNative = oriCallNative
   })
 
   describe('normal check', () => {

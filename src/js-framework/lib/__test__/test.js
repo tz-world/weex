@@ -188,17 +188,18 @@ function _callNative(name, tasks, cbId) {
   }
 }
 
+global.callNative = function () {}
+
 describe('test input and output', function () {
+  const oriCallNative = global.callNative
 
   before(() => {
-    sinon.stub(console, 'log')
     sinon.stub(console, 'info')
     sinon.stub(console, 'warn')
     sinon.stub(console, 'error')
   })
 
   after(() => {
-    console.log.restore()
     console.info.restore()
     console.warn.restore()
     console.error.restore()
@@ -210,7 +211,7 @@ describe('test input and output', function () {
   })
 
   afterEach(function () {
-    delete global.callNative
+    global.callNative = oriCallNative
   })
 
   it('single case', function () {

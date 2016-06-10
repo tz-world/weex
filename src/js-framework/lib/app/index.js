@@ -3,32 +3,26 @@
  * Weex instance constructor & definition
  */
 
-import {typof, extend} from '../util'
+import {extend, typof} from '../util'
 import * as bundle from './bundle'
 import * as ctrl from './ctrl'
 import Differ from './differ'
 
-import EventManager from './event'
-import Listener from './dom-listener'
-import {Document, Node} from './dom'
+import {Document, Node} from '../dom'
 import {registerComponent, requireComponent, requireModule} from './register'
 
 export default function AppInstance(instanceId, options) {
   this.id = instanceId
   this.options = options || {}
   this.vm = null
-  this.doc = new Document(instanceId, this.options.bundleUrl)
   this.customComponentMap = {}
   this.callbacks = {}
+  this.doc = new Document(
+    instanceId,
+    this.options.bundleUrl
+  )
   this.differ = new Differ(instanceId)
   this.uid = 0
-  this.rendered = false
-  this.eventManager = new EventManager()
-  this.listener = new Listener(this.id, (tasks) => {
-    this.callTasks(tasks)
-  })
-  this.doc.setEventManager(this.eventManager)
-  this.doc.setListener(this.listener)
 }
 
 function normalize(app, v) {
@@ -76,3 +70,4 @@ extend(AppInstance.prototype, bundle, ctrl, {
   requireComponent,
   requireModule
 })
+

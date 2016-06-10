@@ -4,10 +4,9 @@ import sinonChai from 'sinon-chai'
 const expect = chai.expect
 chai.use(sinonChai)
 
-import * as directive from '../directive.js'
+import * as directive from '../directive'
 
-import * as state from '../core/state.js'
-import EventManager from '../../app/event'
+import * as state from '../core/state'
 import {nativeComponentMap} from '../../config'
 
 function extendVm(vm, methodNames) {
@@ -19,16 +18,11 @@ function extendVm(vm, methodNames) {
 }
 
 function initElement(el) {
-  var eventManager = new EventManager()
   el.setAttr = function (k, v) {this.attr[k] = v}
   el.setStyle = function (k, v) {this.style[k] = v}
   el.setClassStyle = function (style) {this.classStyle = style}
   el.addEvent = function (t, h) {
-    this.event.push(t)
-    eventManager.add(this, t, h)
-  }
-  el.ownerDocument = {
-    eventManager
+    this.event[t] = h
   }
 }
 
@@ -183,14 +177,12 @@ describe('set props', () => {
     '_setEvent', '_bindEvents', '_bindElement']
 
   before(() => {
-    sinon.stub(console, 'log')
     sinon.stub(console, 'info')
     sinon.stub(console, 'warn')
     sinon.stub(console, 'error')
   })
 
   after(() => {
-    console.log.restore()
     console.info.restore()
     console.warn.restore()
     console.error.restore()
@@ -285,8 +277,7 @@ describe('set props', () => {
     //   y: {f: 6},
     //   z: {e: 10}
     // },
-    el.event = []
-    var manager = el.ownerDocument.eventManager
+    el.event = {}
 
     vm._bindElement(el, {
       id: 'abc',
@@ -308,29 +299,20 @@ describe('set props', () => {
     expect(el.attr.b).eql(456)
     expect(el.style.a).eql(123)
     expect(el.style.b).eql(2)
-
-    expect(manager.targets.length).equal(1)
-    var target = manager.targets[0]
-    expect(target).a('object')
-    expect(target.el).equal(el)
-    expect(target.events).a('object')
-    expect(target.events.click).a('function')
-    expect(el.event.length).equal(1)
-    expect(el.event[0]).equal('click')
+    expect(el.event.click).a('function')
   })
 })
 
 // exports._bindEvents(el, events)
 describe('bind events', () => {
-  var cb, manager, vm, el, manager
+  var cb, vm, el
   var app = {}
   var methodNames = ['_setEvent', '_bindEvents']
   beforeEach(() => {
 
     cb = sinon.spy()
-    el = {event: []}
+    el = {event: {}}
     initElement(el)
-    manager = el.ownerDocument.eventManager
 
     vm = {
       _data: {a: 1},
@@ -346,38 +328,24 @@ describe('bind events', () => {
     vm = null
     el = null
     cb = null
-    manager = null
   })
   // - bind method to eventManager
   it('add event to manager by type', () => {
     vm._bindEvents(el, {click: 'foo'})
-    expect(manager.targets.length).equal(1)
-    var target = manager.targets[0]
-    expect(target).a('object')
-    expect(target.el).equal(el)
-    expect(target.events).a('object')
-    expect(target.events.click).a('function')
-    expect(el.event.length).equal(1)
-    expect(el.event[0]).equal('click')
+    expect(el.event.click).a('function')
   })
   // - bind method to eventManager
   it('add event to manager by handler', () => {
-    vm._bindEvents(el, {click: sinon.spy()})
-    expect(manager.targets.length).equal(1)
-    var target = manager.targets[0]
-    expect(target).a('object')
-    expect(target.el).equal(el)
-    expect(target.events).a('object')
-    expect(target.events.click).a('function')
-    expect(el.event.length).equal(1)
-    expect(el.event[0]).equal('click')
+    var cb2 = sinon.spy()
+    vm._bindEvents(el, {click: cb2})
+    expect(el.event.click).a('function')
   })
   // - fireEvent to call method
   // - with right event info
   it('fire event from manager by type', () => {
     var e = {}
     vm._bindEvents(el, {click: 'foo'})
-    manager.fire(el, 'click', e)
+    el.event.click(e)
     expect(cb).calledOnce
     expect(cb).calledOn(vm)
     expect(cb).calledWith(e)
@@ -389,7 +357,7 @@ describe('bind events', () => {
     vm._bindEvents(el, {click: function ($event) {
       this.foo(this.a, $event)
     }})
-    manager.fire(el, 'click', e)
+    el.event.click(e)
     expect(cb).calledOnce
     expect(cb).calledOn(vm)
     expect(cb).calledWith(1, e)
@@ -512,7 +480,7 @@ describe('bind external infomations to sub vm', () => {
     subVm._rootEl = {
       attr: {},
       style: {},
-      event: []
+      event: {}
     }
     const template = {
       events: {click: 'foo'}
@@ -520,6 +488,6 @@ describe('bind external infomations to sub vm', () => {
     initElement(subVm._rootEl)
     vm._bindSubVm(subVm, template)
     vm._bindSubVmAfterInitialized(subVm, template)
-    expect(subVm._rootEl.event).eql(['click'])
+    expect(subVm._rootEl.event.click).a('function')
   })
 })
