@@ -1,8 +1,8 @@
 'use strict'
 
-var _data = {}
+const _data = {}
 
-var animation = {
+const animation = {
 
   /**
    * transition
@@ -11,9 +11,9 @@ var animation = {
    * @param  {string} callbackId [description]
    */
   transition: function (ref, config, callbackId) {
-    var refData = _data[ref]
-    var stylesKey = JSON.stringify(config.styles)
-    var weexInstance = this
+    let refData = _data[ref]
+    const stylesKey = JSON.stringify(config.styles)
+    const weexInstance = this
     // If the same component perform a animation with exactly the same
     // styles in a sequence with so short interval that the prev animation
     // is still in playing, then the next animation should be ignored.

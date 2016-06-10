@@ -2,20 +2,20 @@
 
 'use strict'
 
-var Atomic = require('./atomic')
+const Atomic = require('./atomic')
 require('kountdown/build/countdown')
 
-var FORMATTER_REGEXP = /(\\)?(dd*|hh?|mm?|ss?)/gi
+const FORMATTER_REGEXP = /(\\)?(dd*|hh?|mm?|ss?)/gi
 
 function formatDateTime (data, formatter, timeColor) {
   return formatter.replace(FORMATTER_REGEXP, function (m) {
-    var len = m.length
-    var firstChar = m.charAt(0)
+    const len = m.length
+    const firstChar = m.charAt(0)
     // escape character
     if (firstChar === '\\') {
       return m.replace('\\', '')
     }
-    var value = (firstChar === 'd' ? data.days :
+    const value = (firstChar === 'd' ? data.days :
                 firstChar === 'h' ? data.hours :
                 firstChar === 'm' ? data.minutes :
                 firstChar === 's' ? data.seconds : 0) + ''
@@ -35,16 +35,16 @@ function Countdown (data) {
 Countdown.prototype = Object.create(Atomic.prototype)
 
 Countdown.prototype.create = function () {
-  var node = document.createElement('div')
+  const node = document.createElement('div')
   node.classList.add('weex-element')
-  var data = this.data
-  var time = Number(data.attr.countdownTime) || 0
-  var endTime = Date.now() / 1000 + time
+  const data = this.data
+  const time = Number(data.attr.countdownTime) || 0
+  const endTime = Date.now() / 1000 + time
   lib.countdown({
     endDate: endTime,
     onUpdate: function (time) {
-      var timeColor = data.style.timeColor || '#000'
-      var result = formatDateTime(time, data.attr.formatterValue, timeColor)
+      const timeColor = data.style.timeColor || '#000'
+      const result = formatDateTime(time, data.attr.formatterValue, timeColor)
       node.innerHTML = result
     },
     onEnd: function () {

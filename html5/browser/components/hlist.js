@@ -1,4 +1,4 @@
-var List = require('./list')
+const List = require('./list')
 
 function Hlist (data, nodeType) {
   data.attr.direction = 'h'

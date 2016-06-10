@@ -18,7 +18,7 @@ describe('the api of app', () => {
   function createApp () {
     const id = Date.now()
 
-    var app = {
+    const app = {
       id: id,
       customComponentMap: {},
       define: sinon.spy(),

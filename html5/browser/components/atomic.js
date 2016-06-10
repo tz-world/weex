@@ -1,6 +1,6 @@
 'use strict'
 
-var Component = require('./component')
+const Component = require('./component')
 
 // Component which can have no subcomponents.
 // This component should not be instantiated directly, since

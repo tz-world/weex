@@ -5,12 +5,12 @@
 require('../styles/list.css')
 require('../scroll')
 
-var Component = require('./component')
-// var LazyLoad = require('../lazyLoad')
+const Component = require('./component')
+// const LazyLoad = require('../lazyLoad')
 
-// var DEFAULT_LOAD_MORE_OFFSET = 500
+// const DEFAULT_LOAD_MORE_OFFSET = 500
 
-var directionMap = {
+const directionMap = {
   h: ['row', 'horizontal', 'h', 'x'],
   v: ['column', 'vertical', 'v', 'y']
 }
@@ -28,8 +28,8 @@ function List (data, nodeType) {
 List.prototype = Object.create(Component.prototype)
 
 List.prototype.create = function (nodeType) {
-  var Scroll = lib.scroll
-  var node = Component.prototype.create.call(this, nodeType)
+  const Scroll = lib.scroll
+  const node = Component.prototype.create.call(this, nodeType)
   node.classList.add('weex-container', 'list-wrap')
   this.listElement = document.createElement('div')
   this.listElement.classList.add(
@@ -61,12 +61,12 @@ List.prototype.bindEvents = function (evts) {
   Component.prototype.bindEvents.call(this, evts)
   // to enable lazyload for Images.
   this.scroller.addEventListener('scrolling', function (e) {
-    var so = e.scrollObj
-    var scrollTop = so.getScrollTop()
-    var scrollLeft = so.getScrollLeft()
-    var offset = this.direction === 'v' ? scrollTop : scrollLeft
-    var diff = offset - this.offset
-    var dir
+    const so = e.scrollObj
+    const scrollTop = so.getScrollTop()
+    const scrollLeft = so.getScrollLeft()
+    const offset = this.direction === 'v' ? scrollTop : scrollLeft
+    const diff = offset - this.offset
+    let dir
     if (diff >= 0) {
       dir = this.direction === 'v' ? 'up' : 'left'
     }
@@ -85,23 +85,23 @@ List.prototype.bindEvents = function (evts) {
     this.offset = offset
   }.bind(this))
 
-  var pullendEvent = 'pull' + ({ v: 'up', h: 'left' })[this.direction] + 'end'
+  const pullendEvent = 'pull' + ({ v: 'up', h: 'left' })[this.direction] + 'end'
   this.scroller.addEventListener(pullendEvent, function (e) {
     this.dispatchEvent('loadmore')
   }.bind(this))
 }
 
 List.prototype.createChildren = function () {
-  var children = this.data.children
-  var parentRef = this.data.ref
-  var componentManager = this.getComponentManager()
+  const children = this.data.children
+  const parentRef = this.data.ref
+  const componentManager = this.getComponentManager()
   if (children && children.length) {
-    var fragment = document.createDocumentFragment()
-    var isFlex = false
-    for (var i = 0; i < children.length; i++) {
+    const fragment = document.createDocumentFragment()
+    let isFlex = false
+    for (let i = 0; i < children.length; i++) {
       children[i].instanceId = this.data.instanceId
       children[i].scale = this.data.scale
-      var child = componentManager.createElement(children[i])
+      const child = componentManager.createElement(children[i])
       fragment.appendChild(child.node)
       child.parentRef = parentRef
       if (!isFlex
@@ -120,9 +120,9 @@ List.prototype.createChildren = function () {
 }
 
 List.prototype.appendChild = function (data) {
-  var children = this.data.children
-  var componentManager = this.getComponentManager()
-  var child = componentManager.createElement(data)
+  const children = this.data.children
+  const componentManager = this.getComponentManager()
+  const child = componentManager.createElement(data)
   this.listElement.appendChild(child.node)
 
   // wait for UI thread to update.
@@ -142,16 +142,17 @@ List.prototype.appendChild = function (data) {
 }
 
 List.prototype.insertBefore = function (child, before) {
-  var children = this.data.children
-  var i = 0
-  var isAppend = false
+  const children = this.data.children
+  let i = 0
+  let isAppend = false
 
   // update this.data.children
   if (!children || !children.length || !before) {
     isAppend = true
   }
   else {
-    for (var l = children.length; i < l; i++) {
+    let l
+    for (l = children.length; i < l; i++) {
       if (children[i].ref === before.data.ref) {
         break
       }
@@ -182,12 +183,13 @@ List.prototype.insertBefore = function (child, before) {
 }
 
 List.prototype.removeChild = function (child) {
-  var children = this.data.children
+  const children = this.data.children
   // remove from this.data.children
-  var i = 0
-  var componentManager = this.getComponentManager()
+  let i = 0
+  const componentManager = this.getComponentManager()
   if (children && children.length) {
-    for (var l = children.length; i < l; i++) {
+    let l
+    for (l = children.length; i < l; i++) {
       if (children[i].ref === child.data.ref) {
         break
       }

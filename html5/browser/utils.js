@@ -2,13 +2,13 @@
 
 'use strict'
 
-// var WEAPP_STYLE_ID = 'weapp-style'
+// const WEAPP_STYLE_ID = 'weapp-style'
 
-var _isWebpSupported = false
+let _isWebpSupported = false
 
 ; (function isSupportWebp () {
   try {
-    var webP = new Image()
+    const webP = new Image()
     webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdA'
               + 'SoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA'
     webP.onload = function () {
@@ -23,7 +23,7 @@ var _isWebpSupported = false
 })()
 
 function extend (to, from) {
-  for (var key in from) {
+  for (const key in from) {
     to[key] = from[key]
   }
   return to
@@ -36,7 +36,7 @@ function isArray (arr) {
 }
 
 function appendStyle (css, styleId, replace) {
-  var style = document.getElementById(styleId)
+  let style = document.getElementById(styleId)
   if (style && replace) {
     style.parentNode.removeChild(style)
     style = null
@@ -54,10 +54,10 @@ function getUniqueFromArray (arr) {
   if (!isArray(arr)) {
     return []
   }
-  var res = []
-  var unique = {}
-  var val
-  for (var i = 0, l = arr.length; i < l; i++) {
+  const res = []
+  const unique = {}
+  let val
+  for (let i = 0, l = arr.length; i < l; i++) {
     val = arr[i]
     if (unique[val]) {
       continue
@@ -69,8 +69,8 @@ function getUniqueFromArray (arr) {
 }
 
 function transitionize (element, props) {
-  var transitions = []
-  for (var key in props) {
+  const transitions = []
+  for (const key in props) {
     transitions.push(key + ' ' + props[key])
   }
   element.style.transition = transitions.join(', ')
@@ -82,16 +82,16 @@ function detectWebp () {
 }
 
 function getRandom (num) {
-  var _defaultNum = 10
+  const _defaultNum = 10
   if (typeof num !== 'number' || num <= 0) {
     num = _defaultNum
   }
-  var _max = Math.pow(10, num)
+  const _max = Math.pow(10, num)
   return Math.floor(Date.now() + Math.random() * _max) % _max
 }
 
 function getRgb (color) {
-  var match
+  let match
   color = color + ''
   match = color.match(/#(\d{2})(\d{2})(\d{2})/)
   if (match) {
@@ -117,8 +117,8 @@ function loopArray (arr, num, direction) {
   if (!isArray(arr)) {
     return
   }
-  var isLeft = (direction + '').toLowerCase() === 'l'
-  var len = arr.length
+  let isLeft = (direction + '').toLowerCase() === 'l'
+  const len = arr.length
   num = num % len
   if (num < 0) {
     num = -num
@@ -127,7 +127,7 @@ function loopArray (arr, num, direction) {
   if (num === 0) {
     return arr
   }
-  var lp, rp
+  let lp, rp
   if (isLeft) {
     lp = arr.slice(0, num)
     rp = arr.slice(num)

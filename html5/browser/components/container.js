@@ -2,7 +2,7 @@
 
 require('../styles/container.css')
 
-var Component = require('./component')
+const Component = require('./component')
 
 function Container (data, nodeType) {
   Component.call(this, data, nodeType)

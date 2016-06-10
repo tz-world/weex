@@ -2,16 +2,16 @@
 
 'use strict'
 
-var Atomic = require('./atomic')
-var LazyLoad = require('../lazyLoad')
-// var config = require('../config')
-var utils = require('../utils')
+const Atomic = require('./atomic')
+const LazyLoad = require('../lazyLoad')
+// const config = require('../config')
+const utils = require('../utils')
 
 require('../styles/image.css')
 
-var DEFAULT_SIZE = 200
-var RESIZE_MODES = ['stretch', 'cover', 'contain']
-var DEFAULT_RESIZE_MODE = 'stretch'
+const DEFAULT_SIZE = 200
+const RESIZE_MODES = ['stretch', 'cover', 'contain']
+const DEFAULT_RESIZE_MODE = 'stretch'
 
 /**
  * resize: 'cover' | 'contain' | 'stretch', default is 'stretch'
@@ -26,7 +26,7 @@ function Image (data) {
 Image.prototype = Object.create(Atomic.prototype)
 
 Image.prototype.create = function () {
-  var node = document.createElement('div')
+  const node = document.createElement('div')
   node.classList.add('weex-img')
   return node
 }

@@ -50,9 +50,9 @@ function Motion (config) {
       this.t = -this.v / this.a
     }
     else {
-      var t1 = (Math.sqrt(this.v * this.v + 2 * this.a * this.s) - this.v)
+      const t1 = (Math.sqrt(this.v * this.v + 2 * this.a * this.s) - this.v)
         / this.a
-      var t2 = (-Math.sqrt(this.v * this.v + 2 * this.a * this.s) - this.v)
+      const t2 = (-Math.sqrt(this.v * this.v + 2 * this.a * this.s) - this.v)
         / this.a
       this.t = Math.min(t1, t2)
     }

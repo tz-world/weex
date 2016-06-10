@@ -6,7 +6,7 @@ function loadByXHR (config, callback) {
   if (!config.source) {
     callback(new Error('xhr loader: missing config.source.'))
   }
-  var xhr = new XMLHttpRequest()
+  const xhr = new XMLHttpRequest()
   xhr.open('GET', config.source)
   xhr.onload = function () {
     callback(null, this.responseText)
@@ -21,7 +21,7 @@ function loadByJsonp (config, callback) {
   if (!config.source) {
     callback(new Error('jsonp loader: missing config.source.'))
   }
-  var callbackName = config.jsonpCallback || 'weexJsonpCallback'
+  const callbackName = config.jsonpCallback || 'weexJsonpCallback'
   window[callbackName] = function (code) {
     if (code) {
       callback(null, code)
@@ -30,7 +30,7 @@ function loadByJsonp (config, callback) {
       callback(new Error('load by jsonp error'))
     }
   }
-  var script = document.createElement('script')
+  const script = document.createElement('script')
   script.src = decodeURIComponent(config.source)
   script.type = 'text/javascript'
   document.body.appendChild(script)
@@ -47,14 +47,14 @@ function loadBySourceCode (config, callback) {
   }
 }
 
-var callbackMap = {
+const callbackMap = {
   xhr: loadByXHR,
   jsonp: loadByJsonp,
   source: loadBySourceCode
 }
 
 function load (options, callback) {
-  var loadFn = callbackMap[options.loader]
+  const loadFn = callbackMap[options.loader]
   loadFn(options, callback)
 }
 

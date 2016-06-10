@@ -1,9 +1,9 @@
-var config = require('./config')
-var utils = require('./utils')
+const config = require('./config')
+const utils = require('./utils')
 
-var _initialized = false
+let _initialized = false
 
-var logger = {
+const logger = {
   log: function () {},
   warn: function () {},
   error: function () {}

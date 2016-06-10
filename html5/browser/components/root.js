@@ -1,19 +1,19 @@
 'use strict'
 
-var ComponentManager = require('../componentManager')
-var Component = require('./component')
-// var utils = require('../utils')
-var logger = require('../logger')
+const ComponentManager = require('../componentManager')
+const Component = require('./component')
+// const utils = require('../utils')
+const logger = require('../logger')
 
-var rootCandidates = ['div', 'list', 'vlist', 'scroller']
+const rootCandidates = ['div', 'list', 'vlist', 'scroller']
 
 function RootComponent (data, nodeType) {
-  var id = data.rootId + '-root'
-  var componentManager = ComponentManager.getInstance(data.instanceId)
+  const id = data.rootId + '-root'
+  const componentManager = ComponentManager.getInstance(data.instanceId)
 
   // If nodeType is in the downgrades map, just ignore it and
   // replace it with a div component.
-  var downgrades = componentManager.weexInstance.downgrades
+  const downgrades = componentManager.weexInstance.downgrades
   this.data = data
 
   // In some situation the root component should be implemented as
@@ -57,7 +57,7 @@ function RootComponent (data, nodeType) {
   }
 
   data.type = nodeType
-  var cmp = componentManager.createElement(data)
+  const cmp = componentManager.createElement(data)
   cmp.node.id = id
   return cmp
 }
@@ -65,9 +65,9 @@ function RootComponent (data, nodeType) {
 RootComponent.prototype = Object.create(Component.prototype)
 
 RootComponent.prototype.detectRootHeight = function () {
-  var rootQuery = '#' + this.getComponentManager().weexInstance.rootId
-  var rootContainer = document.querySelector(rootQuery) || document.body
-  var height = rootContainer.getBoundingClientRect().height
+  const rootQuery = '#' + this.getComponentManager().weexInstance.rootId
+  const rootContainer = document.querySelector(rootQuery) || document.body
+  const height = rootContainer.getBoundingClientRect().height
   if (height > window.innerHeight) {
     logger.warn([
       'for scrollable root like \'list\' and \'scroller\', the height of ',

@@ -2,17 +2,17 @@
 
 'use strict'
 
-var utils = require('../utils')
-var logger = require('../logger')
+const utils = require('../utils')
+const logger = require('../logger')
 
 require('httpurl')
 
-var jsonpCnt = 0
-var ERROR_STATE = -1
+let jsonpCnt = 0
+const ERROR_STATE = -1
 
 function _jsonp (config, callback, progressCallback) {
-  var cbName = 'jsonp_' + (++jsonpCnt)
-  var script, url, head
+  const cbName = 'jsonp_' + (++jsonpCnt)
+  let url
 
   if (!config.url) {
     logger.error('config.url should be set in _jsonp for \'fetch\' API.')
@@ -25,7 +25,7 @@ function _jsonp (config, callback, progressCallback) {
     }
   })(cbName)
 
-  script = document.createElement('script')
+  const script = document.createElement('script')
   try {
     url = lib.httpurl(config.url)
   }
@@ -45,12 +45,12 @@ function _jsonp (config, callback, progressCallback) {
       delete global[cb]
     }
   })(cbName)
-  head = document.getElementsByTagName('head')[0]
+  const head = document.getElementsByTagName('head')[0]
   head.insertBefore(script, null)
 }
 
 function _xhr (config, callback, progressCallback) {
-  var xhr = new XMLHttpRequest()
+  const xhr = new XMLHttpRequest()
   xhr.responseType = config.type
   xhr.open(config.method, config.url, true)
 
@@ -62,7 +62,7 @@ function _xhr (config, callback, progressCallback) {
       data: xhr.response,
       headers: xhr.getAllResponseHeaders().split('\n')
         .reduce(function (obj, headerStr) {
-          var headerArr = headerStr.match(/(.+): (.+)/)
+          const headerArr = headerStr.match(/(.+): (.+)/)
           if (headerArr) {
             obj[headerArr[1]] = headerArr[2]
           }
@@ -81,7 +81,7 @@ function _xhr (config, callback, progressCallback) {
         statusText: xhr.statusText,
         headers: xhr.getAllResponseHeaders().split('\n')
           .reduce(function (obj, headerStr) {
-            var headerArr = headerStr.match(/(.+): (.+)/)
+            const headerArr = headerStr.match(/(.+): (.+)/)
             if (headerArr) {
               obj[headerArr[1]] = headerArr[2]
             }
@@ -105,7 +105,7 @@ function _xhr (config, callback, progressCallback) {
   xhr.send(config.body)
 }
 
-var stream = {
+const stream = {
 
   /**
    * sendHttp
@@ -131,9 +131,9 @@ var stream = {
         'invalid config or invalid config.url for sendHttp API')
     }
 
-    var sender = this.sender
-    var method = param.method || 'GET'
-    var xhr = new XMLHttpRequest()
+    const sender = this.sender
+    const method = param.method || 'GET'
+    const xhr = new XMLHttpRequest()
     xhr.open(method, param.url, true)
     xhr.onload = function () {
       sender.performCallback(callbackId, this.responseText)
@@ -164,18 +164,18 @@ var stream = {
    * @param  {string} progressCallbackId
    */
   fetch: function (options, callbackId, progressCallbackId) {
-    var DEFAULT_METHOD = 'GET'
-    var DEFAULT_MODE = 'cors'
-    var DEFAULT_TYPE = 'text'
+    const DEFAULT_METHOD = 'GET'
+    const DEFAULT_MODE = 'cors'
+    const DEFAULT_TYPE = 'text'
 
-    var methodOptions = ['GET', 'POST']
-    var modeOptions = ['cors', 'no-cors', 'same-origin', 'navigate']
-    var typeOptions = ['text', 'json', 'jsonp', 'arraybuffer']
+    const methodOptions = ['GET', 'POST']
+    const modeOptions = ['cors', 'no-cors', 'same-origin', 'navigate']
+    const typeOptions = ['text', 'json', 'jsonp', 'arraybuffer']
 
-    // var fallback = false  // fallback from 'fetch' API to XHR.
-    var sender = this.sender
+    // const fallback = false  // fallback from 'fetch' API to XHR.
+    const sender = this.sender
 
-    var config = utils.extend({}, options)
+    const config = utils.extend({}, options)
 
     // validate options.method
     if (typeof config.method === 'undefined') {
@@ -220,7 +220,7 @@ var stream = {
           + typeOptions + '.')
     }
 
-    var _callArgs = [config, function (res) {
+    const _callArgs = [config, function (res) {
       sender.performCallback(callbackId, res)
     }]
     if (progressCallbackId) {

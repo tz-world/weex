@@ -1,7 +1,7 @@
 'use strict'
 
-var Atomic = require('./atomic')
-var utils = require('../utils')
+const Atomic = require('./atomic')
+const utils = require('../utils')
 
 // attrs:
 //   - type: text|password|tel|email|url
@@ -10,7 +10,7 @@ var utils = require('../utils')
 //   - disabled
 //   - autofocus
 function Input (data) {
-  var attrs = data.attr || {}
+  const attrs = data.attr || {}
   this.type = attrs.type || 'text'
   this.value = attrs.value
   this.placeholder = attrs.placeholder
@@ -21,8 +21,8 @@ function Input (data) {
 Input.prototype = Object.create(Atomic.prototype)
 
 Input.prototype.create = function () {
-  var node = document.createElement('input')
-  var uuid = Math.floor(10000000000000 * Math.random()) + Date.now()
+  const node = document.createElement('input')
+  const uuid = Math.floor(10000000000000 * Math.random()) + Date.now()
   this.className = 'weex-ipt-' + uuid
   this.styleId = 'weex-style-' + uuid
   node.classList.add(this.className)
@@ -55,16 +55,16 @@ Input.prototype.setPlaceholderColor = function () {
   if (!this.placeholderColor) {
     return
   }
-  var vendors = [
+  const vendors = [
     '::-webkit-input-placeholder',
     ':-moz-placeholder',
     '::-moz-placeholder',
     ':-ms-input-placeholder',
     ':placeholder-shown'
   ]
-  var css = ''
-  var cssRule = 'color: ' + this.placeholderColor + ';'
-  for (var i = 0, l = vendors.length; i < l; i++) {
+  let css = ''
+  const cssRule = 'color: ' + this.placeholderColor + ';'
+  for (let i = 0, l = vendors.length; i < l; i++) {
     css += '.' + this.className + vendors[i] + '{'
            + cssRule + '}'
   }

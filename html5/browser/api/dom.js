@@ -1,12 +1,12 @@
 'use strict'
 
-// var FrameUpdater = require('../frameUpdater')
-// var Component = require('../components/component')
-var scroll = require('scroll-to')
-// var config = require('../config')
-var logger = require('../logger')
+// const FrameUpdater = require('../frameUpdater')
+// const Component = require('../components/component')
+const scroll = require('scroll-to')
+// const config = require('../config')
+const logger = require('../logger')
 
-var dom = {
+const dom = {
 
   /**
    * createBody: create root component
@@ -15,36 +15,36 @@ var dom = {
    * @return {[type]}      [description]
    */
   createBody: function (element) {
-    var componentManager = this.getComponentManager()
+    const componentManager = this.getComponentManager()
     element.scale = this.scale
     element.instanceId = componentManager.instanceId
     return componentManager.createBody(element)
   },
 
   addElement: function (parentRef, element, index) {
-    var componentManager = this.getComponentManager()
+    const componentManager = this.getComponentManager()
     element.scale = this.scale
     element.instanceId = componentManager.instanceId
     return componentManager.addElement(parentRef, element, index)
   },
 
   removeElement: function (ref) {
-    var componentManager = this.getComponentManager()
+    const componentManager = this.getComponentManager()
     return componentManager.removeElement(ref)
   },
 
   moveElement: function (ref, parentRef, index) {
-    var componentManager = this.getComponentManager()
+    const componentManager = this.getComponentManager()
     return componentManager.moveElement(ref, parentRef, index)
   },
 
   addEvent: function (ref, type) {
-    var componentManager = this.getComponentManager()
+    const componentManager = this.getComponentManager()
     return componentManager.addEvent(ref, type)
   },
 
   removeEvent: function (ref, type) {
-    var componentManager = this.getComponentManager()
+    const componentManager = this.getComponentManager()
     return componentManager.removeEvent(ref, type)
   },
 
@@ -54,7 +54,7 @@ var dom = {
    * @param  {obj} attr
    */
   updateAttrs: function (ref, attr) {
-    var componentManager = this.getComponentManager()
+    const componentManager = this.getComponentManager()
     return componentManager.updateAttrs(ref, attr)
   },
 
@@ -64,7 +64,7 @@ var dom = {
    * @param {obj} style
    */
   updateStyle: function (ref, style) {
-    var componentManager = this.getComponentManager()
+    const componentManager = this.getComponentManager()
     return componentManager.updateStyle(ref, style)
   },
 
@@ -85,20 +85,20 @@ var dom = {
    */
   scrollToElement: function (ref, options) {
     !options && (options = {})
-    var componentManager = this.getComponentManager()
-    var elem = componentManager.getElementByRef(ref)
+    const componentManager = this.getComponentManager()
+    const elem = componentManager.getElementByRef(ref)
     if (!elem) {
       return logger.error('component of ref ' + ref + ' doesn\'t exist.')
     }
-    var parentScroller = elem.getParentScroller()
+    const parentScroller = elem.getParentScroller()
     if (parentScroller) {
       parentScroller.scroller.scrollToElement(elem.node, true)
     }
     else {
-      var offsetTop = elem.node.getBoundingClientRect().top
+      const offsetTop = elem.node.getBoundingClientRect().top
           + document.body.scrollTop
-      var offset = (Number(options.offset) || 0) * this.scale
-      var tween = scroll(0, offsetTop + offset, options)
+      const offset = (Number(options.offset) || 0) * this.scale
+      const tween = scroll(0, offsetTop + offset, options)
       tween.on('end', function () {
         logger.log('scroll end.')
       })

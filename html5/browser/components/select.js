@@ -1,7 +1,7 @@
 'use strict'
 
-var Atomic = require('./component')
-var sender = require('../bridge/sender')
+const Atomic = require('./component')
+const sender = require('../bridge/sender')
 
 // attrs:
 //   - options: the options to be listed, as a array of strings.
@@ -16,8 +16,8 @@ function Select (data) {
 Select.prototype = Object.create(Atomic.prototype)
 
 Select.prototype.create = function () {
-  var node = document.createElement('select')
-  var uuid = Math.floor(10000000000000 * Math.random()) + Date.now()
+  const node = document.createElement('select')
+  const uuid = Math.floor(10000000000000 * Math.random()) + Date.now()
   this.className = 'weex-slct-' + uuid
   this.styleId = 'weex-style-' + uuid
   node.classList.add(this.className)
@@ -50,11 +50,11 @@ Select.prototype.attr = {
 }
 
 Select.prototype.bindEvents = function (evts) {
-  var isListenToChange = false
+  let isListenToChange = false
   Atomic.prototype.bindEvents.call(
       this,
       evts.filter(function (val) {
-        var pass = val !== 'change'
+        const pass = val !== 'change'
         !pass && (isListenToChange = true)
         return pass
       }))
@@ -67,10 +67,9 @@ Select.prototype.bindEvents = function (evts) {
 }
 
 Select.prototype.createOptions = function (opts) {
-  var optDoc = document.createDocumentFragment()
-  var opt
-  for (var i = 0, l = opts.length; i < l; i++) {
-    opt = document.createElement('option')
+  const optDoc = document.createDocumentFragment()
+  for (let i = 0, l = opts.length; i < l; i++) {
+    const opt = document.createElement('option')
     opt.appendChild(document.createTextNode(opts[i]))
     optDoc.appendChild(opt)
   }

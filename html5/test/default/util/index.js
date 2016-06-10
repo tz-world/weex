@@ -299,7 +299,7 @@ describe('Util', () => {
       expect(util.stringify(/abcd/i)).eql('/abcd/i')
     })
     it('convert date to string', function () {
-      var d
+      let d
       d = new Date(2015, 1, 1)
       expect(util.stringify(d)).eql(d.toJSON())
       d = new Date()

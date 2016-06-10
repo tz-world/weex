@@ -1,10 +1,10 @@
 'use strict'
 
-var Atomic = require('./atomic')
-var utils = require('../utils')
+const Atomic = require('./atomic')
+const utils = require('../utils')
 require('../styles/switch.css')
 
-var defaults = {
+const defaults = {
   color: '#64bd63',
   secondaryColor: '#dfdfdf',
   jackColor: '#fff',
@@ -34,7 +34,7 @@ function Switch (data) {
 Switch.prototype = Object.create(Atomic.prototype)
 
 Switch.prototype.create = function () {
-  var node = document.createElement('span')
+  const node = document.createElement('span')
   this.jack = document.createElement('small')
   node.appendChild(this.jack)
   node.className = this.options.className
@@ -56,8 +56,8 @@ Switch.prototype.attr = {
 }
 
 Switch.prototype.setSize = function () {
-  var min = Math.min(this.width, this.height)
-  var max = Math.max(this.width, this.height)
+  const min = Math.min(this.width, this.height)
+  const max = Math.max(this.width, this.height)
   this.node.style.width = max + 'px'
   this.node.style.height = min + 'px'
   this.node.style.borderRadius = min / 2 + 'px'
@@ -67,9 +67,9 @@ Switch.prototype.setSize = function () {
 }
 
 Switch.prototype.setPosition = function (clicked) {
-  var checked = this.checked
-  var node = this.node
-  var jack = this.jack
+  let checked = this.checked
+  const node = this.node
+  const jack = this.jack
 
   if (clicked && checked) {
     checked = false
@@ -111,7 +111,7 @@ Switch.prototype.setPosition = function (clicked) {
 }
 
 Switch.prototype.colorize = function () {
-  var nodeHeight = this.node.offsetHeight / 2
+  const nodeHeight = this.node.offsetHeight / 2
 
   this.node.style.backgroundColor = this.options.color
   this.node.style.borderColor = this.options.color
@@ -123,8 +123,8 @@ Switch.prototype.colorize = function () {
 }
 
 Switch.prototype.setSpeed = function () {
-  var switcherProp = {}
-  var jackProp = {
+  let switcherProp = {}
+  const jackProp = {
     'background-color': this.options.speed,
     left: this.options.speed.replace(/[a-z]/, '') / 2 + 's'
   }
@@ -162,8 +162,8 @@ Switch.prototype.enable = function () {
 Switch.prototype.getClickHandler = function () {
   if (!this._clickHandler) {
     this._clickHandler = function () {
-      // var parent = this.node.parentNode.tagName.toLowerCase()
-      // var labelParent = (parent === 'label') ? false : true
+      // const parent = this.node.parentNode.tagName.toLowerCase()
+      // const labelParent = (parent === 'label') ? false : true
       this.setPosition(true)
       this.dispatchEvent('change', {
         checked: this.checked

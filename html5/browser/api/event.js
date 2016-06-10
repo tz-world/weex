@@ -1,6 +1,6 @@
 'use strict'
 
-var event = {
+const event = {
   /**
    * openUrl
    * @param  {string} url

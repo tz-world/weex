@@ -1,6 +1,6 @@
 'use strict'
 
-var navigator = {
+const navigator = {
 
   // config
   //  - url: the url to push

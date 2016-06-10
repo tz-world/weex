@@ -32,11 +32,11 @@ function initElement (el) {
 // exports._bindKey(obj, key, calc)
 // exports._bindDir(el, name, data)
 describe('watch key or props', () => {
-  var vm, cb
-  var update = function () { return this.a + this.b }
-  var update2 = function () { return this.plus() }
-  var callPlus = sinon.spy()
-  var methodNames = ['_watch', '_bindKey', '_bindDir']
+  let vm, cb
+  const update = function () { return this.a + this.b }
+  const update2 = function () { return this.plus() }
+  const callPlus = sinon.spy()
+  const methodNames = ['_watch', '_bindKey', '_bindDir']
   beforeEach(() => {
     vm = {
       _data: { a: 1, b: 2 },
@@ -59,7 +59,7 @@ describe('watch key or props', () => {
   // - watch update when data source changed
   it('watch simple exp', () => {
     vm._watch(update, cb)
-    var value = update.call(vm)
+    const value = update.call(vm)
     expect(cb).not.called
     expect(value).equal(3)
     vm.a = 2
@@ -75,9 +75,9 @@ describe('watch key or props', () => {
 
   // - update object key-value when data source changed
   it('watch k-v pairs', () => {
-    var el = { attr: { c: 3 }}
+    const el = { attr: { c: 3 }}
     initElement(el)
-    var attr = el.attr
+    const attr = el.attr
     vm._bindKey = directive._bindKey
     vm._bindKey(el, 'attr', 'd', update)
     expect(attr.d).equal(3)
@@ -90,7 +90,7 @@ describe('watch key or props', () => {
   })
   // - update prop value when data source changed
   it('watch element props', () => {
-    var el = { attr: { c: 3 }}
+    const el = { attr: { c: 3 }}
     initElement(el)
     vm._bindDir(el, 'attr', { d: 4, e: update, f: update2 })
     expect(el.attr).eql({ c: 3, d: 4, e: 3, f: 3 })
@@ -107,7 +107,7 @@ describe('watch key or props', () => {
 })
 
 describe('apply component options', () => {
-  var vm
+  let vm
 
   beforeEach(() => {
     vm = {
@@ -171,9 +171,9 @@ describe('apply component options', () => {
 // exports._setClass(el, classList)
 // exports._setStyle(el, style)
 describe('set props', () => {
-  var vm, el
-  var update = function () { return this.a + this.b }
-  var methodNames = [
+  let vm, el
+  const update = function () { return this.a + this.b }
+  const methodNames = [
     '_watch', '_bindKey', '_bindDir',
     '_setId', '_setAttr', '_setClass', '_setStyle',
     '_setEvent', '_bindEvents', '_bindElement']
@@ -217,7 +217,7 @@ describe('set props', () => {
   })
   // - set value to id
   it('set value to id', () => {
-    var targetVm = {}
+    const targetVm = {}
     vm._setId('m', el, targetVm)
     expect(vm._ids).a('object')
     expect(vm._ids.m).a('object')
@@ -226,7 +226,7 @@ describe('set props', () => {
   })
   // - set function to id
   it('set function to id', () => {
-    var targetVm = {}
+    const targetVm = {}
     vm._setId(function () { return this.idVar }, el, targetVm)
     expect(vm._ids.n).a('object')
     expect(vm._ids.n.el).equal(el)
@@ -307,9 +307,9 @@ describe('set props', () => {
 
 // exports._bindEvents(el, events)
 describe('bind events', () => {
-  var cb, vm, el
-  var app = {}
-  var methodNames = ['_setEvent', '_bindEvents']
+  let vm, el, cb
+  const app = {}
+  const methodNames = ['_setEvent', '_bindEvents']
 
   beforeEach(() => {
     cb = sinon.spy()
@@ -339,14 +339,14 @@ describe('bind events', () => {
   })
   // - bind method to eventManager
   it('add event to manager by handler', () => {
-    var cb2 = sinon.spy()
+    const cb2 = sinon.spy()
     vm._bindEvents(el, { click: cb2 })
     expect(el.event.click).a('function')
   })
   // - fireEvent to call method
   // - with right event info
   it('fire event from manager by type', () => {
-    var e = {}
+    const e = {}
     vm._bindEvents(el, { click: 'foo' })
     el.event.click(e)
     expect(cb).calledOnce
@@ -356,7 +356,7 @@ describe('bind events', () => {
   // - fireEvent to call method
   // - with right event info
   it('fire event from manager by handler', () => {
-    var e = {}
+    const e = {}
     vm._bindEvents(el, { click: function ($event) {
       this.foo(this.a, $event)
     } })
@@ -369,8 +369,8 @@ describe('bind events', () => {
 
 // exports._bindSubVm(subVm, template)
 describe('bind external infomations to sub vm', () => {
-  var vm, subVm
-  var methodNames = [
+  let vm, subVm
+  const methodNames = [
     '_watch', '_bindKey', '_bindDir',
     '_setId', '_setAttr', '_setClass', '_setStyle',
     '_setEvent', '_bindEvents', '_bindElement',

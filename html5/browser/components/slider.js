@@ -2,15 +2,15 @@
 
 'use strict'
 
-var extend = require('../utils').extend
-// var config = require('../config')
-var Component = require('./component')
-// var ComponentManager = require('../componentManager')
-// var LazyLoad = require('../lazyLoad')
+const extend = require('../utils').extend
+// const config = require('../config')
+const Component = require('./component')
+// const ComponentManager = require('../componentManager')
+// const LazyLoad = require('../lazyLoad')
 require('carrousel')
 require('../styles/slider.css')
 
-var DEFAULT_INTERVAL = 3000
+const DEFAULT_INTERVAL = 3000
 
 function Slider (data) {
   this.autoPlay = false  // default value is false.
@@ -31,7 +31,7 @@ function Slider (data) {
 Slider.prototype = Object.create(Component.prototype)
 
 Slider.prototype._idleWhenPageDisappear = function () {
-  var _this = this
+  const _this = this
   window.addEventListener('pageshow', function () {
     _this.isPageShow = true
     _this.autoPlay && !_this.isDomRendering && _this.play()
@@ -43,7 +43,7 @@ Slider.prototype._idleWhenPageDisappear = function () {
 }
 
 Slider.prototype._idleWhenDomRendering = function () {
-  var _this = this
+  const _this = this
   window.addEventListener('renderend', function () {
     _this.isDomRendering = false
     _this.autoPlay && _this.isPageShow && _this.play()
@@ -82,7 +82,7 @@ Slider.prototype.attr = {
 }
 
 Slider.prototype.create = function () {
-  var node = document.createElement('div')
+  const node = document.createElement('div')
   node.classList.add('slider')
   node.style.position = 'relative'
   node.style.overflow = 'hidden'
@@ -90,15 +90,15 @@ Slider.prototype.create = function () {
 }
 
 Slider.prototype._doRender = function () {
-  var _this = this
+  const _this = this
   _this.createChildren()
   _this.onAppend()
 }
 
 Slider.prototype.removeChild = function (child) {
-  var children = this.data.children
+  const children = this.data.children
   if (children) {
-    for (var i = 0; i < children.length; i++) {
+    for (let i = 0; i < children.length; i++) {
       if (child.data.ref === children[i].ref) {
         children.splice(i, 1)
         break
@@ -110,10 +110,10 @@ Slider.prototype.removeChild = function (child) {
 }
 
 Slider.prototype.insertBefore = function (child, before) {
-  var children = this.data.children
-  // var childIndex = this.children.indexOf(before.data)
-  var childIndex = -1
-  for (var i = 0, l = children.length; i < l; i++) {
+  const children = this.data.children
+  // const childIndex = this.children.indexOf(before.data)
+  let childIndex = -1
+  for (let i = 0, l = children.length; i < l; i++) {
     if (children[i].ref === before.data.ref) {
       childIndex = i
       break
@@ -128,7 +128,7 @@ Slider.prototype.insertBefore = function (child, before) {
 }
 
 Slider.prototype.appendChild = function (data) {
-  var children = this.data.children || (this.data.children = [])
+  const children = this.data.children || (this.data.children = [])
   children.push(data)
   this._doRender()
   if (this.children.length > 0) {
@@ -137,7 +137,7 @@ Slider.prototype.appendChild = function (data) {
 }
 
 Slider.prototype.createChildren = function () {
-  var componentManager = this.getComponentManager()
+  const componentManager = this.getComponentManager()
 
   // recreate slider container.
   if (this.sliderContainer) {
@@ -148,21 +148,21 @@ Slider.prototype.createChildren = function () {
   }
   this.children = []
 
-  var sliderContainer = document.createElement('ul')
+  const sliderContainer = document.createElement('ul')
   sliderContainer.style.listStyle = 'none'
   this.node.appendChild(sliderContainer)
   this.sliderContainer = sliderContainer
 
-  var children = this.data.children
-  var scale = this.data.scale
-  var fragment = document.createDocumentFragment()
-  var indicatorData, width, height
-  var childWidth = 0
-  var childHeight = 0
+  const children = this.data.children
+  const scale = this.data.scale
+  const fragment = document.createDocumentFragment()
+  let indicatorData, width, height
+  let childWidth = 0
+  let childHeight = 0
 
   if (children && children.length) {
-    for (var i = 0; i < children.length; i++) {
-      var child
+    for (let i = 0; i < children.length; i++) {
+      let child
       children[i].scale = this.data.scale
       children[i].instanceId = this.data.instanceId
       if (children[i].type === 'indicator') {
@@ -226,13 +226,13 @@ Slider.prototype.onAppend = function () {
   }
   // The time just before the second slide appear and enough
   // for all child elements to append is ok.
-  var preloadTime = 0.8
+  const preloadTime = 0.8
   this.preloadImgsTimer = setTimeout(function () {
-    var imgs = this.carrousel.element.querySelectorAll('.weex-img')
-    for (var i = 0, l = imgs.length; i < l; i++) {
-      var img = imgs[i]
-      var iLazySrc = img.getAttribute('i-lazy-src')
-      var imgSrc = img.getAttribute('img-src')
+    const imgs = this.carrousel.element.querySelectorAll('.weex-img')
+    for (let i = 0, l = imgs.length; i < l; i++) {
+      const img = imgs[i]
+      const iLazySrc = img.getAttribute('i-lazy-src')
+      const imgSrc = img.getAttribute('img-src')
       if (iLazySrc) {
         img.style.backgroundImage = 'url(' + iLazySrc + ')'
       }
@@ -245,7 +245,7 @@ Slider.prototype.onAppend = function () {
   }.bind(this), preloadTime * 1000)
 
   // avoid page scroll when panning
-  var panning = false
+  let panning = false
   this.carrousel.element.addEventListener('panstart', function (e) {
     if (!e.isVertical) {
       panning = true
@@ -273,7 +273,7 @@ Slider.prototype._updateIndicators = function () {
 Slider.prototype._getSliderChangeHandler = function (e) {
   if (!this.sliderChangeHandler) {
     this.sliderChangeHandler = function (e) {
-      var index = this.carrousel.items.index
+      const index = this.carrousel.items.index
       this.currentIndex = index
 
       // updateIndicators
@@ -294,7 +294,7 @@ Slider.prototype.stop = function () {
 }
 
 Slider.prototype.slideTo = function (index) {
-  var offset = index - this.currentIndex
+  const offset = index - this.currentIndex
   this.carrousel.items.slide(offset)
 }
 

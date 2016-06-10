@@ -1,18 +1,18 @@
 'use strict'
 
 // Flexbox polyfill
-var flexboxSetters = (function () {
-  var BOX_ALIGN = {
+const flexboxSetters = (function () {
+  const BOX_ALIGN = {
     stretch: 'stretch',
     'flex-start': 'start',
     'flex-end': 'end',
     center: 'center'
   }
-  var BOX_ORIENT = {
+  const BOX_ORIENT = {
     row: 'horizontal',
     column: 'vertical'
   }
-  var BOX_PACK = {
+  const BOX_PACK = {
     'flex-start': 'start',
     'flex-end': 'end',
     center: 'center',

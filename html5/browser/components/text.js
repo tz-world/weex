@@ -1,10 +1,10 @@
 'use strict'
 
-var Atomic = require('./component')
-var utils = require('../utils')
+const Atomic = require('./component')
+const utils = require('../utils')
 
-var DEFAULT_FONT_SIZE = 32
-var DEFAULT_TEXT_OVERFLOW = 'ellipsis'
+const DEFAULT_FONT_SIZE = 32
+const DEFAULT_TEXT_OVERFLOW = 'ellipsis'
 
 // attr
 //  - value: text content.
@@ -16,7 +16,7 @@ function Text (data) {
 Text.prototype = Object.create(Atomic.prototype)
 
 Text.prototype.create = function () {
-  var node = document.createElement('div')
+  const node = document.createElement('div')
   node.classList.add('weex-container')
   node.style.fontSize = DEFAULT_FONT_SIZE * this.data.scale + 'px'
   this.textNode = document.createElement('span')
@@ -32,7 +32,7 @@ Text.prototype.create = function () {
 
 Text.prototype.attr = {
   value: function (value) {
-    var span = this.node.firstChild
+    const span = this.node.firstChild
     span.innerHTML = ''
     if (value == null || value === '') {
       return
@@ -45,10 +45,10 @@ Text.prototype.attr = {
      * we use ``white-space: no-wrap`` instead (instead of the
      * code bellow).
 
-      var frag = document.createDocumentFragment()
+      const frag = document.createDocumentFragment()
         text.split(' ').forEach(function(str) {
-          var textNode = document.createTextNode(str)
-          var space = document.createElement('i')
+          const textNode = document.createTextNode(str)
+          const space = document.createElement('i')
           space.innerHTML = '&nbsp;'
           frag.appendChild(space)
           frag.appendChild(textNode)
@@ -79,7 +79,7 @@ Text.prototype.style = utils.extend(Object.create(Atomic.prototype.style), {
       this.textNode.style.webkitLineClamp = ''
     }
     else {
-      var style = this.data ? this.data.style : null
+      const style = this.data ? this.data.style : null
       this.textNode.style.overflow = 'hidden'
       this.textNode.style.textOverflow = style
         ? style.textOverflow

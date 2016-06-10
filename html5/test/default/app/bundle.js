@@ -130,7 +130,7 @@ describe('parsing a bundle file', () => {
     describe('require', () => {
       it('a weex component', (done) => {
         app.define('@weex-component/b', (require, exports, module) => {
-          var componentA = require('@weex-component/a')
+          const componentA = require('@weex-component/a')
 
           expect(app.requireComponent.calledOnce).to.be.true
           expect(app.requireComponent.firstCall.args[0]).to.be.equal('a')

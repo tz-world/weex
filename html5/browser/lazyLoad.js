@@ -4,9 +4,9 @@
 
 require('lazyimg')
 
-var lazyloadTimer
+let lazyloadTimer
 
-var LazyLoad = {
+const LazyLoad = {
   makeImageLazy: function (image, src) {
     image.removeAttribute('img-src')
     image.removeAttribute('i-lazy-src')
@@ -29,7 +29,7 @@ var LazyLoad = {
   // is no way that any image element can miss it. See source
   // code in componentMangager.js.
   startIfNeeded: function (component) {
-    var that = this
+    const that = this
     if (component.data.type === 'image') {
       if (!lazyloadTimer) {
         lazyloadTimer = setTimeout(function () {
@@ -42,15 +42,15 @@ var LazyLoad = {
   },
 
   loadIfNeeded: function (elementScope) {
-    var notPreProcessed = elementScope.querySelectorAll('[img-src]')
-    var that = this
+    const notPreProcessed = elementScope.querySelectorAll('[img-src]')
+    const that = this
     // image elements which have attribute 'i-lazy-src' were elements
     // that had been preprocessed by lib-img-core, but not loaded yet, and
     // must be loaded when 'appear' events were fired. It turns out the
     // 'appear' event was not fired correctly in the css-translate-transition
     // situation, so 'i-lazy-src' must be checked and lazyload must be
     // fired manually.
-    var preProcessed = elementScope.querySelectorAll('[i-lazy-src]')
+    const preProcessed = elementScope.querySelectorAll('[i-lazy-src]')
     if (notPreProcessed.length > 0 || preProcessed.length > 0) {
       that.fire()
     }

@@ -1,8 +1,8 @@
 'use strict'
 
-var utils = require('../utils')
+const utils = require('../utils')
 
-var _senderMap = {}
+const _senderMap = {}
 
 function Sender (instance) {
   if (!(this instanceof Sender)) {
@@ -25,7 +25,7 @@ Sender.prototype = {
 
   // perform a callback to jsframework.
   performCallback: function (callbackId, data, keepAlive) {
-    var args = [callbackId]
+    const args = [callbackId]
     data && args.push(data)
     keepAlive && args.push(keepAlive)
     _send(this.instanceId, {
@@ -42,7 +42,7 @@ Sender.prototype = {
     // do not prevent default, otherwise the touchstart
     // event will no longer trigger a click event
     event._alreadyFired = true
-    var evt = utils.extend({}, event)
+    const evt = utils.extend({}, event)
     // The event.target must be the standard event's currentTarget.
     evt.target = evt.currentTarget
     evt.value = event.target.value

@@ -2,11 +2,11 @@
 
 'use strict'
 
-// var config = require('../config')
-var utils = require('../utils')
-var ComponentManager = require('../componentManager')
-var flexbox = require('../flexbox')
-var valueFilter = require('../valueFilter')
+// const config = require('../config')
+const utils = require('../utils')
+const ComponentManager = require('../componentManager')
+const flexbox = require('../flexbox')
+const valueFilter = require('../valueFilter')
 require('fixedsticky')
 
 function Component (data, nodeType) {
@@ -18,7 +18,7 @@ function Component (data, nodeType) {
   // issue: when add element to a list in lifetime hook 'ready', the
   // styles is set to the classStyle, not style. This is a issue
   // that jsframework should do something about.
-  var classStyle = this.data.classStyle
+  const classStyle = this.data.classStyle
   classStyle && this.updateStyle(this.data.classStyle)
   this.updateStyle(this.data.style)
   this.bindEvents(this.data.event)
@@ -27,7 +27,7 @@ function Component (data, nodeType) {
 Component.prototype = {
 
   create: function (nodeType) {
-    var node = document.createElement(nodeType || 'div')
+    const node = document.createElement(nodeType || 'div')
     return node
   },
 
@@ -48,8 +48,8 @@ Component.prototype = {
 
   getRootScroller: function () {
     if (this.isInScrollable()) {
-      var scroller = this._parentScroller
-      var parent = scroller._parentScroller
+      let scroller = this._parentScroller
+      let parent = scroller._parentScroller
       while (parent) {
         scroller = parent
         parent = scroller._parentScroller
@@ -60,13 +60,13 @@ Component.prototype = {
   },
 
   getRootContainer: function () {
-    var root = this.getComponentManager().weexInstance.getRoot()
+    const root = this.getComponentManager().weexInstance.getRoot()
       || document.body
     return root
   },
 
   isScrollable: function () {
-    var t = this.data.type
+    const t = this.data.type
     return ComponentManager.getScrollableTypes().indexOf(t) !== -1
   },
 
@@ -74,7 +74,7 @@ Component.prototype = {
     if (typeof this._isInScrollable === 'boolean') {
       return this._isInScrollable
     }
-    var parent = this.getParent()
+    const parent = this.getParent()
     if (parent
         && (typeof parent._isInScrollable !== 'boolean')
         && !parent.isScrollable()) {
@@ -103,16 +103,16 @@ Component.prototype = {
   },
 
   createChildren: function () {
-    var children = this.data.children
-    var parentRef = this.data.ref
-    var componentManager = this.getComponentManager()
+    const children = this.data.children
+    const parentRef = this.data.ref
+    const componentManager = this.getComponentManager()
     if (children && children.length) {
-      var fragment = document.createDocumentFragment()
-      var isFlex = false
-      for (var i = 0; i < children.length; i++) {
+      const fragment = document.createDocumentFragment()
+      let isFlex = false
+      for (let i = 0; i < children.length; i++) {
         children[i].instanceId = this.data.instanceId
         children[i].scale = this.data.scale
-        var child = componentManager.createElement(children[i])
+        const child = componentManager.createElement(children[i])
         fragment.appendChild(child.node)
         child.parentRef = parentRef
         if (!isFlex
@@ -128,9 +128,9 @@ Component.prototype = {
 
   // @todo: changed param data to child
   appendChild: function (data) {
-    var children = this.data.children
-    var componentManager = this.getComponentManager()
-    var child = componentManager.createElement(data)
+    const children = this.data.children
+    const componentManager = this.getComponentManager()
+    const child = componentManager.createElement(data)
     this.node.appendChild(child.node)
     // update this.data.children
     if (!children || !children.length) {
@@ -144,10 +144,10 @@ Component.prototype = {
   },
 
   insertBefore: function (child, before) {
-    var children = this.data.children
-    var i = 0
-    var l
-    var isAppend = false
+    const children = this.data.children
+    let i = 0
+    let l
+    let isAppend = false
 
     // update this.data.children
     if (!children || !children.length || !before) {
@@ -180,12 +180,13 @@ Component.prototype = {
   },
 
   removeChild: function (child) {
-    var children = this.data.children
+    const children = this.data.children
     // remove from this.data.children
-    var i = 0
-    var componentManager = this.getComponentManager()
+    let i = 0
+    const componentManager = this.getComponentManager()
     if (children && children.length) {
-      for (var l = children.length; i < l; i++) {
+      let l
+      for (l = children.length; i < l; i++) {
         if (children[i].ref === child.data.ref) {
           break
         }
@@ -208,9 +209,9 @@ Component.prototype = {
     if (!this.node.attr) {
       this.node.attr = {}
     }
-    for (var key in attrs) {
-      var value = attrs[key]
-      var attrSetter = this.attr[key]
+    for (const key in attrs) {
+      const value = attrs[key]
+      const attrSetter = this.attr[key]
       if (typeof attrSetter === 'function') {
         attrSetter.call(this, value)
       }
@@ -227,14 +228,14 @@ Component.prototype = {
   },
 
   updateStyle: function (style) {
-    for (var key in style) {
-      var value = style[key]
-      var styleSetter = this.style[key]
+    for (const key in style) {
+      let value = style[key]
+      const styleSetter = this.style[key]
       if (typeof styleSetter === 'function') {
         styleSetter.call(this, value)
         continue
       }
-      var parser = valueFilter.getFilters(key,
+      const parser = valueFilter.getFilters(key,
           { scale: this.data.scale })[typeof value]
       if (typeof parser === 'function') {
         value = parser(value)
@@ -244,11 +245,11 @@ Component.prototype = {
   },
 
   bindEvents: function (evts) {
-    var componentManager = this.getComponentManager()
+    const componentManager = this.getComponentManager()
     if (evts
         && Object.prototype.toString.call(evts).slice(8, -1) === 'Array'
       ) {
-      for (var i = 0, l = evts.length; i < l; i++) {
+      for (let i = 0, l = evts.length; i < l; i++) {
         componentManager.addEvent(this, evts[i])
       }
     }
@@ -261,7 +262,7 @@ Component.prototype = {
   //     - bubbles
   //     - cancelable
   dispatchEvent: function (type, data, config) {
-    var event = document.createEvent('HTMLEvents')
+    const event = document.createEvent('HTMLEvents')
     config = config || {}
     event.initEvent(type, config.bubbles || false, config.cancelable || false)
     !data && (data = {})
@@ -272,11 +273,11 @@ Component.prototype = {
 
   updateRecursiveAttr: function (data) {
     this.updateAttrs(data.attr)
-    var componentManager = this.getComponentManager()
-    var children = this.data.children
+    const componentManager = this.getComponentManager()
+    const children = this.data.children
     if (children) {
-      for (var i = 0; i < children.length; i++) {
-        var child = componentManager.getElementByRef(children[i].ref)
+      for (let i = 0; i < children.length; i++) {
+        const child = componentManager.getElementByRef(children[i].ref)
         if (child) {
           child.updateRecursiveAttr(data.children[i])
         }
@@ -286,11 +287,11 @@ Component.prototype = {
 
   updateRecursiveStyle: function (data) {
     this.updateStyle(data.style)
-    var componentManager = this.getComponentManager()
-    var children = this.data.children
+    const componentManager = this.getComponentManager()
+    const children = this.data.children
     if (children) {
-      for (var i = 0; i < children.length; i++) {
-        var child = componentManager.getElementByRef(children[i].ref)
+      for (let i = 0; i < children.length; i++) {
+        const child = componentManager.getElementByRef(children[i].ref)
         if (child) {
           child.updateRecursiveStyle(data.children[i])
         }
@@ -301,19 +302,19 @@ Component.prototype = {
   updateRecursiveAll: function (data) {
     this.updateAttrs(data.attr)
     this.updateStyle(data.style)
-    var componentManager = this.getComponentManager()
+    const componentManager = this.getComponentManager()
 
-    // var oldRef = this.data.ref
+    // const oldRef = this.data.ref
     // if (componentMap[oldRef]) {
     //   delete componentMap[oldRef]
     // }
     // this.data.ref = data.ref
     // componentMap[data.ref] = this
 
-    var children = this.data.children
+    const children = this.data.children
     if (children) {
-      for (var i = 0; i < children.length; i++) {
-        var child = componentManager.getElementByRef(children[i].ref)
+      for (let i = 0; i < children.length; i++) {
+        const child = componentManager.getElementByRef(children[i].ref)
         if (child) {
           child.updateRecursiveAll(data.children[i])
         }

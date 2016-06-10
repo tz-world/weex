@@ -18,22 +18,22 @@ require('../scroll')
 //  - pullright
 //  - contentrefresh
 
-var Component = require('./component')
-// var utils = require('../utils')
+const Component = require('./component')
+// const utils = require('../utils')
 
-var directionMap = {
+const directionMap = {
   h: ['row', 'horizontal', 'h', 'x'],
   v: ['column', 'vertical', 'v', 'y']
 }
 
-var DEFAULT_DIRECTION = 'column'
+const DEFAULT_DIRECTION = 'column'
 
 // attrs:
 //  - scroll-direciton: none|vertical|horizontal (default is vertical)
 //  - show-scrollbar: true|false (default is true)
 function Scroller (data, nodeType) {
-  var attrs = data.attr || {}
-  var direction = attrs.scrollDirection
+  const attrs = data.attr || {}
+  const direction = attrs.scrollDirection
     || attrs.direction
     || DEFAULT_DIRECTION
   this.direction = directionMap.h.indexOf(direction) === -1
@@ -46,8 +46,8 @@ function Scroller (data, nodeType) {
 Scroller.prototype = Object.create(Component.prototype)
 
 Scroller.prototype.create = function (nodeType) {
-  var Scroll = lib.scroll
-  var node = Component.prototype.create.call(this, nodeType)
+  const Scroll = lib.scroll
+  const node = Component.prototype.create.call(this, nodeType)
   node.classList.add('weex-container', 'scroll-wrap')
   this.scrollElement = document.createElement('div')
   this.scrollElement.classList.add(
@@ -87,12 +87,12 @@ Scroller.prototype.bindEvents = function (evts) {
   Component.prototype.bindEvents.call(this, evts)
   // to enable lazyload for Images
   this.scroller.addEventListener('scrolling', function (e) {
-    var so = e.scrollObj
-    var scrollTop = so.getScrollTop()
-    var scrollLeft = so.getScrollLeft()
-    var offset = this.direction === 'v' ? scrollTop : scrollLeft
-    var diff = offset - this.offset
-    var dir
+    const so = e.scrollObj
+    const scrollTop = so.getScrollTop()
+    const scrollLeft = so.getScrollLeft()
+    const offset = this.direction === 'v' ? scrollTop : scrollLeft
+    const diff = offset - this.offset
+    let dir
     if (diff >= 0) {
       dir = this.direction === 'v' ? 'up' : 'left'
     }
@@ -111,7 +111,7 @@ Scroller.prototype.bindEvents = function (evts) {
     this.offset = offset
   }.bind(this))
 
-  var pullendEvent = 'pull'
+  const pullendEvent = 'pull'
     + ({ v: 'up', h: 'left' })[this.direction]
     + 'end'
   this.scroller.addEventListener(pullendEvent, function (e) {
@@ -120,16 +120,16 @@ Scroller.prototype.bindEvents = function (evts) {
 }
 
 Scroller.prototype.createChildren = function () {
-  var children = this.data.children
-  var parentRef = this.data.ref
-  var componentManager = this.getComponentManager()
+  const children = this.data.children
+  const parentRef = this.data.ref
+  const componentManager = this.getComponentManager()
   if (children && children.length) {
-    var fragment = document.createDocumentFragment()
-    var isFlex = false
-    for (var i = 0; i < children.length; i++) {
+    const fragment = document.createDocumentFragment()
+    let isFlex = false
+    for (let i = 0; i < children.length; i++) {
       children[i].instanceId = this.data.instanceId
       children[i].scale = this.data.scale
-      var child = componentManager.createElement(children[i])
+      const child = componentManager.createElement(children[i])
       fragment.appendChild(child.node)
       child.parentRef = parentRef
       if (!isFlex
@@ -148,9 +148,9 @@ Scroller.prototype.createChildren = function () {
 }
 
 Scroller.prototype.appendChild = function (data) {
-  var children = this.data.children
-  var componentManager = this.getComponentManager()
-  var child = componentManager.createElement(data)
+  const children = this.data.children
+  const componentManager = this.getComponentManager()
+  const child = componentManager.createElement(data)
   this.scrollElement.appendChild(child.node)
 
   // wait for UI thread to update.
@@ -170,16 +170,17 @@ Scroller.prototype.appendChild = function (data) {
 }
 
 Scroller.prototype.insertBefore = function (child, before) {
-  var children = this.data.children
-  var i = 0
-  var isAppend = false
+  const children = this.data.children
+  let i = 0
+  let isAppend = false
 
   // update this.data.children
   if (!children || !children.length || !before) {
     isAppend = true
   }
   else {
-    for (var l = children.length; i < l; i++) {
+    let l
+    for (l = children.length; i < l; i++) {
       if (children[i].ref === before.data.ref) {
         break
       }
@@ -210,12 +211,13 @@ Scroller.prototype.insertBefore = function (child, before) {
 }
 
 Scroller.prototype.removeChild = function (child) {
-  var children = this.data.children
+  const children = this.data.children
   // remove from this.data.children
-  var i = 0
-  var componentManager = this.getComponentManager()
+  let i = 0
+  const componentManager = this.getComponentManager()
   if (children && children.length) {
-    for (var l = children.length; i < l; i++) {
+    let l
+    for (l = children.length; i < l; i++) {
       if (children[i].ref === child.data.ref) {
         break
       }

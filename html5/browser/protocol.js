@@ -1,13 +1,13 @@
 'use strict'
 
-// var extend = require('./utils').extend
-var isArray = require('./utils').isArray
-// var ComponentManager = require('./componentManager')
+// const extend = require('./utils').extend
+const isArray = require('./utils').isArray
+// const ComponentManager = require('./componentManager')
 
 // for jsframework to register modules.
-var _registerModules = function (config) {
+const _registerModules = function (config) {
   if (isArray(config)) {
-    for (var i = 0, l = config.length; i < l; i++) {
+    for (let i = 0, l = config.length; i < l; i++) {
       window.registerModules(config[i])
     }
   }
@@ -16,7 +16,7 @@ var _registerModules = function (config) {
   }
 }
 
-var protocol = {
+const protocol = {
 
   // weex instances
   _instances: {},
@@ -37,7 +37,7 @@ var protocol = {
 
   // get the api method meta info array for the module.
   getApiModuleMeta: function (moduleName) {
-    var metaObj = {}
+    const metaObj = {}
     metaObj[moduleName] = this._meta[moduleName]
     return metaObj
   },
@@ -92,12 +92,12 @@ var protocol = {
   //    args: ['string', 'object']
   //  }
   setApiMeta: function (moduleName, meta) {
-    var metaArray = this._meta[moduleName]
+    const metaArray = this._meta[moduleName]
     if (!metaArray) {
       this._meta[moduleName] = [meta]
     }
     else {
-      var metaIdx = -1
+      let metaIdx = -1
       metaArray.forEach(function (api, i) {
         let name // todo
         if (meta.name === name) {

@@ -1,8 +1,8 @@
 'use strict'
 
-var Atomic = require('./atomic')
-// var config = require('../config')
-var utils = require('../utils')
+const Atomic = require('./atomic')
+// const config = require('../config')
+const utils = require('../utils')
 
 // TODO: refactor this scss code since this is strongly
 // dependent on lib.flexible other than the value of
@@ -13,20 +13,20 @@ function TabHeader (data) {
   Atomic.call(this, data)
 }
 
-var proto = TabHeader.prototype = Object.create(Atomic.prototype)
+const proto = TabHeader.prototype = Object.create(Atomic.prototype)
 
 proto.create = function () {
   // outside container.
-  var node = document.createElement('div')
+  const node = document.createElement('div')
   node.className = 'tab-header'
   // tip on the top.
-  var bar = document.createElement('div')
+  const bar = document.createElement('div')
   bar.className = 'header-bar'
   bar.textContent = 'CHANGE FLOOR'
   // middle layer.
-  var body = document.createElement('div')
+  const body = document.createElement('div')
   body.className = 'header-body'
-  var box = document.createElement('ul')
+  const box = document.createElement('ul')
   box.className = 'tabheader'
 
   body.appendChild(box)
@@ -43,9 +43,9 @@ proto.create = function () {
 }
 
 proto._initFoldBtn = function () {
-  var _this = this
-  var node = this.node
-  var btn = document.createElement('span')
+  const _this = this
+  const node = this.node
+  const btn = document.createElement('span')
   btn.className = 'fold-toggle iconfont'
   btn.innerHTML = '&#xe661;'
   node.appendChild(btn)
@@ -61,7 +61,7 @@ proto._initFoldBtn = function () {
 }
 
 proto._initMask = function () {
-  var mask = document.createElement('div')
+  const mask = document.createElement('div')
   mask.className = 'tabheader-mask'
   this.mask = mask
   // stop default behavior: page moving.
@@ -69,7 +69,7 @@ proto._initMask = function () {
     evt.preventDefault()
   })
   // click to unfold.
-  var _this = this
+  const _this = this
   mask.addEventListener('click', function () {
     _this._folding()
   })
@@ -80,7 +80,7 @@ proto._initMask = function () {
 proto._unfolding = function () {
   // mark the initial posiiton of tabheader
   if (!this.flag) {
-    var flag = document.createComment('tabheader')
+    const flag = document.createComment('tabheader')
     this.flag = flag
     this.node.parentNode.insertBefore(flag, this.node)
   }
@@ -98,7 +98,7 @@ proto._unfolding = function () {
   this.node.classList.add('unfold-header')
   this.node.style.height = 'auto'
   // recalc the position when it is unfolded.
-  var thHeight = this.node.getBoundingClientRect().height
+  const thHeight = this.node.getBoundingClientRect().height
   if (thHeight + this._topVal > window.innerHeight) {
     this._topVal = this._topVal
         + (window.innerHeight - thHeight - this._topVal)
@@ -138,11 +138,11 @@ proto._initEvent = function () {
 
 // init events.
 proto._initClickEvent = function () {
-  var box = this.box
-  var _this = this
+  const box = this.box
+  const _this = this
 
   box.addEventListener('click', function (evt) {
-    var target = evt.target
+    let target = evt.target
     if (target.nodeName === 'UL') {
       return
     }
@@ -151,7 +151,7 @@ proto._initClickEvent = function () {
       target = target.parentNode
     }
 
-    var floor = target.getAttribute('data-floor')
+    const floor = target.getAttribute('data-floor')
     /* eslint-disable eqeqeq */
     if (_this.data.attr.selectedIndex == floor) {
       // Duplicated clicking, not to trigger select event.
@@ -164,10 +164,10 @@ proto._initClickEvent = function () {
 }
 
 proto._initSelectEvent = function () {
-  var node = this.node
-  var _this = this
+  const node = this.node
+  const _this = this
   node.addEventListener('select', function (evt) {
-    var index
+    let index
     if (evt.index !== undefined) {
       index = evt.index
     }
@@ -188,21 +188,21 @@ proto.attr = {
     return createHighlightIcon()
   },
   data: function () {
-    var attr = this.data.attr
+    const attr = this.data.attr
     // Ensure there is a default selected value.
     if (attr.selectedIndex === undefined) {
       attr.selectedIndex = 0
     }
 
-    var list = attr.data || []
-    var curItem = attr.selectedIndex
+    const list = attr.data || []
+    const curItem = attr.selectedIndex
 
-    var ret = []
-    var itemTmpl = '<li class="th-item" data-floor="{{floor}}">'
+    const ret = []
+    const itemTmpl = '<li class="th-item" data-floor="{{floor}}">'
         + '{{hlIcon}}{{floorName}}</li>'
 
     list.forEach(function (item, idx) {
-      var html = itemTmpl.replace('{{floor}}', idx)
+      let html = itemTmpl.replace('{{floor}}', idx)
       /* eslint-disable eqeqeq */
       if (curItem == idx) {
         html = html.replace('{{hlIcon}}', createHighlightIcon())
@@ -220,7 +220,7 @@ proto.attr = {
     this.box.innerHTML = ret.join('')
   },
   selectedIndex: function (val) {
-    var attr = this.data.attr
+    const attr = this.data.attr
 
     if (val === undefined) {
       val = 0
@@ -262,9 +262,9 @@ proto.style.textHighlightColor = function (val) {
     return
   }
   this.textHighlightColor = val
-  var attr = this.data.attr
+  const attr = this.data.attr
 
-  var node = this.node.querySelector('[data-floor="'
+  const node = this.node.querySelector('[data-floor="'
       + attr.selectedIndex + '"]')
   if (node) {
     node.style.color = val
@@ -274,17 +274,17 @@ proto.style.textHighlightColor = function (val) {
 
 proto._scrollToView = function (node) {
   if (!node) {
-    var attr = this.data.attr
+    const attr = this.data.attr
     node = this.node.querySelector('[data-floor="' + attr.selectedIndex + '"]')
   }
   if (!node) {
     return
   }
 
-  // var defaultVal = this._body.scrollLeft
-  // var leftVal = defaultVal - node.offsetLeft + 300
+  // const defaultVal = this._body.scrollLeft
+  // const leftVal = defaultVal - node.offsetLeft + 300
 
-  var scrollVal = getScrollVal(this._body.getBoundingClientRect(), node)
+  const scrollVal = getScrollVal(this._body.getBoundingClientRect(), node)
   doScroll(this._body, scrollVal)
 }
 
@@ -318,13 +318,13 @@ function doScroll (node, val, finish) {
 
 // get scroll distance.
 function getScrollVal (rect, node) {
-  var left = node.previousSibling
-  var right = node.nextSibling
-  var scrollVal
+  const left = node.previousSibling
+  const right = node.nextSibling
+  let scrollVal
 
   // process left-side element first.
   if (left) {
-    var leftRect = left.getBoundingClientRect()
+    const leftRect = left.getBoundingClientRect()
     // only need to compare the value of left.
     if (leftRect.left < rect.left) {
       scrollVal = leftRect.left
@@ -333,7 +333,7 @@ function getScrollVal (rect, node) {
   }
 
   if (right) {
-    var rightRect = right.getBoundingClientRect()
+    const rightRect = right.getBoundingClientRect()
     // compare the value of right.
     if (rightRect.right > rect.right) {
       scrollVal = rightRect.right - rect.right
@@ -342,7 +342,7 @@ function getScrollVal (rect, node) {
   }
 
   // process current node, from left to right.
-  var nodeRect = node.getBoundingClientRect()
+  const nodeRect = node.getBoundingClientRect()
   if (nodeRect.left < rect.left) {
     scrollVal = nodeRect.left
   }
@@ -355,7 +355,7 @@ function getScrollVal (rect, node) {
 
 // trigger and broadcast events.
 function fireEvent (element, type, data) {
-  var evt = document.createEvent('Event')
+  const evt = document.createEvent('Event')
   evt.data = data
   utils.extend(evt, data)
   // need bubble.
@@ -365,7 +365,7 @@ function fireEvent (element, type, data) {
 }
 
 function createHighlightIcon (code) {
-  var html = '<i class="hl-icon iconfont">' + '&#xe650' + '</i>'
+  const html = '<i class="hl-icon iconfont">' + '&#xe650' + '</i>'
   return html
 }
 

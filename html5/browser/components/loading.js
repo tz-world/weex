@@ -1,17 +1,17 @@
 'use strict'
 
-var Component = require('./component')
+const Component = require('./component')
 
 require('../styles/loading.css')
 
-var parents = ['scroller', 'list']
+const parents = ['scroller', 'list']
 
-var DEFAULT_HEIGHT = 130
+const DEFAULT_HEIGHT = 130
 
-var ua = window.navigator.userAgent
-var Firefox = !!ua.match(/Firefox/i)
-var IEMobile = !!ua.match(/IEMobile/i)
-var cssPrefix = Firefox ? '-moz-' : IEMobile ? '-ms-' : '-webkit-'
+const ua = window.navigator.userAgent
+const Firefox = !!ua.match(/Firefox/i)
+const IEMobile = !!ua.match(/IEMobile/i)
+const cssPrefix = Firefox ? '-moz-' : IEMobile ? '-ms-' : '-webkit-'
 
 function Loading (data) {
   Component.call(this, data)
@@ -20,20 +20,20 @@ function Loading (data) {
 Loading.prototype = Object.create(Component.prototype)
 
 Loading.prototype.create = function () {
-  var node = document.createElement('div')
+  const node = document.createElement('div')
   node.classList.add('weex-container', 'weex-loading')
   return node
 }
 
 Loading.prototype.onAppend = function () {
-  var parent = this.getParent()
-  var self = this
-  var scrollWrapHeight = parent.node.getBoundingClientRect().height
+  const parent = this.getParent()
+  const self = this
+  const scrollWrapHeight = parent.node.getBoundingClientRect().height
   if (parents.indexOf(parent.data.type) === -1) {
     return
   }
   parent.scroller.addEventListener('pullup', function (e) {
-    var obj = e.scrollObj
+    const obj = e.scrollObj
     self.adjustHeight(Math.abs(
       obj.getScrollHeight() - obj.getScrollTop() - scrollWrapHeight))
     if (!self.display) {
@@ -51,14 +51,14 @@ Loading.prototype.adjustHeight = function (val) {
 }
 
 Loading.prototype.handleLoading = function (e) {
-  var parent = this.getParent()
-  var scrollElement = parent.scrollElement || parent.listElement
-  var offset = scrollElement.getBoundingClientRect().height
+  const parent = this.getParent()
+  const scrollElement = parent.scrollElement || parent.listElement
+  const offset = scrollElement.getBoundingClientRect().height
             - parent.node.getBoundingClientRect().height
             + DEFAULT_HEIGHT
   this.node.style.height = DEFAULT_HEIGHT + 'px'
   this.node.style.bottom = -DEFAULT_HEIGHT + 'px'
-  var translateStr = 'translate3d(0px,-' + offset + 'px,0px)'
+  const translateStr = 'translate3d(0px,-' + offset + 'px,0px)'
   scrollElement.style[cssPrefix + 'transform']
     = cssPrefix + translateStr
   scrollElement.style.transform = translateStr
@@ -74,18 +74,18 @@ Loading.prototype.show = function () {
 
 Loading.prototype.hide = function () {
   this.display = false
-  var parent = this.getParent()
+  const parent = this.getParent()
   if (parent) {
-    var scrollElement = parent.scrollElement || parent.listElement
-    var scrollElementHeight = scrollElement.getBoundingClientRect().height
-    var scrollWrapHeight = parent.node.getBoundingClientRect().height
-    var left = scrollElementHeight
+    const scrollElement = parent.scrollElement || parent.listElement
+    const scrollElementHeight = scrollElement.getBoundingClientRect().height
+    const scrollWrapHeight = parent.node.getBoundingClientRect().height
+    const left = scrollElementHeight
       - parent.scroller.getScrollTop()
       - scrollWrapHeight
     if (left < 0) {
-      var offset = scrollElementHeight
+      const offset = scrollElementHeight
               - parent.node.getBoundingClientRect().height
-      var translateStr = 'translate3d(0px,-' + offset + 'px,0px)'
+      const translateStr = 'translate3d(0px,-' + offset + 'px,0px)'
       scrollElement.style[cssPrefix + 'transform']
         = cssPrefix + translateStr
       scrollElement.style.transform = translateStr

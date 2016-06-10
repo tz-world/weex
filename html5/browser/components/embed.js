@@ -1,16 +1,16 @@
 'use strict'
 
-var Component = require('./component')
-var utils = require('../utils')
+const Component = require('./component')
+const utils = require('../utils')
 
-var ID_PREFIX = 'weex_embed_'
+const ID_PREFIX = 'weex_embed_'
 
 function _generateId () {
   return ID_PREFIX + utils.getRandom(10)
 }
 
 function Embed (data, nodeType) {
-  var attr = data.attr
+  const attr = data.attr
   if (attr) {
     this.source = attr.src
     this.loader = attr.loader || 'xhr'
@@ -22,7 +22,7 @@ function Embed (data, nodeType) {
 Embed.prototype = Object.create(Component.prototype)
 
 Embed.prototype.create = function () {
-  var node = document.createElement('div')
+  const node = document.createElement('div')
   node.id = this.id
   node.style.overflow = 'scroll'
   return node
@@ -31,7 +31,7 @@ Embed.prototype.create = function () {
 Embed.prototype.initWeex = function () {
   this.id = _generateId()
   this.node.id = this.id
-  var config = {
+  const config = {
     appId: this.id,
     source: this.source,
     bundleUrl: this.source,

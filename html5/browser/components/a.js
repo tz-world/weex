@@ -1,7 +1,7 @@
 'use strict'
 
-var logger = require('../logger')
-var Component = require('./component')
+const logger = require('../logger')
+const Component = require('./component')
 
 // attrs:
 //   - href
@@ -12,7 +12,7 @@ function A (data) {
 A.prototype = Object.create(Component.prototype)
 
 A.prototype.create = function () {
-  var node = document.createElement('a')
+  const node = document.createElement('a')
   node.classList.add('weex-container')
   node.style.textDecoration = 'none'
   return node

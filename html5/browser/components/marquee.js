@@ -1,9 +1,9 @@
 'use strict'
 
-// var config = require('../config')
-var Component = require('./component')
-var ComponentManager = require('../componentManager')
-var LazyLoad = require('../lazyLoad')
+// const config = require('../config')
+const Component = require('./component')
+const ComponentManager = require('../componentManager')
+const LazyLoad = require('../lazyLoad')
 
 function Marquee (data) {
   this.interval = Number(data.attr.interval) || 5 * 1000
@@ -15,7 +15,7 @@ function Marquee (data) {
 Marquee.prototype = Object.create(Component.prototype)
 
 Marquee.prototype.create = function () {
-  var node = document.createElement('div')
+  const node = document.createElement('div')
   node.classList.add('weex-container')
   node.style.overflow = 'hidden'
   // fix page shaking during slider's playing
@@ -30,13 +30,13 @@ Marquee.prototype.createChildren = function () {
   // - append to parentNode
   // - find current and next
   // - set current and next shown and others hidden
-  var children = this.data.children
-  var parentRef = this.data.ref
-  var instanceId = this.data.instanceId
-  var items = []
-  var componentManager = this.getComponentManager()
+  const children = this.data.children
+  const parentRef = this.data.ref
+  const instanceId = this.data.instanceId
+  const items = []
+  const componentManager = this.getComponentManager()
 
-  var fragment, isFlex, child, i
+  let fragment, isFlex, child, i
 
   if (children && children.length) {
     fragment = document.createDocumentFragment()
@@ -65,7 +65,7 @@ Marquee.prototype.createChildren = function () {
 }
 
 Marquee.prototype.initChild = function (child) {
-  var node = child.node
+  const node = child.node
   node.style.position = 'absolute'
   node.style.top = '0'
   node.style.left = '0'
@@ -73,8 +73,8 @@ Marquee.prototype.initChild = function (child) {
 
 Marquee.prototype.appendChild = function (data) {
   // dom + items
-  var componentManager = ComponentManager.getInstance(this.data.instanceId)
-  var child = componentManager.createElement(data)
+  const componentManager = ComponentManager.getInstance(this.data.instanceId)
+  const child = componentManager.createElement(data)
   this.initChild(child)
   this.node.appendChild(child.node)
   this.items.push(child)
@@ -84,7 +84,7 @@ Marquee.prototype.appendChild = function (data) {
 
 Marquee.prototype.insertBefore = function (child, before) {
   // dom + items
-  var index = this.items.indexOf(before)
+  const index = this.items.indexOf(before)
   this.items.splice(index, 0, child)
   this.initChild(child)
   this.node.insertBefore(child.node, before.node)
@@ -93,7 +93,7 @@ Marquee.prototype.insertBefore = function (child, before) {
 
 Marquee.prototype.removeChild = function (child) {
   // dom + items
-  var index = this.items.indexOf(child)
+  const index = this.items.indexOf(child)
   this.items.splice(index, 1)
   this.node.removeChild(child.node)
   this.reset()
@@ -108,19 +108,19 @@ Marquee.prototype.removeChild = function (child) {
  * }
  */
 Marquee.prototype.reset = function () {
-  var interval = this.interval - 0
-  var delay = this.delay - 0
-  var items = this.items
-  var self = this
+  const interval = this.interval - 0
+  const delay = this.delay - 0
+  const items = this.items
+  const self = this
 
-  var loop = function () {
+  const loop = function () {
     self.next()
     self.timerId = setTimeout(loop, self.interval)
   }
 
   // reset display and transform
   items.forEach(function (item, index) {
-    var node = item.node
+    const node = item.node
     // set non-current(0)|next(1) item hidden
     node.style.display = index > 1 ? 'none' : ''
     // set next(1) item translateY
@@ -149,7 +149,7 @@ Marquee.prototype.reset = function () {
     self.currentIndex = 0
 
     items.forEach(function (item, index) {
-      var node = item.node
+      const node = item.node
       // set transition
       node.style.transition = 'transform '
           + self.transitionDuration
@@ -178,8 +178,8 @@ Marquee.prototype.next = function () {
   //   - hide current when transition end
   //   - set next to current
   //   - find new next
-  var next = this.nextItem.node
-  var current = this.currentItem.node
+  const next = this.nextItem.node
+  const current = this.currentItem.node
   this.transitionIndex = this.currentIndex
 
   // Use setTimeout to fix the problem that when the
@@ -199,9 +199,9 @@ Marquee.prototype.next = function () {
 }
 
 Marquee.prototype.fireEvent = function (type) {
-  var length = this.items.length
-  var nextIndex = (this.currentIndex + 1) % length
-  var evt = document.createEvent('HTMLEvents')
+  const length = this.items.length
+  const nextIndex = (this.currentIndex + 1) % length
+  const evt = document.createEvent('HTMLEvents')
   evt.initEvent(type, false, false)
   evt.data = {
     prevIndex: this.currentIndex,
@@ -221,10 +221,9 @@ Marquee.prototype.fireEvent = function (type) {
  * - new next: {shown: true}
  */
 Marquee.prototype.end = function (e) {
-  var items = this.items
-  var length = items.length
-  var current, next
-  var currentIndex, nextIndex
+  const items = this.items
+  const length = items.length
+  let currentIndex
 
   currentIndex = this.transitionIndex
 
@@ -233,19 +232,19 @@ Marquee.prototype.end = function (e) {
   }
   delete this.transitionIndex
 
-  current = this.currentItem.node
+  const current = this.currentItem.node
   current.style.display = 'none'
   current.style.webkitTransform = ''
 
   currentIndex = (currentIndex + 1) % length
-  nextIndex = (currentIndex + 1) % length
+  const nextIndex = (currentIndex + 1) % length
 
   this.currentIndex = currentIndex
   this.currentItem = this.nextItem
   this.nextItem = items[nextIndex]
 
   setTimeout(function () {
-    next = this.nextItem.node
+    const next = this.nextItem.node
     // TODO: it supposed to use this.nextItem.data.style
     // but somehow the style object is empty.
     // This problem relies on jsframework's bugfix.

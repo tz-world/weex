@@ -1,14 +1,14 @@
-var dom = require('./dom')
-var event = require('./event')
-var pageInfo = require('./pageInfo')
-var stream = require('./stream')
-var modal = require('./modal')
-var animation = require('./animation')
-var webview = require('./webview')
-var timer = require('./timer')
-var navigator = require('./navigator')
+const dom = require('./dom')
+const event = require('./event')
+const pageInfo = require('./pageInfo')
+const stream = require('./stream')
+const modal = require('./modal')
+const animation = require('./animation')
+const webview = require('./webview')
+const timer = require('./timer')
+const navigator = require('./navigator')
 
-var api = {
+const api = {
   init: function (Weex) {
     Weex.registerApiModule('dom', dom, dom._meta)
     Weex.registerApiModule('event', event, event._meta)

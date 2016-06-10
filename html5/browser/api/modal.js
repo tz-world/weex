@@ -1,8 +1,8 @@
 'use strict'
 
-var modal = require('modals')
+const modal = require('modals')
 
-var msg = {
+const msg = {
 
   // duration: default is 0.8 seconds.
   toast: function (config) {
@@ -14,7 +14,7 @@ var msg = {
   //  - okTitle: title of ok button
   //  - callback
   alert: function (config, callbackId) {
-    var sender = this.sender
+    const sender = this.sender
     config.callback = function () {
       sender.performCallback(callbackId)
     }
@@ -27,7 +27,7 @@ var msg = {
   //  - cancelTitle: title of cancel button
   //  - callback
   confirm: function (config, callbackId) {
-    var sender = this.sender
+    const sender = this.sender
     config.callback = function (val) {
       sender.performCallback(callbackId, val)
     }
@@ -40,7 +40,7 @@ var msg = {
   //  - cancelTitle: title of cancel button
   //  - callback
   prompt: function (config, callbackId) {
-    var sender = this.sender
+    const sender = this.sender
     config.callback = function (val) {
       sender.performCallback(callbackId, val)
     }

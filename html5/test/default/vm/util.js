@@ -1,7 +1,7 @@
 import chai from 'chai'
 const { expect } = chai
 
-var _ = require('../../../default/util')
+const _ = require('../../../default/util')
 
 describe('stringify sth.', function () {
   it('convert string to string', function () {
@@ -41,7 +41,7 @@ describe('stringify sth.', function () {
     expect(_.stringify(/abcd/i)).eql('/abcd/i')
   })
   it('convert date to string', function () {
-    var d
+    let d
     d = new Date(2015, 1, 1)
     expect(_.stringify(d)).eql(d.toJSON())
     d = new Date()

@@ -2,18 +2,18 @@
 
 'use strict'
 
-// var config = require('./config')
-var FrameUpdater = require('./frameUpdater')
-var AppearWatcher = require('./appearWatcher')
-// var utils = require('./utils')
-var LazyLoad = require('./lazyLoad')
-var animation = require('./animation')
+// const config = require('./config')
+const FrameUpdater = require('./frameUpdater')
+const AppearWatcher = require('./appearWatcher')
+// const utils = require('./utils')
+const LazyLoad = require('./lazyLoad')
+const animation = require('./animation')
 
-var RENDERING_INDENT = 800
+const RENDERING_INDENT = 800
 
-var _instanceMap = {}
-var typeMap = {}
-var scrollableTypes = [
+const _instanceMap = {}
+const typeMap = {}
+const scrollableTypes = [
   'scroller',
   'hscroller',
   'vscroller',
@@ -75,23 +75,23 @@ ComponentManager.prototype = {
   },
 
   removeElementByRef: function (ref) {
-    var self = this
+    const self = this
     if (!ref || !this.componentMap[ref]) {
       return
     }
     // remove from this.componentMap cursively
     (function _removeCursively (_ref) {
-      var child = self.componentMap[_ref]
-      var listeners = child._listeners
-      var children = child.data.children
+      const child = self.componentMap[_ref]
+      const listeners = child._listeners
+      const children = child.data.children
       if (children && children.length) {
-        for (var i = 0, l = children.length; i < l; i++) {
+        for (let i = 0, l = children.length; i < l; i++) {
           _removeCursively(children[i].ref)
         }
       }
       // remove events from _ref component
       if (listeners) {
-        for (var type in listeners) {
+        for (const type in listeners) {
           child.node.removeEventListener(type, listeners[type])
         }
       }
@@ -103,13 +103,13 @@ ComponentManager.prototype = {
   },
 
   createElement: function (data, nodeType) {
-    var ComponentType = typeMap[data.type]
+    let ComponentType = typeMap[data.type]
     if (!ComponentType) {
       ComponentType = typeMap['container']
     }
 
-    var ref = data.ref
-    var component = new ComponentType(data, nodeType)
+    const ref = data.ref
+    const component = new ComponentType(data, nodeType)
 
     this.componentMap[ref] = component
     component.node.setAttribute('data-ref', ref)
@@ -124,25 +124,24 @@ ComponentManager.prototype = {
   createBody: function (element) {
     // TODO: creatbody on document.body
     // no need to create a extra div
-    var root, body, nodeType
     if (this.componentMap['_root']) {
       return
     }
 
-    nodeType = element.type
+    const nodeType = element.type
     element.type = 'root'
     element.rootId = this.weexInstance.rootId
     element.ref = '_root'
 
-    root = this.createElement(element, nodeType)
-    body = document.querySelector('#' + this.weexInstance.rootId)
+    const root = this.createElement(element, nodeType)
+    const body = document.querySelector('#' + this.weexInstance.rootId)
           || document.body
     body.appendChild(root.node)
     root._appended = true
   },
 
   appendChild: function (parentRef, data) {
-    var parent = this.componentMap[parentRef]
+    let parent = this.componentMap[parentRef]
 
     if (this.componentMap[data.ref] || !parent) {
       return
@@ -157,7 +156,7 @@ ComponentManager.prototype = {
       parent._appended = true
     }
 
-    var child = parent.appendChild(data)
+    const child = parent.appendChild(data)
 
     // In some parent component the implementation of method
     // appendChild didn't return the component at all, therefor
@@ -172,19 +171,19 @@ ComponentManager.prototype = {
   },
 
   appendChildren: function (ref, elements) {
-    for (var i = 0; i < elements.length; i++) {
+    for (let i = 0; i < elements.length; i++) {
       this.appendChild(ref, elements[i])
     }
   },
 
   removeElement: function (ref) {
-    var component = this.componentMap[ref]
+    const component = this.componentMap[ref]
 
     // fire event for rendering dom on body elment.
     this.rendering()
 
     if (component && component.parentRef) {
-      var parent = this.componentMap[component.parentRef]
+      const parent = this.componentMap[component.parentRef]
       component.onRemove && component.onRemove()
       parent.removeChild(component)
     }
@@ -194,10 +193,10 @@ ComponentManager.prototype = {
   },
 
   moveElement: function (ref, parentRef, index) {
-    var component = this.componentMap[ref]
-    var newParent = this.componentMap[parentRef]
-    var oldParentRef = component.parentRef
-    var children, before, i, l
+    const component = this.componentMap[ref]
+    const newParent = this.componentMap[parentRef]
+    const oldParentRef = component.parentRef
+    let children, before, i, l
     if (!component || !newParent) {
       console.warn('ref: ', ref)
       return
@@ -240,8 +239,8 @@ ComponentManager.prototype = {
   },
 
   insertBefore: function (ref, data) {
-    var child, before, parent
-    before = this.componentMap[ref]
+    let child, parent
+    const before = this.componentMap[ref]
     child = this.componentMap[data.ref]
     before && (parent = this.componentMap[before.parentRef])
     if (child || !parent || !before) {
@@ -271,16 +270,14 @@ ComponentManager.prototype = {
    * @param {number} index
    */
   addElement: function (parentRef, element, index) {
-    var parent, children
-
     // fire event for rendering dom on body elment.
     this.rendering()
 
-    parent = this.componentMap[parentRef]
+    const parent = this.componentMap[parentRef]
     if (!parent) {
       return
     }
-    children = parent.data.children
+    const children = parent.data.children
     // -1 means append as the last.
     if (index < -1) {
       index = -1
@@ -297,7 +294,7 @@ ComponentManager.prototype = {
   },
 
   clearChildren: function (ref) {
-    var component = this.componentMap[ref]
+    const component = this.componentMap[ref]
     if (component) {
       component.node.innerHTML = ''
       if (component.data) {
@@ -307,7 +304,7 @@ ComponentManager.prototype = {
   },
 
   addEvent: function (ref, type) {
-    var component
+    let component
     if (typeof ref === 'string' || typeof ref === 'number') {
       component = this.componentMap[ref]
     }
@@ -316,9 +313,9 @@ ComponentManager.prototype = {
       ref = component.data.ref
     }
     if (component && component.node) {
-      var sender = this.weexInstance.sender
-      var listener = sender.fireEvent.bind(sender, ref, type)
-      var listeners = component._listeners
+      const sender = this.weexInstance.sender
+      const listener = sender.fireEvent.bind(sender, ref, type)
+      let listeners = component._listeners
       component.node.addEventListener(type, listener, false, false)
       if (!listeners) {
         listeners = component._listeners = {}
@@ -330,8 +327,8 @@ ComponentManager.prototype = {
   },
 
   removeEvent: function (ref, type) {
-    var component = this.componentMap[ref]
-    var listener = component._listeners[type]
+    const component = this.componentMap[ref]
+    const listener = component._listeners[type]
     if (component && listener) {
       component.node.removeEventListener(type, listener)
       component._listeners[type] = null
@@ -340,7 +337,7 @@ ComponentManager.prototype = {
   },
 
   updateAttrs: function (ref, attr) {
-    var component = this.componentMap[ref]
+    const component = this.componentMap[ref]
     if (component) {
       component.updateAttrs(attr)
       if (component.data.type === 'image' && attr.src) {
@@ -350,14 +347,14 @@ ComponentManager.prototype = {
   },
 
   updateStyle: function (ref, style) {
-    var component = this.componentMap[ref]
+    const component = this.componentMap[ref]
     if (component) {
       component.updateStyle(style)
     }
   },
 
   updateFullAttrs: function (ref, attr) {
-    var component = this.componentMap[ref]
+    const component = this.componentMap[ref]
     if (component) {
       component.clearAttr()
       component.updateAttrs(attr)
@@ -368,7 +365,7 @@ ComponentManager.prototype = {
   },
 
   updateFullStyle: function (ref, style) {
-    var component = this.componentMap[ref]
+    const component = this.componentMap[ref]
     if (component) {
       component.clearStyle()
       component.updateStyle(style)
@@ -380,10 +377,10 @@ ComponentManager.prototype = {
     component.onAppend && component.onAppend()
 
     // invoke onAppend on children recursively
-    var children = component.data.children
+    const children = component.data.children
     if (children) {
-      for (var i = 0; i < children.length; i++) {
-        var child = this.componentMap[children[i].ref]
+      for (let i = 0; i < children.length; i++) {
+        const child = this.componentMap[children[i].ref]
         if (child) {
           this.handleAppend(child)
         }
@@ -398,7 +395,7 @@ ComponentManager.prototype = {
   },
 
   transition: function (ref, config, callback) {
-    var component = this.componentMap[ref]
+    const component = this.componentMap[ref]
     animation.transitionOnce(component, config, callback)
   },
 

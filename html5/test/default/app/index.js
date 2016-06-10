@@ -63,7 +63,7 @@ describe('App Instance', () => {
 
   describe('call tasks', () => {
     it('with no args & callback', () => {
-      var tasks = [{
+      const tasks = [{
         module: 'dom',
         method: 'createBody',
         args: []
@@ -74,7 +74,7 @@ describe('App Instance', () => {
     })
 
     it('with callback', (done) => {
-      var tasks = [{
+      const tasks = [{
         module: 'dom',
         method: 'createBody',
         args: []
@@ -86,7 +86,7 @@ describe('App Instance', () => {
     })
 
     it('with function arg', (done) => {
-      var tasks = [{
+      const tasks = [{
         module: 'dom',
         method: 'createBody',
         args: [() => {}]
@@ -99,10 +99,10 @@ describe('App Instance', () => {
     })
 
     it('with node arg', (done) => {
-      var node = new Node()
+      const node = new Node()
       node.ref = '1'
 
-      var tasks = [{
+      const tasks = [{
         module: 'dom',
         method: 'createBody',
         args: [node]
@@ -115,7 +115,7 @@ describe('App Instance', () => {
     })
 
     it('with callback after close', (done) => {
-      var tasks = [{
+      const tasks = [{
         module: 'dom',
         method: 'createBody',
         args: [() => {}]

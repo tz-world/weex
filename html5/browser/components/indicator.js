@@ -1,16 +1,16 @@
 'use strict'
 
-var extend = require('../utils').extend
-// var config = require('../config')
-var Atomic = require('./atomic')
-// var Component = require('./component')
+const extend = require('../utils').extend
+// const config = require('../config')
+const Atomic = require('./atomic')
+// const Component = require('./component')
 
 require('../styles/indicator.css')
 
-var DEFAULT_ITEM_COLOR = '#999'
-var DEFAULT_ITEM_SELECTED_COLOR = '#0000ff'
-var DEFAULT_ITEM_SIZE = 20
-var DEFAULT_MARGIN_SIZE = 10
+const DEFAULT_ITEM_COLOR = '#999'
+const DEFAULT_ITEM_SELECTED_COLOR = '#0000ff'
+const DEFAULT_ITEM_SIZE = 20
+const DEFAULT_MARGIN_SIZE = 10
 
 // Style supported:
 //   position: (default - absolute)
@@ -24,7 +24,7 @@ function Indicator (data) {
   this.index = data.extra.index
   this.sliderWidth = data.extra.width
   this.sliderHeight = data.extra.height
-  var styles = data.style || {}
+  const styles = data.style || {}
   this.data = data
   this.style.width.call(this, styles.width)
   this.style.height.call(this, styles.height)
@@ -35,7 +35,7 @@ function Indicator (data) {
 Indicator.prototype = Object.create(Atomic.prototype)
 
 Indicator.prototype.create = function () {
-  var node = document.createElement('div')
+  const node = document.createElement('div')
   node.classList.add('weex-indicators')
   node.classList.add('weex-element')
   node.style.position = 'absolute'
@@ -52,9 +52,9 @@ Indicator.prototype.create = function () {
 }
 
 Indicator.prototype.createChildren = function () {
-  var root = document.createDocumentFragment()
-  for (var i = 0; i < this.amount; i++) {
-    var indicator = document.createElement('div')
+  const root = document.createDocumentFragment()
+  for (let i = 0; i < this.amount; i++) {
+    const indicator = document.createElement('div')
     indicator.classList.add('weex-indicator')
     indicator.style.boxSizing = 'border-box'
     indicator.style.margin = '0 '
@@ -79,7 +79,7 @@ Indicator.prototype.createChildren = function () {
 Indicator.prototype.style = extend(Object.create(Atomic.prototype.style), {
   itemColor: function (val) {
     this.itemColor = val || DEFAULT_ITEM_COLOR
-    for (var i = 0, l = this.items.length; i < l; i++) {
+    for (let i = 0, l = this.items.length; i < l; i++) {
       this.items[i].style.backgroundColor = this.itemColor
     }
   },
@@ -98,7 +98,7 @@ Indicator.prototype.style = extend(Object.create(Atomic.prototype.style), {
           || DEFAULT_ITEM_SIZE * this.data.scale
     this.itemSize = val
     this.node.style.height = val + 'px'
-    for (var i = 0, l = this.items.length; i < l; i++) {
+    for (let i = 0, l = this.items.length; i < l; i++) {
       this.items[i].style.width = val + 'px'
       this.items[i].style.height = val + 'px'
     }
@@ -151,8 +151,8 @@ Indicator.prototype.setIndex = function (idx) {
   if (idx >= this.amount) {
     return
   }
-  var prev = this.items[this.index]
-  var cur = this.items[idx]
+  const prev = this.items[this.index]
+  const cur = this.items[idx]
   prev.classList.remove('active')
   prev.style.backgroundColor = this.itemColor
   cur.classList.add('active')

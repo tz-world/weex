@@ -1,7 +1,7 @@
 'use strict'
 
-var Atomic = require('./atomic')
-// var utils = require('../utils')
+const Atomic = require('./atomic')
+// const utils = require('../utils')
 require('../styles/video.css')
 
 // attrs:
@@ -17,8 +17,8 @@ require('../styles/video.css')
 //   - finish
 //   - fail
 function Video (data) {
-  var autoPlay = data.attr.autoPlay
-  var playStatus = data.attr.playStatus
+  const autoPlay = data.attr.autoPlay
+  const playStatus = data.attr.playStatus
   this.autoPlay = autoPlay === true || autoPlay === 'true'
   if (playStatus !== 'play'
       && playStatus !== 'stop'
@@ -51,7 +51,7 @@ Video.prototype.attr = {
 }
 
 Video.prototype.create = function () {
-  var node = document.createElement('video')
+  const node = document.createElement('video')
   node.classList.add('weex-video', 'weex-element')
   node.controls = true
   node.autoplay = this.autoPlay
@@ -67,12 +67,12 @@ Video.prototype.bindEvents = function (evts) {
   Atomic.prototype.bindEvents.call(this, evts)
 
   // convert w3c-video events to weex-video events.
-  var evtsMap = {
+  const evtsMap = {
     start: 'play',
     finish: 'ended',
     fail: 'error'
   }
-  for (var evtName in evtsMap) {
+  for (const evtName in evtsMap) {
     this.node.addEventListener(evtsMap[evtName], function (type, e) {
       this.dispatchEvent(type, e.data)
     }.bind(this, evtName))
@@ -80,7 +80,7 @@ Video.prototype.bindEvents = function (evts) {
 }
 
 Video.prototype.play = function () {
-  var src = this.node.getAttribute('src')
+  let src = this.node.getAttribute('src')
   if (!src) {
     src = this.node.getAttribute('data-src')
     src && this.node.setAttribute('src', src)

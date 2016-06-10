@@ -1,14 +1,14 @@
 'use strict'
 
-var utils = require('./utils')
+const utils = require('./utils')
 
-var componentsInScroller = []
-var componentsOutOfScroller = []
-var listened = false
-var direction = 'up'
-var scrollY = 0
+const componentsInScroller = []
+const componentsOutOfScroller = []
+let listened = false
+let direction = 'up'
+let scrollY = 0
 
-var AppearWatcher = {
+const AppearWatcher = {
   watchIfNeeded: function (component) {
     if (needWatch(component)) {
       if (component.isInScrollable()) {
@@ -19,8 +19,8 @@ var AppearWatcher = {
       }
       if (!listened) {
         listened = true
-        // var handler = throttle(onScroll, 25)
-        var handler = throttle(onScroll, 100)
+        // const handler = throttle(onScroll, 25)
+        const handler = throttle(onScroll, 100)
         window.addEventListener('scroll', handler, false)
       }
     }
@@ -28,7 +28,7 @@ var AppearWatcher = {
 }
 
 function needWatch (component) {
-  var events = component.data.event
+  const events = component.data.event
   if (events
       && (events.indexOf('appear') !== -1
         || events.indexOf('disappear') !== -1)) {
@@ -50,12 +50,12 @@ function onScroll (e) {
 }
 
 function handleScrollerScroll (e) {
-  var cmps = componentsInScroller
-  var len = cmps.length
+  const cmps = componentsInScroller
+  const len = cmps.length
   direction = e.direction
-  for (var i = 0; i < len; i++) {
-    var component = cmps[i]
-    var appear = isComponentInScrollerAppear(component)
+  for (let i = 0; i < len; i++) {
+    const component = cmps[i]
+    const appear = isComponentInScrollerAppear(component)
     if (appear && !component._appear) {
       component._appear = true
       fireEvent(component, 'appear')
@@ -68,17 +68,17 @@ function handleScrollerScroll (e) {
 }
 
 function handleWindowScroll () {
-  var y = window.scrollY
+  const y = window.scrollY
   direction = y >= scrollY ? 'up' : 'down'
   scrollY = y
 
-  var len = componentsOutOfScroller.length
+  const len = componentsOutOfScroller.length
   if (len === 0) {
     return
   }
-  for (var i = 0; i < len; i++) {
-    var component = componentsOutOfScroller[i]
-    var appear = isComponentInWindow(component)
+  for (let i = 0; i < len; i++) {
+    const component = componentsOutOfScroller[i]
+    const appear = isComponentInWindow(component)
     if (appear && !component._appear) {
       component._appear = true
       fireEvent(component, 'appear')
@@ -91,13 +91,13 @@ function handleWindowScroll () {
 }
 
 function isComponentInScrollerAppear (component) {
-  var parentScroller = component._parentScroller
-  var cmpRect = component.node.getBoundingClientRect()
+  let parentScroller = component._parentScroller
+  const cmpRect = component.node.getBoundingClientRect()
   if (!isComponentInWindow(component)) {
     return false
   }
   while (parentScroller) {
-    var parentRect = parentScroller.node.getBoundingClientRect()
+    const parentRect = parentScroller.node.getBoundingClientRect()
     if (!(cmpRect.right > parentRect.left
         && cmpRect.left < parentRect.right
         && cmpRect.bottom > parentRect.top
@@ -110,14 +110,14 @@ function isComponentInScrollerAppear (component) {
 }
 
 function isComponentInWindow (component) {
-  var rect = component.node.getBoundingClientRect()
+  const rect = component.node.getBoundingClientRect()
   return rect.right > 0 && rect.left < window.innerWidth &&
          rect.bottom > 0 && rect.top < window.innerHeight
 }
 
 function fireEvent (component, type) {
-  var evt = document.createEvent('HTMLEvents')
-  var data = { direction: direction }
+  const evt = document.createEvent('HTMLEvents')
+  const data = { direction: direction }
   evt.initEvent(type, false, false)
   evt.data = data
   utils.extend(evt, data)
@@ -125,17 +125,17 @@ function fireEvent (component, type) {
 }
 
 function throttle (func, wait) {
-  var context, args, result
-  var timeout = null
-  var previous = 0
-  var later = function () {
+  let context, args, result
+  let timeout = null
+  let previous = 0
+  const later = function () {
     previous = Date.now()
     timeout = null
     result = func.apply(context, args)
   }
   return function () {
-    var now = Date.now()
-    var remaining = wait - (now - previous)
+    const now = Date.now()
+    const remaining = wait - (now - previous)
     context = this
     args = arguments
     if (remaining <= 0) {

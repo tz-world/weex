@@ -7,8 +7,8 @@ function Document () {
 }
 
 Document.prototype.createBody = function (config) {
-  var doc = this
-  var body = this.body = new Element(config)
+  const doc = this
+  const body = this.body = new Element(config)
   this.refs._root = this.body
   if (config.children) {
     config.children.forEach(function (child) {
@@ -22,9 +22,9 @@ Document.prototype.addElement = function (parentRef, config, index) {
 }
 
 function appendToDoc (doc, config, parentRef, index) {
-  var parent = doc.refs[parentRef]
+  const parent = doc.refs[parentRef]
 
-  var el = new Element(config)
+  const el = new Element(config)
   doc.refs[el.ref] = el
   el.parentRef = parentRef
 
@@ -43,11 +43,11 @@ function appendToDoc (doc, config, parentRef, index) {
 }
 
 Document.prototype.moveElement = function (ref, parentRef, index) {
-  var el = this.refs[ref]
-  var oldParent = this.refs[el.parentRef]
-  var oldIndex = oldParent.children.indexOf(el)
+  const el = this.refs[ref]
+  const oldParent = this.refs[el.parentRef]
+  const oldIndex = oldParent.children.indexOf(el)
 
-  var parent = this.refs[parentRef]
+  const parent = this.refs[parentRef]
 
   if (parent === oldParent && oldIndex <= index) {
     index = index - 1
@@ -63,10 +63,10 @@ Document.prototype.removeElement = function (ref) {
 }
 
 function removeEl (doc, ref) {
-  var el = doc.refs[ref]
-  var parent = doc.refs[el.parentRef]
-  var index = parent.children.indexOf(el)
-  var children = el.children || []
+  const el = doc.refs[ref]
+  const parent = doc.refs[el.parentRef]
+  const index = parent.children.indexOf(el)
+  const children = el.children || []
   parent.children.splice(index, 1)
   delete doc.refs[ref]
   children.forEach(function (child) {
@@ -75,23 +75,23 @@ function removeEl (doc, ref) {
 }
 
 Document.prototype.addEvent = function (ref, type) {
-  var el = this.refs[ref]
-  var index = el.event.indexOf(type)
+  const el = this.refs[ref]
+  const index = el.event.indexOf(type)
   if (index < 0) {
     el.event.push(type)
   }
 }
 
 Document.prototype.removeEvent = function (ref, type) {
-  var el = this.refs[ref]
-  var index = el.event.indexOf(type)
+  const el = this.refs[ref]
+  const index = el.event.indexOf(type)
   if (index >= 0) {
     el.event.splice(index, 1)
   }
 }
 
 Document.prototype.toJSON = function () {
-  var body = this.refs._root
+  const body = this.refs._root
   if (body) {
     return body.toJSON()
   }
@@ -109,7 +109,7 @@ function Element (config) {
 }
 
 Element.prototype.toJSON = function () {
-  var result = { type: this.type }
+  const result = { type: this.type }
   if (Object.keys(this.attr).length > 0) {
     result.attr = this.attr
   }
@@ -132,23 +132,23 @@ exports.Document = Document
 
 // fs
 
-var fs = require('fs')
-var path = require('path')
+const fs = require('fs')
+const path = require('path')
 
 function readInput (name) {
-  var readpath = path.join(__dirname, './assets', name + '.input')
+  const readpath = path.join(__dirname, './assets', name + '.input')
   return fs.readFileSync(readpath, 'utf8')
 }
 
 function readOutput (name) {
-  var readpath = path.join(__dirname, './assets', name + '.output')
+  const readpath = path.join(__dirname, './assets', name + '.output')
   return fs.readFileSync(readpath, 'utf8')
 }
 
 // main
-var chai = require('chai')
-var sinon = require('sinon')
-var sinonChai = require('sinon-chai')
+const chai = require('chai')
+const sinon = require('sinon')
+const sinonChai = require('sinon-chai')
 
 import framework from '../../runtime'
 import { subversion } from '../../../package.json'
@@ -161,21 +161,21 @@ Object.assign(global, framework, {
 /**
  * register modules & methods
  */
-var modules = require('../../default/api/modules')
-var methods = require('../../default/api/methods')
+const modules = require('../../default/api/modules')
+const methods = require('../../default/api/methods')
 framework.registerModules(modules)
 framework.registerMethods(methods)
 
-var expect = chai.expect
+const expect = chai.expect
 chai.use(sinonChai)
 
-var allDocs = {}
+const allDocs = {}
 
-var callNativeSpy = sinon.spy()
+const callNativeSpy = sinon.spy()
 function _callNative (name, tasks, cbId) {
   callNativeSpy(tasks)
 
-  var doc = allDocs[name]
+  const doc = allDocs[name]
   tasks.forEach(function (task) {
     if (task.module === 'dom') {
       if (doc[task.method]) {
@@ -217,15 +217,15 @@ describe('test input and output', function () {
   })
 
   it('single case', function () {
-    var name = 'foo'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'foo'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -233,15 +233,15 @@ describe('test input and output', function () {
   })
 
   it('foo2 case', function () {
-    var name = 'foo2'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'foo2'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -249,15 +249,15 @@ describe('test input and output', function () {
   })
 
   it('foo3 case', function () {
-    var name = 'foo3'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'foo3'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -265,15 +265,15 @@ describe('test input and output', function () {
   })
 
   it('foo4 case', function () {
-    var name = 'foo4'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'foo4'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -281,15 +281,15 @@ describe('test input and output', function () {
   })
 
   it('foo5 case', function () {
-    var name = 'foo5'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'foo5'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -297,15 +297,15 @@ describe('test input and output', function () {
   })
 
   it('foo6 case', function () {
-    var name = 'foo6'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'foo6'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -313,15 +313,15 @@ describe('test input and output', function () {
   })
 
   it('foo7 case', function () {
-    var name = 'foo7'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'foo7'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -329,15 +329,15 @@ describe('test input and output', function () {
   })
 
   it('foo8 case', function () {
-    var name = 'foo8'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'foo8'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -345,15 +345,15 @@ describe('test input and output', function () {
   })
 
   it('foo9 case', function () {
-    var name = 'foo9'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'foo9'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -361,15 +361,15 @@ describe('test input and output', function () {
   })
 
   it('computed case', function () {
-    var name = 'computed'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'computed'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.refreshInstance(name, { x: 10 })
@@ -387,15 +387,15 @@ describe('test input and output', function () {
   })
 
   it('computed in repeat case', function () {
-    var name = 'computed-in-repeat'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'computed-in-repeat'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -403,15 +403,15 @@ describe('test input and output', function () {
   })
 
   it('backward(register/render) case', function () {
-    var name = 'backward1'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'backward1'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -419,15 +419,15 @@ describe('test input and output', function () {
   })
 
   it('backward(define/require) case', function () {
-    var name = 'backward2'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'backward2'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -435,15 +435,15 @@ describe('test input and output', function () {
   })
 
   it('append case', function () {
-    var name = 'append'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'append'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -451,15 +451,15 @@ describe('test input and output', function () {
   })
 
   it('append-root case', function () {
-    var name = 'append-root'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'append-root'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -467,15 +467,15 @@ describe('test input and output', function () {
   })
 
   it('if case', function () {
-    var name = 'if'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'if'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -483,15 +483,15 @@ describe('test input and output', function () {
   })
 
   it('repeat with index case', function () {
-    var name = 'repeat-index'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'repeat-index'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -499,15 +499,15 @@ describe('test input and output', function () {
   })
 
   it('repeat with array no-kv case', function () {
-    var name = 'repeat-array-no-kv'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'repeat-array-no-kv'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -515,15 +515,15 @@ describe('test input and output', function () {
   })
 
   it('repeat with array v case', function () {
-    var name = 'repeat-array-v'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'repeat-array-v'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -531,15 +531,15 @@ describe('test input and output', function () {
   })
 
   it('repeat with array kv case', function () {
-    var name = 'repeat-array-kv'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'repeat-array-kv'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -547,10 +547,10 @@ describe('test input and output', function () {
   })
 
   it('repeat with array track-by case', function () {
-    var name = 'repeat-track-by'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'repeat-track-by'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
@@ -560,8 +560,8 @@ describe('test input and output', function () {
         { text: 'Hello World1' }
       ]
     })
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -569,15 +569,15 @@ describe('test input and output', function () {
   })
 
   it('repeat with array non-obj case', function () {
-    var name = 'repeat-array-non-obj'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'repeat-array-non-obj'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -585,15 +585,15 @@ describe('test input and output', function () {
   })
 
   it('repeat-watch case', function () {
-    var name = 'repeat-watch'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'repeat-watch'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -601,16 +601,16 @@ describe('test input and output', function () {
   })
 
   it('if-refresh case', function () {
-    var name = 'if-refresh'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'if-refresh'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
     framework.refreshInstance(name, { showTitle: false })
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -618,15 +618,15 @@ describe('test input and output', function () {
   })
 
   it('if-repeat case', function () {
-    var name = 'if-repeat'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'if-repeat'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -634,10 +634,10 @@ describe('test input and output', function () {
   })
 
   it('if-repeat-refresh case', function () {
-    var name = 'if-repeat-refresh'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'if-repeat-refresh'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
@@ -648,8 +648,8 @@ describe('test input and output', function () {
         { showTitle: true, title: 'Hello World3' }
       ]
     })
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -657,15 +657,15 @@ describe('test input and output', function () {
   })
 
   it('dynamic type case', function () {
-    var name = 'dynamic-type'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'dynamic-type'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -673,15 +673,15 @@ describe('test input and output', function () {
   })
 
   it('click case', function () {
-    var name = 'click'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'click'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.callJS(name, [{
@@ -694,15 +694,15 @@ describe('test input and output', function () {
   })
 
   it('inline click case', function () {
-    var name = 'inline-click'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'inline-click'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
 
     expect(actual).eql(expected)
 
@@ -719,15 +719,15 @@ describe('test input and output', function () {
   })
 
   it('bind subvm', function () {
-    var name = 'subvm'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'subvm'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -735,15 +735,15 @@ describe('test input and output', function () {
   })
 
   it('components options', function () {
-    var name = 'components'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'components'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -751,21 +751,21 @@ describe('test input and output', function () {
   })
 
   it('refresh twice', function () {
-    var name = 'refresh2'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'refresh2'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var actual = doc.toJSON()
+    let actual = doc.toJSON()
     expect(actual).eql({
       type: 'container'
     })
 
     framework.refreshInstance(name, { ext: { showbar1: false }})
     framework.refreshInstance(name, { ext: { showbar1: true }})
-    var expected = eval('(' + outputCode + ')')
+    const expected = eval('(' + outputCode + ')')
     actual = doc.toJSON()
     expect(actual).eql(expected)
 
@@ -774,15 +774,15 @@ describe('test input and output', function () {
   })
 
   it('require 3rd', () => {
-    var name = 'require'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'require'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -790,15 +790,15 @@ describe('test input and output', function () {
   })
 
   it('a correct transformer version', () => {
-    var name = 'transformer1'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'transformer1'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -806,39 +806,39 @@ describe('test input and output', function () {
   })
 
   it('a less wrong transformer version', () => {
-    var name = 'transformer2'
-    var inputCode = readInput(name)
-    var doc = new Document(name)
+    const name = 'transformer2'
+    const inputCode = readInput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
-    var result = framework.createInstance(name, inputCode)
+    const result = framework.createInstance(name, inputCode)
     expect(result).to.be.an.instanceof(Error)
     framework.destroyInstance(name)
     delete allDocs[name]
   })
 
   it('a bigger wrong transformer version', () => {
-    var name = 'transformer3'
-    var inputCode = readInput(name)
-    var doc = new Document(name)
+    const name = 'transformer3'
+    const inputCode = readInput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
-    var result = framework.createInstance(name, inputCode)
+    const result = framework.createInstance(name, inputCode)
     expect(result).to.be.an.instanceof(Error)
     framework.destroyInstance(name)
     delete allDocs[name]
   })
 
   it('change data when created', function () {
-    var name = 'created'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'created'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -846,15 +846,15 @@ describe('test input and output', function () {
   })
 
   it('change data when ready', function () {
-    var name = 'ready'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'ready'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    const actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -862,15 +862,15 @@ describe('test input and output', function () {
   })
 
   it('input binding', function () {
-    var name = 'input-binding'
-    var inputCode = readInput(name)
-    var outputCode = readOutput(name)
-    var doc = new Document(name)
+    const name = 'input-binding'
+    const inputCode = readInput(name)
+    const outputCode = readOutput(name)
+    const doc = new Document(name)
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    const expected = eval('(' + outputCode + ')')
+    let actual = doc.toJSON()
     expect(actual).eql(expected)
 
     expected.children[0].attr.value = 'abcdefg'

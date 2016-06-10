@@ -7,27 +7,27 @@ require('../native')
 require('./styles/base.css')
 
 require('./polyfill')
-var config = require('./config')
-var Loader = require('./loader')
-var utils = require('./utils')
-var protocol = require('./protocol')
-var ComponentManager = require('./componentManager')
-var Component = require('./components/component')
-var Sender = require('./bridge/sender')
-var receiver = require('./bridge/receiver')
+const config = require('./config')
+const Loader = require('./loader')
+const utils = require('./utils')
+const protocol = require('./protocol')
+const ComponentManager = require('./componentManager')
+const Component = require('./components/component')
+const Sender = require('./bridge/sender')
+const receiver = require('./bridge/receiver')
 
 // Components and apis.
-var components = require('./components')
-var api = require('./api')
+const components = require('./components')
+const api = require('./api')
 require('envd')
 require('httpurl')
 
-var WEAPP_STYLE_ID = 'weapp-style'
+const WEAPP_STYLE_ID = 'weapp-style'
 
-var DEFAULT_DESIGN_WIDTH = 750
-var DEFAULT_SCALE = window.innerWidth / DEFAULT_DESIGN_WIDTH
-var DEFAULT_ROOT_ID = 'weex'
-var DEFAULT_JSONP_CALLBACK_NAME = 'weexJsonpCallback'
+const DEFAULT_DESIGN_WIDTH = 750
+const DEFAULT_SCALE = window.innerWidth / DEFAULT_DESIGN_WIDTH
+const DEFAULT_ROOT_ID = 'weex'
+const DEFAULT_JSONP_CALLBACK_NAME = 'weexJsonpCallback'
 
 window.WXEnvironment = {
   weexVersion: config.weexVersion,
@@ -40,30 +40,30 @@ window.WXEnvironment = {
   deviceHeight: window.innerHeight / DEFAULT_SCALE
 }
 
-var _instanceMap = {}
-var _downgrades = {}
+const _instanceMap = {}
+const _downgrades = {}
 
-var downgradable = ['list', 'scroller']
+const downgradable = ['list', 'scroller']
 
 function initializeWithUrlParams () {
-  var params = lib.httpurl(location.href).params
-  for (var k in params) {
+  const params = lib.httpurl(location.href).params
+  for (const k in params) {
     // Get global _downgrades from url's params.
-    var match = k.match(/downgrade_(\w+)/)
+    const match = k.match(/downgrade_(\w+)/)
     if (!match || !match[1]) {
       continue
     }
     if (params[k] !== true && params[k] !== 'true') {
       continue
     }
-    var downk = match[1]
+    const downk = match[1]
     if (downk && (downgradable.indexOf(downk) !== -1)) {
       _downgrades[downk] = true
     }
   }
 
   // set global 'debug' config to true if there's a debug flag in current url.
-  var debug = params['debug']
+  const debug = params['debug']
   if (debug === true || debug === 'true') {
     config.debug = true
   }
@@ -139,8 +139,8 @@ Weex.prototype = {
     if (!utils.isArray(dg)) {
       return
     }
-    for (var i = 0, l = dg.length; i < l; i++) {
-      var downk = dg[i]
+    for (let i = 0, l = dg.length; i < l; i++) {
+      const downk = dg[i]
       if (downgradable.indexOf(downk) !== -1) {
         this.downgrades[downk] = true
       }
@@ -161,14 +161,14 @@ Weex.prototype = {
   },
 
   createApp: function (config, appCode) {
-    var root = document.querySelector('#' + this.rootId)
+    let root = document.querySelector('#' + this.rootId)
     if (!root) {
       root = document.createElement('div')
       root.id = this.rootId
       document.body.appendChild(root)
     }
 
-    var promise = window.createInstance(
+    const promise = window.createInstance(
       this.instanceId,
       appCode,
       {
@@ -229,7 +229,7 @@ Weex.registerApiModule = function (name, module, meta) {
     protocol.apiModule[name] = module
   }
   else {
-    for (var key in module) {
+    for (const key in module) {
       if (module.hasOwnProperty(key)) {
         protocol.apiModule[name][key] = module[key]
       }
@@ -277,7 +277,7 @@ Weex.install = function (mod) {
 }
 
 Weex.stopTheWorld = function () {
-  for (var instanceId in _instanceMap) {
+  for (const instanceId in _instanceMap) {
     if (_instanceMap.hasOwnProperty(instanceId)) {
       window.destroyInstance(instanceId)
     }
@@ -292,9 +292,9 @@ function startRefreshController () {
     console.info('auto refresh need WebSocket support')
     return
   }
-  var host = location.hostname
-  var port = 8082
-  var client = new WebSocket('ws://' + host + ':' + port + '/',
+  const host = location.hostname
+  const port = 8082
+  const client = new WebSocket('ws://' + host + ':' + port + '/',
     'echo-protocol'
   )
   client.onerror = function () {

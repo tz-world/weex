@@ -1,6 +1,6 @@
 'use strict'
 
-var pageInfo = {
+const pageInfo = {
 
   setTitle: function (title) {
     title = title || 'Weex HTML5'

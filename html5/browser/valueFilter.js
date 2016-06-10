@@ -1,13 +1,13 @@
 'use strict'
 
-var NOT_PX_NUMBER_PROPERTIES = ['flex', 'opacity', 'zIndex', 'fontWeight']
+const NOT_PX_NUMBER_PROPERTIES = ['flex', 'opacity', 'zIndex', 'fontWeight']
 
-var valueFilter = {
+const valueFilter = {
 
   filterStyles: function (styles, config) {
-    for (var key in styles) {
-      var value = styles[key]
-      var parser = this.getFilters(key, config)[typeof value]
+    for (const key in styles) {
+      const value = styles[key]
+      const parser = this.getFilters(key, config)[typeof value]
       if (typeof parser === 'function') {
         styles[key] = parser(value)
       }

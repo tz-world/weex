@@ -1,6 +1,6 @@
 'use strict'
 
-var Atomic = require('./atomic')
+const Atomic = require('./atomic')
 
 // attrs:
 //   - value
@@ -12,8 +12,8 @@ function Timepicker (data) {
 Timepicker.prototype = Object.create(Atomic.prototype)
 
 Timepicker.prototype.create = function () {
-  var node = document.createElement('input')
-  var uuid = Math.floor(10000000000000 * Math.random()) + Date.now()
+  const node = document.createElement('input')
+  const uuid = Math.floor(10000000000000 * Math.random()) + Date.now()
   this.className = 'weex-ipt-' + uuid
   this.styleId = 'weex-style-' + uuid
   node.classList.add(this.className)

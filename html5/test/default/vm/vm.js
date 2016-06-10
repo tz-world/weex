@@ -12,9 +12,9 @@ import Differ from '../../../default/app/differ'
 
 describe('generate virtual dom for a single vm', () => {
   const spy = sinon.spy()
-  var doc
-  var customComponentMap
-  var differ
+  let doc
+  let customComponentMap
+  let differ
 
   beforeEach(() => {
     differ = new Differ('test')
@@ -46,8 +46,8 @@ describe('generate virtual dom for a single vm', () => {
       }
     }
 
-    var app = { doc, customComponentMap, differ }
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
+    const app = { doc, customComponentMap, differ }
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
     expect(vm._app).equal(app)
     expect(doc.body).is.an.object
@@ -69,19 +69,19 @@ describe('generate virtual dom for a single vm', () => {
       }
     }
 
-    var app = { doc, customComponentMap, differ }
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
+    const app = { doc, customComponentMap, differ }
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
     expect(vm._app).equal(app)
-    var el = doc.body
+    const el = doc.body
     expect(el.type).eql('container')
     expect(el.attr).eql({ a: 1, b: 2 })
     expect(el.style).eql({ c: 3, d: 4 })
     expect(el.children).is.an.array
     expect(el.children.length).eql(2)
 
-    var image = el.children[0]
-    var text = el.children[1]
+    const image = el.children[0]
+    const text = el.children[1]
     expect(image.type).eql('image')
     expect(image.attr).eql({ src: '<some image url>' })
     expect(text.type).eql('text')
@@ -98,8 +98,8 @@ describe('generate virtual dom for a single vm', () => {
       }
     }
 
-    var app = { doc, customComponentMap, differ }
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
+    const app = { doc, customComponentMap, differ }
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
     expect(spy.firstCall.args[0]).to.be.equal('test')
     expect(spy.firstCall.args[1]).to.be.equal('createBody')
@@ -121,12 +121,12 @@ describe('generate virtual dom for a single vm', () => {
     })
 
     expect(vm._app).equal(app)
-    var el = doc.body
+    const el = doc.body
     expect(el.type).eql('cell')
     expect(el.children).is.an.array
     expect(el.children.length).eql(1)
 
-    var text = el.children[0]
+    const text = el.children[0]
     expect(text.type).eql('text')
     expect(text.attr).eql({ value: '<some text content>' })
   })
@@ -159,8 +159,8 @@ describe('generate virtual dom for a single vm', () => {
       }
     }
 
-    var app = { doc, customComponentMap, differ }
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
+    const app = { doc, customComponentMap, differ }
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
     expect(vm._app).equal(app)
     expect(vm.x).eql('<some image url>')
@@ -168,16 +168,16 @@ describe('generate virtual dom for a single vm', () => {
     expect(vm.n).eql('<SOME TEXT CONTENT>')
     expect(vm.m).eql('<SOME TEXT CONTENT>')
 
-    var el = doc.body
+    const el = doc.body
     expect(el.type).eql('container')
     expect(el.attr).eql({ a: 1, b: 2 })
     expect(el.style).eql({ c: 3, d: 4 })
     expect(el.children).is.an.array
     expect(el.children.length).eql(3)
 
-    var image = el.children[0]
-    var text = el.children[1]
-    var text2 = el.children[2]
+    const image = el.children[0]
+    const text = el.children[1]
+    const text2 = el.children[2]
     expect(image.type).eql('image')
     expect(image.attr).eql({ src: '<some image url>' })
     expect(text.type).eql('text')
@@ -237,23 +237,23 @@ describe('generate virtual dom for a single vm', () => {
       }
     }
 
-    var app = { doc, customComponentMap, differ }
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
+    const app = { doc, customComponentMap, differ }
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
     expect(vm._app).equal(app)
     expect(vm.x).eql('<some image url>')
     expect(vm.y).eql(true)
 
-    var el = doc.body
+    const el = doc.body
     expect(el.type).eql('container')
     expect(el.children).is.an.array
     expect(el.children.length).eql(5)
 
-    var prev = el.children[0]
-    var starter = el.children[1]
-    var image = el.children[2]
-    var ender = el.children[3]
-    var next = el.children[4]
+    const prev = el.children[0]
+    const starter = el.children[1]
+    const image = el.children[2]
+    const ender = el.children[3]
+    const next = el.children[4]
     expect(prev.type).eql('prev')
     expect(starter.type).eql('comment')
     expect(ender.type).eql('comment')
@@ -280,9 +280,10 @@ describe('generate virtual dom for a single vm', () => {
     expect(el.children.length).eql(5)
     expect(prev).equal(el.children[0])
     expect(starter).equal(el.children[1])
-    image = el.children[2]
-    expect(image.type).eql('image')
-    expect(image.attr).eql({ src: '<some image url>' })
+
+    const image2 = el.children[2]
+    expect(image2.type).eql('image')
+    expect(image2.attr).eql({ src: '<some image url>' })
     expect(ender).equal(el.children[3])
     expect(next).equal(el.children[4])
   })
@@ -308,8 +309,8 @@ describe('generate virtual dom for a single vm', () => {
       }
     }
 
-    var app = { doc, customComponentMap, differ }
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
+    const app = { doc, customComponentMap, differ }
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
     expect(vm._app).equal(app)
     expect(vm.x).eql('<some image url>')
@@ -318,15 +319,15 @@ describe('generate virtual dom for a single vm', () => {
       { uid: 2, x: 2, $index: 1 },
       { uid: 3, $index: 2 }])
 
-    var el = doc.body
+    const el = doc.body
     expect(el.type).eql('container')
     expect(el.children).is.an.array
     expect(el.children.length).eql(7)
 
-    var prev = el.children[0]
-    var starter = el.children[1]
-    var ender = el.children[5]
-    var next = el.children[6]
+    const prev = el.children[0]
+    const starter = el.children[1]
+    const ender = el.children[5]
+    const next = el.children[6]
     expect(prev.type).eql('prev')
     expect(starter.type).eql('comment')
     expect(ender.type).eql('comment')
@@ -399,8 +400,8 @@ describe('generate virtual dom for a single vm', () => {
       }
     }
 
-    var app = { doc, customComponentMap, differ }
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
+    const app = { doc, customComponentMap, differ }
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
     expect(vm._app).equal(app)
     expect(vm.x).eql('<some image url>')
@@ -409,13 +410,13 @@ describe('generate virtual dom for a single vm', () => {
       { uid: 2, x: 2, $index: 1 },
       { uid: 3, $index: 2 }])
 
-    var el = doc.body
+    const el = doc.body
     expect(el.type).eql('container')
     expect(el.children).is.an.array
     expect(el.children.length).eql(11)
 
-    var prev = el.children[0]
-    var next = el.children[10]
+    const prev = el.children[0]
+    const next = el.children[10]
     expect(prev.type).eql('prev')
     expect(el.children[1].type).eql('comment')
     expect(el.children[1].value).eql('start')
@@ -452,9 +453,9 @@ describe('generate virtual dom for a single vm', () => {
 })
 
 describe('generate virtual dom for sub vm', () => {
-  var doc
-  var customComponentMap
-  var differ
+  let doc
+  let customComponentMap
+  let differ
 
   beforeEach(() => {
     doc = new Document('test')
@@ -509,8 +510,8 @@ describe('generate virtual dom for sub vm', () => {
       }
     }
 
-    var app = { doc, customComponentMap, differ }
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
+    const app = { doc, customComponentMap, differ }
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
     expect(vm._app).equal(app)
     expect(vm._rootEl).to.deep.equal(vm._parentEl.children[0])
@@ -519,12 +520,12 @@ describe('generate virtual dom for sub vm', () => {
     expect(vm._childrenVms[0]).to.deep.equal(vm._ids['bar'].vm)
     expect(vm._childrenVms[0]._rootEl).to.deep.equal(vm._ids['bar'].el)
 
-    var el = doc.body
+    const el = doc.body
     expect(el.type).eql('container')
     expect(el.pureChildren).is.an.array
     expect(el.pureChildren.length).eql(1)
 
-    var sub = el.children[0]
+    const sub = el.children[0]
     expect(sub.type).eql('container')
     expect(sub.children).is.an.array
     expect(sub.children.length).eql(2)
@@ -562,16 +563,16 @@ describe('generate virtual dom for sub vm', () => {
       }
     }
 
-    var app = { doc, customComponentMap, differ }
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
+    const app = { doc, customComponentMap, differ }
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
     expect(vm._app).equal(app)
-    var el = doc.body
+    const el = doc.body
     expect(el.type).eql('container')
     expect(el.children).is.an.array
     expect(el.children.length).eql(1)
 
-    var aaa = el.children[0]
+    const aaa = el.children[0]
     expect(aaa.type).eql('aaa')
   })
 
@@ -590,19 +591,19 @@ describe('generate virtual dom for sub vm', () => {
       }
     }
 
-    var app = { doc, customComponentMap, differ }
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
+    const app = { doc, customComponentMap, differ }
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
     expect(vm._app).equal(app)
-    var el = doc.body
+    const el = doc.body
     expect(el.type).eql('container')
     expect(el.children).is.an.array
     expect(el.children.length).eql(4)
 
     expect(el.children[0].type).eql('comment')
-    var aaa = el.children[1]
+    const aaa = el.children[1]
     expect(aaa.type).eql('aaa')
-    var bbb = el.children[2]
+    const bbb = el.children[2]
     expect(bbb.type).eql('bbb')
     expect(el.children[3].type).eql('comment')
   })
@@ -627,20 +628,20 @@ describe('generate virtual dom for sub vm', () => {
       }
     }
 
-    var app = { doc, customComponentMap, differ }
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
+    const app = { doc, customComponentMap, differ }
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
     expect(vm._app).equal(app)
-    var el = doc.body
+    const el = doc.body
     expect(el.type).eql('container')
     expect(el.children).is.an.array
     expect(el.children.length).eql(1)
 
-    var sub = el.children[0]
-    var aaa = sub.children[0]
+    const sub = el.children[0]
+    const aaa = sub.children[0]
     expect(aaa.type).eql('aaa')
     expect(aaa.attr).eql({ a: 10 })
-    var bbb = sub.children[1]
+    const bbb = sub.children[1]
     expect(bbb.type).eql('bbb')
     expect(bbb.attr).eql({ b: 20 })
   })
@@ -666,20 +667,20 @@ describe('generate virtual dom for sub vm', () => {
       }
     }
 
-    var app = { doc, customComponentMap, differ }
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
+    const app = { doc, customComponentMap, differ }
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
     expect(vm._app).equal(app)
-    var el = doc.body
+    const el = doc.body
     expect(el.type).eql('container')
     expect(el.children).is.an.array
     expect(el.children.length).eql(1)
 
-    var sub = el.children[0]
-    var aaa = sub.children[0]
+    const sub = el.children[0]
+    const aaa = sub.children[0]
     expect(aaa.type).eql('aaa')
     expect(aaa.attr).eql({ a: 10 })
-    var bbb = sub.children[1]
+    const bbb = sub.children[1]
     expect(bbb.type).eql('bbb')
     expect(bbb.attr).eql({ b: 2 })
   })
@@ -705,21 +706,21 @@ describe('generate virtual dom for sub vm', () => {
       }
     }
 
-    var app = { doc, customComponentMap, differ }
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
+    const app = { doc, customComponentMap, differ }
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
     expect(vm._app).equal(app)
 
-    var el = doc.body
+    const el = doc.body
     expect(el.type).eql('container')
     expect(el.children).is.an.array
     expect(el.children.length).eql(1)
 
-    var sub = el.children[0]
-    var aaa = sub.children[0]
+    const sub = el.children[0]
+    const aaa = sub.children[0]
     expect(aaa.type).eql('aaa')
     expect(aaa.attr).eql({ a: 10 })
-    var bbb = sub.children[1]
+    const bbb = sub.children[1]
     expect(bbb.type).eql('bbb')
     expect(bbb.attr).eql({ b: 2 })
   })
@@ -751,21 +752,21 @@ describe('generate virtual dom for sub vm', () => {
       }
     }
 
-    var app = { doc, customComponentMap, differ }
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
+    const app = { doc, customComponentMap, differ }
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
     expect(vm._app).equal(app)
 
-    var el = doc.body
+    const el = doc.body
     expect(el.type).eql('container')
     expect(el.children).is.an.array
     expect(el.children.length).eql(1)
 
-    var sub = el.children[0]
-    var aaa = sub.children[0]
+    const sub = el.children[0]
+    const aaa = sub.children[0]
     expect(aaa.type).eql('aaa')
     expect(aaa.attr).eql({ a: 10 })
-    var bbb = sub.children[1]
+    const bbb = sub.children[1]
     expect(bbb.type).eql('bbb')
     expect(bbb.attr).eql({ b: 2 })
 
@@ -808,21 +809,21 @@ describe('generate virtual dom for sub vm', () => {
       }
     }
 
-    var app = { doc, customComponentMap, differ }
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
+    const app = { doc, customComponentMap, differ }
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
     expect(vm._app).equal(app)
 
-    var el = doc.body
+    const el = doc.body
     expect(el.type).eql('container')
     expect(el.children).is.an.array
     expect(el.children.length).eql(3)
 
-    var sub = el.children[1]
-    var aaa = sub.children[0]
+    const sub = el.children[1]
+    const aaa = sub.children[0]
     expect(aaa.type).eql('aaa')
     expect(aaa.attr).eql({ a: 10 })
-    var bbb = sub.children[1]
+    const bbb = sub.children[1]
     expect(bbb.type).eql('bbb')
     expect(bbb.attr).eql({ b: 2 })
 
@@ -861,37 +862,37 @@ describe('generate virtual dom for sub vm', () => {
       }
     }
 
-    var app = { doc, customComponentMap, differ }
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
+    const app = { doc, customComponentMap, differ }
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
     expect(vm._app).equal(app)
 
-    var el = doc.body
+    const el = doc.body
     expect(el.type).eql('container')
     expect(el.children).is.an.array
     expect(el.children.length).eql(5)
 
-    var sub1 = el.children[1]
-    var aaa1 = sub1.children[0]
+    const sub1 = el.children[1]
+    const aaa1 = sub1.children[0]
     expect(aaa1.type).eql('aaa')
     expect(aaa1.attr).eql({ a: 1 })
-    var bbb1 = sub1.children[1]
+    const bbb1 = sub1.children[1]
     expect(bbb1.type).eql('bbb')
     expect(bbb1.attr).eql({ b: 2 })
 
-    var sub2 = el.children[2]
-    var aaa2 = sub2.children[0]
+    const sub2 = el.children[2]
+    const aaa2 = sub2.children[0]
     expect(aaa2.type).eql('aaa')
     expect(aaa2.attr).eql({ a: 2 })
-    var bbb2 = sub2.children[1]
+    const bbb2 = sub2.children[1]
     expect(bbb2.type).eql('bbb')
     expect(bbb2.attr).eql({ b: 2 })
 
-    var sub3 = el.children[3]
-    var aaa3 = sub3.children[0]
+    const sub3 = el.children[3]
+    const aaa3 = sub3.children[0]
     expect(aaa3.type).eql('aaa')
     expect(aaa3.attr).eql({ a: 3 })
-    var bbb3 = sub3.children[1]
+    const bbb3 = sub3.children[1]
     expect(bbb3.type).eql('bbb')
     expect(bbb3.attr).eql({ b: 2 })
   })
@@ -918,10 +919,10 @@ describe('generate virtual dom for sub vm', () => {
       }
     }
 
-    var app = { doc, customComponentMap, differ }
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
+    const app = { doc, customComponentMap, differ }
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
-    var el = doc.body
+    const el = doc.body
 
     expect(el.type).eql('container')
     // [comment, aaa, comment, a, b, comment, bbb, comment]
@@ -957,12 +958,12 @@ describe('generate virtual dom for sub vm', () => {
       }
     }
 
-    var app = { doc, customComponentMap, differ }
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app }, null, { a: 1000 })
+    const app = { doc, customComponentMap, differ }
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app }, null, { a: 1000 })
 
     expect(vm._app).equal(app)
 
-    var el = doc.body
+    const el = doc.body
     expect(el.type).eql('container')
     expect(el.attr).eql({ x: 1000, y: 20 })
 
@@ -976,7 +977,7 @@ describe('generate virtual dom for sub vm', () => {
 })
 
 describe('generate dom actions', () => {
-  var doc, app, spy, customComponentMap, differ
+  let doc, app, spy, customComponentMap, differ
 
   beforeEach(() => {
     spy = sinon.spy()
@@ -997,7 +998,7 @@ describe('generate dom actions', () => {
   })
 
   it('received create body and add element actions', () => {
-    var handler = sinon.spy()
+    const handler = sinon.spy()
 
     customComponentMap.foo = {
       template: {
@@ -1022,7 +1023,7 @@ describe('generate dom actions', () => {
     }
 
     new Vm('foo', customComponentMap.foo, { _app: app })
-    var el = {
+    const el = {
       ref: '_root',
       type: 'container',
       attr: { a: 1, b: 2 }, style: { c: 3, d: 4, e: 6 },
@@ -1060,19 +1061,19 @@ describe('generate dom actions', () => {
       }
     }
 
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
-    var pureChildren = doc.body.pureChildren
-    var el = { ref: '_root', type: 'container', attr: {}, style: {}}
-    var prev = {
+    const pureChildren = doc.body.pureChildren
+    const el = { ref: '_root', type: 'container', attr: {}, style: {}}
+    const prev = {
       ref: pureChildren[0].ref,
       type: 'prev', attr: {}, style: {}
     }
-    var img = {
+    const img = {
       ref: pureChildren[1].ref,
       type: 'image', attr: { src: 2 }, style: {}
     }
-    var next = {
+    const next = {
       ref: pureChildren[2].ref,
       type: 'next', attr: {}, style: {}
     }
@@ -1109,11 +1110,11 @@ describe('generate dom actions', () => {
     differ.flush()
 
     // [1, !12, undefined, !4, undefined, !6]
-    var img2 = {
+    const img2 = {
       ref: pureChildren[2].ref,
       type: 'image', attr: { src: 4 }, style: {}
     }
-    var img3 = {
+    const img3 = {
       ref: pureChildren[3].ref,
       type: 'image', attr: { src: 6 }, style: {}
     }
@@ -1121,8 +1122,8 @@ describe('generate dom actions', () => {
     expect(spy.args[6]).eql(['bar', 'addElement', '_root', img2, 2])
     expect(spy.args[7]).eql(['bar', 'addElement', '_root', img3, 3])
 
-    var temp1 = vm.list[1] // 12
-    var temp2 = vm.list[5] // 6
+    const temp1 = vm.list[1] // 12
+    const temp2 = vm.list[5] // 6
     // vm.list.splice(0, 6, temp2, {uid: 7, x: 7}, temp1)
     vm.list = []
     vm.list.push(temp2, { uid: 7, x: 7 }, temp1)
@@ -1148,9 +1149,9 @@ describe('generate dom actions', () => {
       }
     }
 
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
-    var pureChildren = doc.body.pureChildren
-    var length = spy.args.length
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app })
+    const pureChildren = doc.body.pureChildren
+    const length = spy.args.length
 
     vm.x = '<some image url>'
     differ.flush()
@@ -1158,7 +1159,7 @@ describe('generate dom actions', () => {
 
     vm.x = 'other string value'
     differ.flush()
-    var change = [
+    const change = [
       'bar', 'updateAttrs',
       pureChildren[0].ref,
       { src: 'other string value' }
@@ -1185,13 +1186,13 @@ describe('generate dom actions', () => {
       }
     }
 
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
     expect(doc.body.pureChildren.length).eql(1)
-    var text = doc.body.pureChildren[0]
+    const text = doc.body.pureChildren[0]
     expect(text.attr.value).eql('MIKE')
 
-    var initCalls = spy.args.length
+    const initCalls = spy.args.length
 
     vm.name = 'MiKe'
     differ.flush()
@@ -1231,12 +1232,12 @@ describe('generate dom actions', () => {
     }
 
     new Vm('foo', customComponentMap.foo, { _app: app })
-    var pureChildren = doc.body.pureChildren
-    var first = pureChildren[0]
-    var second = first.pureChildren[0]
-    var third = first.pureChildren[1]
+    const pureChildren = doc.body.pureChildren
+    const first = pureChildren[0]
+    const second = first.pureChildren[0]
+    const third = first.pureChildren[1]
     expect(spy.args.length).eql(4)
-    var el = { ref: '_root', type: 'container', attr: {}, style: {}}
+    let el = { ref: '_root', type: 'container', attr: {}, style: {}}
     expect(spy.args[0]).eql(['bar', 'createBody', el])
     el = { ref: first.ref, type: 'container', attr: {}, style: {}}
     expect(spy.args[1]).eql(['bar', 'addElement', '_root', el, -1])
@@ -1274,10 +1275,10 @@ describe('generate dom actions', () => {
     }
 
     new Vm('foo', customComponentMap.foo, { _app: app })
-    var pureChildren = doc.body.pureChildren
-    var first = pureChildren[0]
-    var second = pureChildren[1]
-    var third = pureChildren[2]
+    const pureChildren = doc.body.pureChildren
+    const first = pureChildren[0]
+    const second = pureChildren[1]
+    const third = pureChildren[2]
 
     /* eslint-disable indent */
     // expect(spy.args[0]).eql([ 'bar', 'createBody', 'container' ])
@@ -1309,7 +1310,7 @@ describe('generate dom actions', () => {
     }
 
     new Vm('foo', customComponentMap.foo, { _app: app })
-    var pureChildren = doc.body.pureChildren
+    const pureChildren = doc.body.pureChildren
 
     expect(spy.args.length).eql(7)
     // body, r, r.a, r.b, r.b.d, r.b.e(tree), r.b.f, r.c
@@ -1332,7 +1333,7 @@ describe('generate dom actions', () => {
     expect(spy.args[3][2]).eql(pureChildren[1].ref)
     expect(spy.args[3][4]).eql(-1)
 
-    var tree = pureChildren[1].pureChildren[1]
+    const tree = pureChildren[1].pureChildren[1]
     expect(spy.args[4][3].ref).eql(tree.ref)
     expect(spy.args[4][3].type).eql('e')
     expect(spy.args[4][2]).eql(pureChildren[1].ref)

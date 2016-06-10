@@ -1,16 +1,16 @@
 'use strict'
 
-var raf = window.requestAnimationFrame ||
+const raf = window.requestAnimationFrame ||
           window.webkitRequestAnimationFrame ||
           function (calllback) {
             setTimeout(calllback, 16)
           }
 
-var rafId
-var observers = []
-var paused = false
+let rafId
+const observers = []
+let paused = false
 
-var FrameUpdater = {
+const FrameUpdater = {
   start: function () {
     if (rafId) {
       return
@@ -18,7 +18,7 @@ var FrameUpdater = {
 
     rafId = raf(function runLoop () {
       if (!paused) {
-        for (var i = 0; i < observers.length; i++) {
+        for (let i = 0; i < observers.length; i++) {
           observers[i]()
         }
         raf(runLoop)

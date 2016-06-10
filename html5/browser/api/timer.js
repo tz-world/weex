@@ -1,10 +1,10 @@
 'use strict'
 
-var timer = {
+const timer = {
 
   setTimeout: function (timeoutCallbackId, delay) {
-    var sender = this.sender
-    var timerId = setTimeout(function () {
+    const sender = this.sender
+    const timerId = setTimeout(function () {
       sender.performCallback(timeoutCallbackId)
     }, delay)
     return timerId

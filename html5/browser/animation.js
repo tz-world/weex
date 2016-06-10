@@ -10,14 +10,14 @@ module.exports = {
    *   - dealy [Number] milliseconds(ms)
    */
   transitionOnce: function (comp, config, callback) {
-    var styles = config.styles || {}
-    var duration = config.duration || 1000 // ms
-    var timingFunction = config.timingFunction || 'ease'
-    var delay = config.delay || 0  // ms
-    var transitionValue = 'all ' + duration + 'ms '
+    const styles = config.styles || {}
+    const duration = config.duration || 1000 // ms
+    const timingFunction = config.timingFunction || 'ease'
+    const delay = config.delay || 0  // ms
+    const transitionValue = 'all ' + duration + 'ms '
         + timingFunction + ' ' + delay + 'ms'
-    var dom = comp.node
-    var transitionEndHandler = function (e) {
+    const dom = comp.node
+    const transitionEndHandler = function (e) {
       e.stopPropagation()
       dom.removeEventListener('webkitTransitionEnd', transitionEndHandler)
       dom.removeEventListener('transitionend', transitionEndHandler)

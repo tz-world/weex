@@ -9,8 +9,8 @@ import * as directive from '../../../default/vm/directive'
 import * as state from '../../../default/core/state'
 
 describe('generate workflow', () => {
-  var contentIndex = 0
-  var vm = {}
+  let contentIndex = 0
+  const vm = {}
   Object.assign(vm, compiler, directive, {
     _watchers: [],
     _createBlock: function () { return { element: {}} },
@@ -58,10 +58,10 @@ describe('generate workflow', () => {
   })
 
   it('generate a body', (done) => {
-    var target = {
+    const target = {
       type: 'a'
     }
-    var dest = {
+    const dest = {
       ref: '_documentElement'
     }
 
@@ -83,10 +83,10 @@ describe('generate workflow', () => {
   })
 
   it('generate a single element', (done) => {
-    var target = {
+    const target = {
       type: 'a'
     }
-    var dest = {}
+    const dest = {}
 
     function check () {
       expect(vm._compile).callCount(1)
@@ -106,12 +106,12 @@ describe('generate workflow', () => {
   })
 
   it('generate some child nodes', (done) => {
-    var target = [{
+    const target = [{
       type: 'a'
     }, {
       type: 'b'
     }]
-    var dest = {}
+    const dest = {}
 
     function check () {
       expect(vm._compile).callCount(3)
@@ -132,14 +132,14 @@ describe('generate workflow', () => {
   })
 
   it('generate content holder', (done) => {
-    var target = {
+    const target = {
       type: 'a', children: [
         { type: 'b' },
         { type: 'content' },
         { type: 'c' }
       ]
     }
-    var dest = {}
+    const dest = {}
 
     function check () {
       expect(vm._compile).callCount(4)
@@ -164,16 +164,16 @@ describe('generate workflow', () => {
   })
 
   it('generate a repeat element', (done) => {
-    var target = {
+    const target = {
       type: 'a',
       repeat: () => [1, 2, 3]
     }
-    var dest = {}
+    const dest = {}
 
     function checkRepeatVm (args, target, meta) {
       expect(args[0]).eql(target)
       expect(args[2]).eql(meta)
-      var vm = args[1]
+      const vm = args[1]
       expect(vm.element).eql({})
       expect(vm.data).eql([1, 2, 3])
     }
@@ -195,11 +195,11 @@ describe('generate workflow', () => {
   })
 
   it('generate a shown element', (done) => {
-    var target = {
+    const target = {
       type: 'a',
       shown: () => true
     }
-    var dest = {}
+    const dest = {}
 
     function check () {
       expect(vm._compile).callCount(2)
@@ -219,8 +219,8 @@ describe('generate workflow', () => {
   })
 
   it('generate a repeat shown element', (done) => {
-    var index = 0
-    var target = {
+    let index = 0
+    const target = {
       type: 'a',
       repeat: () => [1, 2, 3],
       shown: () => {
@@ -228,12 +228,12 @@ describe('generate workflow', () => {
         return index % 2
       }
     }
-    var dest = {}
+    const dest = {}
 
     function checkRepeatVm (args, target, meta) {
       expect(args[0]).eql(target)
       expect(args[2]).eql(meta)
-      var vm = args[1]
+      const vm = args[1]
       expect(vm.element).eql({})
       expect(vm.data).eql([1, 2, 3])
     }
@@ -261,11 +261,11 @@ describe('generate workflow', () => {
   })
 
   it('generate an element with children', (done) => {
-    var target = {
+    const target = {
       type: 'a',
       children: [{ type: 'b' }, { type: 'c' }]
     }
-    var dest = {}
+    const dest = {}
 
     function check () {
       expect(vm._compile).callCount(3)
@@ -283,12 +283,12 @@ describe('generate workflow', () => {
   })
 
   it('generate an whole element with children', (done) => {
-    var target = {
+    const target = {
       type: 'a',
       append: 'tree',
       children: [{ type: 'b' }, { type: 'c' }]
     }
-    var dest = {}
+    const dest = {}
 
     function check () {
       expect(vm._compile).callCount(3)
@@ -312,8 +312,8 @@ describe('generate workflow', () => {
   })
 
   it('generate an element with repeat shown children', (done) => {
-    var index = 0
-    var target = {
+    let index = 0
+    const target = {
       type: 'a',
       children: [
         {
@@ -327,12 +327,12 @@ describe('generate workflow', () => {
         { type: 'c' }
       ]
     }
-    var dest = {}
+    const dest = {}
 
     function checkRepeatVm (args, target, meta) {
       expect(args[0]).eql(target)
       expect(args[2]).eql(meta)
-      var vm = args[1]
+      const vm = args[1]
       expect(vm.element).eql({})
       expect(vm.data).eql([1, 2, 3])
     }
@@ -362,8 +362,8 @@ describe('generate workflow', () => {
   })
 
   it('generate an element with repeat shown tree', (done) => {
-    var index = 0
-    var target = {
+    let index = 0
+    const target = {
       type: 'a',
       children: [
         {
@@ -378,12 +378,12 @@ describe('generate workflow', () => {
         { type: 'd' }
       ]
     }
-    var dest = {}
+    const dest = {}
 
     function checkRepeatVm (args, target, meta) {
       expect(args[0]).eql(target)
       expect(args[2]).eql(meta)
-      var vm = args[1]
+      const vm = args[1]
       expect(vm.element).eql({})
       expect(vm.data).eql([1, 2, 3])
     }
@@ -417,14 +417,14 @@ describe('generate workflow', () => {
   })
 
   it('generate an element with custom children', (done) => {
-    var target = {
+    const target = {
       type: 'a',
       children: [
         { type: 'b', component: true },
         { type: 'c' }
       ]
     }
-    var dest = {}
+    const dest = {}
 
     function check () {
       expect(vm._compile).callCount(3)
@@ -445,8 +445,8 @@ describe('generate workflow', () => {
   })
 
   it('with custom repeat show children', (done) => {
-    var index = 0
-    var target = {
+    let index = 0
+    const target = {
       type: 'a',
       children: [
         {
@@ -461,12 +461,12 @@ describe('generate workflow', () => {
         { type: 'd' }
       ]
     }
-    var dest = {}
+    const dest = {}
 
     function checkRepeatVm (args, target, meta) {
       expect(args[0]).eql(target)
       expect(args[2]).eql(meta)
-      var vm = args[1]
+      const vm = args[1]
       expect(vm.element).eql({})
       expect(vm.data).eql([1, 2, 3])
     }
@@ -503,7 +503,7 @@ describe('generate workflow', () => {
 })
 
 describe('merge context', () => {
-  var vm
+  let vm
 
   beforeEach(() => {
     vm = {
@@ -519,14 +519,14 @@ describe('merge context', () => {
   })
 
   it('merge external data', () => {
-    var context = vm._mergeContext({ a: 3 })
+    const context = vm._mergeContext({ a: 3 })
     expect(context).not.equal(vm)
     expect(context.a).eql(3)
     expect(context.b).eql(2)
   })
 
   it('react with changes, but not with internal for ext-key', () => {
-    var context = vm._mergeContext({ a: 3 })
+    const context = vm._mergeContext({ a: 3 })
     vm.a = 4
     vm.b = 5
     expect(context.a).eql(3)
@@ -536,7 +536,7 @@ describe('merge context', () => {
   })
 
   it('merge external data if key not bound', () => {
-    var context = vm._mergeContext({ c: 3 })
+    const context = vm._mergeContext({ c: 3 })
     expect(context).not.equal(vm)
     expect(context.a).eql(1)
     expect(context.b).eql(2)
@@ -544,7 +544,7 @@ describe('merge context', () => {
   })
 
   it('not react with changes for extra key', () => {
-    var context = vm._mergeContext({ c: 3 })
+    const context = vm._mergeContext({ c: 3 })
     vm.c = 9
     expect(context.a).eql(1)
     expect(context.b).eql(2)

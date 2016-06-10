@@ -1,7 +1,7 @@
 'use strict'
 
-var config = require('./config')
-// var messageQueue = []
+const config = require('./config')
+// const messageQueue = []
 
 // function flushMessage () {
 //   if (typeof callJS === 'function' && messageQueue.length > 0) {
