@@ -28,6 +28,9 @@ function Indicator (data) {
   this.data = data
   this.style.width.call(this, styles.width)
   this.style.height.call(this, styles.height)
+  this.itemColor = styles.itemColor || DEFAULT_ITEM_COLOR
+  this.itemSelectedColor = styles.itemSelectedColor
+    || DEFAULT_ITEM_SELECTED_COLOR
   this.items = []
   Atomic.call(this, data)
 }
@@ -41,8 +44,6 @@ Indicator.prototype.create = function () {
   node.style.position = 'absolute'
   this.node = node
   this.style.itemSize.call(this, 0)
-  this.itemColor = DEFAULT_ITEM_COLOR
-  this.itemSelectedColor = DEFAULT_ITEM_SELECTED_COLOR
   this.updateStyle({
     left: 0,
     top: 0,
@@ -64,6 +65,7 @@ Indicator.prototype.createChildren = function () {
     indicator.style.height = this.itemSize + 'px'
     indicator.setAttribute('index', i)
     if (this.index === i) {
+      indicator.classList.add('active')
       indicator.style.backgroundColor = this.itemSelectedColor
     } else {
       indicator.style.backgroundColor = this.itemColor
@@ -75,22 +77,31 @@ Indicator.prototype.createChildren = function () {
   this.node.appendChild(root)
 }
 
+Indicator.prototype.resetColor = function () {
+  var len = this.items.length
+  if (typeof this.index !== 'undefined' && len > this.index) {
+    for (var i = 0; i < len; i++) {
+      var item = this.items[i]
+      if (this.index === i) {
+        item.classList.add('active')
+        item.style.backgroundColor = this.itemSelectedColor
+      } else {
+        item.style.backgroundColor = this.itemColor
+      }
+    }
+  }
+}
+
 Indicator.prototype.style
     = extend(Object.create(Atomic.prototype.style), {
   itemColor: function (val) {
     this.itemColor = val || DEFAULT_ITEM_COLOR
-    for (var i = 0, l = this.items.length; i < l; i++) {
-      this.items[i].style.backgroundColor = this.itemColor
-    }
+    this.resetColor()
   },
 
   itemSelectedColor: function (val) {
     this.itemSelectedColor = val || DEFAULT_ITEM_SELECTED_COLOR
-    if (typeof this.index !== 'undefined'
-        && this.items.length > this.index) {
-      this.items[this.index].style.backgroundColor
-          = this.itemSelectedColor
-    }
+    this.resetColor()
   },
 
   itemSize: function (val) {
