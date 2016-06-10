@@ -24,9 +24,10 @@ Sender.getSender = function (instanceId) {
 Sender.prototype = {
 
   // perform a callback to jsframework.
-  performCallback: function (callbackId, data) {
+  performCallback: function (callbackId, data, keepAlive) {
     var args = [callbackId]
     data && args.push(data)
+    keepAlive && args.push(keepAlive)
     _send(this.instanceId, {
       method: 'callback',
       args: args
@@ -34,10 +35,15 @@ Sender.prototype = {
   },
 
   fireEvent: function (ref, type, event) {
-    // Note that the event.target must be the standard event's
-    // currentTarget. Therefor a process for replacing target must
-    // be done when a event is fired.
+    if (event._alreadyFired) {
+      // stop bubbling up in virtual dom tree.
+      return
+    }
+    // do not prevent default, otherwise the touchstart
+    // event will no longer trigger a click event
+    event._alreadyFired = true
     var evt = utils.extend({}, event)
+    // The event.target must be the standard event's currentTarget.
     evt.target = evt.currentTarget
     evt.value = event.target.value
     evt.timestamp = Date.now()

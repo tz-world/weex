@@ -160,4 +160,52 @@ tnpm install -g casperjs
 casperjs test style.js
 ```
 
+#### Relase Note
+
+* 0.2.7
+
+  * add downgrade options for scrollable root like scroller and list
+  * use plain css instead of sass
+  * add components refresh, loading, loading-indicator(spinner)
+  * 'switch' is not scalable now but stick to a initial size 100x60 (in 750-width viewport)
+  * fix error of flex in horizontal scroller
+  * fix position 'fixed' in scrollable components
+  * fix 'removeChild' for scroller
+  * add component 'web' to simulate a webview
+  * add component 'embed' to bring a child weex instance into a weex page
+  * fix size adapter for different device sizes
+  * add 'timer' api module and api method 'timer.setTimeout'
+  * add 'navigator' api module
+  * 'image' support attribute 'resize' and its values 'stetch', 'contain' and 'cover'
+  * add config item 'embed' for the initiation of embeded weex instance
+
+* 0.2.8
+
+  * fix lazyloading of slider images
+  * fix `auto-play`'s default value of slider
+
+* 0.2.9
+
+  * fix removing & inserting before fixed child
+
+* 0.2.10
+
+  * add `logger` and `debug` flag.
+  * add `stream.fetch` API.
+  * fix height of downgraded scrollable root.
+  * add warnings for scrollable root.
+  * add promise polyfill.
+  * add `vlist` and `hlist` components.
+  * fix moving elements inside the same parent.
+  * stop propagation by default and fix `<a>` component's behaviour.
+  * fix default border style of image.
+
+* 0.2.12
+
+  * fix `<list>`'s direction.
+  * fix updating src of `<embed>`.
+
+* 0.2.13
+
+  * fix `<embed>`'s updating src.
 

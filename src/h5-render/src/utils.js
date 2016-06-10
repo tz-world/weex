@@ -87,6 +87,76 @@ function getRandom(num) {
   return Math.floor(Date.now() + Math.random() * _max) % _max
 }
 
+function getRgb(color) {
+  var match
+  color = color + ''
+  if (match = color.match(/#(\d{2})(\d{2})(\d{2})/)) {
+    return {
+      r: parseInt(match[1], 16),
+      g: parseInt(match[2], 16),
+      b: parseInt(match[3], 16)
+    }
+  }
+  if (match = color.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/)) {
+    return {
+      r: parseInt(match[1]),
+      g: parseInt(match[2]),
+      b: parseInt(match[3])
+    }
+  }
+}
+
+// direction: 'l' | 'r', default is 'r'
+// num: how many times to loop, should be a positive integer
+function loopArray(arr, num, direction) {
+  if (!isArray(arr)) {
+    return
+  }
+  var isLeft = (direction + '').toLowerCase() === 'l'
+  var len = arr.length
+  num = num % len
+  if (num < 0) {
+    num = -num
+    isLeft = !isLeft
+  }
+  if (num === 0) {
+    return arr
+  }
+  var res, lp, rp
+  if (isLeft) {
+    lp = arr.slice(0, num)
+    rp = arr.slice(num)
+  } else {
+    lp = arr.slice(0, len - num)
+    rp = arr.slice(len - num)
+  }
+  return rp.concat(lp)
+}
+
+// pad a integer number with zeros on the left.
+// example: fillInt(12, 3) -> '012'
+// - num: the number to pad
+// - len: the specified length
+function leftPad(num, len) {
+  if (len <= 0) {
+    return num
+  }
+  var numLen = (num + '').length
+  if (numLen >= len) {
+    return num
+  }
+  return new Array(len - numLen + 1).join('0') + num
+}
+
+// get DateStr with specified separator like '2016-06-03'
+function getDateStr(separator) {
+  var dt = new Date()
+  var y = dt.getFullYear()
+  var m = leftPad(dt.getMonth() + 1, 2)
+  var d = leftPad(dt.getDate(), 2)
+  return [y, m, d].join(separator || '')
+}
+
 module.exports = {
   extend: extend,
   isArray: isArray,
@@ -94,5 +164,9 @@ module.exports = {
   getUniqueFromArray: getUniqueFromArray,
   transitionize: transitionize,
   detectWebp: detectWebp,
-  getRandom: getRandom
+  getRandom: getRandom,
+  getRgb: getRgb,
+  loopArray: loopArray,
+  leftPad: leftPad,
+  getDateStr: getDateStr
 }

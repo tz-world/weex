@@ -5,7 +5,7 @@ var FrameUpdater = require('../frameUpdater')
 var Component = require('../components/component')
 var scroll = require('scroll-to')
 var config = require('../config')
-// var Weex = require('../weex')
+var logger = require('../logger')
 
 var dom = {
 
@@ -88,13 +88,20 @@ var dom = {
     !options && (options = {})
     var componentManager = this.getComponentManager()
     var elem = componentManager.getElementByRef(ref)
-    if (elem) {
+    if (!elem) {
+      return logger.error('component of ref ' + ref + ' doesn\'t exist.')
+    }
+    var parentScroller = elem.getParentScroller()
+    if (parentScroller) {
+      parentScroller.scroller.scrollToElement(elem.node, true)
+    } else {
       var offsetTop = elem.node.getBoundingClientRect().top
           + document.body.scrollTop
       var offset = (Number(options.offset) || 0) * this.scale
       var tween = scroll(0, offsetTop + offset, options)
-      // tween.on('end', function () {
-      // })
+      tween.on('end', function () {
+        logger.log('scroll end.')
+      })
     }
   }
 

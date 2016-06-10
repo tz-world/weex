@@ -11,7 +11,14 @@ var RENDERING_INDENT = 800
 
 var _instanceMap = {}
 var typeMap = {}
-var scrollableTypes = ['scroller', 'list']
+var scrollableTypes = [
+  'scroller',
+  'hscroller',
+  'vscroller',
+  'list',
+  'hlist',
+  'vlist'
+]
 
 function ComponentManager(instance) {
   this.instanceId = instance.instanceId
@@ -195,8 +202,21 @@ ComponentManager.prototype = {
       return
     }
 
-    // fire event for rendering dom on body elment.
+    // fire event for rendering.
     this.rendering()
+
+    if (index < -1) {
+      index = -1
+      console.warn('index cannot be less than -1.')
+    }
+
+    children = newParent.data.children
+    if (children
+        && children.length
+        && index !== -1
+        && index < children.length) {
+      before = this.componentMap[newParent.data.children[index].ref]
+    }
 
     // remove from oldParent.data.children
     if (oldParentRef && this.componentMap[oldParentRef]) {
@@ -213,21 +233,7 @@ ComponentManager.prototype = {
       }
     }
 
-    if (index < -1) {
-      index = -1
-      console.warn('index cannot be less than -1.')
-    }
-
-    children = newParent.data.children
-    if (children
-        && children.length
-        && index !== -1
-        && index < children.length) {
-      before = this.componentMap[newParent.data.children[index].ref]
-      newParent.insertBefore(component, before)
-    } else {  // append
-      newParent.insertBefore(component)
-    }
+    newParent.insertBefore(component, before)
 
     component.onMove && component.onMove(parentRef, index)
 
