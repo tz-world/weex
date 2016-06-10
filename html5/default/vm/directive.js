@@ -6,7 +6,9 @@
 import * as _ from '../util'
 
 import Watcher from '../core/watcher'
-import {nativeComponentMap} from '../config'
+import config from '../config'
+
+const { nativeComponentMap } = config
 
 const SETTERS = {
   attr: 'setAttr',
@@ -18,15 +20,16 @@ const SETTERS = {
  * apply the native component's options(specified by template.type)
  * to the template
  */
-export function _applyNaitveComponentOptions(template) {
-  const {type} = template
+export function _applyNaitveComponentOptions (template) {
+  const { type } = template
   const options = nativeComponentMap[type]
 
   if (typeof options === 'object') {
     for (const key in options) {
       if (template[key] == null) {
         template[key] = options[key]
-      } else if (_.typof(template[key]) === 'object' &&
+      }
+      else if (_.typof(template[key]) === 'object' &&
         _.typof(options[key]) === 'object') {
         for (const subkey in options[key]) {
           if (template[key][subkey] == null) {
@@ -41,7 +44,7 @@ export function _applyNaitveComponentOptions(template) {
 /**
  * bind all id, attr, classnames, style, events to an element
  */
-export function _bindElement(el, template) {
+export function _bindElement (el, template) {
   this._setId(template.id, el, this)
   this._setAttr(el, template.attr)
   this._setClass(el, template.classList)
@@ -53,7 +56,7 @@ export function _bindElement(el, template) {
  * bind all props to sub vm and bind all style, events to the root element
  * of the sub vm if it doesn't have a replaced multi-node fragment
  */
-export function _bindSubVm(subVm, template, repeatItem) {
+export function _bindSubVm (subVm, template, repeatItem) {
   subVm = subVm || {}
   template = template || {}
 
@@ -73,13 +76,13 @@ export function _bindSubVm(subVm, template, repeatItem) {
   mergeProps(template.attr, props, this, subVm)
 }
 
-export function _bindSubVmAfterInitialized(subVm, template) {
+export function _bindSubVmAfterInitialized (subVm, template) {
   mergeClassStyle(template.classList, this, subVm)
   mergeStyle(template.style, this, subVm)
   mergeEvent(template.events, this, subVm)
 }
 
-function mergeProps(target, props, vm, subVm) {
+function mergeProps (target, props, vm, subVm) {
   if (!target) {
     return
   }
@@ -99,7 +102,7 @@ function mergeProps(target, props, vm, subVm) {
   }
 }
 
-function mergeStyle(target, vm, subVm) {
+function mergeStyle (target, vm, subVm) {
   for (const key in target) {
     const value = target[key]
     if (typeof value === 'function') {
@@ -118,8 +121,8 @@ function mergeStyle(target, vm, subVm) {
   }
 }
 
-function mergeClassStyle(target, vm, subVm) {
-  var css = vm._options && vm._options.style || {}
+function mergeClassStyle (target, vm, subVm) {
+  const css = vm._options && vm._options.style || {}
 
   /* istanbul ignore if */
   if (!subVm._rootEl) {
@@ -127,16 +130,17 @@ function mergeClassStyle(target, vm, subVm) {
   }
 
   if (typeof target === 'function') {
-    const value = vm._watch(target,  v => {
+    const value = vm._watch(target, v => {
       setClassStyle(subVm._rootEl, css, v)
     })
     setClassStyle(subVm._rootEl, css, value)
-  } else if (target != null) {
+  }
+  else if (target != null) {
     setClassStyle(subVm._rootEl, css, target)
   }
 }
 
-function mergeEvent(target, vm, subVm) {
+function mergeEvent (target, vm, subVm) {
   if (target && subVm._rootEl) {
     for (const type in target) {
       const handler = vm[target[type]]
@@ -151,7 +155,7 @@ function mergeEvent(target, vm, subVm) {
  * bind id to an element
  * each id is unique in a whole vm
  */
-export function _setId(id, el, vm) {
+export function _setId (id, el, vm) {
   const map = Object.create(null)
 
   Object.defineProperties(map, {
@@ -186,11 +190,11 @@ export function _setId(id, el, vm) {
 /**
  * bind attr to an element
  */
-export function _setAttr(el, attr) {
+export function _setAttr (el, attr) {
   this._bindDir(el, 'attr', attr)
 }
 
-function setClassStyle(el, css, classList) {
+function setClassStyle (el, css, classList) {
   const classStyle = {}
   const length = classList.length
 
@@ -208,7 +212,7 @@ function setClassStyle(el, css, classList) {
 /**
  * bind classnames to an element
  */
-export function _setClass(el, classList) {
+export function _setClass (el, classList) {
 
   if (typeof classList !== 'function' && !Array.isArray(classList)) {
     return
@@ -220,7 +224,7 @@ export function _setClass(el, classList) {
 
   const style = this._options && this._options.style || {}
   if (typeof classList === 'function') {
-    const value = this._watch(classList,  v => {
+    const value = this._watch(classList, v => {
       setClassStyle(el, style, v)
     })
     setClassStyle(el, style, value)
@@ -233,21 +237,21 @@ export function _setClass(el, classList) {
 /**
  * bind style to an element
  */
-export function _setStyle(el, style) {
+export function _setStyle (el, style) {
   this._bindDir(el, 'style', style)
 }
 
 /**
  * add an event type and handler to an element and generate a dom update
  */
-export function _setEvent(el, type, handler) {
+export function _setEvent (el, type, handler) {
   el.addEvent(type, _.bind(handler, this))
 }
 
 /**
  * add all events of an element
  */
-export function _bindEvents(el, events) {
+export function _bindEvents (el, events) {
   if (!events) {
     return
   }
@@ -272,7 +276,7 @@ export function _bindEvents(el, events) {
  * for example: style, attr, ...
  * if the value is a function then bind the data changes
  */
-export function _bindDir(el, name, data) {
+export function _bindDir (el, name, data) {
   if (!data) {
     return
   }
@@ -283,7 +287,8 @@ export function _bindDir(el, name, data) {
     const value = data[key]
     if (typeof value === 'function') {
       this._bindKey(el, name, key, value)
-    } else {
+    }
+    else {
       el[SETTERS[name]](key, value)
     }
   }
@@ -292,18 +297,19 @@ export function _bindDir(el, name, data) {
 /**
  * bind data changes to a certain key to a name series in an element
  */
-export function _bindKey(el, name, key, calc) {
+export function _bindKey (el, name, key, calc) {
   const methodName = SETTERS[name]
   const obj = el[name]
   // watch the calc, and returns a value by calc.call()
   const value = this._watch(calc, (value) => {
-    function handler() {
+    function handler () {
       el[methodName](key, value)
     }
     const differ = this && this._app && this._app.differ
     if (differ) {
       differ.append('element', el.depth, el.ref, handler)
-    } else {
+    }
+    else {
       handler()
     }
   })
@@ -314,7 +320,7 @@ export function _bindKey(el, name, key, calc) {
 /**
  * watch a calc function and callback if the calc value changes
  */
-export function _watch(calc, callback) {
+export function _watch (calc, callback) {
   const watcher = new Watcher(this, calc, function (value, oldValue) {
     /* istanbul ignore if */
     if (typeof value !== 'object' && value === oldValue) {

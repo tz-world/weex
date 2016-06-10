@@ -1,4 +1,4 @@
-function Evt(type, detail) {
+function Evt (type, detail) {
   if (detail instanceof Evt) {
     return detail
   }
@@ -16,18 +16,18 @@ function Evt(type, detail) {
   }
 }
 
-export function $emit(type, detail) {
+export function $emit (type, detail) {
   const events = this._vmEvents
   const handlerList = events[type]
   if (handlerList) {
-    let evt = new Evt(type, detail)
+    const evt = new Evt(type, detail)
     handlerList.forEach((handler) => {
       handler.call(this, evt)
     })
   }
 }
 
-export function $dispatch(type, detail) {
+export function $dispatch (type, detail) {
   const evt = new Evt(type, detail)
   this.$emit(type, evt)
 
@@ -36,7 +36,7 @@ export function $dispatch(type, detail) {
   }
 }
 
-export function $broadcast(type, detail) {
+export function $broadcast (type, detail) {
   const evt = new Evt(type, detail)
   this.$emit(type, evt)
 
@@ -47,7 +47,7 @@ export function $broadcast(type, detail) {
   }
 }
 
-export function $on(type, handler) {
+export function $on (type, handler) {
   if (!type || typeof handler !== 'function') {
     return
   }
@@ -62,7 +62,7 @@ export function $on(type, handler) {
   }
 }
 
-export function $off(type, handler) {
+export function $off (type, handler) {
   if (!type) {
     return
   }
@@ -80,7 +80,7 @@ export function $off(type, handler) {
 
 const LIFE_CYCLE_TYPES = ['init', 'created', 'ready']
 
-export function _initEvents(externalEvents) {
+export function _initEvents (externalEvents) {
   const options = this._options || {}
   const events = options.events || {}
   for (const type1 in events) {

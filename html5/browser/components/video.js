@@ -24,7 +24,8 @@ function Video (data) {
       && playStatus !== 'stop'
       && playStatus !== 'pause') {
     this.playStatus = 'pause'
-  } else {
+  }
+  else {
     this.playStatus = playStatus
   }
   Atomic.call(this, data)

@@ -4,7 +4,7 @@ import { subversion } from '../../package.json'
 
 const { native, transformer } = subversion
 
-for (let methodName in runtime) {
+for (const methodName in runtime) {
   global[methodName] = function (...args) {
     const ret = runtime[methodName](...args)
     if (ret instanceof Error) {
@@ -23,5 +23,5 @@ Object.assign(global, {
  * register methods
  */
 const methods = require('../default/api/methods')
-const {registerMethods} = global
+const { registerMethods } = global
 registerMethods(methods)

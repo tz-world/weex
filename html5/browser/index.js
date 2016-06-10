@@ -43,7 +43,7 @@ var _downgrades = {}
 
 var downgradable = ['list', 'scroller']
 
-; (function initializeWithUrlParams() {
+; (function initializeWithUrlParams () {
 
   var params = lib.httpurl(location.href).params
   for (var k in params) {
@@ -71,7 +71,7 @@ var downgradable = ['list', 'scroller']
 
 require('./logger').init()
 
-function Weex(options) {
+function Weex (options) {
 
   if (!(this instanceof Weex)) {
     return new Weex(options)
@@ -86,7 +86,7 @@ function Weex(options) {
   this.jsonpCallback = options.jsonpCallback || DEFAULT_JSONP_CALLBACK_NAME
   this.source = options.source
   this.loader = options.loader
-  this.embed = options.embed ? true : false
+  this.embed = options.embed
 
   this.data = options.data
 
@@ -101,7 +101,8 @@ function Weex(options) {
   this.loadBundle(function (err, appCode) {
     if (!err) {
       this.createApp(config, appCode)
-    } else {
+    }
+    else {
       console.error('load bundle err:', err)
     }
   }.bind(this))
@@ -113,7 +114,8 @@ Weex.init = function (options) {
     options.forEach(function (config) {
       new Weex(config)
     })
-  } else if (
+  }
+  else if (
       Object.prototype.toString.call(options).slice(8, -1) === 'Object'
     ) {
     new Weex(options)
@@ -167,19 +169,19 @@ Weex.prototype = {
     }
 
     var promise = window.createInstance(
-      this.instanceId
-      , appCode
-      , {
+      this.instanceId,
+      appCode,
+      {
         bundleUrl: this.bundleUrl,
         debug: config.debug
-      }
-      , this.data
+      },
+      this.data
     )
 
     if (Promise && promise instanceof Promise) {
       promise.then(function () {
         // Weex._instances[this.instanceId] = this.root
-      }.bind(this)).catch(function (err) {
+      }).catch(function (err) {
         if (err && config.debug) {
           console.error(err)
         }
@@ -213,12 +215,12 @@ Weex.prototype = {
 
 Weex.appendStyle = function (css) {
   utils.appendStyle(css, WEAPP_STYLE_ID)
-},
+}
 
 // Register a new component with the specified name.
 Weex.registerComponent = function (name, comp) {
   ComponentManager.registerComponent(name, comp)
-},
+}
 
 // Register a new api module.
 // If the module already exists, just add methods from the
@@ -226,7 +228,8 @@ Weex.registerComponent = function (name, comp) {
 Weex.registerApiModule = function (name, module, meta) {
   if (!protocol.apiModule[name]) {
     protocol.apiModule[name] = module
-  } else {
+  }
+  else {
     for (var key in module) {
       if (module.hasOwnProperty(key)) {
         protocol.apiModule[name][key] = module[key]
@@ -238,7 +241,7 @@ Weex.registerApiModule = function (name, module, meta) {
     protocol.setApiModuleMeta(meta)
     window.registerModules(protocol.getApiModuleMeta(name), true)
   }
-},
+}
 
 // Register a new api method for the specified module.
 // opts:
@@ -262,7 +265,7 @@ Weex.registerApi = function (moduleName, name, method, args) {
     args: args
   })
   window.registerModules(protocol.getApiModuleMeta(moduleName, meta), true)
-},
+}
 
 // Register a new weex-bundle-loader.
 Weex.registerLoader = function (name, loaderFunc) {
@@ -280,10 +283,8 @@ Weex.stopTheWorld = function () {
       window.destroyInstance(instanceId)
     }
   }
-}
-
-(function startRefreshController() {
-  if (location.search.indexOf('hot-reload_controller') === -1)  {
+}(function startRefreshController () {
+  if (location.search.indexOf('hot-reload_controller') === -1) {
     return
   }
   if (!window.WebSocket) {
@@ -300,7 +301,7 @@ Weex.stopTheWorld = function () {
   }
   client.onmessage = function (e) {
     console.log('Received: \'' + e.data + '\'')
-    if (e.data  === 'refresh') {
+    if (e.data === 'refresh') {
       location.reload()
     }
   }

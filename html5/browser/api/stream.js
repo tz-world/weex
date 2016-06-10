@@ -8,7 +8,7 @@ require('httpurl')
 var jsonpCnt = 0
 var ERROR_STATE = -1
 
-function _jsonp(config, callback, progressCallback) {
+function _jsonp (config, callback, progressCallback) {
   var cbName = 'jsonp_' + (++jsonpCnt)
   var script, url, head
 
@@ -26,7 +26,8 @@ function _jsonp(config, callback, progressCallback) {
   script = document.createElement('script')
   try {
     url = lib.httpurl(config.url)
-  } catch (err) {
+  }
+  catch (err) {
     logger.error('invalid config.url in _jsonp for \'fetch\' API: '
       + config.url)
   }
@@ -46,7 +47,7 @@ function _jsonp(config, callback, progressCallback) {
   head.insertBefore(script, null)
 }
 
-function _xhr(config, callback, progressCallback) {
+function _xhr (config, callback, progressCallback) {
   var xhr = new XMLHttpRequest()
   xhr.responseType = config.type
   xhr.open(config.method, config.url, true)
@@ -118,7 +119,8 @@ var stream = {
     if (typeof param === 'string') {
       try {
         param = JSON.parse(param)
-      } catch (e) {
+      }
+      catch (e) {
         return
       }
     }
@@ -136,10 +138,10 @@ var stream = {
     }
     xhr.onerror = function (error) {
       return logger.error('unexpected error in sendHttp API', error)
-      sender.performCallback(
-        callbackId,
-        new Error('unexpected error in sendHttp API')
-      )
+      // sender.performCallback(
+      //   callbackId,
+      //   new Error('unexpected error in sendHttp API')
+      // )
     }
     xhr.send()
   },
@@ -179,7 +181,8 @@ var stream = {
       config.method = DEFAULT_METHOD
       logger.warn('options.method for \'fetch\' API has been set to '
         + 'default value \'' + config.method + '\'')
-    } else if (methodOptions.indexOf((config.method + '')
+    }
+    else if (methodOptions.indexOf((config.method + '')
         .toUpperCase()) === -1) {
       return logger.error('options.method \''
         + config.method
@@ -195,7 +198,8 @@ var stream = {
     // validate options.mode
     if (typeof config.mode === 'undefined') {
       config.mode = DEFAULT_MODE
-    } else if (modeOptions.indexOf((config.mode + '').toLowerCase()) === -1) {
+    }
+    else if (modeOptions.indexOf((config.mode + '').toLowerCase()) === -1) {
       return logger.error('options.mode \''
         + config.mode
         + '\' for \'fetch\' API should be one of '
@@ -207,7 +211,8 @@ var stream = {
       config.type = DEFAULT_TYPE
       logger.warn('options.type for \'fetch\' API has been set to '
         + 'default value \'' + config.type + '\'.')
-    } else if (typeOptions.indexOf((config.type + '').toLowerCase()) === -1) {
+    }
+    else if (typeOptions.indexOf((config.type + '').toLowerCase()) === -1) {
       return logger.error('options.type \''
           + config.type
           + '\' for \'fetch\' API should be one of '
@@ -226,7 +231,8 @@ var stream = {
 
     if (config.type === 'jsonp') {
       _jsonp.apply(this, _callArgs)
-    } else {
+    }
+    else {
       _xhr.apply(this, _callArgs)
     }
   }

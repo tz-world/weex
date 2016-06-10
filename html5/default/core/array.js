@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { def } from '../util'
 
 const arrayProto = Array.prototype

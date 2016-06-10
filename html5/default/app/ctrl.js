@@ -12,7 +12,7 @@
 
 import * as _ from '../util'
 
-export function updateActions() {
+export function updateActions () {
   this.differ.flush()
   const tasks = []
   if (this.doc && this.doc.listener && this.doc.listener.updates.length) {
@@ -24,10 +24,10 @@ export function updateActions() {
   }
 }
 
-export function init(code, data) {
+export function init (code, data) {
   _.debug('Intialize an instance with:\n', code, data)
 
-  var result
+  let result
   // @see: lib/app/bundle.js
   const define = _.bind(this.define, this)
   const bootstrap = (name, config, _data) => {
@@ -56,11 +56,12 @@ export function init(code, data) {
     // `function () {...}` -> `{...}`
     // not very strict
     functionBody = code.toString().substr(12)
-  } else if (code) {
+  }
+  else if (code) {
     functionBody = code.toString()
   }
 
-  let fn = new Function(
+  const fn = new Function(
     'define',
     'require',
     'document',
@@ -85,7 +86,7 @@ export function init(code, data) {
   return result
 }
 
-export function destroy() {
+export function destroy () {
   _.debug(`Destory an instance(${this.id})`)
 
   this.id = ''
@@ -97,13 +98,13 @@ export function destroy() {
   this.callbacks = null
 }
 
-export function getRootElement() {
+export function getRootElement () {
   const doc = this.doc || {}
   const body = doc.body || {}
   return body.toJSON ? body.toJSON() : {}
 }
 
-export function fireEvent(ref, type, e, domChanges) {
+export function fireEvent (ref, type, e, domChanges) {
   _.debug(`Fire a "${type}" event on an element(${ref})`,
             `in instance(${this.id})`)
 
@@ -126,7 +127,7 @@ export function fireEvent(ref, type, e, domChanges) {
   return new Error(`invalid element reference "${ref}"`)
 }
 
-export function callback(callbackId, data, ifKeepAlive) {
+export function callback (callbackId, data, ifKeepAlive) {
   _.debug(`Invoke a callback(${callbackId}) with`, data,
             `in instance(${this.id})`)
 
@@ -147,7 +148,7 @@ export function callback(callbackId, data, ifKeepAlive) {
   return new Error(`invalid callback id "${callbackId}"`)
 }
 
-export function refreshData(data) {
+export function refreshData (data) {
   _.debug(`Refresh with`, data,
             `in instance[${this.id}]`)
 
@@ -156,7 +157,8 @@ export function refreshData(data) {
   if (vm && data) {
     if (typeof vm.refreshData === 'function') {
       vm.refreshData(data)
-    } else {
+    }
+    else {
       _.extend(vm, data)
     }
     this.updateActions()

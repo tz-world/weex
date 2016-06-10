@@ -6,7 +6,7 @@
  * @module dom
  * @type {Array}
  */
-export var dom = [
+export const dom = [
   /**
    * @method scrollToElement
    * @param {string} ref
@@ -22,7 +22,7 @@ export var dom = [
 /**
  * @module stream
  */
-export var stream = [
+export const stream = [
   /**
    * @method sendHttp
    * @param  {object} params
@@ -41,7 +41,7 @@ export var stream = [
 /**
  * @module event
  */
-export var event = [
+export const event = [
   /**
    * @method openURL
    * @param {string} url
@@ -55,7 +55,7 @@ export var event = [
 /**
  * @module pageInfo
  */
-export var pageInfo = [
+export const pageInfo = [
   /**
    * @method setTitle
    * @param {string} text
@@ -69,7 +69,7 @@ export var pageInfo = [
 /**
  * @module animation
  */
-export var animation = [
+export const animation = [
 
   {
     name: 'transition',

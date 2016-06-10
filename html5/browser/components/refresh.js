@@ -92,11 +92,13 @@ Refresh.prototype.attr = {
       setTimeout(function () {
         this.show()
       }.bind(this), 0)
-    } else if (val === 'hide') {
+    }
+    else if (val === 'hide') {
       setTimeout(function () {
         this.hide()
       }.bind(this), 0)
-    } else {
+    }
+    else {
       // TODO
       console.error('h5render:attribute value of refresh \'display\' '
           + val

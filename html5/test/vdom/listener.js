@@ -19,7 +19,7 @@ global.callNative = function () {}
 describe('dom listener basic', () => {
 
   it('works with no handler', () => {
-    let doc = new Document('foo')
+    const doc = new Document('foo')
     doc.createBody('r')
     doc.documentElement.appendChild(doc.body)
     doc.destroy()
@@ -40,7 +40,7 @@ describe('dom listener details', () => {
 
   it('create body', (done) => {
     const body = doc.createBody('r', {
-      attr: {a: 1}, style: {b: 2}
+      attr: { a: 1 }, style: { b: 2 }
     })
 
     doc.documentElement.appendChild(body)
@@ -48,13 +48,12 @@ describe('dom listener details', () => {
     expect(spy.args.length).eql(1)
     expect(spy.args[0]).eql([[{
       module: 'dom', method: 'createBody',
-      args: [{type: 'r', ref: '_root', attr: {a: 1}, style: {b: 2}}]
+      args: [{ type: 'r', ref: '_root', attr: { a: 1 }, style: { b: 2 }}]
     }]])
     done()
   })
 
   it('add element', (done) => {
-    let el, el2, el3
     const body = doc.createBody('r')
 
     doc.documentElement.appendChild(body)
@@ -64,20 +63,20 @@ describe('dom listener details', () => {
       args: [body.toJSON()]
     }]])
 
-    el = doc.createElement('a')
+    const el = doc.createElement('a')
     el.setAttr('x', 1)
     el.addEvent('click', () => {})
     doc.body.appendChild(el)
 
     expect(spy.args[1]).eql([[{
       module: 'dom', method: 'addElement',
-      args: ['_root', el.toJSON(),  -1]
+      args: ['_root', el.toJSON(), -1]
     }]])
 
-    el2 = doc.createElement('b')
+    const el2 = doc.createElement('b')
     doc.body.insertBefore(el2, el) // [el2, el]
 
-    el3 = doc.createElement('c')
+    const el3 = doc.createElement('c')
     doc.body.insertAfter(el3, el) // [el2, el, el3]
 
     expect(spy.args.length).eql(4)
@@ -94,7 +93,6 @@ describe('dom listener details', () => {
   })
 
   it('batch when document closed', (done) => {
-    let el, el2, el3
     const body = doc.createBody('r')
 
     doc.documentElement.appendChild(body)
@@ -104,7 +102,7 @@ describe('dom listener details', () => {
       args: [body.toJSON()]
     }]])
 
-    el = doc.createElement('a')
+    const el = doc.createElement('a')
     el.setAttr('x', 1)
     el.addEvent('click', () => {})
     doc.body.appendChild(el)
@@ -116,10 +114,10 @@ describe('dom listener details', () => {
 
     doc.close()
 
-    el2 = doc.createElement('b')
+    const el2 = doc.createElement('b')
     doc.body.insertBefore(el2, el) // [el2, el]
 
-    el3 = doc.createElement('c')
+    const el3 = doc.createElement('c')
     doc.body.insertAfter(el3, el) // [el2, el, el3]
 
     expect(spy.args.length).eql(2)
@@ -149,7 +147,7 @@ describe('dom listener details', () => {
 
     el.setAttr('a', 1)
     el.setStyle('a', 2)
-    el.setClassStyle({a: 3, b: 4})
+    el.setClassStyle({ a: 3, b: 4 })
     el.addEvent('click', () => {})
     el.addEvent('appear', () => {})
     el.removeEvent('appear')
@@ -165,18 +163,18 @@ describe('dom listener details', () => {
     expect(spy.args.length).eql(3)
     expect(spy.args[2][0]).eql([{
       module: 'dom', method: 'updateAttrs',
-      args: [el.ref, {a: 11}]
+      args: [el.ref, { a: 11 }]
     }])
     el.setStyle('a', 12)
     expect(spy.args.length).eql(4)
     expect(spy.args[3][0]).eql([{
       module: 'dom', method: 'updateStyle',
-      args: [el.ref, {a: 12}]
+      args: [el.ref, { a: 12 }]
     }])
-    el.setClassStyle({a: 13, b: 14})
+    el.setClassStyle({ a: 13, b: 14 })
     expect(spy.args[4][0]).eql([{
       module: 'dom', method: 'updateStyle',
-      args: [el.ref, {a: 12, b: 14}]
+      args: [el.ref, { a: 12, b: 14 }]
     }])
     expect(spy.args.length).eql(5)
     el.addEvent('click', () => {})
@@ -204,18 +202,18 @@ describe('dom listener details', () => {
 
     el.setAttr('a', 1)
     el.setStyle('a', 2)
-    el.setClassStyle({a: 3, b: 4})
+    el.setClassStyle({ a: 3, b: 4 })
     el.addEvent('click', () => {})
     el.addEvent('appear', () => {})
     el.removeEvent('appear')
     expect(spy.args.length).eql(8)
     expect(doc.listener.updates).eql([
-      {module: 'dom', method: 'updateAttrs', args: [el.ref, {a: 1}]},
-      {module: 'dom', method: 'updateStyle', args: [el.ref, {a: 2}]},
-      {module: 'dom', method: 'updateStyle', args: [el.ref, {a: 2, b: 4}]},
-      {module: 'dom', method: 'addEvent', args: [el.ref, 'click']},
-      {module: 'dom', method: 'addEvent', args: [el.ref, 'appear']},
-      {module: 'dom', method: 'removeEvent', args: [el.ref, 'appear']}
+      { module: 'dom', method: 'updateAttrs', args: [el.ref, { a: 1 }] },
+      { module: 'dom', method: 'updateStyle', args: [el.ref, { a: 2 }] },
+      { module: 'dom', method: 'updateStyle', args: [el.ref, { a: 2, b: 4 }] },
+      { module: 'dom', method: 'addEvent', args: [el.ref, 'click'] },
+      { module: 'dom', method: 'addEvent', args: [el.ref, 'appear'] },
+      { module: 'dom', method: 'removeEvent', args: [el.ref, 'appear'] }
     ])
   })
 })

@@ -1,6 +1,8 @@
+/*eslint no-eval: "off"*/
+
 // document
 
-function Document() {
+function Document () {
   this.refs = {}
 }
 
@@ -19,7 +21,7 @@ Document.prototype.addElement = function (parentRef, config, index) {
   appendToDoc(this, config, parentRef, index)
 }
 
-function appendToDoc(doc, config, parentRef, index) {
+function appendToDoc (doc, config, parentRef, index) {
   var parent = doc.refs[parentRef]
 
   var el = new Element(config)
@@ -60,7 +62,7 @@ Document.prototype.removeElement = function (ref) {
   removeEl(this, ref)
 }
 
-function removeEl(doc, ref) {
+function removeEl (doc, ref) {
   var el = doc.refs[ref]
   var parent = doc.refs[el.parentRef]
   var index = parent.children.indexOf(el)
@@ -96,7 +98,7 @@ Document.prototype.toJSON = function () {
   return {}
 }
 
-function Element(config) {
+function Element (config) {
   this.ref = config.ref
   this.parentRef = config.parentRef
   this.type = config.type
@@ -107,7 +109,7 @@ function Element(config) {
 }
 
 Element.prototype.toJSON = function () {
-  var result = {type: this.type}
+  var result = { type: this.type }
   if (Object.keys(this.attr).length > 0) {
     result.attr = this.attr
   }
@@ -133,12 +135,12 @@ exports.Document = Document
 var fs = require('fs')
 var path = require('path')
 
-function readInput(name) {
+function readInput (name) {
   var readpath = path.join(__dirname, './assets', name + '.input')
   return fs.readFileSync(readpath, 'utf8')
 }
 
-function readOutput(name) {
+function readOutput (name) {
   var readpath = path.join(__dirname, './assets', name + '.output')
   return fs.readFileSync(readpath, 'utf8')
 }
@@ -149,7 +151,7 @@ var sinon = require('sinon')
 var sinonChai = require('sinon-chai')
 
 import framework from '../../runtime'
-import {subversion} from '../../../package.json'
+import { subversion } from '../../../package.json'
 
 Object.assign(global, framework, {
   frameworkVersion: subversion.native,
@@ -170,7 +172,7 @@ chai.use(sinonChai)
 var allDocs = {}
 
 var callNativeSpy = sinon.spy()
-function _callNative(name, tasks, cbId) {
+function _callNative (name, tasks, cbId) {
   callNativeSpy(tasks)
 
   var doc = allDocs[name]
@@ -183,7 +185,7 @@ function _callNative(name, tasks, cbId) {
   })
   if (cbId >= 0) {
     setTimeout(() => {
-      framework.callJS(name, [{method: 'callback', args: [cbId, null, true]}])
+      framework.callJS(name, [{ method: 'callback', args: [cbId, null, true] }])
     }, 16)
   }
 }
@@ -370,12 +372,12 @@ describe('test input and output', function () {
     var actual = doc.toJSON()
     expect(actual).eql(expected)
 
-    framework.refreshInstance(name, {x: 10})
+    framework.refreshInstance(name, { x: 10 })
     expected.children[0].attr.value = 12
     expected.children[1].attr.value = 12
     expect(actual).eql(expected)
 
-    framework.refreshInstance(name, {m: 10})
+    framework.refreshInstance(name, { m: 10 })
     expected.children[0].attr.value = 20
     expected.children[1].attr.value = 20
     expect(actual).eql(expected)
@@ -554,8 +556,8 @@ describe('test input and output', function () {
     framework.createInstance(name, inputCode)
     framework.refreshInstance(name, {
       titlelist: [
-        {text: 'Hello World2'},
-        {text: 'Hello World1'}
+        { text: 'Hello World2' },
+        { text: 'Hello World1' }
       ]
     })
     var expected = eval('(' + outputCode + ')')
@@ -606,7 +608,7 @@ describe('test input and output', function () {
     allDocs[name] = doc
 
     framework.createInstance(name, inputCode)
-    framework.refreshInstance(name, {showTitle: false})
+    framework.refreshInstance(name, { showTitle: false })
     var expected = eval('(' + outputCode + ')')
     var actual = doc.toJSON()
     expect(actual).eql(expected)
@@ -641,9 +643,9 @@ describe('test input and output', function () {
     framework.createInstance(name, inputCode)
     framework.refreshInstance(name, {
       titlelist: [
-        {showTitle: false, title: 'Hello World1'},
-        {showTitle: true, title: 'Hello World2'},
-        {showTitle: true, title: 'Hello World3'}
+        { showTitle: false, title: 'Hello World1' },
+        { showTitle: true, title: 'Hello World2' },
+        { showTitle: true, title: 'Hello World3' }
       ]
     })
     var expected = eval('(' + outputCode + ')')
@@ -761,10 +763,10 @@ describe('test input and output', function () {
       type: 'container'
     })
 
-    framework.refreshInstance(name, {ext: {showbar1: false}})
-    framework.refreshInstance(name, {ext: {showbar1: true}})
+    framework.refreshInstance(name, { ext: { showbar1: false }})
+    framework.refreshInstance(name, { ext: { showbar1: true }})
     var expected = eval('(' + outputCode + ')')
-    var actual = doc.toJSON()
+    actual = doc.toJSON()
     expect(actual).eql(expected)
 
     framework.destroyInstance(name)
@@ -880,11 +882,11 @@ describe('test input and output', function () {
         doc.body.children[0].ref,
         'change',
         {},
-        {attrs: {value: 'abcdefg'}}
+        { attrs: { value: 'abcdefg' }}
       ]
     }])
 
-    expected.children.push({type: 'text', attr: {value: '1 - abcdefg'}})
+    expected.children.push({ type: 'text', attr: { value: '1 - abcdefg' }})
     actual = doc.toJSON()
     expect(actual).eql(expected)
 
@@ -895,11 +897,11 @@ describe('test input and output', function () {
         doc.body.children[0].ref,
         'change',
         {},
-        {attrs: {value: '12345'}}
+        { attrs: { value: '12345' }}
       ]
     }])
 
-    expected.children.push({type: 'text', attr: {value: '2 - 12345'}})
+    expected.children.push({ type: 'text', attr: { value: '2 - 12345' }})
     actual = doc.toJSON()
     expect(actual).eql(expected)
 

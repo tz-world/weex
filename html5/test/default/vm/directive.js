@@ -7,9 +7,11 @@ chai.use(sinonChai)
 import * as directive from '../../../default/vm/directive'
 
 import * as state from '../../../default/core/state'
-import {nativeComponentMap} from '../../../default/config'
+import config from '../../../default/config'
 
-function extendVm(vm, methodNames) {
+const { nativeComponentMap } = config
+
+function extendVm (vm, methodNames) {
   Object.assign(vm, state)
   methodNames.forEach((name) => {
     vm[name] = directive[name]
@@ -17,10 +19,10 @@ function extendVm(vm, methodNames) {
   vm._initState()
 }
 
-function initElement(el) {
-  el.setAttr = function (k, v) {this.attr[k] = v}
-  el.setStyle = function (k, v) {this.style[k] = v}
-  el.setClassStyle = function (style) {this.classStyle = style}
+function initElement (el) {
+  el.setAttr = function (k, v) { this.attr[k] = v }
+  el.setStyle = function (k, v) { this.style[k] = v }
+  el.setClassStyle = function (style) { this.classStyle = style }
   el.addEvent = function (t, h) {
     this.event[t] = h
   }
@@ -31,13 +33,13 @@ function initElement(el) {
 // exports._bindDir(el, name, data)
 describe('watch key or props', () => {
   var vm, cb
-  var update = function () {return this.a + this.b}
-  var update2 = function () {return this.plus()}
+  var update = function () { return this.a + this.b }
+  var update2 = function () { return this.plus() }
   var callPlus = sinon.spy()
   var methodNames = ['_watch', '_bindKey', '_bindDir']
   beforeEach(() => {
     vm = {
-      _data: {a: 1, b: 2},
+      _data: { a: 1, b: 2 },
       _methods: {
         plus: function () {
           callPlus()
@@ -61,45 +63,45 @@ describe('watch key or props', () => {
     expect(cb).not.called
     expect(value).equal(3)
     vm.a = 2
-    expect(vm._data).eql({a: 2, b: 2})
+    expect(vm._data).eql({ a: 2, b: 2 })
     expect(cb).calledOnce
     expect(cb).calledOn(undefined)
     expect(cb).calledWith(4)
     vm.b = 3
-    expect(vm._data).eql({a: 2, b: 3})
+    expect(vm._data).eql({ a: 2, b: 3 })
     expect(cb).calledTwice
     expect(cb).calledWith(5)
   })
 
   // - update object key-value when data source changed
   it('watch k-v pairs', () => {
-    var el = {attr: {c: 3}}
+    var el = { attr: { c: 3 }}
     initElement(el)
     var attr = el.attr
     vm._bindKey = directive._bindKey
     vm._bindKey(el, 'attr', 'd', update)
     expect(attr.d).equal(3)
     vm.a = 2
-    expect(vm._data).eql({a: 2, b: 2})
+    expect(vm._data).eql({ a: 2, b: 2 })
     expect(attr.d).equal(4)
     vm.b = 3
-    expect(vm._data).eql({a: 2, b: 3})
+    expect(vm._data).eql({ a: 2, b: 3 })
     expect(attr.d).equal(5)
   })
   // - update prop value when data source changed
   it('watch element props', () => {
-    var el = {attr: {c: 3}}
+    var el = { attr: { c: 3 }}
     initElement(el)
-    vm._bindDir(el, 'attr', {d: 4, e: update, f: update2})
-    expect(el.attr).eql({c: 3, d: 4, e: 3, f: 3})
+    vm._bindDir(el, 'attr', { d: 4, e: update, f: update2 })
+    expect(el.attr).eql({ c: 3, d: 4, e: 3, f: 3 })
     expect(callPlus).calledOnce
     vm.a = 2
-    expect(vm._data).eql({a: 2, b: 2})
-    expect(el.attr).eql({c: 3, d: 4, e: 4, f: 4})
+    expect(vm._data).eql({ a: 2, b: 2 })
+    expect(el.attr).eql({ c: 3, d: 4, e: 4, f: 4 })
     expect(callPlus).calledTwice
     vm.b = 3
-    expect(vm._data).eql({a: 2, b: 3})
-    expect(el.attr).eql({c: 3, d: 4, e: 5, f: 5})
+    expect(vm._data).eql({ a: 2, b: 3 })
+    expect(el.attr).eql({ c: 3, d: 4, e: 5, f: 5 })
     expect(callPlus).calledThird
   })
 })
@@ -170,7 +172,7 @@ describe('apply component options', () => {
 // exports._setStyle(el, style)
 describe('set props', () => {
   var vm, el
-  var update = function () {return this.a + this.b}
+  var update = function () { return this.a + this.b }
   var methodNames = [
     '_watch', '_bindKey', '_bindDir',
     '_setId', '_setAttr', '_setClass', '_setStyle',
@@ -197,12 +199,12 @@ describe('set props', () => {
       _ids: {},
       _options: {
         style: {
-          x: {e: 0, f: 5},
-          y: {f: 6},
-          z: {e: 10}
+          x: { e: 0, f: 5 },
+          y: { f: 6 },
+          z: { e: 10 }
         }
       },
-      _data: {a: 1, b: 2, classNameVar: 'x', idVar: 'n'},
+      _data: { a: 1, b: 2, classNameVar: 'x', idVar: 'n' },
       _methods: {},
       _watchers: [],
       _app: {}
@@ -225,7 +227,7 @@ describe('set props', () => {
   // - set function to id
   it('set function to id', () => {
     var targetVm = {}
-    vm._setId(function () {return this.idVar}, el, targetVm)
+    vm._setId(function () { return this.idVar }, el, targetVm)
     expect(vm._ids.n).a('object')
     expect(vm._ids.n.el).equal(el)
     expect(vm._ids.n.vm).equal(targetVm)
@@ -237,37 +239,37 @@ describe('set props', () => {
   // - set value to attr
   // - set function to attr
   it('set value to attr', () => {
-    vm._setAttr(el, {c: 1, d: update})
-    expect(el.attr).eql({c: 1, d: 3})
+    vm._setAttr(el, { c: 1, d: update })
+    expect(el.attr).eql({ c: 1, d: 3 })
   })
   // - set value to class
   it('set value to classList', () => {
     vm._setClass(el, [])
     expect(el.classStyle).eql({})
     vm._setClass(el, ['x', 'y'])
-    expect(el.classStyle).eql({e: 0, f: 6})
+    expect(el.classStyle).eql({ e: 0, f: 6 })
     vm._setClass(el, [])
     expect(el.classStyle).eql({})
   })
   // - set value to class with another class order
   it('set value to classList with another class order', () => {
     vm._setClass(el, ['y', 'x'])
-    expect(el.classStyle).eql({e: 0, f: 5})
+    expect(el.classStyle).eql({ e: 0, f: 5 })
   })
   // - set a function to class
   it('set a function to classList', () => {
     vm._setClass(el, function () {
       return [this.classNameVar, 'y']
     })
-    expect(el.classStyle).eql({e: 0, f: 6})
+    expect(el.classStyle).eql({ e: 0, f: 6 })
     vm.classNameVar = 'z'
-    expect(el.classStyle).eql({e: 10, f: 6})
+    expect(el.classStyle).eql({ e: 10, f: 6 })
   })
   // - set value to style
   // - set function to style
   it('set value to style', () => {
-    vm._setStyle(el, {c: 1, d: update})
-    expect(el.style).eql({c: 1, d: 3})
+    vm._setStyle(el, { c: 1, d: update })
+    expect(el.style).eql({ c: 1, d: 3 })
   })
 
   it('bind elements', () => {
@@ -282,14 +284,14 @@ describe('set props', () => {
     vm._bindElement(el, {
       id: 'abc',
       attr: {
-        a: function () {return this.a},
+        a: function () { return this.a },
         b: 456
       },
       style: {
         a: 123,
-        b: function () {return this.b}
+        b: function () { return this.b }
       },
-      events: {click: 'foo'}
+      events: { click: 'foo' }
     })
     expect(vm._ids).a('object')
     expect(vm._ids.abc).a('object')
@@ -311,11 +313,11 @@ describe('bind events', () => {
   beforeEach(() => {
 
     cb = sinon.spy()
-    el = {event: {}}
+    el = { event: {}}
     initElement(el)
 
     vm = {
-      _data: {a: 1},
+      _data: { a: 1 },
       _methods: {
         foo: cb
       },
@@ -331,20 +333,20 @@ describe('bind events', () => {
   })
   // - bind method to eventManager
   it('add event to manager by type', () => {
-    vm._bindEvents(el, {click: 'foo'})
+    vm._bindEvents(el, { click: 'foo' })
     expect(el.event.click).a('function')
   })
   // - bind method to eventManager
   it('add event to manager by handler', () => {
     var cb2 = sinon.spy()
-    vm._bindEvents(el, {click: cb2})
+    vm._bindEvents(el, { click: cb2 })
     expect(el.event.click).a('function')
   })
   // - fireEvent to call method
   // - with right event info
   it('fire event from manager by type', () => {
     var e = {}
-    vm._bindEvents(el, {click: 'foo'})
+    vm._bindEvents(el, { click: 'foo' })
     el.event.click(e)
     expect(cb).calledOnce
     expect(cb).calledOn(vm)
@@ -354,9 +356,9 @@ describe('bind events', () => {
   // - with right event info
   it('fire event from manager by handler', () => {
     var e = {}
-    vm._bindEvents(el, {click: function ($event) {
+    vm._bindEvents(el, { click: function ($event) {
       this.foo(this.a, $event)
-    }})
+    } })
     el.event.click(e)
     expect(cb).calledOnce
     expect(cb).calledOn(vm)
@@ -374,9 +376,9 @@ describe('bind external infomations to sub vm', () => {
     '_bindSubVm', '_bindSubVmAfterInitialized']
   beforeEach(() => {
     vm = {
-      _data: {a: 1, b: 2, c: 'class-style1'},
+      _data: { a: 1, b: 2, c: 'class-style1' },
       _watchers: [],
-      _app: {eventManager: {add: () => {}}},
+      _app: { eventManager: { add: () => {} }},
       _options: {
         style: {
           'class-style1': {
@@ -404,9 +406,9 @@ describe('bind external infomations to sub vm', () => {
 
   it('bind to no-root-element sub vm', () => {
     vm._bindSubVm(subVm, {
-      attr: {a: 3, c: 4},
-      style: {a: 2},
-      events: {click: 'foo'}
+      attr: { a: 3, c: 4 },
+      style: { a: 2 },
+      events: { click: 'foo' }
     })
     expect(subVm.a).eql(3)
     expect(subVm.c).is.undefined
@@ -415,7 +417,7 @@ describe('bind external infomations to sub vm', () => {
 
   it('bind props with external data', () => {
     vm._bindSubVm(subVm, {
-      attr: {a: function () {return this.b}}
+      attr: { a: function () { return this.b } }
     })
     expect(subVm.a).eql(2)
   })
@@ -427,7 +429,7 @@ describe('bind external infomations to sub vm', () => {
       event: []
     }
     const template = {
-      style: {aaa: 2, bbb: function () {return this.a}}
+      style: { aaa: 2, bbb: function () { return this.a } }
     }
     initElement(subVm._rootEl)
     vm._bindSubVm(subVm, template)
@@ -483,7 +485,7 @@ describe('bind external infomations to sub vm', () => {
       event: {}
     }
     const template = {
-      events: {click: 'foo'}
+      events: { click: 'foo' }
     }
     initElement(subVm._rootEl)
     vm._bindSubVm(subVm, template)

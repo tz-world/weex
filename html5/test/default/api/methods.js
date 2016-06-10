@@ -1,15 +1,15 @@
 import chai from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
-const {expect} = chai
+const { expect } = chai
 chai.use(sinonChai)
 
 import '../../../shared/consolelog'
 import * as modules from '../../../default/api/modules'
 import * as methods from '../../../default/api/methods'
-import {registerModules, requireModule, clearModules, registerMethods} from '../../../default/app/register'
+import { registerModules, requireModule, clearModules, registerMethods } from '../../../default/app/register'
 
-function Vm() {
+function Vm () {
 }
 
 Object.assign(Vm, {
@@ -18,8 +18,8 @@ Object.assign(Vm, {
 
 describe('built-in', () => {
   let vm
-  let requireSpy = sinon.spy()
-  let moduleSpy = sinon.spy()
+  const requireSpy = sinon.spy()
+  const moduleSpy = sinon.spy()
 
   before(() => {
     clearModules()
@@ -40,7 +40,7 @@ describe('built-in', () => {
 
           const module = requireModule(name)
           for (const moduleName in module) {
-            module[moduleName] = function(...args) {
+            module[moduleName] = function (...args) {
               moduleSpy(...args)
               if (typeof args[args.length - 1] === 'function') {
                 args[args.length - 1]()
@@ -50,7 +50,7 @@ describe('built-in', () => {
           return module
         }
       },
-      _setStyle: function() {},
+      _setStyle: function () {},
       _ids: {
         a: {
           vm: {},
@@ -111,13 +111,13 @@ describe('built-in', () => {
     })
 
     it('$transition', () => {
-      let callback = sinon.spy()
-      vm.$transition('a', {styles: {color: '#FF0000'}}, callback)
+      const callback = sinon.spy()
+      vm.$transition('a', { styles: { color: '#FF0000' }}, callback)
       expect(requireSpy.firstCall.args[0]).eql('animation')
       expect(moduleSpy.firstCall.args.length).eql(3)
       expect(moduleSpy.firstCall.args[0]).eql('_root')
       expect(moduleSpy.firstCall.args[1]).eql({
-        styles: {color: '#FF0000'}
+        styles: { color: '#FF0000' }
       })
       expect(callback.callCount).eql(1)
     })
@@ -126,7 +126,7 @@ describe('built-in', () => {
       global.WXEnvironment = {
         a: 'b'
       }
-      let config = vm.$getConfig()
+      const config = vm.$getConfig()
       expect(config).eql({
         debug: true,
         bundleUrl: 'path_to_bundleUrl',
@@ -140,20 +140,20 @@ describe('built-in', () => {
       expect(console.warn.callCount).to.be.equal(1)
       expect(configSpy.args.length).eql(1)
       expect(configSpy.args[0][0]).eql({
-          debug: true,
-          bundleUrl: 'path_to_bundleUrl',
-          env: {
-            a: 'b'
-          }
-        })
+        debug: true,
+        bundleUrl: 'path_to_bundleUrl',
+        env: {
+          a: 'b'
+        }
+      })
     })
 
     it('$sendHttp', () => {
-      let callback = sinon.spy()
-      vm.$sendHttp({a: 1}, callback)
+      const callback = sinon.spy()
+      vm.$sendHttp({ a: 1 }, callback)
       expect(requireSpy.firstCall.args[0]).eql('stream')
       expect(moduleSpy.firstCall.args.length).eql(2)
-      expect(moduleSpy.firstCall.args).eql([{a: 1}, callback])
+      expect(moduleSpy.firstCall.args).eql([{ a: 1 }, callback])
       expect(callback.callCount).eql(1)
     })
 

@@ -32,8 +32,6 @@ Select.prototype.create = function () {
 Select.prototype.attr = {
   disabled: function (val) {
     this.node.disabled = val && val !== 'false'
-                    ? true
-                    : false
   },
   options: function (val) {
     if (Object.prototype.toString.call(val) !== '[object Array]') {
@@ -45,7 +43,7 @@ Select.prototype.attr = {
   },
   selectedIndex: function (val) {
     val = parseInt(val)
-    if (typeof val !== 'number' || val !== val || val >= this.options.length) {
+    if (typeof val !== 'number' || isNaN(val) || val >= this.options.length) {
       return
     }
     this.node.value = this.options[val]

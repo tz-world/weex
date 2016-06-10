@@ -8,7 +8,8 @@ function checkVersion (code) {
   if (result) {
     try {
       info = JSON.parse(result[1])
-    } catch (e) {}
+    }
+    catch (e) {}
   }
   return info
 }
@@ -32,7 +33,7 @@ const methods = {
   createInstance
 }
 
-function genInit(methodName) {
+function genInit (methodName) {
   methods[methodName] = function (...args) {
     for (const name in frameworks) {
       const framework = frameworks[name]
@@ -45,7 +46,7 @@ function genInit(methodName) {
 
 ['registerComponents', 'registerModules', 'registerMethods'].forEach(genInit)
 
-function genInstance(methodName) {
+function genInstance (methodName) {
   methods[methodName] = function (...args) {
     const id = args[0]
     const info = instanceMap[id]

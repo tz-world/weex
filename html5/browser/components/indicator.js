@@ -65,7 +65,8 @@ Indicator.prototype.createChildren = function () {
     indicator.setAttribute('index', i)
     if (this.index === i) {
       indicator.style.backgroundColor = this.itemSelectedColor
-    } else {
+    }
+    else {
       indicator.style.backgroundColor = this.itemColor
     }
     indicator.addEventListener('click', this._clickHandler.bind(this, i))
@@ -75,8 +76,7 @@ Indicator.prototype.createChildren = function () {
   this.node.appendChild(root)
 }
 
-Indicator.prototype.style
-    = extend(Object.create(Atomic.prototype.style), {
+Indicator.prototype.style = extend(Object.create(Atomic.prototype.style), {
   itemColor: function (val) {
     this.itemColor = val || DEFAULT_ITEM_COLOR
     for (var i = 0, l = this.items.length; i < l; i++) {

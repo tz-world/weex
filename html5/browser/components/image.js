@@ -51,7 +51,7 @@ Image.prototype.attr = {
 Image.prototype.style = utils.extend(Object.create(Atomic.prototype.style), {
   width: function (val) {
     val = parseFloat(val) * this.data.scale
-    if (val < 0 || val !== val) {
+    if (val < 0 || isNaN(val)) {
       val = DEFAULT_SIZE
     }
     this.node.style.width = val + 'px'
@@ -59,7 +59,7 @@ Image.prototype.style = utils.extend(Object.create(Atomic.prototype.style), {
 
   height: function (val) {
     val = parseFloat(val) * this.data.scale
-    if (val < 0 || val !== val) {
+    if (val < 0 || isNaN(val)) {
       val = DEFAULT_SIZE
     }
     this.node.style.height = val + 'px'

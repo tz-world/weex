@@ -13,7 +13,8 @@ var AppearWatcher = {
     if (needWatch(component)) {
       if (component.isInScrollable()) {
         componentsInScroller.push(component)
-      } else {
+      }
+      else {
         componentsOutOfScroller.push(component)
       }
       if (!listened) {
@@ -26,28 +27,29 @@ var AppearWatcher = {
   }
 }
 
-function needWatch(component) {
+function needWatch (component) {
   var events = component.data.event
   if (events
-      && (events.indexOf('appear') != -1
-        || events.indexOf('disappear') != -1)) {
+      && (events.indexOf('appear') !== -1
+        || events.indexOf('disappear') !== -1)) {
     return true
   }
   return false
 }
 
-function onScroll(e) {
+function onScroll (e) {
   // If the scroll event is dispatched from a scrollable component
   // implemented through scrollerjs, then the appear/disappear events
   // should be treated specially by handleScrollerScroll.
   if (e.originalType === 'scrolling') {
     handleScrollerScroll(e)
-  } else {
+  }
+  else {
     handleWindowScroll()
   }
 }
 
-function handleScrollerScroll(e) {
+function handleScrollerScroll (e) {
   var cmps = componentsInScroller
   var len = cmps.length
   direction = e.direction
@@ -57,14 +59,15 @@ function handleScrollerScroll(e) {
     if (appear && !component._appear) {
       component._appear = true
       fireEvent(component, 'appear')
-    } else if (!appear && component._appear) {
+    }
+    else if (!appear && component._appear) {
       component._appear = false
       fireEvent(component, 'disappear')
     }
   }
 }
 
-function handleWindowScroll() {
+function handleWindowScroll () {
   var y = window.scrollY
   direction = y >= scrollY ? 'up' : 'down'
   scrollY = y
@@ -79,14 +82,15 @@ function handleWindowScroll() {
     if (appear && !component._appear) {
       component._appear = true
       fireEvent(component, 'appear')
-    } else if (!appear && component._appear) {
+    }
+    else if (!appear && component._appear) {
       component._appear = false
       fireEvent(component, 'disappear')
     }
   }
 }
 
-function isComponentInScrollerAppear(component) {
+function isComponentInScrollerAppear (component) {
   var parentScroller = component._parentScroller
   var cmpRect = component.node.getBoundingClientRect()
   if (!isComponentInWindow(component)) {
@@ -105,13 +109,13 @@ function isComponentInScrollerAppear(component) {
   return true
 }
 
-function isComponentInWindow(component) {
+function isComponentInWindow (component) {
   var rect = component.node.getBoundingClientRect()
   return rect.right > 0 && rect.left < window.innerWidth &&
          rect.bottom > 0 && rect.top < window.innerHeight
 }
 
-function fireEvent(component, type) {
+function fireEvent (component, type) {
   var evt = document.createEvent('HTMLEvents')
   var data = { direction: direction }
   evt.initEvent(type, false, false)
@@ -120,7 +124,7 @@ function fireEvent(component, type) {
   component.node.dispatchEvent(evt)
 }
 
-function throttle(func, wait) {
+function throttle (func, wait) {
   var context, args, result
   var timeout = null
   var previous = 0
@@ -139,7 +143,8 @@ function throttle(func, wait) {
       timeout = null
       previous = now
       result = func.apply(context, args)
-    } else if (!timeout) {
+    }
+    else if (!timeout) {
       timeout = setTimeout(later, remaining)
     }
     return result

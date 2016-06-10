@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import Dep from './dep'
 // import { pushWatcher } from './batcher'
 import {

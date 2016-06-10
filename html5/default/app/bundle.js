@@ -14,12 +14,12 @@
 
 import semver from 'semver'
 import * as _ from '../util'
-import * as config from '../config'
+import config from '../config'
 import Vm from '../vm'
 import * as downgrade from './downgrade'
 
-const WEEX_COMPONENT_REG = /^\@weex-component\//
-const WEEX_MODULE_REG = /^\@weex-module\//
+const WEEX_COMPONENT_REG = /^@weex-component\//
+const WEEX_MODULE_REG = /^@weex-module\//
 const NORMAL_MODULE_REG = /^\.{1,2}\//
 const JS_SURFIX_REG = /\.js$/
 
@@ -30,18 +30,18 @@ const isNpmModule = name => !isWeexComponent(name) &&
                               !isWeexModule(name) &&
                               !isNormalModule(name)
 
-function removeWeexPrefix(str) {
+function removeWeexPrefix (str) {
   return str.replace(WEEX_COMPONENT_REG, '')
           .replace(WEEX_MODULE_REG, '')
 }
 
-function removeJSSurfix(str) {
+function removeJSSurfix (str) {
   return str.replace(JS_SURFIX_REG, '')
 }
 
 let commonModules = {}
 
-export function clearCommonModules() {
+export function clearCommonModules () {
   commonModules = {}
 }
 
@@ -50,7 +50,7 @@ export function clearCommonModules() {
 // define(name, deps, factory) for compatibility
 // Notice: DO NOT use function define() {},
 // it will cause error after builded by webpack
-export var define = function (name, deps, factory) {
+export const define = function (name, deps, factory) {
   _.debug('define a component', name)
 
   if (_.typof(deps) === 'function') {
@@ -58,7 +58,7 @@ export var define = function (name, deps, factory) {
     deps = []
   }
 
-  let _require = (name) => {
+  const _require = (name) => {
     let cleanName
 
     if (isWeexComponent(name)) {
@@ -78,7 +78,7 @@ export var define = function (name, deps, factory) {
       return commonModules[name]
     }
   }
-  let _module = {exports: {}}
+  const _module = { exports: {}}
 
   let cleanName
   if (isWeexComponent(name)) {
@@ -87,7 +87,8 @@ export var define = function (name, deps, factory) {
     factory(_require, _module.exports, _module)
 
     this.registerComponent(cleanName, _module.exports)
-  } else if (isWeexModule(name)) {
+  }
+  else if (isWeexModule(name)) {
     cleanName = removeWeexPrefix(name)
 
     factory(_require, _module.exports, _module)
@@ -95,18 +96,20 @@ export var define = function (name, deps, factory) {
     Vm.registerModules({
       [cleanName]: _module.exports
     })
-  } else if (isNormalModule(name)) {
+  }
+  else if (isNormalModule(name)) {
     cleanName = removeJSSurfix(name)
 
     factory(_require, _module.exports, _module)
 
     commonModules[cleanName] = _module.exports
-  } else if (isNpmModule(name)) {
+  }
+  else if (isNpmModule(name)) {
     cleanName = removeJSSurfix(name)
 
     factory(_require, _module.exports, _module)
 
-    let exports = _module.exports
+    const exports = _module.exports
     if (exports.template ||
         exports.style ||
         exports.methods) {
@@ -114,27 +117,30 @@ export var define = function (name, deps, factory) {
       // the exports contain one key of template, style or methods
       // but it has risk!!!
       this.registerComponent(cleanName, exports)
-    } else {
+    }
+    else {
       commonModules[cleanName] = _module.exports
     }
   }
 }
 
-export function bootstrap(name, config, data) {
+export function bootstrap (name, config, data) {
   _.debug(`bootstrap for ${name}`)
 
   let cleanName
 
   if (isWeexComponent(name)) {
     cleanName = removeWeexPrefix(name)
-  } else if (isNpmModule(name)) {
+  }
+  else if (isNpmModule(name)) {
     cleanName = removeJSSurfix(name)
     // check if define by old 'define' method
     /* istanbul ignore if */
     if (!this.customComponentMap[cleanName]) {
       return new Error(`It's not a component: ${name}`)
     }
-  } else {
+  }
+  else {
     return new Error(`Wrong component name: ${name}`)
   }
 
@@ -148,7 +154,7 @@ export function bootstrap(name, config, data) {
       `not compatible with ${global.needTransformerVersion}`)
   }
 
-  let _checkDowngrade = downgrade.check(config.downgrade)
+  const _checkDowngrade = downgrade.check(config.downgrade)
   /* istanbul ignore if */
   if (_checkDowngrade.isDowngrade) {
     this.callTasks([{
@@ -163,13 +169,13 @@ export function bootstrap(name, config, data) {
     return new Error(`Downgrade: ${config.downgrade}`)
   }
 
-  this.vm = new Vm(cleanName, null, {_app: this}, null, data)
+  this.vm = new Vm(cleanName, null, { _app: this }, null, data)
 }
 
 /**
  * @deprecated
  */
-export function register(type, options) {
+export function register (type, options) {
   _.warn('Register is deprecated, please install lastest transformer.')
   this.registerComponent(type, options)
 }
@@ -177,7 +183,7 @@ export function register(type, options) {
 /**
  * @deprecated
  */
-export function render(type, data) {
+export function render (type, data) {
   _.warn('Render is deprecated, please install lastest transformer.')
   return this.bootstrap(type, {}, data)
 }
@@ -185,7 +191,7 @@ export function render(type, data) {
 /**
  * @deprecated
  */
-export function require(type) {
+export function require (type) {
   _.warn('Require is deprecated, please install lastest transformer.')
   return (data) => {
     return this.bootstrap(type, {}, data)

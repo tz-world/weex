@@ -93,7 +93,8 @@ Scroller.prototype.bindEvents = function (evts) {
     var dir
     if (diff >= 0) {
       dir = this.direction === 'v' ? 'up' : 'left'
-    } else {
+    }
+    else {
       dir = this.direction === 'v' ? 'down' : 'right'
     }
     this.dispatchEvent('scroll', {
@@ -158,7 +159,8 @@ Scroller.prototype.appendChild = function (data) {
   // update this.data.children
   if (!children || !children.length) {
     this.data.children = [data]
-  } else {
+  }
+  else {
     children.push(data)
   }
 
@@ -173,7 +175,8 @@ Scroller.prototype.insertBefore = function (child, before) {
   // update this.data.children
   if (!children || !children.length || !before) {
     isAppend = true
-  } else {
+  }
+  else {
     for (var l = children.length; i < l; i++) {
       if (children[i].ref === before.data.ref) {
         break
@@ -187,10 +190,12 @@ Scroller.prototype.insertBefore = function (child, before) {
   if (isAppend) {
     this.scrollElement.appendChild(child.node)
     children.push(child.data)
-  } else {
+  }
+  else {
     if (before.fixedPlaceholder) {
       this.scrollElement.insertBefore(child.node, before.fixedPlaceholder)
-    } else {
+    }
+    else {
       this.scrollElement.insertBefore(child.node, before.node)
     }
     children.splice(i, 0, child.data)

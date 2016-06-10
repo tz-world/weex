@@ -10,7 +10,7 @@ const DEFAULT_TAG_NAME = 'div'
 export const instanceMap = {}
 let nextNodeRef = 1
 
-export function Document(id, url, handler) {
+export function Document (id, url, handler) {
   id = id ? id.toString() : ''
   this.id = id
   this.URL = url
@@ -21,7 +21,7 @@ export function Document(id, url, handler) {
   this.createDocumentElement()
 }
 
-function genCallTasks(id) {
+function genCallTasks (id) {
   return (tasks) => {
     if (!Array.isArray(tasks)) {
       tasks = [tasks]
@@ -61,7 +61,7 @@ Document.prototype.createDocumentElement = function () {
   return this.documentElement
 }
 
-function appendBody(doc, node) {
+function appendBody (doc, node) {
   const { documentElement } = doc
 
   if (documentElement.pureChildren.length > 0 || node.parentNode) {
@@ -91,7 +91,7 @@ function appendBody(doc, node) {
   }
 }
 
-function setBody(doc, el) {
+function setBody (doc, el) {
   el.role = 'body'
   el.depth = 1
   delete doc.nodeMap[el.nodeId]
@@ -135,7 +135,7 @@ Document.prototype.getRef = function (ref) {
   return this.nodeMap[ref]
 }
 
-function updateElement(el, changes) {
+function updateElement (el, changes) {
   const attrs = changes.attrs || {}
   for (const name in attrs) {
     el.setAttr(name, attrs[name], true)
@@ -146,7 +146,7 @@ function updateElement(el, changes) {
   }
 }
 
-export function Node() {
+export function Node () {
   this.nodeId = (nextNodeRef++).toString()
   this.ref = this.nodeId
   this.children = []
@@ -164,7 +164,7 @@ Node.prototype.destroy = function () {
   })
 }
 
-export function Element(type=DEFAULT_TAG_NAME, props) {
+export function Element (type = DEFAULT_TAG_NAME, props) {
   props = props || {}
   this.nodeType = 1
   this.nodeId = (nextNodeRef++).toString()
@@ -328,7 +328,7 @@ Element.prototype.clear = function () {
   this.pureChildren.length = 0
 }
 
-function nextElement(node) {
+function nextElement (node) {
   while (node) {
     if (node.nodeType === 1) {
       return node
@@ -337,7 +337,7 @@ function nextElement(node) {
   }
 }
 
-function previousElement(node) {
+function previousElement (node) {
   while (node) {
     if (node.nodeType === 1) {
       return node
@@ -346,7 +346,7 @@ function previousElement(node) {
   }
 }
 
-function linkParent(node, parent) {
+function linkParent (node, parent) {
   node.parentNode = parent
   if (parent.docId) {
     node.docId = parent.docId
@@ -357,12 +357,12 @@ function linkParent(node, parent) {
   })
 }
 
-function registerNode(docId, node) {
+function registerNode (docId, node) {
   const doc = instanceMap[docId]
   doc.nodeMap[node.nodeId] = node
 }
 
-function insertIndex(target, list, newIndex, changeSibling) {
+function insertIndex (target, list, newIndex, changeSibling) {
   if (newIndex < 0) {
     newIndex = 0
   }
@@ -378,7 +378,7 @@ function insertIndex(target, list, newIndex, changeSibling) {
   return newIndex
 }
 
-function moveIndex(target, list, newIndex, changeSibling) {
+function moveIndex (target, list, newIndex, changeSibling) {
   // console.log(target.type, list.map(node=>node.type), newIndex, changeSibling)
   const index = list.indexOf(target)
   if (index < 0) {
@@ -411,7 +411,7 @@ function moveIndex(target, list, newIndex, changeSibling) {
   return newIndex
 }
 
-function removeIndex(target, list, changeSibling) {
+function removeIndex (target, list, changeSibling) {
   const index = list.indexOf(target)
   if (index < 0) {
     return
@@ -511,7 +511,7 @@ Element.prototype.toString = function () {
     '</' + this.type + '>'
 }
 
-export function Comment(value, ownerDocument) {
+export function Comment (value, ownerDocument) {
   this.nodeType = 8
   this.nodeId = (nextNodeRef++).toString()
   this.ref = this.nodeId

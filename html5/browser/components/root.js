@@ -7,7 +7,7 @@ var logger = require('../logger')
 
 var rootCandidates = ['div', 'list', 'vlist', 'scroller']
 
-function RootComponent(data, nodeType) {
+function RootComponent (data, nodeType) {
   var id = data.rootId + '-root'
   var componentManager = ComponentManager.getInstance(data.instanceId)
 
@@ -20,18 +20,21 @@ function RootComponent(data, nodeType) {
   // its own type, otherwise it has to be a div component as a root.
   if (!nodeType) {
     nodeType = 'div'
-  } else if (rootCandidates.indexOf(nodeType) === -1) {
+  }
+  else if (rootCandidates.indexOf(nodeType) === -1) {
     logger.warn('the root component type \'' + nodeType + '\' is not one of '
       + 'the types in [' + rootCandidates + '] list. It is auto downgraded '
       + 'to \'div\'.')
     nodeType = 'div'
-  } else if (downgrades[nodeType]) {
+  }
+  else if (downgrades[nodeType]) {
     logger.warn('Thanks to the downgrade flags for ['
       + Object.keys(downgrades)
       + '], the root component type \'' + nodeType
       + '\' is auto downgraded to \'div\'.')
     nodeType = 'div'
-  } else {
+  }
+  else {
     // If the root component is not a embed element in a webpage, then
     // the html and body height should be fixed to the max height
     // of viewport.
@@ -74,7 +77,7 @@ RootComponent.prototype.detectRootHeight = function () {
       height + 'px, and mostly its height should be less than the ',
       'viewport\'s height ' + window.innerHeight + 'px. Please ',
       'make sure the height is correct.'
-      ].join(''))
+    ].join(''))
   }
 }
 

@@ -8,7 +8,7 @@
  * @return {Array} parameter matrix for cubic bezier curve
  *   like [[p1x, p1y], [p2x, p2y]]
  */
-function quadratic2cubicBezier(a, b) {
+function quadratic2cubicBezier (a, b) {
   return [
     [
       (a / 3 + (a + b) / 3 - a) / (b - a),
@@ -30,7 +30,7 @@ function quadratic2cubicBezier(a, b) {
  *   - t: time
  *   - s: shifting
  */
-function Motion(config) {
+function Motion (config) {
 
   this.v = config.v || 0
   this.a = config.a || 0
@@ -47,7 +47,8 @@ function Motion(config) {
   if (typeof this.t === 'undefined') {
     if (typeof this.s === 'undefined') {
       this.t = -this.v / this.a
-    } else {
+    }
+    else {
       var t1 = (Math.sqrt(this.v * this.v + 2 * this.a * this.s) - this.v)
         / this.a
       var t2 = (-Math.sqrt(this.v * this.v + 2 * this.a * this.s) - this.v)

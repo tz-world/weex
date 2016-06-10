@@ -13,14 +13,14 @@
  *   - callback(funcId, data)
  */
 
-import * as config from './config'
+import config from './config'
 import AppInstance from './app'
 import Vm from './vm'
 
-var {
+const {
   nativeComponentMap
 } = config
-var instanceMap = {}
+const instanceMap = {}
 
 /**
  * create a Weex instance
@@ -30,18 +30,19 @@ var instanceMap = {}
  * @param  {object} [options] option `HAS_LOG` enable print log
  * @param  {object} [data]
  */
-function createInstance(instanceId, code, options, data) {
-  var instance = instanceMap[instanceId]
+function createInstance (instanceId, code, options, data) {
+  let instance = instanceMap[instanceId]
   options = options || {}
 
   config.debug = options.debug
 
-  var result
+  let result
   if (!instance) {
     instance = new AppInstance(instanceId, options)
     instanceMap[instanceId] = instance
     result = instance.init(code, data)
-  } else {
+  }
+  else {
     result = new Error(`invalid instance id "${instanceId}"`)
   }
 
@@ -54,12 +55,13 @@ function createInstance(instanceId, code, options, data) {
  * @param  {string} instanceId
  * @param  {object} data
  */
-function refreshInstance(instanceId, data) {
-  var instance = instanceMap[instanceId]
-  var result
+function refreshInstance (instanceId, data) {
+  const instance = instanceMap[instanceId]
+  let result
   if (instance) {
     result = instance.refreshData(data)
-  } else {
+  }
+  else {
     result = new Error(`invalid instance id "${instanceId}"`)
   }
   return result
@@ -69,8 +71,8 @@ function refreshInstance(instanceId, data) {
  * destroy a Weex instance
  * @param  {string} instanceId
  */
-function destroyInstance(instanceId) {
-  var instance = instanceMap[instanceId]
+function destroyInstance (instanceId) {
+  const instance = instanceMap[instanceId]
   if (!instance) {
     return new Error(`invalid instance id "${instanceId}"`)
   }
@@ -84,16 +86,17 @@ function destroyInstance(instanceId) {
  * register the name of each native component
  * @param  {array} components array of name
  */
-function registerComponents(components) {
+function registerComponents (components) {
   if (Array.isArray(components)) {
-    components.forEach(function register(name) {
+    components.forEach(function register (name) {
       /* istanbul ignore if */
       if (!name) {
         return
       }
       if (typeof name === 'string') {
         nativeComponentMap[name] = true
-      } else if (typeof name === 'object' && typeof name.type === 'string') {
+      }
+      else if (typeof name === 'object' && typeof name.type === 'string') {
         nativeComponentMap[name.type] = name
       }
     })
@@ -104,7 +107,7 @@ function registerComponents(components) {
  * register the name and methods of each module
  * @param  {object} modules a object of modules
  */
-function registerModules(modules) {
+function registerModules (modules) {
   if (typeof modules === 'object') {
     Vm.registerModules(modules)
   }
@@ -114,7 +117,7 @@ function registerModules(modules) {
  * register the name and methods of each api
  * @param  {object} apis a object of apis
  */
-function registerMethods(apis) {
+function registerMethods (apis) {
   if (typeof apis === 'object') {
     Vm.registerMethods(apis)
   }
@@ -126,30 +129,27 @@ function registerMethods(apis) {
  * @param  {string} instanceId
  * @return {object} a virtual dom tree
  */
-function getRoot(instanceId) {
-  var instance = instanceMap[instanceId]
-  var result
+function getRoot (instanceId) {
+  const instance = instanceMap[instanceId]
+  let result
   if (instance) {
     result = instance.getRootElement()
-  } else {
+  }
+  else {
     result = new Error(`invalid instance id "${instanceId}"`)
   }
   return result
 }
 
-var jsHandlers = {
-  fireEvent: function fireEvent(instanceId, ref, type, data, domChanges) {
-    var instance = instanceMap[instanceId]
-    var result
-    result = instance.fireEvent(ref, type, data, domChanges)
-    return result
+const jsHandlers = {
+  fireEvent: function fireEvent (instanceId, ref, type, data, domChanges) {
+    const instance = instanceMap[instanceId]
+    return instance.fireEvent(ref, type, data, domChanges)
   },
 
-  callback: function callback(instanceId, funcId, data, ifLast) {
-    var instance = instanceMap[instanceId]
-    var result
-    result = instance.callback(funcId, data, ifLast)
-    return result
+  callback: function callback (instanceId, funcId, data, ifLast) {
+    const instance = instanceMap[instanceId]
+    return instance.callback(funcId, data, ifLast)
   }
 }
 
@@ -159,7 +159,7 @@ var jsHandlers = {
  * @param  {string} instanceId
  * @param  {array} tasks list with `method` and `args`
  */
-function callJS(instanceId, tasks) {
+function callJS (instanceId, tasks) {
   const instance = instanceMap[instanceId]
   if (instance && Array.isArray(tasks)) {
     const results = []

@@ -16,7 +16,7 @@ var FrameUpdater = {
       return
     }
 
-    rafId = raf(function runLoop() {
+    rafId = raf(function runLoop () {
       if (!paused) {
         for (var i = 0; i < observers.length; i++) {
           observers[i]()

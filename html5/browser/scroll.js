@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 require('./motion')
 
 var logger = require('./logger')

@@ -13,10 +13,10 @@ describe('generate workflow', () => {
   var vm = {}
   Object.assign(vm, compiler, directive, {
     _watchers: [],
-    _createBlock: function () {return {element: {}}},
-    _mergeContext: function () {return this},
-    _createBody: type => {return {type}},
-    _createElement: type => {return {type}},
+    _createBlock: function () { return { element: {}} },
+    _mergeContext: function () { return this },
+    _createBody: type => { return { type } },
+    _createElement: type => { return { type } },
     _attachTarget: (element, dest) => element,
     _bindElement: () => {},
     _setId: function () {},
@@ -27,7 +27,7 @@ describe('generate workflow', () => {
 
   vm.constructor = function () {
     contentIndex++
-    this._content = {index: contentIndex}
+    this._content = { index: contentIndex }
     this.$on = sinon.spy()
   }
 
@@ -66,7 +66,7 @@ describe('generate workflow', () => {
     }
     var rootEl = {}
 
-    function check() {
+    function check () {
       expect(vm._compile).callCount(1)
       expect(vm._compile).calledWith(target, dest)
       expect(vm._createBody).callCount(1)
@@ -90,7 +90,7 @@ describe('generate workflow', () => {
     var dest = {}
     var rootEl = {}
 
-    function check() {
+    function check () {
       expect(vm._compile).callCount(1)
       expect(vm._compile).calledWith(target, dest)
       expect(vm._createBody).callCount(0)
@@ -116,14 +116,14 @@ describe('generate workflow', () => {
     var dest = {}
     var rootEl = {}
 
-    function check() {
+    function check () {
       expect(vm._compile).callCount(3)
       expect(vm._compile.args[0]).eql(
         [target, dest])
       expect(vm._compile.args[1]).eql(
-        [target[0], {element: {}}, undefined])
+        [target[0], { element: {}}, undefined])
       expect(vm._compile.args[2]).eql(
-        [target[1], {element: {}}, undefined])
+        [target[1], { element: {}}, undefined])
       expect(vm._createBlock).callCount(1)
       expect(vm._mergeContext).callCount(0)
       expect(vm.constructor).callCount(0)
@@ -137,26 +137,26 @@ describe('generate workflow', () => {
   it('generate content holder', (done) => {
     var target = {
       type: 'a', children: [
-        {type: 'b'},
-        {type: 'content'},
-        {type: 'c'}
+        { type: 'b' },
+        { type: 'content' },
+        { type: 'c' }
       ]
     }
     var dest = {}
     var rootEl = {}
 
-    function check() {
+    function check () {
       expect(vm._compile).callCount(4)
       expect(vm._compile.args[0]).eql(
         [target, dest])
       expect(vm._compile.args[1]).eql(
-        [target.children[0], {type: 'a'}])
+        [target.children[0], { type: 'a' }])
       expect(vm._compile.args[2]).eql(
-        [target.children[1], {type: 'a'}])
+        [target.children[1], { type: 'a' }])
       expect(vm._compile.args[3]).eql(
-        [target.children[2], {type: 'a'}])
+        [target.children[2], { type: 'a' }])
       expect(vm._content).is.an.object
-      expect(vm._content).eql({element: {}})
+      expect(vm._content).eql({ element: {}})
       expect(vm._createBlock).callCount(1)
       expect(vm._mergeContext).callCount(0)
       expect(vm.constructor).callCount(0)
@@ -175,7 +175,7 @@ describe('generate workflow', () => {
     var dest = {}
     var rootEl = {}
 
-    function checkRepeatVm(args, target, meta) {
+    function checkRepeatVm (args, target, meta) {
       expect(args[0]).eql(target)
       expect(args[2]).eql(meta)
       var vm = args[1]
@@ -183,12 +183,12 @@ describe('generate workflow', () => {
       expect(vm.data).eql([1, 2, 3])
     }
 
-    function check() {
+    function check () {
       expect(vm._compile).callCount(4)
       expect(vm._compile.args[0]).eql([target, dest])
-      checkRepeatVm(vm._compile.args[1], target, {repeat: 1})
-      checkRepeatVm(vm._compile.args[2], target, {repeat: 2})
-      checkRepeatVm(vm._compile.args[3], target, {repeat: 3})
+      checkRepeatVm(vm._compile.args[1], target, { repeat: 1 })
+      checkRepeatVm(vm._compile.args[2], target, { repeat: 2 })
+      checkRepeatVm(vm._compile.args[3], target, { repeat: 3 })
       expect(vm._createBlock).callCount(1)
       expect(vm._mergeContext).callCount(3)
       expect(vm.constructor).callCount(0)
@@ -207,13 +207,13 @@ describe('generate workflow', () => {
     var dest = {}
     var rootEl = {}
 
-    function check() {
+    function check () {
       expect(vm._compile).callCount(2)
       expect(vm._compile.args[0]).eql(
         [target, dest])
       expect(vm._compile.args[1][0]).eql(target)
       expect(vm._compile.args[1][1].display).eql(true)
-      expect(vm._compile.args[1][2]).eql({shown: true})
+      expect(vm._compile.args[1][2]).eql({ shown: true })
       expect(vm._createBlock).callCount(1)
       expect(vm._mergeContext).callCount(0)
       expect(vm.constructor).callCount(0)
@@ -237,7 +237,7 @@ describe('generate workflow', () => {
     var dest = {}
     var rootEl = {}
 
-    function checkRepeatVm(args, target, meta) {
+    function checkRepeatVm (args, target, meta) {
       expect(args[0]).eql(target)
       expect(args[2]).eql(meta)
       var vm = args[1]
@@ -245,18 +245,18 @@ describe('generate workflow', () => {
       expect(vm.data).eql([1, 2, 3])
     }
 
-    function check() {
+    function check () {
       expect(vm._compile).callCount(6)
       expect(vm._compile.args[0]).eql([target, dest])
-      checkRepeatVm(vm._compile.args[1], target, {repeat: 1})
+      checkRepeatVm(vm._compile.args[1], target, { repeat: 1 })
       expect(vm._compile.args[2][0]).eql(target)
       expect(vm._compile.args[2][1].display).eql(true)
-      expect(vm._compile.args[2][2]).eql({repeat: 1, shown: true})
-      checkRepeatVm(vm._compile.args[3], target, {repeat: 2})
-      checkRepeatVm(vm._compile.args[4], target, {repeat: 3})
+      expect(vm._compile.args[2][2]).eql({ repeat: 1, shown: true })
+      checkRepeatVm(vm._compile.args[3], target, { repeat: 2 })
+      checkRepeatVm(vm._compile.args[4], target, { repeat: 3 })
       expect(vm._compile.args[5][0]).eql(target)
       expect(vm._compile.args[5][1].display).eql(true)
-      expect(vm._compile.args[5][2]).eql({repeat: 3, shown: true})
+      expect(vm._compile.args[5][2]).eql({ repeat: 3, shown: true })
       expect(vm._createBlock).callCount(4)
       expect(vm._mergeContext).callCount(3)
       expect(vm.constructor).callCount(0)
@@ -271,16 +271,16 @@ describe('generate workflow', () => {
     var index = 0
     var target = {
       type: 'a',
-      children: [{type: 'b'}, {type: 'c'}]
+      children: [{ type: 'b' }, { type: 'c' }]
     }
     var dest = {}
     var rootEl = {}
 
-    function check() {
+    function check () {
       expect(vm._compile).callCount(3)
       expect(vm._compile.args[0]).eql([target, dest])
-      expect(vm._compile.args[1]).eql([target.children[0], {type: 'a'}])
-      expect(vm._compile.args[2]).eql([target.children[1], {type: 'a'}])
+      expect(vm._compile.args[1]).eql([target.children[0], { type: 'a' }])
+      expect(vm._compile.args[2]).eql([target.children[1], { type: 'a' }])
       expect(vm._createBlock).callCount(0)
       expect(vm._mergeContext).callCount(0)
       expect(vm.constructor).callCount(0)
@@ -296,22 +296,22 @@ describe('generate workflow', () => {
     var target = {
       type: 'a',
       append: 'tree',
-      children: [{type: 'b'}, {type: 'c'}]
+      children: [{ type: 'b' }, { type: 'c' }]
     }
     var dest = {}
     var rootEl = {}
 
-    function check() {
+    function check () {
       expect(vm._compile).callCount(3)
       expect(vm._compile.args[0]).eql([target, dest])
       expect(vm._compile.args[1]).eql([target.children[0], {
         attr: {
           append: 'tree'
-        }, type: 'a'}])
+        }, type: 'a' }])
       expect(vm._compile.args[2]).eql([target.children[1], {
         attr: {
           append: 'tree'
-        }, type: 'a'}])
+        }, type: 'a' }])
       expect(vm._createBlock).callCount(0)
       expect(vm._mergeContext).callCount(0)
       expect(vm.constructor).callCount(0)
@@ -335,13 +335,13 @@ describe('generate workflow', () => {
             return index % 2
           }
         },
-        {type: 'c'}
+        { type: 'c' }
       ]
     }
     var dest = {}
     var rootEl = {}
 
-    function checkRepeatVm(args, target, meta) {
+    function checkRepeatVm (args, target, meta) {
       expect(args[0]).eql(target)
       expect(args[2]).eql(meta)
       var vm = args[1]
@@ -349,20 +349,20 @@ describe('generate workflow', () => {
       expect(vm.data).eql([1, 2, 3])
     }
 
-    function check() {
+    function check () {
       expect(vm._compile).callCount(8)
       expect(vm._compile.args[0]).eql([target, dest])
-      expect(vm._compile.args[1]).eql([target.children[0], {type: 'a'}])
-      checkRepeatVm(vm._compile.args[2], target.children[0], {repeat: 1})
+      expect(vm._compile.args[1]).eql([target.children[0], { type: 'a' }])
+      checkRepeatVm(vm._compile.args[2], target.children[0], { repeat: 1 })
       expect(vm._compile.args[3][0]).eql(target.children[0])
       expect(vm._compile.args[3][1].display).eql(true)
-      expect(vm._compile.args[3][2]).eql({repeat: 1, shown: true})
-      checkRepeatVm(vm._compile.args[4], target.children[0], {repeat: 2})
-      checkRepeatVm(vm._compile.args[5], target.children[0], {repeat: 3})
+      expect(vm._compile.args[3][2]).eql({ repeat: 1, shown: true })
+      checkRepeatVm(vm._compile.args[4], target.children[0], { repeat: 2 })
+      checkRepeatVm(vm._compile.args[5], target.children[0], { repeat: 3 })
       expect(vm._compile.args[6][0]).eql(target.children[0])
       expect(vm._compile.args[6][1].display).eql(true)
-      expect(vm._compile.args[6][2]).eql({repeat: 3, shown: true})
-      expect(vm._compile.args[7]).eql([target.children[1], {type: 'a'}])
+      expect(vm._compile.args[6][2]).eql({ repeat: 3, shown: true })
+      expect(vm._compile.args[7]).eql([target.children[1], { type: 'a' }])
       expect(vm._createBlock).callCount(4)
       expect(vm._mergeContext).callCount(3)
       expect(vm.constructor).callCount(0)
@@ -380,20 +380,20 @@ describe('generate workflow', () => {
       children: [
         {
           type: 'b',
-          children: [{type: 'c'}],
+          children: [{ type: 'c' }],
           repeat: () => [1, 2, 3],
           shown: function () {
             index++
             return index % 2
           }
         },
-        {type: 'd'}
+        { type: 'd' }
       ]
     }
     var dest = {}
     var rootEl = {}
 
-    function checkRepeatVm(args, target, meta) {
+    function checkRepeatVm (args, target, meta) {
       expect(args[0]).eql(target)
       expect(args[2]).eql(meta)
       var vm = args[1]
@@ -401,24 +401,24 @@ describe('generate workflow', () => {
       expect(vm.data).eql([1, 2, 3])
     }
 
-    function check() {
+    function check () {
       expect(vm._compile).callCount(10)
       expect(vm._compile.args[0]).eql([target, dest])
-      expect(vm._compile.args[1]).eql([target.children[0], {type: 'a'}])
-      checkRepeatVm(vm._compile.args[2], target.children[0], {repeat: 1})
+      expect(vm._compile.args[1]).eql([target.children[0], { type: 'a' }])
+      checkRepeatVm(vm._compile.args[2], target.children[0], { repeat: 1 })
       expect(vm._compile.args[3][0]).eql(target.children[0])
       expect(vm._compile.args[3][1].display).eql(true)
-      expect(vm._compile.args[3][2]).eql({repeat: 1, shown: true})
+      expect(vm._compile.args[3][2]).eql({ repeat: 1, shown: true })
       expect(vm._compile.args[4]).eql([target.children[0].children[0],
-        {type: 'b'}])
-      checkRepeatVm(vm._compile.args[5], target.children[0], {repeat: 2})
-      checkRepeatVm(vm._compile.args[6], target.children[0], {repeat: 3})
+        { type: 'b' }])
+      checkRepeatVm(vm._compile.args[5], target.children[0], { repeat: 2 })
+      checkRepeatVm(vm._compile.args[6], target.children[0], { repeat: 3 })
       expect(vm._compile.args[7][0]).eql(target.children[0])
       expect(vm._compile.args[7][1].display).eql(true)
-      expect(vm._compile.args[7][2]).eql({repeat: 3, shown: true})
+      expect(vm._compile.args[7][2]).eql({ repeat: 3, shown: true })
       expect(vm._compile.args[8]).eql([target.children[0].children[0],
-        {type: 'b'}])
-      expect(vm._compile.args[9]).eql([target.children[1], {type: 'a'}])
+        { type: 'b' }])
+      expect(vm._compile.args[9]).eql([target.children[1], { type: 'a' }])
       expect(vm._createBlock).callCount(4)
       expect(vm._mergeContext).callCount(3)
       expect(vm.constructor).callCount(0)
@@ -433,24 +433,24 @@ describe('generate workflow', () => {
     var target = {
       type: 'a',
       children: [
-        {type: 'b', component: true},
-        {type: 'c'}
+        { type: 'b', component: true },
+        { type: 'c' }
       ]
     }
     var dest = {}
     var rootEl = {}
 
-    function check() {
+    function check () {
       expect(vm._compile).callCount(3)
       expect(vm._compile.args[0]).eql([target, dest])
-      expect(vm._compile.args[1]).eql([target.children[0], {type: 'a'}])
-      expect(vm._compile.args[2]).eql([target.children[1], {type: 'a'}])
+      expect(vm._compile.args[1]).eql([target.children[0], { type: 'a' }])
+      expect(vm._compile.args[2]).eql([target.children[1], { type: 'a' }])
       expect(vm._createBlock).callCount(0)
       expect(vm._mergeContext).callCount(0)
       expect(vm.constructor).callCount(1)
       expect(vm.constructor.args[0][0]).eql('b')
       expect(vm.constructor.args[0][1]).eql({})
-      expect(vm.constructor.args[0][3]).eql({type: 'a'})
+      expect(vm.constructor.args[0][3]).eql({ type: 'a' })
       done()
     }
 
@@ -472,13 +472,13 @@ describe('generate workflow', () => {
             return index % 2
           }
         },
-        {type: 'd'}
+        { type: 'd' }
       ]
     }
     var dest = {}
     var rootEl = {}
 
-    function checkRepeatVm(args, target, meta) {
+    function checkRepeatVm (args, target, meta) {
       expect(args[0]).eql(target)
       expect(args[2]).eql(meta)
       var vm = args[1]
@@ -486,28 +486,28 @@ describe('generate workflow', () => {
       expect(vm.data).eql([1, 2, 3])
     }
 
-    function check() {
+    function check () {
       expect(vm._compile).callCount(8)
       expect(vm._compile.args[0]).eql([target, dest])
-      expect(vm._compile.args[1]).eql([target.children[0], {type: 'a'}])
-      checkRepeatVm(vm._compile.args[2], target.children[0], {repeat: 1})
+      expect(vm._compile.args[1]).eql([target.children[0], { type: 'a' }])
+      checkRepeatVm(vm._compile.args[2], target.children[0], { repeat: 1 })
       expect(vm._compile.args[3][0]).eql(target.children[0])
       expect(vm._compile.args[3][1].display).eql(true)
-      expect(vm._compile.args[3][2]).eql({repeat: 1, shown: true})
-      checkRepeatVm(vm._compile.args[4], target.children[0], {repeat: 2})
-      checkRepeatVm(vm._compile.args[5], target.children[0], {repeat: 3})
+      expect(vm._compile.args[3][2]).eql({ repeat: 1, shown: true })
+      checkRepeatVm(vm._compile.args[4], target.children[0], { repeat: 2 })
+      checkRepeatVm(vm._compile.args[5], target.children[0], { repeat: 3 })
       expect(vm._compile.args[6][0]).eql(target.children[0])
       expect(vm._compile.args[6][1].display).eql(true)
-      expect(vm._compile.args[6][2]).eql({repeat: 3, shown: true})
-      expect(vm._compile.args[7]).eql([target.children[1], {type: 'a'}])
+      expect(vm._compile.args[6][2]).eql({ repeat: 3, shown: true })
+      expect(vm._compile.args[7]).eql([target.children[1], { type: 'a' }])
       expect(vm._createBlock).callCount(4)
       expect(vm._mergeContext).callCount(3)
 
       expect(vm.constructor).callCount(2)
       expect(vm.constructor.args[0][0]).eql('b')
-      expect(vm.constructor.args[0][3]).eql({element: {}, display: true})
+      expect(vm.constructor.args[0][3]).eql({ element: {}, display: true })
       expect(vm.constructor.args[1][0]).eql('b')
-      expect(vm.constructor.args[1][3]).eql({element: {}, display: true})
+      expect(vm.constructor.args[1][3]).eql({ element: {}, display: true })
 
       done()
     }
@@ -522,7 +522,7 @@ describe('merge context', () => {
 
   beforeEach(() => {
     vm = {
-      _data: {a: 1, b: 2},
+      _data: { a: 1, b: 2 },
       _mergeContext: compiler._mergeContext
     }
     Object.assign(vm, state)
@@ -534,14 +534,14 @@ describe('merge context', () => {
   })
 
   it('merge external data', () => {
-    var context = vm._mergeContext({a: 3})
+    var context = vm._mergeContext({ a: 3 })
     expect(context).not.equal(vm)
     expect(context.a).eql(3)
     expect(context.b).eql(2)
   })
 
   it('react with changes, but not with internal for ext-key', () => {
-    var context = vm._mergeContext({a: 3})
+    var context = vm._mergeContext({ a: 3 })
     vm.a = 4
     vm.b = 5
     expect(context.a).eql(3)
@@ -551,7 +551,7 @@ describe('merge context', () => {
   })
 
   it('merge external data if key not bound', () => {
-    var context = vm._mergeContext({c: 3})
+    var context = vm._mergeContext({ c: 3 })
     expect(context).not.equal(vm)
     expect(context.a).eql(1)
     expect(context.b).eql(2)
@@ -559,7 +559,7 @@ describe('merge context', () => {
   })
 
   it('not react with changes for extra key', () => {
-    var context = vm._mergeContext({c: 3})
+    var context = vm._mergeContext({ c: 3 })
     vm.c = 9
     expect(context.a).eql(1)
     expect(context.b).eql(2)

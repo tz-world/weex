@@ -1,6 +1,6 @@
 'use strict'
 
-var config = {
+const config = {
 
   weexVersion: '0.5.0',
 

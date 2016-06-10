@@ -7,14 +7,14 @@ chai.use(sinonChai)
 global.callNative = function () {}
 
 import * as domHelper from '../../../default/vm/dom-helper'
-import {Document} from '../../../vdom'
+import { Document } from '../../../vdom'
 
 describe('help create body', () => {
   var vm
 
   beforeEach(() => {
     vm = {
-      _app: {doc: new Document('foo')}
+      _app: { doc: new Document('foo') }
     }
     Object.assign(vm, domHelper)
   })
@@ -38,7 +38,7 @@ describe('help create element', () => {
 
   beforeEach(() => {
     vm = {
-      _app: {doc: new Document('foo')}
+      _app: { doc: new Document('foo') }
     }
     Object.assign(vm, domHelper)
   })
@@ -61,7 +61,7 @@ describe('help create block', () => {
 
   beforeEach(() => {
     vm = {
-      _app: {doc: new Document('foo')}
+      _app: { doc: new Document('foo') }
     }
     Object.assign(vm, domHelper)
   })
@@ -91,7 +91,7 @@ describe('help attach target', () => {
 
   beforeEach(() => {
     vm = {
-      _app: {doc: new Document('foo')}
+      _app: { doc: new Document('foo') }
     }
     Object.assign(vm, domHelper)
   })
@@ -193,7 +193,7 @@ describe('help move target', () => {
 
   beforeEach(() => {
     vm = {
-      _app: {doc: new Document('foo')}
+      _app: { doc: new Document('foo') }
     }
     Object.assign(vm, domHelper)
     parent = vm._createElement('r')
@@ -215,8 +215,8 @@ describe('help move target', () => {
   })
 
   it('move an element to an element mark', () => {
-    let mark
 
+    /* eslint-disable indent */
     expect(parent.children).eql([
       dest.start,
       target1, block1.start, block1.end,
@@ -224,12 +224,14 @@ describe('help move target', () => {
         target3, block3.start, block3.end,
       block2.end,
       dest.end])
+    /* eslint-enable indent */
 
-    mark = target2
+    const mark = target2
     dest.updateMark = mark
 
     vm._moveTarget(target1, mark)
 
+    /* eslint-disable indent */
     expect(parent.children).eql([
       dest.start,
       block1.start, block1.end,
@@ -237,14 +239,16 @@ describe('help move target', () => {
         target3, block3.start, block3.end,
       block2.end,
       dest.end])
+    /* eslint-enable indent */
   })
 
   it('move an element to a block mark', () => {
-    let mark = block2.end
+    const mark = block2.end
     dest.updateMark = mark
 
     vm._moveTarget(target1, mark)
 
+    /* eslint-disable indent */
     expect(parent.children).eql([
       dest.start,
       block1.start, block1.end,
@@ -252,14 +256,16 @@ describe('help move target', () => {
         target3, block3.start, block3.end,
       block2.end, target1,
       dest.end])
+    /* eslint-enable indent */
   })
 
   it('move a block to an element mark', () => {
-    let mark = target2
+    const mark = target2
     dest.updateMark = mark
 
     vm._moveTarget(block1, mark)
 
+    /* eslint-disable indent */
     expect(parent.children).eql([
       dest.start,
       target1,
@@ -268,14 +274,16 @@ describe('help move target', () => {
         target3, block3.start, block3.end,
       block2.end,
       dest.end])
+    /* eslint-enable indent */
   })
 
   it('move a block to a block mark', () => {
-    let mark = block2.end
+    const mark = block2.end
     dest.updateMark = mark
 
     vm._moveTarget(block1, mark)
 
+    /* eslint-disable indent */
     expect(parent.children).eql([
       dest.start,
       target1,
@@ -284,14 +292,16 @@ describe('help move target', () => {
         target3, block3.start, block3.end,
       block2.end, block1.start, block1.end,
       dest.end])
+    /* eslint-enable indent */
   })
 
   it('move a whole block to a block mark', () => {
-    let mark = block1.end
+    const mark = block1.end
     dest.updateMark = mark
 
     vm._moveTarget(block2, mark)
 
+    /* eslint-disable indent */
     expect(parent.children).eql([
       dest.start,
       target1, block1.start, block1.end,
@@ -300,6 +310,7 @@ describe('help move target', () => {
       block2.end,
       target2,
       dest.end])
+    /* eslint-enable indent */
   })
 })
 
@@ -308,7 +319,7 @@ describe('help remove target', () => {
 
   beforeEach(() => {
     vm = {
-      _app: {doc: new Document('foo')}
+      _app: { doc: new Document('foo') }
     }
     Object.assign(vm, domHelper)
   })

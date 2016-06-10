@@ -10,7 +10,8 @@ var _registerModules = function (config) {
     for (var i = 0, l = config.length; i < l; i++) {
       window.registerModules(config[i])
     }
-  } else {
+  }
+  else {
     window.registerModules(config)
   }
 }
@@ -52,17 +53,18 @@ var protocol = {
   //    }]
   // }
   setApiModuleMeta: function (metaObj) {
-    var moduleName
-    for (var k in metaObj) {
+    let moduleName
+    for (const k in metaObj) {
       if (metaObj.hasOwnProperty(k)) {
         moduleName = k
       }
     }
-    var metaArray = this._meta[moduleName]
+    const metaArray = this._meta[moduleName]
     if (!metaArray) {
       this._meta[moduleName] = metaObj[moduleName]
-    } else {
-      var nameObj = {}
+    }
+    else {
+      const nameObj = {}
       metaObj[moduleName].forEach(function (api) {
         nameObj[api.name] = api
       })
@@ -72,7 +74,7 @@ var protocol = {
           delete nameObj[api.name]
         }
       })
-      for (var k in metaObj) {
+      for (const k in metaObj) {
         if (metaObj.hasOwnProperty(k)) {
           metaArray.push(metaObj[k])
         }
@@ -93,7 +95,8 @@ var protocol = {
     var metaArray = this._meta[moduleName]
     if (!metaArray) {
       this._meta[moduleName] = [meta]
-    } else {
+    }
+    else {
       var metaIdx = -1
       metaArray.forEach(function (api, i) {
         if (meta.name === name) {
@@ -102,7 +105,8 @@ var protocol = {
       })
       if (metaIdx !== -1) {
         metaArray[metaIdx] = meta
-      } else {
+      }
+      else {
         metaArray.push(meta)
       }
     }

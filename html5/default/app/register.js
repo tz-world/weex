@@ -1,6 +1,6 @@
 let nativeModules = {}
 
-function assignModules(modules, ifReplace) {
+function assignModules (modules, ifReplace) {
 
   for (const moduleName in modules) {
 
@@ -26,7 +26,7 @@ function assignModules(modules, ifReplace) {
   }
 }
 
-function assignApis(Ctor, apis) {
+function assignApis (Ctor, apis) {
   const p = Ctor.prototype
 
   for (const apiName in apis) {
@@ -36,18 +36,18 @@ function assignApis(Ctor, apis) {
   }
 }
 
-export function clearModules() {
+export function clearModules () {
   nativeModules = {}
 }
 
-export function getModule(moduleName) {
+export function getModule (moduleName) {
   return nativeModules[moduleName]
 }
 
 /**
  * @context a instance of AppInstance
  */
-export function requireModule(moduleName) {
+export function requireModule (moduleName) {
   const methods = nativeModules[moduleName]
   const target = {}
 
@@ -65,30 +65,30 @@ export function requireModule(moduleName) {
 /**
  * @context Vm
  */
-export function registerModules(modules, ifReplace) {
+export function registerModules (modules, ifReplace) {
   assignModules(modules, ifReplace)
 }
 
 /**
  * @context Vm
  */
-export function registerMethods(apis) {
+export function registerMethods (apis) {
   assignApis(this, apis)
 }
 
 /**
  * @context a instance of AppInstance
  */
-export function requireComponent(name) {
-  const {customComponentMap} = this
+export function requireComponent (name) {
+  const { customComponentMap } = this
   return customComponentMap[name]
 }
 
 /**
  * @context a instance of AppInstance
  */
-export function registerComponent(name, exports) {
-  const {customComponentMap} = this
+export function registerComponent (name, exports) {
+  const { customComponentMap } = this
 
   if (customComponentMap[name]) {
     throw new Error(`define a component(${name}) that already exists`)

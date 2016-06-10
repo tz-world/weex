@@ -94,7 +94,8 @@ var dom = {
     var parentScroller = elem.getParentScroller()
     if (parentScroller) {
       parentScroller.scroller.scrollToElement(elem.node, true)
-    } else {
+    }
+    else {
       var offsetTop = elem.node.getBoundingClientRect().top
           + document.body.scrollTop
       var offset = (Number(options.offset) || 0) * this.scale

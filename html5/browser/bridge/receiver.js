@@ -21,15 +21,17 @@ var MAX_TIME_FOR_EACH_FRAME = 10
 //  - instanceId: string.
 //  - tasks: array of object.
 //  - callbackId: number.
-function callNative(instanceId, tasks, callbackId) {
+function callNative (instanceId, tasks, callbackId) {
   var calls = []
   if (typeof tasks === 'string') {
     try {
       calls = JSON.parse(tasks)
-    } catch (e) {
+    }
+    catch (e) {
       console.error('invalid tasks:', tasks)
     }
-  } else if (Object.prototype.toString.call(tasks).slice(8, -1) === 'Array') {
+  }
+  else if (Object.prototype.toString.call(tasks).slice(8, -1) === 'Array') {
     calls = tasks
   }
   var len = calls.length
@@ -53,7 +55,7 @@ function callNative(instanceId, tasks, callbackId) {
 
 }
 
-function processCallQueue() {
+function processCallQueue () {
   var len = callQueue.length
   if (len === 0) {
     return
@@ -68,7 +70,7 @@ function processCallQueue() {
   }
 }
 
-function processCall(instanceId, call) {
+function processCall (instanceId, call) {
   var moduleName = call.module
   var methodName = call.method
   var module, method
@@ -93,11 +95,11 @@ function processCall(instanceId, call) {
   }
 }
 
-function performNextTick(instanceId, callbackId) {
+function performNextTick (instanceId, callbackId) {
   Sender.getSender(instanceId).performCallback(callbackId)
 }
 
-function nativeLog() {
+function nativeLog () {
   if (config.debug) {
     if (arguments[0].match(/^perf/)) {
       console.info.apply(console, arguments)
@@ -107,7 +109,7 @@ function nativeLog() {
   }
 }
 
-function exportsBridgeMethodsToGlobal() {
+function exportsBridgeMethodsToGlobal () {
   global.callNative = callNative
   global.nativeLog = nativeLog
 }

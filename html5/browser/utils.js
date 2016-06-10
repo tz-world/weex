@@ -4,7 +4,7 @@ var WEAPP_STYLE_ID = 'weapp-style'
 
 var _isWebpSupported = false
 
-; (function isSupportWebp() {
+; (function isSupportWebp () {
   try {
     var webP = new Image()
     webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdA'
@@ -14,25 +14,26 @@ var _isWebpSupported = false
         _isWebpSupported = true
       }
     }
-  } catch (e) {
+  }
+  catch (e) {
     // do nothing.
   }
 })()
 
-function extend(to, from) {
+function extend (to, from) {
   for (var key in from) {
     to[key] = from[key]
   }
   return to
 }
 
-function isArray(arr) {
+function isArray (arr) {
   return Array.isArray
     ? Array.isArray(arr)
     : (Object.prototype.toString.call(arr) === '[object Array]')
 }
 
-function appendStyle(css, styleId, replace) {
+function appendStyle (css, styleId, replace) {
   var style = document.getElementById(styleId)
   if (style && replace) {
     style.parentNode.removeChild(style)
@@ -47,7 +48,7 @@ function appendStyle(css, styleId, replace) {
   style.appendChild(document.createTextNode(css))
 }
 
-function getUniqueFromArray(arr) {
+function getUniqueFromArray (arr) {
   if (!isArray(arr)) {
     return []
   }
@@ -65,7 +66,7 @@ function getUniqueFromArray(arr) {
   return res
 }
 
-function transitionize(element, props) {
+function transitionize (element, props) {
   var transitions = []
   for (var key in props) {
     transitions.push(key + ' ' + props[key])
@@ -74,11 +75,11 @@ function transitionize(element, props) {
   element.style.webkitTransition = transitions.join(', ')
 }
 
-function detectWebp() {
+function detectWebp () {
   return _isWebpSupported
 }
 
-function getRandom(num) {
+function getRandom (num) {
   var _defaultNum = 10
   if (typeof num !== 'number' || num <= 0) {
     num = _defaultNum
@@ -87,17 +88,19 @@ function getRandom(num) {
   return Math.floor(Date.now() + Math.random() * _max) % _max
 }
 
-function getRgb(color) {
+function getRgb (color) {
   var match
   color = color + ''
-  if (match = color.match(/#(\d{2})(\d{2})(\d{2})/)) {
+  match = color.match(/#(\d{2})(\d{2})(\d{2})/)
+  if (match) {
     return {
       r: parseInt(match[1], 16),
       g: parseInt(match[2], 16),
       b: parseInt(match[3], 16)
     }
   }
-  if (match = color.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/)) {
+  match = color.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/)
+  if (match) {
     return {
       r: parseInt(match[1]),
       g: parseInt(match[2]),
@@ -108,7 +111,7 @@ function getRgb(color) {
 
 // direction: 'l' | 'r', default is 'r'
 // num: how many times to loop, should be a positive integer
-function loopArray(arr, num, direction) {
+function loopArray (arr, num, direction) {
   if (!isArray(arr)) {
     return
   }
@@ -126,7 +129,8 @@ function loopArray(arr, num, direction) {
   if (isLeft) {
     lp = arr.slice(0, num)
     rp = arr.slice(num)
-  } else {
+  }
+  else {
     lp = arr.slice(0, len - num)
     rp = arr.slice(len - num)
   }

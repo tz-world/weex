@@ -6,7 +6,8 @@ var pageInfo = {
     title = title || 'Weex HTML5'
     try {
       title = decodeURIComponent(title)
-    } catch (e) {}
+    }
+    catch (e) {}
     document.title = title
   }
 }

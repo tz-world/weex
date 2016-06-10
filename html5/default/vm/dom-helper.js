@@ -12,7 +12,7 @@
  *
  * @param  {string} type
  */
-export function _createBody(type) {
+export function _createBody (type) {
   const doc = this._app.doc
   return doc.createBody(type)
 }
@@ -23,7 +23,7 @@ export function _createBody(type) {
  *
  * @param  {string} type
  */
-export function _createElement(type) {
+export function _createElement (type) {
   const doc = this._app.doc
   return doc.createElement(type)
 }
@@ -34,7 +34,7 @@ export function _createElement(type) {
  *
  * @param  {object} element
  */
-export function _createBlock(element) {
+export function _createBlock (element) {
   const start = this._createBlockStart()
   const end = this._createBlockEnd()
   const blockId = lastestBlockId++
@@ -47,7 +47,7 @@ export function _createBlock(element) {
     element.appendChild(start)
     element.appendChild(end)
   }
-  return {start, end, element, blockId}
+  return { start, end, element, blockId }
 }
 
 let lastestBlockId = 1
@@ -56,7 +56,7 @@ let lastestBlockId = 1
  * Create and return a block starter.
  * Using this._app.doc
  */
-export function _createBlockStart() {
+export function _createBlockStart () {
   const doc = this._app.doc
   const anchor = doc.createComment('start')
   return anchor
@@ -66,7 +66,7 @@ export function _createBlockStart() {
  * Create and return a block ender.
  * Using this._app.doc
  */
-export function _createBlockEnd() {
+export function _createBlockEnd () {
   const doc = this._app.doc
   const anchor = doc.createComment('end')
   return anchor
@@ -80,7 +80,7 @@ export function _createBlockEnd() {
  * @param  {object} target
  * @param  {object} dest
  */
-export function _attachTarget(target, dest) {
+export function _attachTarget (target, dest) {
 
   if (dest.element) {
     const before = dest.end
@@ -119,7 +119,7 @@ export function _attachTarget(target, dest) {
  * @param  {object} target
  * @param  {object} before
  */
-export function _moveTarget(target, after) {
+export function _moveTarget (target, after) {
   if (target.element) {
     this._moveBlock(target, after)
   }
@@ -134,7 +134,7 @@ export function _moveTarget(target, after) {
  * @param  {object} element
  * @param  {object} before
  */
-export function _moveElement(element, after) {
+export function _moveElement (element, after) {
   const parent = after.parentNode
   if (parent) {
     parent.insertAfter(element, after)
@@ -147,7 +147,7 @@ export function _moveElement(element, after) {
  * @param  {object} fragBlock
  * @param  {object} before
  */
-export function _moveBlock(fragBlock, after) {
+export function _moveBlock (fragBlock, after) {
   const parent = after.parentNode
 
   if (parent) {
@@ -173,7 +173,7 @@ export function _moveBlock(fragBlock, after) {
  *
  * @param  {object} target
  */
-export function _removeTarget(target) {
+export function _removeTarget (target) {
 
   if (target.element) {
     this._removeBlock(target)
@@ -189,7 +189,7 @@ export function _removeTarget(target) {
  *
  * @param  {object} target
  */
-export function _removeElement(target) {
+export function _removeElement (target) {
   const parent = target.parentNode
 
   if (parent) {
@@ -204,7 +204,7 @@ export function _removeElement(target) {
  * @param  {object}  fragBlock
  * @param  {Boolean} preserveBlock=false
  */
-export function _removeBlock(fragBlock, preserveBlock = false) {
+export function _removeBlock (fragBlock, preserveBlock = false) {
   const result = []
   let el = fragBlock.start.nextSibling
 

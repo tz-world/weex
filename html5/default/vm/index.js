@@ -10,9 +10,9 @@ import * as directive from './directive'
 import * as domHelper from './dom-helper'
 import * as events from './events'
 
-import {registerModules, registerMethods} from '../app/register'
+import { registerModules, registerMethods } from '../app/register'
 
-function callOldReadyEntry(vm, component) {
+function callOldReadyEntry (vm, component) {
   if (component.methods &&
       component.methods.ready) {
     _.warn('"exports.methods.ready" is deprecated, ' +
@@ -31,7 +31,7 @@ function callOldReadyEntry(vm, component) {
  * @param {object} mergedData external data
  * @param {object} externalEvents external events
  */
-export default function Vm(
+export default function Vm (
   type,
   options,
   parentVm,

@@ -1,7 +1,7 @@
 import chai from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
-const {expect} = chai
+const { expect } = chai
 chai.use(sinonChai)
 
 import {
@@ -14,7 +14,7 @@ import {
   registerMethods
 } from '../../../default/app/register'
 
-function Ctx() {
+function Ctx () {
   this.customComponentMap = {}
 }
 
@@ -55,7 +55,8 @@ describe('register', () => {
       let err
       try {
         ctx.registerComponent('componentA', exports)
-      } catch (e) {
+      }
+      catch (e) {
         err = e
       }
 

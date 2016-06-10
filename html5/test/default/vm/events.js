@@ -7,12 +7,12 @@ chai.use(sinonChai)
 global.callNative = function () {}
 
 import Vm from '../../../default/vm'
-import {Document} from '../../../vdom'
+import { Document } from '../../../vdom'
 
 describe('bind and fire events', () => {
   let doc, customComponentMap, spy
 
-  function checkReady(vm, handler) {
+  function checkReady (vm, handler) {
     /* istanbul ignore else */
     if (vm._ready) {
       handler()
@@ -40,12 +40,12 @@ describe('bind and fire events', () => {
       template: {
         type: 'container',
         attr: {
-          a: function () {return this.x}
+          a: function () { return this.x }
         },
-        events: {click: 'handleClick'}
+        events: { click: 'handleClick' }
       },
       data: function () {
-        return {x: 1}
+        return { x: 1 }
       },
       methods: {
         handleClick: function () {
@@ -54,8 +54,8 @@ describe('bind and fire events', () => {
       }
     }
 
-    const app = {doc, customComponentMap}
-    const vm = new Vm('foo', customComponentMap.foo, {_app: app})
+    const app = { doc, customComponentMap }
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
     checkReady(vm, function () {
 
@@ -68,12 +68,12 @@ describe('bind and fire events', () => {
       expect(spy.args.length).eql(1)
       expect(doc.listener.updates.length).eql(0)
 
-      el.event.click({xxx: 1})
+      el.event.click({ xxx: 1 })
 
       expect(el.attr.a).eql(2)
       expect(spy.args.length).eql(1)
       expect(doc.listener.updates).eql([
-        {module: 'dom', method: 'updateAttrs', args: [el.ref, {a: 2}]}
+        { module: 'dom', method: 'updateAttrs', args: [el.ref, { a: 2 }] }
       ])
 
       done()
@@ -85,7 +85,7 @@ describe('bind and fire events', () => {
     customComponentMap.foo = {
       template: {
         type: 'aaa',
-        children: [{type: 'bar', component: true}]
+        children: [{ type: 'bar', component: true }]
       }
     }
     customComponentMap.bar = {
@@ -94,8 +94,8 @@ describe('bind and fire events', () => {
       }
     }
 
-    const app = {doc, customComponentMap}
-    const vm = new Vm('foo', customComponentMap.foo, {_app: app})
+    const app = { doc, customComponentMap }
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
     checkReady(vm, function () {
 
@@ -103,41 +103,41 @@ describe('bind and fire events', () => {
 
       expect(vm._childrenVms.length).eql(1)
 
-      let subVm = vm._childrenVms[0]
+      const subVm = vm._childrenVms[0]
       expect(vm._type).eql('foo')
       expect(subVm._type).eql('bar')
 
-      let spyA = sinon.spy()
-      let spyB = sinon.spy()
+      const spyA = sinon.spy()
+      const spyB = sinon.spy()
       vm.$on('customTypeA', spyA)
       subVm.$on('customTypeA', spyB)
 
-      let detail = {aaa: 111}
+      let detail = { aaa: 111 }
       vm.$emit('customTypeA', detail)
       expect(spyA.args.length).eql(1)
       expect(spyB.args.length).eql(0)
 
-      detail = {aaa: 111}
+      detail = { aaa: 111 }
       subVm.$emit('customTypeA', detail)
       expect(spyA.args.length).eql(1)
       expect(spyB.args.length).eql(1)
 
-      detail = {aaa: 111}
+      detail = { aaa: 111 }
       vm.$broadcast('customTypeA', detail)
       expect(spyA.args.length).eql(2)
       expect(spyB.args.length).eql(2)
 
-      detail = {aaa: 111}
+      detail = { aaa: 111 }
       subVm.$broadcast('customTypeA', detail)
       expect(spyA.args.length).eql(2)
       expect(spyB.args.length).eql(3)
 
-      detail = {aaa: 111}
+      detail = { aaa: 111 }
       vm.$dispatch('customTypeA', detail)
       expect(spyA.args.length).eql(3)
       expect(spyB.args.length).eql(3)
 
-      detail = {aaa: 111}
+      detail = { aaa: 111 }
       subVm.$dispatch('customTypeA', detail)
       expect(spyA.args.length).eql(4)
       expect(spyB.args.length).eql(4)
@@ -145,27 +145,27 @@ describe('bind and fire events', () => {
       vm.$off('customTypeA', spyA)
       subVm.$off('customTypeA')
 
-      detail = {aaa: 111}
+      detail = { aaa: 111 }
       vm.$emit('customTypeA', detail)
-      detail = {aaa: 111}
+      detail = { aaa: 111 }
       subVm.$emit('customTypeA', detail)
-      detail = {aaa: 111}
+      detail = { aaa: 111 }
       vm.$broadcast('customTypeA', detail)
-      detail = {aaa: 111}
+      detail = { aaa: 111 }
       subVm.$broadcast('customTypeA', detail)
-      detail = {aaa: 111}
+      detail = { aaa: 111 }
       vm.$dispatch('customTypeA', detail)
-      detail = {aaa: 111}
+      detail = { aaa: 111 }
       subVm.$dispatch('customTypeA', detail)
 
       expect(spyA.args.length).eql(4)
       expect(spyB.args.length).eql(4)
 
-      let spyAA = function (e) {
+      const spyAA = function (e) {
         e.stop()
         spyA()
       }
-      let spyBB = function (e) {
+      const spyBB = function (e) {
         e.stop()
         spyB()
       }
@@ -175,27 +175,27 @@ describe('bind and fire events', () => {
       vm.$off()
       vm.$off('unknownTypeA', spyA)
 
-      detail = {aaa: 111}
+      detail = { aaa: 111 }
       vm.$emit('customTypeA', detail)
       expect(spyA.args.length).eql(5)
       expect(spyB.args.length).eql(4)
-      detail = {aaa: 111}
+      detail = { aaa: 111 }
       subVm.$emit('customTypeA', detail)
       expect(spyA.args.length).eql(5)
       expect(spyB.args.length).eql(5)
-      detail = {aaa: 111}
+      detail = { aaa: 111 }
       vm.$broadcast('customTypeA', detail)
       expect(spyA.args.length).eql(6)
       expect(spyB.args.length).eql(5)
-      detail = {aaa: 111}
+      detail = { aaa: 111 }
       subVm.$broadcast('customTypeA', detail)
       expect(spyA.args.length).eql(6)
       expect(spyB.args.length).eql(6)
-      detail = {aaa: 111}
+      detail = { aaa: 111 }
       vm.$dispatch('customTypeA', detail)
       expect(spyA.args.length).eql(7)
       expect(spyB.args.length).eql(6)
-      detail = {aaa: 111}
+      detail = { aaa: 111 }
       subVm.$dispatch('customTypeA', detail)
       expect(spyA.args.length).eql(7)
       expect(spyB.args.length).eql(7)
@@ -210,13 +210,13 @@ describe('bind and fire events', () => {
 
     customComponentMap.foo = {
       data: function () {
-        return {list: [{a: 1}, {a: 2}, {a: 3}]}
+        return { list: [{ a: 1 }, { a: 2 }, { a: 3 }] }
       },
       template: {
         type: 'container',
         children: [{
           type: 'bar', component: true,
-          repeat: function () {return this.list}
+          repeat: function () { return this.list }
         }]
       },
       events: {
@@ -236,14 +236,14 @@ describe('bind and fire events', () => {
       }
     }
 
-    const app = {doc, customComponentMap}
-    const vm = new Vm('foo', customComponentMap.foo, {_app: app})
+    const app = { doc, customComponentMap }
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
     checkReady(vm, function () {
       doc.close()
       expect(vm._childrenVms.length).eql(3)
 
-      let detail = {aaa: 111}
+      let detail = { aaa: 111 }
       vm.$emit('customTypeA', detail)
       expect(vmSpy.args.length).eql(1)
       expect(subVmSpy.args.length).eql(0)
@@ -251,7 +251,7 @@ describe('bind and fire events', () => {
       expect(vmSpy.args[0][1]).is.an.object
       expect(vmSpy.args[0][1].detail).equal(detail)
 
-      detail = {aaa: 111}
+      detail = { aaa: 111 }
       vm.$broadcast('customTypeA', detail)
       expect(vmSpy.args.length).eql(2)
       expect(subVmSpy.args.length).eql(3)
@@ -272,13 +272,13 @@ describe('bind and fire events', () => {
 
     customComponentMap.foo = {
       data: function () {
-        return {list: [{a: 1}, {a: 2}, {a: 3}]}
+        return { list: [{ a: 1 }, { a: 2 }, { a: 3 }] }
       },
       template: {
         type: 'container',
         children: [{
           type: 'bar', component: true,
-          repeat: function () {return this.list}
+          repeat: function () { return this.list }
         }]
       },
       events: {
@@ -298,15 +298,15 @@ describe('bind and fire events', () => {
       }
     }
 
-    const app = {doc, customComponentMap}
-    const vm = new Vm('foo', customComponentMap.foo, {_app: app})
+    const app = { doc, customComponentMap }
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app })
 
     checkReady(vm, function () {
       doc.close()
       expect(vm._childrenVms.length).eql(3)
 
-      let detail = {aaa: 111}
-      let subVm = vm._childrenVms[1]
+      let detail = { aaa: 111 }
+      const subVm = vm._childrenVms[1]
       subVm.$emit('customTypeA', detail)
       expect(vmSpy.args.length).eql(0)
       expect(subVmSpy.args.length).eql(1)
@@ -314,7 +314,7 @@ describe('bind and fire events', () => {
       expect(subVmSpy.args[0][1]).is.an.object
       expect(subVmSpy.args[0][1].detail).equal(detail)
 
-      detail = {aaa: 111}
+      detail = { aaa: 111 }
       subVm.$dispatch('customTypeA', detail)
       expect(vmSpy.args.length).eql(1)
       expect(subVmSpy.args.length).eql(2)
@@ -330,12 +330,12 @@ describe('bind and fire events', () => {
   })
 
   it('lifecycel events', (done) => {
-    let vmSpy = sinon.spy()
+    const vmSpy = sinon.spy()
 
     customComponentMap.foo = {
       template: {
         type: 'aaa',
-        children: [{type: 'bar', component: true}]
+        children: [{ type: 'bar', component: true }]
       },
       data: function () {
         return {
@@ -371,9 +371,9 @@ describe('bind and fire events', () => {
       }
     }
 
-    const app = {doc, customComponentMap}
+    const app = { doc, customComponentMap }
     const evSpy = sinon.spy()
-    const vm = new Vm('foo', customComponentMap.foo, {_app: app}, null, null,
+    const vm = new Vm('foo', customComponentMap.foo, { _app: app }, null, null,
       {
         'hook:init': () => evSpy('hook:init'),
         'hook:created': () => evSpy('hook:created'),

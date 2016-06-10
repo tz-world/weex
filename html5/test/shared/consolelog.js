@@ -1,7 +1,7 @@
 import chai from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
-import {printlog}  from '../../shared/consolelog'
+import { printlog } from '../../shared/consolelog'
 
 const {
   expect
@@ -25,7 +25,7 @@ describe('polyfill for printlog', () => {
   })
 
   it('a log message', () => {
-    printlog('a log message', {msg: 'msg'}, '__VERBOSE')
+    printlog('a log message', { msg: 'msg' }, '__VERBOSE')
     expect(global.nativeLog.callCount).to.be.equal(1)
     expect(global.nativeLog.firstCall.args).eql(
       ['a log message', '{"msg":"msg"}', '__VERBOSE']

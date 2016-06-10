@@ -50,17 +50,17 @@ export default class Differ {
   }
 }
 
-function callTypeMap(group, type) {
+function callTypeMap (group, type) {
   const map = group[type]
   for (const ref in map) {
     map[ref]()
   }
 }
 
-function callTypeList(group, type) {
+function callTypeList (group, type) {
   const map = group[type]
   for (const ref in map) {
     const list = map[ref]
-    list.forEach((handler) => {handler()})
+    list.forEach((handler) => { handler() })
   }
 }

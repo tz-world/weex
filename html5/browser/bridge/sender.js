@@ -4,7 +4,7 @@ var utils = require('../utils')
 
 var _senderMap = {}
 
-function Sender(instance) {
+function Sender (instance) {
   if (!(this instanceof Sender)) {
     return new Sender(instance)
   }
@@ -13,7 +13,7 @@ function Sender(instance) {
   _senderMap[this.instanceId] = this
 }
 
-function _send(instanceId, msg) {
+function _send (instanceId, msg) {
   callJS(instanceId, [msg])
 }
 

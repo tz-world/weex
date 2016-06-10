@@ -1,4 +1,4 @@
-/// lang.js
+// / lang.js
 
 /**
  * Check if a string starts with $ or _
@@ -30,7 +30,7 @@ export function def (obj, key, val, enumerable) {
   })
 }
 
-/// env.js
+// / env.js
 
 // can we use __proto__?
 export const hasProto = '__proto__' in {}
@@ -83,7 +83,8 @@ export const nextTick = (function () {
       counter = (counter + 1) % 2
       textNode.data = counter
     }
-  } else {
+  }
+  else {
     // webpack attempts to inject a shim for setImmediate
     // if it is used as a global, so we have to work around that to
     // avoid bundling unnecessary code.
@@ -108,7 +109,8 @@ let _Set
 if (typeof Set !== 'undefined' && Set.toString().match(/native code/)) {
   // use native Set when available.
   _Set = Set
-} else {
+}
+else {
   // a non-standard Set polyfill that only works with primitive keys.
   _Set = function () {
     this.set = Object.create(null)
@@ -126,7 +128,7 @@ if (typeof Set !== 'undefined' && Set.toString().match(/native code/)) {
 
 export { _Set }
 
-/// shared
+// / shared
 
 /**
  * Remove an item from an array
@@ -248,7 +250,8 @@ export function toArray (list, start) {
 export function extend (target, ...src) {
   if (typeof Object.assign === 'function') {
     Object.assign(target, ...src)
-  } else {
+  }
+  else {
     const first = src.shift()
     for (const key in first) {
       target[key] = first[key]
@@ -296,10 +299,10 @@ export function isPlainObject (obj) {
 
 export const isArray = Array.isArray
 
-/// other
+// / other
 
 export function stringify (x) {
-  return typeof x === 'undefined' || x === null || typeof(x) === 'function'
+  return typeof x === 'undefined' || x === null || typeof (x) === 'function'
     ? ''
     : typeof x === 'object'
       ? x instanceof RegExp
@@ -311,14 +314,14 @@ export function stringify (x) {
 }
 
 export function typof (v) {
-  let s = Object.prototype.toString.call(v)
+  const s = Object.prototype.toString.call(v)
   return s.substring(8, s.length - 1).toLowerCase()
 }
 
 export function normalize (v) {
-  let type = typof(v)
+  const type = typof(v)
 
-  switch(type) {
+  switch (type) {
     case 'undefined':
     case 'null':
       return ''
@@ -372,5 +375,3 @@ export function debug (...args) {
 export function log (...args) {
   enableLog && console.log && console.log('[JS Framework]', ...args)
 }
-
-

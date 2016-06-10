@@ -9,12 +9,13 @@ var logger = {
   error: function () {}
 }
 
-function hijack(k) {
+function hijack (k) {
   if (utils.isArray(k)) {
     k.forEach(function (key) {
       hijack(key)
     })
-  } else {
+  }
+  else {
     if (console[k]) {
       logger[k] = function () {
         console[k].apply(

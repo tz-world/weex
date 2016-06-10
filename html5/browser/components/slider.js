@@ -61,12 +61,13 @@ Slider.prototype.attr = {
   },
 
   playstatus: function (val) {
-    this.playstatus = val && val !== 'false' ? true : false
+    this.playstatus = val && val !== 'false'
     this.autoPlay = this.playstatus
     if (this.carrousel) {
       if (this.playstatus) {
         this.play()
-      } else {
+      }
+      else {
         this.stop()
       }
     }
@@ -170,7 +171,8 @@ Slider.prototype.createChildren = function () {
             index: 0
           }
         })
-      } else {
+      }
+      else {
         child = componentManager.createElement(children[i], 'li')
         this.children.push(child)
         fragment.appendChild(child.node)
@@ -202,7 +204,8 @@ Slider.prototype.onAppend = function () {
     this.carrousel.stop()
     this.carrousel = null
   }
-  this.carrousel = new lib.carrousel(this.sliderContainer, {
+  const Carrousel = lib.carrousel
+  this.carrousel = new Carrousel(this.sliderContainer, {
     autoplay: this.autoPlay,
     useGesture: true
   })
@@ -231,7 +234,8 @@ Slider.prototype.onAppend = function () {
       var imgSrc = img.getAttribute('img-src')
       if (iLazySrc) {
         img.style.backgroundImage = 'url(' + iLazySrc + ')'
-      } else if (imgSrc) {
+      }
+      else if (imgSrc) {
         img.style.backgroundImage = 'url(' + imgSrc + ')'
       }
       img.removeAttribute('i-lazy-src')
@@ -258,7 +262,7 @@ Slider.prototype.onAppend = function () {
       return false
     }
     return true
-  }.bind(this))
+  })
 
 }
 
@@ -268,7 +272,7 @@ Slider.prototype._updateIndicators = function () {
 
 Slider.prototype._getSliderChangeHandler = function (e) {
   if (!this.sliderChangeHandler) {
-    this.sliderChangeHandler = (function (e) {
+    this.sliderChangeHandler = function (e) {
       var index = this.carrousel.items.index
       this.currentIndex = index
 
@@ -276,7 +280,7 @@ Slider.prototype._getSliderChangeHandler = function (e) {
       this._updateIndicators()
 
       this.dispatchEvent('change', { index: index })
-    }).bind(this)
+    }.bind(this)
   }
   return this.sliderChangeHandler
 }

@@ -5,7 +5,7 @@ require('kountdown/build/countdown')
 
 var FORMATTER_REGEXP = /(\\)?(dd*|hh?|mm?|ss?)/gi
 
-function formatDateTime(data, formatter, timeColor) {
+function formatDateTime (data, formatter, timeColor) {
   return formatter.replace(FORMATTER_REGEXP, function (m) {
     var len = m.length
     var firstChar = m.charAt(0)

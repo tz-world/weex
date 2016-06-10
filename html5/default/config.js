@@ -1,18 +1,17 @@
-export const nativeComponentMap = {
-  text: true,
-  image: true,
-  container: true,
-  slider: {
-    type: 'slider',
-    append: 'tree'
+export default {
+  nativeComponentMap: {
+    text: true,
+    image: true,
+    container: true,
+    slider: {
+      type: 'slider',
+      append: 'tree'
+    },
+    cell: {
+      type: 'cell',
+      append: 'tree'
+    }
   },
-  cell: {
-    type: 'cell',
-    append: 'tree'
-  }
+  customComponentMap: {},
+  debug: false
 }
-
-export const customComponentMap = {}
-
-export var debug = false
-

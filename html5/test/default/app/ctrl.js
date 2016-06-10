@@ -1,7 +1,7 @@
 import chai from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
-const {expect} = chai
+const { expect } = chai
 chai.use(sinonChai)
 
 global.callNative = function () {}
@@ -9,7 +9,7 @@ global.callNative = function () {}
 import * as _ from '../../../default/util'
 import * as ctrl from '../../../default/app/ctrl'
 import Differ from '../../../default/app/differ'
-import {Document} from '../../../vdom'
+import { Document } from '../../../vdom'
 import pkg from '../../../../package.json'
 
 describe('the api of app', () => {
@@ -17,7 +17,7 @@ describe('the api of app', () => {
   let spy1
   let spy2
 
-  function createApp() {
+  function createApp () {
     const id = Date.now()
 
     var app = {
@@ -117,7 +117,7 @@ describe('the api of app', () => {
 
   describe('callback', () => {
     it('with a simple data', () => {
-      const data = {a: 'b'}
+      const data = { a: 'b' }
       app.callback('1', data, true)
       expect(spy2.calledOnce).to.be.true
       expect(spy2.args[0][0]).to.deep.equal(data)
@@ -130,7 +130,7 @@ describe('the api of app', () => {
     })
 
     it('multiple called', () => {
-      const data = {a: 'b'}
+      const data = { a: 'b' }
       app.callback('1', data, true)
       expect(spy2.calledTwice).to.be.true
       expect(spy2.args[0][0]).to.deep.equal(data)
@@ -151,7 +151,7 @@ describe('the api of app', () => {
 
   describe('refreshData', () => {
     it('a simple data', () => {
-      const data = {b: 'c'}
+      const data = { b: 'c' }
       app.refreshData(data)
       expect(app.vm).to.deep.equal(data)
 

@@ -16,7 +16,7 @@ import * as _ from '../util'
  * @param  {string} id
  * @return {Vm}
  */
-export function $(id) {
+export function $ (id) {
   _.warn('Vm#$ is deprecated, please use Vm#$vm instead')
   const info = this._ids[id]
   if (info) {
@@ -30,7 +30,7 @@ export function $(id) {
  * @param  {string} id
  * @return {Element}
  */
-export function $el(id) {
+export function $el (id) {
   const info = this._ids[id]
   if (info) {
     return info.el
@@ -43,7 +43,7 @@ export function $el(id) {
  * @param  {string} id
  * @return {Vm}
  */
-export function $vm(id) {
+export function $vm (id) {
   const info = this._ids[id]
   if (info) {
     return info.vm
@@ -55,7 +55,7 @@ export function $vm(id) {
  *
  * @param  {Function} fn
  */
-export function $renderThen(fn) {
+export function $renderThen (fn) {
   const app = this._app
   const differ = app.differ
   return differ.then(() => {
@@ -64,19 +64,19 @@ export function $renderThen(fn) {
 }
 
 /**
- * scroll an element specified by id into view, 
+ * scroll an element specified by id into view,
  * moreover specify a number of offset optionally
  * @param  {string} id
  * @param  {number} offset
  */
-export function $scrollTo(id, offset) {
-  _.warn('Vm#$scrollTo is deprecated, '+ 
-          'please use "require(\'@weex-module/dom\')' + 
+export function $scrollTo (id, offset) {
+  _.warn('Vm#$scrollTo is deprecated, ' +
+          'please use "require(\'@weex-module/dom\')' +
           '.scrollTo(el, options)" instead')
   const el = this.$el(id)
   if (el) {
     const dom = this._app.requireModule('dom')
-    dom.scrollToElement(el.ref, {offset: offset})
+    dom.scrollToElement(el.ref, { offset: offset })
   }
 }
 
@@ -90,7 +90,7 @@ export function $scrollTo(id, offset) {
  * @param  {object}   [options.delay=0(ms)]
  * @param  {Function} callback
  */
-export function $transition(id, options, callback) {
+export function $transition (id, options, callback) {
   const el = this.$el(id)
   if (el && options && options.styles) {
     const animation = this._app.requireModule('animation')
@@ -116,7 +116,7 @@ export function $transition(id, options, callback) {
  * @property {number} env.[deviceWidth=750]
  * @property {number} env.deviceHeight
  */
-export function $getConfig(callback) {
+export function $getConfig (callback) {
   const config = _.extend({
     env: global.WXEnvironment || {}
   }, this._app.options)
@@ -134,9 +134,9 @@ export function $getConfig(callback) {
  * @param  {object}   params
  * @param  {Function} callback
  */
-export function $sendHttp(params, callback) {
-  _.warn('Vm#$sendHttp is deprecated, '+ 
-          'please use "require(\'@weex-module/stream\')' + 
+export function $sendHttp (params, callback) {
+  _.warn('Vm#$sendHttp is deprecated, ' +
+          'please use "require(\'@weex-module/stream\')' +
           '.sendHttp(params, callback)" instead')
   const stream = this._app.requireModule('stream')
   stream.sendHttp(params, callback)
@@ -147,22 +147,22 @@ export function $sendHttp(params, callback) {
  * open a url
  * @param  {string} url
  */
-export function $openURL(url) {
-  _.warn('Vm#$openURL is deprecated, '+ 
-          'please use "require(\'@weex-module/event\')' + 
+export function $openURL (url) {
+  _.warn('Vm#$openURL is deprecated, ' +
+          'please use "require(\'@weex-module/event\')' +
           '.openURL(url)" instead')
   const event = this._app.requireModule('event')
   event.openURL(url)
 }
 
 /**
- * @deprecated 
+ * @deprecated
  * set a title for page
  * @param  {string} title
  */
-export function $setTitle(title) {
-  _.warn('Vm#$setTitle is deprecated, '+ 
-          'please use "require(\'@weex-module/pageInfo\')' + 
+export function $setTitle (title) {
+  _.warn('Vm#$setTitle is deprecated, ' +
+          'please use "require(\'@weex-module/pageInfo\')' +
           '.setTitle(title)" instead')
   const pageInfo = this._app.requireModule('pageInfo')
   pageInfo.setTitle(title)
@@ -175,8 +175,8 @@ export function $setTitle(title) {
  * @param  {string} methodName
  * @param  {...*} the rest arguments
  */
-export function $call(moduleName, methodName, ...args) {
-  _.warn('Vm#$call is deprecated, ' + 
+export function $call (moduleName, methodName, ...args) {
+  _.warn('Vm#$call is deprecated, ' +
     'please use "require(\'@weex-module/moduleName\')" instead')
   const module = this._app.requireModule(moduleName)
   if (module && module[methodName]) {

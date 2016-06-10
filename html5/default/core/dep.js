@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { remove } from '../util'
 
 let uid = 0

@@ -29,8 +29,6 @@ Datepicker.prototype.create = function () {
 Datepicker.prototype.attr = {
   disabled: function (val) {
     this.node.disabled = val && val !== 'false'
-                    ? true
-                    : false
   }
 }
 

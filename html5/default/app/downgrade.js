@@ -1,5 +1,5 @@
 import semver from 'semver'
-import {extend, isPlainObject, typof}  from '../util'
+import { extend, isPlainObject, typof } from '../util'
 
 /**
  * [normalizeVersion description]
@@ -7,7 +7,7 @@ import {extend, isPlainObject, typof}  from '../util'
  * @return {String} Version
  */
 export function normalizeVersion (v) {
-  const isValid = semver.valid(v) ? true : false
+  const isValid = semver.valid(v)
   if (isValid) {
     return v
   }
@@ -15,7 +15,7 @@ export function normalizeVersion (v) {
   v = typeof (v) === 'string' ? v : ''
   const split = v.split('.')
   let i = 0
-  let result = []
+  const result = []
 
   while (i < 3) {
     const s = typeof (split[i]) === 'string' && split[i] ? split[i] : '0'
@@ -27,12 +27,12 @@ export function normalizeVersion (v) {
 }
 
 export function getError (key, val, criteria) {
-  let result = {
+  const result = {
     isDowngrade: true,
     errorType: 1,
     code: 1000
   }
-  let getMsg = function (key, val, criteria) {
+  const getMsg = function (key, val, criteria) {
     return 'Downgrade[' + key + '] :: deviceInfo '
       + val + ' matched criteria ' + criteria
   }
@@ -42,11 +42,14 @@ export function getError (key, val, criteria) {
 
   if (_key.indexOf('osversion') >= 0) {
     result.code = 1001
-  }else if (_key.indexOf('appversion') >= 0) {
+  }
+  else if (_key.indexOf('appversion') >= 0) {
     result.code = 1002
-  }else if (_key.indexOf('weexversion') >= 0) {
+  }
+  else if (_key.indexOf('weexversion') >= 0) {
     result.code = 1003
-  }else if (_key.indexOf('devicemodel') >= 0) {
+  }
+  else if (_key.indexOf('devicemodel') >= 0) {
     result.code = 1004
   }
 
@@ -96,12 +99,12 @@ export function check (config, deviceInfo) {
     isDowngrade: false // defautl is pass
   }
 
-  for (let i in deviceInfo) {
+  for (const i in deviceInfo) {
     const key = i
     const keyLower = key.toLowerCase()
     const val = deviceInfo[i]
-    const isVersion = keyLower.indexOf('version') >= 0 ? true : false
-    const isDeviceModel = keyLower.indexOf('devicemodel') >= 0 ? true : false
+    const isVersion = keyLower.indexOf('version') >= 0
+    const isDeviceModel = keyLower.indexOf('devicemodel') >= 0
     const criteria = cObj[i]
 
     if (criteria && isVersion) {
@@ -112,7 +115,8 @@ export function check (config, deviceInfo) {
         result = extend(this.getError(key, val, criteria))
         break
       }
-    }else if (isDeviceModel) {
+    }
+    else if (isDeviceModel) {
       const _criteria = typof(criteria) === 'array' ? criteria : [criteria]
       if (_criteria.indexOf(val) >= 0) {
         result = extend(this.getError(key, val, criteria))

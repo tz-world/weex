@@ -32,6 +32,7 @@ Spinner.prototype.getStyleSheet = function () {
     return
   }
   var styles = document.styleSheets
+  /* eslint-disable no-labels */
   outer: for (var i = 0, l = styles.length; i < l; i++) {
     var rules = styles[i].rules
     for (var j = 0, m = rules.length; j < m; j++) {
@@ -44,6 +45,7 @@ Spinner.prototype.getStyleSheet = function () {
       }
     }
   }
+  /* eslint-enable no-labels */
   this.styleSheet = styles[i]
 }
 

@@ -10,7 +10,7 @@ var utils = require('../utils')
 // scale.
 require('../styles/tabheader.css')
 
-function TabHeader(data) {
+function TabHeader (data) {
   Atomic.call(this, data)
 }
 
@@ -54,7 +54,8 @@ proto._initFoldBtn = function () {
   btn.addEventListener('click', function () {
     if (_this.unfolding) {
       _this._folding()
-    } else {
+    }
+    else {
       _this._unfolding()
     }
   })
@@ -152,13 +153,14 @@ proto._initClickEvent = function () {
     }
 
     var floor = target.getAttribute('data-floor')
-
+    /* eslint-disable eqeqeq */
     if (_this.data.attr.selectedIndex == floor) {
       // Duplicated clicking, not to trigger select event.
       return
     }
+    /* eslint-enable eqeqeq */
 
-    fireEvent(target, 'select', {index:  floor})
+    fireEvent(target, 'select', { index: floor })
   })
 }
 
@@ -169,7 +171,8 @@ proto._initSelectEvent = function () {
     var index
     if (evt.index !== undefined) {
       index = evt.index
-    } else if (evt.data && evt.data.index !== undefined) {
+    }
+    else if (evt.data && evt.data.index !== undefined) {
       index = evt.data.index
     }
 
@@ -201,11 +204,14 @@ proto.attr = {
 
     list.forEach(function (item, idx) {
       var html = itemTmpl.replace('{{floor}}', idx)
+      /* eslint-disable eqeqeq */
       if (curItem == idx) {
         html = html.replace('{{hlIcon}}', createHighlightIcon())
-      } else {
+      }
+      else {
         html = html.replace('{{hlIcon}}', '')
       }
+      /* eslint-enable eqeqeq */
 
       html = html.replace('{{floorName}}', item)
 
@@ -277,7 +283,7 @@ proto._scrollToView = function (node) {
   }
 
   var defaultVal = this._body.scrollLeft
-  var leftVal = defaultVal  - node.offsetLeft + 300
+  var leftVal = defaultVal - node.offsetLeft + 300
 
   var scrollVal = getScrollVal(this._body.getBoundingClientRect(), node)
   doScroll(this._body, scrollVal)
@@ -286,7 +292,7 @@ proto._scrollToView = function (node) {
 // scroll the tabheader.
 // positive val means to scroll right.
 // negative val means to scroll left.
-function doScroll(node, val, finish) {
+function doScroll (node, val, finish) {
   if (!val) {
     return
   }
@@ -301,7 +307,8 @@ function doScroll(node, val, finish) {
   setTimeout(function () {
     if (val > 0) {
       node.scrollLeft += 2
-    } else {
+    }
+    else {
       node.scrollLeft -= 2
     }
     finish -= 2
@@ -311,7 +318,7 @@ function doScroll(node, val, finish) {
 }
 
 // get scroll distance.
-function getScrollVal(rect, node) {
+function getScrollVal (rect, node) {
   var left = node.previousSibling
   var right = node.nextSibling
   var scrollVal
@@ -339,7 +346,8 @@ function getScrollVal(rect, node) {
   var nodeRect = node.getBoundingClientRect()
   if (nodeRect.left < rect.left) {
     scrollVal = nodeRect.left
-  } else if (nodeRect.right > rect.right) {
+  }
+  else if (nodeRect.right > rect.right) {
     scrollVal = nodeRect.right - rect.right
   }
 
@@ -347,7 +355,7 @@ function getScrollVal(rect, node) {
 }
 
 // trigger and broadcast events.
-function fireEvent(element, type, data) {
+function fireEvent (element, type, data) {
   var evt = document.createEvent('Event')
   evt.data = data
   utils.extend(evt, data)
@@ -357,12 +365,12 @@ function fireEvent(element, type, data) {
   element.dispatchEvent(evt)
 }
 
-function createHighlightIcon(code) {
+function createHighlightIcon (code) {
   var html = '<i class="hl-icon iconfont">' + '&#xe650' + '</i>'
   return html
 }
 
-function isValidColor(color) {
+function isValidColor (color) {
   if (!color) {
     return false
   }

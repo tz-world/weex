@@ -15,8 +15,6 @@ function Input (data) {
   this.value = attrs.value
   this.placeholder = attrs.placeholder
   this.autofocus = attrs.autofocus && (attrs.autofocus !== 'false')
-                    ? true
-                    : false
   Atomic.call(this, data)
 }
 
@@ -50,8 +48,6 @@ Input.prototype.updateStyle = function (style) {
 Input.prototype.attr = {
   disabled: function (val) {
     this.node.disabled = val && val !== 'false'
-                    ? true
-                    : false
   }
 }
 

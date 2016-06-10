@@ -5,7 +5,7 @@ var utils = require('../utils')
 
 var ID_PREFIX = 'weex_embed_'
 
-function _generateId() {
+function _generateId () {
   return ID_PREFIX + utils.getRandom(10)
 }
 

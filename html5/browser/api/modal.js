@@ -14,7 +14,7 @@ var msg = {
   //  - okTitle: title of ok button
   //  - callback
   alert: function (config, callbackId) {
-    var sender =  this.sender
+    var sender = this.sender
     config.callback = function () {
       sender.performCallback(callbackId)
     }
@@ -27,7 +27,7 @@ var msg = {
   //  - cancelTitle: title of cancel button
   //  - callback
   confirm: function (config, callbackId) {
-    var sender =  this.sender
+    var sender = this.sender
     config.callback = function (val) {
       sender.performCallback(callbackId, val)
     }
@@ -40,7 +40,7 @@ var msg = {
   //  - cancelTitle: title of cancel button
   //  - callback
   prompt: function (config, callbackId) {
-    var sender =  this.sender
+    var sender = this.sender
     config.callback = function (val) {
       sender.performCallback(callbackId, val)
     }

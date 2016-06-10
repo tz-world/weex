@@ -20,7 +20,7 @@ var scrollableTypes = [
   'vlist'
 ]
 
-function ComponentManager(instance) {
+function ComponentManager (instance) {
   this.instanceId = instance.instanceId
   this.weexInstance = instance
   this.componentMap = {}
@@ -47,7 +47,7 @@ ComponentManager.prototype = {
 
   // Fire a event 'renderbegin'/'renderend' on body element.
   rendering: function () {
-    function _renderingEnd() {
+    function _renderingEnd () {
       // get weex instance root
       window.dispatchEvent(new Event('renderend'))
       this._renderingTimer = null
@@ -58,7 +58,8 @@ ComponentManager.prototype = {
         _renderingEnd.bind(this),
         RENDERING_INDENT
       )
-    } else {
+    }
+    else {
       window.dispatchEvent(new Event('renderbegin'))
       this._renderingTimer = setTimeout(
         _renderingEnd.bind(this),
@@ -78,7 +79,7 @@ ComponentManager.prototype = {
       return
     }
     // remove from this.componentMap cursively
-    (function _removeCursively(_ref) {
+    (function _removeCursively (_ref) {
       var child = self.componentMap[_ref]
       var listeners = child._listeners
       var children = child.data.children
@@ -134,7 +135,7 @@ ComponentManager.prototype = {
     element.rootId = this.weexInstance.rootId
     element.ref = '_root'
 
-    var root = this.createElement(element, nodeType)
+    root = this.createElement(element, nodeType)
     body = document.querySelector('#' + this.weexInstance.rootId)
           || document.body
     body.appendChild(root.node)
@@ -187,7 +188,8 @@ ComponentManager.prototype = {
       var parent = this.componentMap[component.parentRef]
       component.onRemove && component.onRemove()
       parent.removeChild(component)
-    } else {
+    }
+    else {
       console.warn('ref: ', ref)
     }
   },
@@ -252,7 +254,8 @@ ComponentManager.prototype = {
     if (child) {
       child.parentRef = before.parentRef
       parent.insertBefore(child, before)
-    } else {
+    }
+    else {
       return
     }
 
@@ -289,7 +292,8 @@ ComponentManager.prototype = {
         && children.length > index
         && index !== -1) {
       this.insertBefore(children[index].ref, element)
-    } else {
+    }
+    else {
       this.appendChild(parentRef, element)
     }
   },
@@ -308,7 +312,8 @@ ComponentManager.prototype = {
     var component
     if (typeof ref === 'string' || typeof ref === 'number') {
       component = this.componentMap[ref]
-    } else if (Object.prototype.toString.call(ref).slice(8, -1) === 'Object') {
+    }
+    else if (Object.prototype.toString.call(ref).slice(8, -1) === 'Object') {
       component = ref
       ref = component.data.ref
     }

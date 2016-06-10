@@ -1,4 +1,4 @@
-const {console} = global
+const { console } = global
 let logLevel
 
 const LEVEL_MAP = {
@@ -12,24 +12,25 @@ const LEVEL_MAP = {
 const LEVELS = ['error', 'warn', 'info', 'debug', 'verbose', 'all']
 
 function normalize (v) {
-  var type = Object.prototype.toString.call(v)
+  const type = Object.prototype.toString.call(v)
   if (type.toLowerCase() === '[object object]') {
     v = JSON.stringify(v)
-  } else {
+  }
+  else {
     v = String(v)
   }
   return v
 }
 
-export function printlog(...args) {
-  const {WXEnvironment, nativeLog} = global
+export function printlog (...args) {
+  const { WXEnvironment, nativeLog } = global
 
   logLevel = (WXEnvironment &&
                 WXEnvironment.logLevel) ||
                 'info'
 
   if (typeof nativeLog === 'function') {
-    let level = args.pop()
+    const level = args.pop()
     if (LEVELS.indexOf(LEVEL_MAP[level]) <=
           LEVELS.indexOf(logLevel)) {
       nativeLog(...args.map(v => normalize(v)), level)

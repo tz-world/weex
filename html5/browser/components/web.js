@@ -51,7 +51,8 @@ Web.prototype.msgHandler = function (evt) {
   if (typeof msg === 'string') {
     try {
       msg = JSON.parse(msg)
-    } catch (e) {}
+    }
+    catch (e) {}
   }
   if (!msg) {
     return

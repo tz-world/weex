@@ -1,7 +1,7 @@
 import chai from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
-const {expect} = chai
+const { expect } = chai
 chai.use(sinonChai)
 
 global.callNative = function () {}
@@ -9,7 +9,7 @@ global.callNative = function () {}
 import AppInstance from '../../../default/app'
 import * as bundle from '../../../default/app/bundle'
 import * as ctrl from '../../../default/app/ctrl'
-import {Node} from '../../../vdom'
+import { Node } from '../../../vdom'
 import {
   registerComponent,
   requireComponent,
@@ -50,9 +50,10 @@ describe('App Instance', () => {
     })
 
     it('with some apis', () => {
-      expect(app.__proto__).to.contain.all.keys(bundle)
-      expect(app.__proto__).to.contain.all.keys(ctrl)
-      expect(app.__proto__).to.contain.all.keys({
+      const proto = Object.getPrototypeOf(app)
+      expect(proto).to.contain.all.keys(bundle)
+      expect(proto).to.contain.all.keys(ctrl)
+      expect(proto).to.contain.all.keys({
         registerComponent,
         requireComponent,
         requireModule

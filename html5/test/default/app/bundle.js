@@ -11,7 +11,7 @@ global.callNative = function () {}
 import * as _ from '../../../default/util'
 import * as bundle from '../../../default/app/bundle'
 import * as register from '../../../default/app/register'
-import {Document}
+import { Document }
 from '../../../vdom'
 import Vm from '../../../default/vm'
 import pkg from '../../../../package.json'
@@ -48,7 +48,7 @@ describe('parsing a bundle file', () => {
       const id = Date.now()
       callTasksSpy = sinon.spy()
 
-      let doc = new Document(id, '', (tasks, callback) => {
+      const doc = new Document(id, '', (tasks, callback) => {
         app.callTasks(tasks, callback)
       })
 
@@ -206,7 +206,7 @@ describe('parsing a bundle file', () => {
 
       it('a weex component', () => {
         const result = app.bootstrap(
-          '@weex-component/main', {transformerVersion: '0.1.99'})
+          '@weex-component/main', { transformerVersion: '0.1.99' })
 
         expect(result).not.instanceof(Error)
         expect(callTasksSpy.calledTwice).to.be.true
@@ -240,13 +240,13 @@ describe('parsing a bundle file', () => {
 
       it('with a less wrong transformer version', () => {
         const result = app.bootstrap(
-          '@weex-component/main', {transformerVersion: '0.0.1'})
+          '@weex-component/main', { transformerVersion: '0.0.1' })
         expect(result).instanceof(Error)
       })
 
       it('with a bigger wrong transformer version', () => {
         const result = app.bootstrap(
-          '@weex-component/main', {transformerVersion: '9.9.9'})
+          '@weex-component/main', { transformerVersion: '9.9.9' })
         expect(result).instanceof(Error)
       })
 
@@ -257,14 +257,14 @@ describe('parsing a bundle file', () => {
     let app
     let callTasksSpy
     let readySpy
-    let template = {
+    const template = {
       type: 'container',
       children: [{
         type: 'text',
         attr: {
           value: 'Hello World'
         }
-      },{
+      }, {
         type: 'custom'
       }]
     }
@@ -274,7 +274,7 @@ describe('parsing a bundle file', () => {
       callTasksSpy = sinon.spy()
       readySpy = sinon.spy()
 
-      let doc = new Document(id, '', (tasks, callback) => {
+      const doc = new Document(id, '', (tasks, callback) => {
         app.callTasks(tasks, callback)
       })
 
@@ -321,7 +321,6 @@ describe('parsing a bundle file', () => {
             ready: readyfn
           }
         })
-
 
         app.register('main', {
           template: template,
@@ -438,7 +437,7 @@ describe('parsing a bundle file', () => {
       const id = Date.now()
       callTasksSpy = sinon.spy()
 
-      let doc = new Document(id, '', (tasks, callback) => {
+      const doc = new Document(id, '', (tasks, callback) => {
         app.callTasks(tasks, callback)
       })
 

@@ -7,10 +7,10 @@ const {
 chai.use(sinonChai)
 
 import framework from '../../runtime'
-import * as config from '../../default/config'
+import config from '../../default/config'
 import Vm from '../../default/vm'
 
-function clearRefs(json) {
+function clearRefs (json) {
   delete json.ref
   if (json.children) {
     json.children.forEach(clearRefs)
@@ -94,11 +94,11 @@ describe('framework entry', () => {
         module: 'dom',
         method: 'createBody',
         args: [{
-            ref: '_root',
-            type: 'container',
-            attr: {},
-            style: {}
-          }]
+          ref: '_root',
+          type: 'container',
+          attr: {},
+          style: {}
+        }]
       }])
       // expect(callNativeSpy.firstCall.args[2]).to.not.equal('-1')
 
@@ -108,12 +108,12 @@ describe('framework entry', () => {
         module: 'dom',
         method: 'addElement',
         args: ['_root', {
-            type: 'text',
-            attr: {
-              value: 'Hello World'
-            },
-            style: {}
+          type: 'text',
+          attr: {
+            value: 'Hello World'
           },
+          style: {}
+        },
           0
         ]
       }])
@@ -197,7 +197,7 @@ describe('framework entry', () => {
     it('modify showText to false', () => {
       const json = framework.getRoot(instanceId)
       const textRef = json.children[0].ref
-      framework.refreshInstance(instanceId, {showText: false})
+      framework.refreshInstance(instanceId, { showText: false })
       expect(callNativeSpy.callCount).to.be.equal(2)
 
       expect(callNativeSpy.firstCall.args[0]).to.be.equal(instanceId)

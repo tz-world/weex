@@ -1,7 +1,7 @@
 import chai from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
-const {expect} = chai
+const { expect } = chai
 chai.use(sinonChai)
 
 import * as Downgrade from '../../../default/app/downgrade'
@@ -65,16 +65,16 @@ describe('downgrade', () => {
       }
 
       const cases = [
-        [{ios: { osVersion: '>=9' }}, true],
-        [{ios: { appVersion: '<10.0.0' }}, true],
-        [{ios: { appVersion: '>10.0.0' }}, false],
-        [{ios: { appVersion: '5.4.0' }}, true],
-        [{ios: { deviceModel: 'ABC' }}, false],
-        [{ios: { deviceModel: 'iPhone6.2' }}, true],
-        [{ios: { deviceModel: ['iPhone6.2', 'ABC'] }}, true],
-        [{ios: { osVersion: '>9', deviceModel: ['iPhone6.2', 'ABC'] }}, true],
-        [{ios: { osVersion: '>=9', deviceModel: ['iPhone6.2', 'ABC'] }}, true],
-        [{ios: { weexVersion: '<=9' }}, true]
+        [{ ios: { osVersion: '>=9' }}, true],
+        [{ ios: { appVersion: '<10.0.0' }}, true],
+        [{ ios: { appVersion: '>10.0.0' }}, false],
+        [{ ios: { appVersion: '5.4.0' }}, true],
+        [{ ios: { deviceModel: 'ABC' }}, false],
+        [{ ios: { deviceModel: 'iPhone6.2' }}, true],
+        [{ ios: { deviceModel: ['iPhone6.2', 'ABC'] }}, true],
+        [{ ios: { osVersion: '>9', deviceModel: ['iPhone6.2', 'ABC'] }}, true],
+        [{ ios: { osVersion: '>=9', deviceModel: ['iPhone6.2', 'ABC'] }}, true],
+        [{ ios: { weexVersion: '<=9' }}, true]
       ]
 
       cases.map(function (item, index) {
@@ -96,19 +96,19 @@ describe('downgrade', () => {
       }
 
       const cases = [
-        [{ios: { osVersion: '>=9' }}, true],
-        [{ios: { osVersion: '>8' }}, true],
-        [{ios: { appVersion: '<10.0.0' }}, false],
-        [{ios: { appVersion: '>10.0.0' }}, false],
-        [{ios: { appVersion: '5.4.0' }}, false],
-        [{ios: { deviceModel: 'ABC' }}, false],
-        [{ios: { deviceModel: 'iPhone6.2' }}, true],
-        [{ios: { deviceModel: ['MF353TA/A', 'ABC'] }}, false],
-        [{ios: { osVersion: '>9', deviceModel: ['MF353TA/A', 'ABC'] }}, true],
-        [{ios: { osVersion: '>=9', deviceModel: ['MF353TA/A', 'ABC'] }}, true],
-        [{ios: { weexVersion: '<=9' }}, true],
-        [{ios: { weexVersion: '>=1.3.0' }}, true],
-        [{ios: { weexVersion: '>=1.3.0' }}, true]
+        [{ ios: { osVersion: '>=9' }}, true],
+        [{ ios: { osVersion: '>8' }}, true],
+        [{ ios: { appVersion: '<10.0.0' }}, false],
+        [{ ios: { appVersion: '>10.0.0' }}, false],
+        [{ ios: { appVersion: '5.4.0' }}, false],
+        [{ ios: { deviceModel: 'ABC' }}, false],
+        [{ ios: { deviceModel: 'iPhone6.2' }}, true],
+        [{ ios: { deviceModel: ['MF353TA/A', 'ABC'] }}, false],
+        [{ ios: { osVersion: '>9', deviceModel: ['MF353TA/A', 'ABC'] }}, true],
+        [{ ios: { osVersion: '>=9', deviceModel: ['MF353TA/A', 'ABC'] }}, true],
+        [{ ios: { weexVersion: '<=9' }}, true],
+        [{ ios: { weexVersion: '>=1.3.0' }}, true],
+        [{ ios: { weexVersion: '>=1.3.0' }}, true]
       ]
 
       cases.map(function (item, index) {
@@ -131,19 +131,19 @@ describe('downgrade', () => {
       }
 
       const cases = [
-        [{ios: { osVersion: '>=9' }}, true],
-        [{ios: { osVersion: '>8' }}, true],
-        [{ios: { appVersion: '<10.0.0' }}, true],
-        [{ios: { appVersion: '>10.0.0' }}, false],
-        [{ios: { appVersion: '5.4.0' }}, true],
-        [{ios: { deviceModel: 'ABC' }}, false],
-        [{ios: { deviceModel: 'iPhone6.2' }}, true],
-        [{ios: { deviceModel: ['MF353TA/A', 'ABC'] }}, false],
-        [{ios: { osVersion: '>9', deviceModel: ['MF353TA/A', 'ABC'] }}, true],
-        [{ios: { osVersion: '>=9', deviceModel: ['MF353TA/A', 'ABC'] }}, true],
-        [{ios: { weexVersion: '<=9' }}, true],
-        [{ios: { weexVersion: '>=1.3.0' }}, true],
-        [{ios: { weexVersion: '>=1.3.0' }}, true]
+        [{ ios: { osVersion: '>=9' }}, true],
+        [{ ios: { osVersion: '>8' }}, true],
+        [{ ios: { appVersion: '<10.0.0' }}, true],
+        [{ ios: { appVersion: '>10.0.0' }}, false],
+        [{ ios: { appVersion: '5.4.0' }}, true],
+        [{ ios: { deviceModel: 'ABC' }}, false],
+        [{ ios: { deviceModel: 'iPhone6.2' }}, true],
+        [{ ios: { deviceModel: ['MF353TA/A', 'ABC'] }}, false],
+        [{ ios: { osVersion: '>9', deviceModel: ['MF353TA/A', 'ABC'] }}, true],
+        [{ ios: { osVersion: '>=9', deviceModel: ['MF353TA/A', 'ABC'] }}, true],
+        [{ ios: { weexVersion: '<=9' }}, true],
+        [{ ios: { weexVersion: '>=1.3.0' }}, true],
+        [{ ios: { weexVersion: '>=1.3.0' }}, true]
       ]
 
       cases.map(function (item, index) {

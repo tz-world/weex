@@ -52,7 +52,7 @@ describe('document methods', () => {
 
   it('create body', () => {
     const ele = doc.createBody('container',
-      {attr: {id: 'a'}, style: {fontSize: 16}})
+      { attr: { id: 'a' }, style: { fontSize: 16 }})
     expect(ele.role).equal('body')
     expect(ele.attr).to.have.a.property('id', 'a')
     expect(ele.style).to.have.a.property('fontSize', 16)
@@ -68,7 +68,7 @@ describe('document methods', () => {
 
   it('create element', () => {
     const ele = doc.createElement('container',
-      {attr: {id: 'a'}, style: {fontSize: 16}})
+      { attr: { id: 'a' }, style: { fontSize: 16 }})
     expect(ele.attr).to.have.a.property('id', 'a')
     expect(ele.style).to.have.a.property('fontSize', 16)
     expect(ele).have.a.property('ref')
@@ -102,19 +102,19 @@ describe('Element in document methods', () => {
   beforeEach(() => {
     doc = new Document('foo')
     el = new Element('bar', {
-      attr: {a: 11, b: 12},
-      style: {c: 13, d: 14},
-      classStyle: {a: 211, c: 213}
+      attr: { a: 11, b: 12 },
+      style: { c: 13, d: 14 },
+      classStyle: { a: 211, c: 213 }
     })
     el2 = new Element('baz', {
-      attr: {a: 21, b: 22},
-      style: {c: 23, d: 24},
-      classStyle: {a: 221, c: 223}
+      attr: { a: 21, b: 22 },
+      style: { c: 23, d: 24 },
+      classStyle: { a: 221, c: 223 }
     })
     el3 = new Element('qux', {
-      attr: {a: 31, b: 32},
-      style: {c: 33, d: 34},
-      classStyle: {a: 231, c: 233}
+      attr: { a: 31, b: 32 },
+      style: { c: 33, d: 34 },
+      classStyle: { a: 231, c: 233 }
     })
   })
 
@@ -125,8 +125,8 @@ describe('Element in document methods', () => {
   it('init correctly', () => {
     expect(el).is.an.object
     expect(el.type).eql('bar')
-    expect(el.attr).eql({a: 11, b: 12})
-    expect(el.style).eql({c: 13, d: 14})
+    expect(el.attr).eql({ a: 11, b: 12 })
+    expect(el.style).eql({ c: 13, d: 14 })
     expect(el.event).eql({})
     expect(el.children).eql([])
     expect(el.pureChildren).eql([])
@@ -145,7 +145,7 @@ describe('Element in document methods', () => {
   it('has correct exports', () => {
     const ref = el.ref
     const finalStyle = el.toStyle()
-    expect(finalStyle).eql({a: 211, c: 13, d: 14})
+    expect(finalStyle).eql({ a: 211, c: 13, d: 14 })
     expect(el.toJSON()).eql({
       ref: ref, type: 'bar',
       attr: el.attr, style: finalStyle
@@ -316,17 +316,17 @@ describe('Element in document methods', () => {
     doc.body.appendChild(el)
 
     el.setAttr('a', 21)
-    expect(el.toJSON().attr).eql({a: 21, b: 12})
+    expect(el.toJSON().attr).eql({ a: 21, b: 12 })
     el.setAttr('a', 22, true)
-    expect(el.toJSON().attr).eql({a: 22, b: 12})
+    expect(el.toJSON().attr).eql({ a: 22, b: 12 })
 
     el.setStyle('c', 21)
-    expect(el.toJSON().style).eql({a: 211, c: 21, d: 14})
+    expect(el.toJSON().style).eql({ a: 211, c: 21, d: 14 })
     el.setStyle('c', 22, true)
-    expect(el.toJSON().style).eql({a: 211, c: 22, d: 14})
+    expect(el.toJSON().style).eql({ a: 211, c: 22, d: 14 })
 
-    el.setClassStyle({a: 311, c: 313})
-    expect(el.toJSON().style).eql({a: 311, c: 22, d: 14})
+    el.setClassStyle({ a: 311, c: 313 })
+    expect(el.toJSON().style).eql({ a: 311, c: 22, d: 14 })
 
     const handler = function () {}
     el.addEvent('click', handler)
@@ -541,7 +541,7 @@ describe('complicated situations', () => {
     expect(doc.body.pureChildren).eql([el, el3, el2])
     expect(spy.args[3][0]).eql([{
       module: 'dom', method: 'addElement',
-      args: [doc.body.ref, el3.toJSON(), 1]}])
+      args: [doc.body.ref, el3.toJSON(), 1] }])
   })
 
   it('insert before a comment which has no more element after', () => {
@@ -559,7 +559,7 @@ describe('complicated situations', () => {
     expect(doc.body.pureChildren).eql([el, el2, el3])
     expect(spy.args[3][0]).eql([{
       module: 'dom', method: 'addElement',
-      args: [doc.body.ref, el3.toJSON(), 2]}])
+      args: [doc.body.ref, el3.toJSON(), 2] }])
   })
 
   it('insert after a comment', () => {
@@ -577,7 +577,7 @@ describe('complicated situations', () => {
     expect(doc.body.pureChildren).eql([el, el3, el2])
     expect(spy.args[3][0]).eql([{
       module: 'dom', method: 'addElement',
-      args: [doc.body.ref, el3.toJSON(), 1]}])
+      args: [doc.body.ref, el3.toJSON(), 1] }])
   })
 
   it('insert after a comment which has no more element before', () => {
@@ -595,6 +595,6 @@ describe('complicated situations', () => {
     expect(doc.body.pureChildren).eql([el3, el, el2])
     expect(spy.args[3][0]).eql([{
       module: 'dom', method: 'addElement',
-      args: [doc.body.ref, el3.toJSON(), 0]}])
+      args: [doc.body.ref, el3.toJSON(), 0] }])
   })
 })

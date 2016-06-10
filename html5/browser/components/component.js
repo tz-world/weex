@@ -7,7 +7,7 @@ var flexbox = require('../flexbox')
 var valueFilter = require('../valueFilter')
 require('fixedsticky')
 
-function Component(data, nodeType) {
+function Component (data, nodeType) {
   this.data = data
   this.node = this.create(nodeType)
 
@@ -133,7 +133,8 @@ Component.prototype = {
     // update this.data.children
     if (!children || !children.length) {
       this.data.children = [data]
-    } else {
+    }
+    else {
       children.push(data)
     }
 
@@ -149,7 +150,8 @@ Component.prototype = {
     // update this.data.children
     if (!children || !children.length || !before) {
       isAppend = true
-    } else {
+    }
+    else {
       for (l = children.length; i < l; i++) {
         if (children[i].ref === before.data.ref) {
           break
@@ -163,10 +165,12 @@ Component.prototype = {
     if (isAppend) {
       this.node.appendChild(child.node)
       children.push(child.data)
-    } else {
+    }
+    else {
       if (before.fixedPlaceholder) {
         this.node.insertBefore(child.node, before.fixedPlaceholder)
-      } else {
+      }
+      else {
         this.node.insertBefore(child.node, before.node)
       }
       children.splice(i, 0, child.data)
@@ -208,10 +212,12 @@ Component.prototype = {
       var attrSetter = this.attr[key]
       if (typeof attrSetter === 'function') {
         attrSetter.call(this, value)
-      } else {
+      }
+      else {
         if (typeof value === 'boolean') {
           this.node[key] = value
-        } else {
+        }
+        else {
           this.node.setAttribute(key, value)
         }
         this.node.attr[key] = value
@@ -338,18 +344,19 @@ Component.prototype.style.position = function (value) {
   // tion-fixed-issue' for more info.
   if (value !== 'fixed') {
     if (this.fixedPlaceholder) {
-      var parent = this.fixedPlaceholder.parentNode
+      const parent = this.fixedPlaceholder.parentNode
       parent.insertBefore(this.node, this.fixedPlaceholder)
       parent.removeChild(this.fixedPlaceholder)
       this.fixedPlaceholder = null
     }
-  } else { // value === 'fixed'
+  }
+  else { // value === 'fixed'
     // For the elements who are fixed: this fixedPlaceholder
     // shoud be inserted, and the fixed element itself should
     // be placed out in root container.
     this.node.style.position = 'fixed'
-    var parent = this.node.parentNode
-    var replaceWithFixedPlaceholder = function () {
+    let parent = this.node.parentNode
+    const replaceWithFixedPlaceholder = function () {
       this.fixedPlaceholder = document.createElement('div')
       this.fixedPlaceholder.classList.add('weex-fixed-placeholder')
       this.fixedPlaceholder.style.display = 'none'
@@ -360,14 +367,15 @@ Component.prototype.style.position = function (value) {
     }.bind(this)
     if (!parent) {
       if (this.onAppend) {
-        var pre = this.onAppend.bind(this)
+        const pre = this.onAppend.bind(this)
       }
       this.onAppend = function () {
         parent = this.node.parentNode
         replaceWithFixedPlaceholder()
         pre && pre()
       }.bind(this)
-    } else {
+    }
+    else {
       replaceWithFixedPlaceholder()
     }
     return
@@ -376,16 +384,15 @@ Component.prototype.style.position = function (value) {
   if (value === 'sticky') {
     this.node.style.zIndex = 100
     setTimeout(function () {
-      this.sticky = new lib.sticky(this.node, {
+      const Sticky = lib.sticky
+      this.sticky = new Sticky(this.node, {
         top: 0
       })
     }.bind(this), 0)
-  } else {
+  }
+  else {
     this.node.style.position = value
   }
 }
 
 module.exports = Component
-
-
-

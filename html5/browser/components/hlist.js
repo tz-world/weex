@@ -1,6 +1,6 @@
 var List = require('./list')
 
-function Hlist(data, nodeType) {
+function Hlist (data, nodeType) {
   data.attr.direction = 'h'
   List.call(this, data, nodeType)
 }

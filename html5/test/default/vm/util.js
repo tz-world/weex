@@ -32,11 +32,11 @@ describe('stringify sth.', function () {
   })
   it('convert object to string', function () {
     expect(_.stringify({})).eql('{}')
-    expect(_.stringify({a: 1})).eql('{"a":1}')
-    expect(_.stringify({a: [1, 2]})).eql('{"a":[1,2]}')
+    expect(_.stringify({ a: 1 })).eql('{"a":1}')
+    expect(_.stringify({ a: [1, 2] })).eql('{"a":[1,2]}')
   })
   it('convert array to string', function () {
-    expect(_.stringify(['a', 1, {b: 2}])).eql('["a",1,{"b":2}]')
+    expect(_.stringify(['a', 1, { b: 2 }])).eql('["a",1,{"b":2}]')
   })
   it('convert regexp to string', function () {
     expect(_.stringify(/abcd/)).eql('/abcd/')

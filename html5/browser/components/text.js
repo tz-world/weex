@@ -70,14 +70,15 @@ Text.prototype.style = utils.extend(Object.create(Atomic.prototype.style), {
 
   lines: function (val) {
     val = parseInt(val)
-    if (val !== val) { // NaN
+    if (isNaN(val)) {
       return
     }
     if (val <= 0) {
       this.textNode.style.textOverflow = ''
       this.textNode.style.overflow = 'visible'
       this.textNode.style.webkitLineClamp = ''
-    } else {
+    }
+    else {
       var style = this.data ? this.data.style : null
       this.textNode.style.overflow = 'hidden'
       this.textNode.style.textOverflow = style

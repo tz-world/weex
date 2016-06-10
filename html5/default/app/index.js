@@ -3,15 +3,15 @@
  * Weex instance constructor & definition
  */
 
-import {extend, typof} from '../util'
+import { extend, typof } from '../util'
 import * as bundle from './bundle'
 import * as ctrl from './ctrl'
 import Differ from './differ'
 
-import {Document, Node} from '../../vdom'
-import {registerComponent, requireComponent, requireModule} from './register'
+import { Document, Node } from '../../vdom'
+import { registerComponent, requireComponent, requireModule } from './register'
 
-export default function AppInstance(instanceId, options) {
+export default function AppInstance (instanceId, options) {
   this.id = instanceId
   this.options = options || {}
   this.vm = null
@@ -25,8 +25,8 @@ export default function AppInstance(instanceId, options) {
   this.uid = 0
 }
 
-function normalize(app, v) {
-  var type = typof(v)
+function normalize (app, v) {
+  const type = typof(v)
 
   switch (type) {
     case 'undefined':

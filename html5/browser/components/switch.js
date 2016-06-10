@@ -5,17 +5,17 @@ var utils = require('../utils')
 require('../styles/switch.css')
 
 var defaults = {
-  color: '#64bd63'
-  , secondaryColor: '#dfdfdf'
-  , jackColor: '#fff'
-  , jackSecondaryColor: null
-  , className: 'weex-switch'
-  , disabledOpacity: 0.5
-  , speed: '0.4s'
-  , width: 100
-  , height: 60
+  color: '#64bd63',
+  secondaryColor: '#dfdfdf',
+  jackColor: '#fff',
+  jackSecondaryColor: null,
+  className: 'weex-switch',
+  disabledOpacity: 0.5,
+  speed: '0.4s',
+  width: 100,
+  height: 60,
   // is width and height scalable ?
-  , scalable: false
+  scalable: false
 }
 
 // attrs:
@@ -24,7 +24,7 @@ var defaults = {
 function Switch (data) {
   this.options = utils.extend({}, defaults)
   this.checked = data.attr.checked
-      && data.attr.checked !== 'false' ? true : false
+      && data.attr.checked !== 'false'
   this.data = data
   this.width = this.options.width * data.scale
   this.height = this.options.height * data.scale
@@ -51,8 +51,6 @@ Switch.prototype.onAppend = function () {
 Switch.prototype.attr = {
   disabled: function (val) {
     this.disabled = val && val !== 'false'
-                    ? true
-                    : false
     this.disabled ? this.disable() : this.enable()
   }
 }
@@ -75,7 +73,8 @@ Switch.prototype.setPosition = function (clicked) {
 
   if (clicked && checked) {
     checked = false
-  } else if (clicked && !checked) {
+  }
+  else if (clicked && !checked) {
     checked = true
   }
 
@@ -85,14 +84,16 @@ Switch.prototype.setPosition = function (clicked) {
     if (window.getComputedStyle) {
       jack.style.left = parseInt(window.getComputedStyle(node).width)
                         - parseInt(window.getComputedStyle(jack).width) + 'px'
-    } else {
+    }
+    else {
       jack.style.left = parseInt(node.currentStyle['width'])
                         - parseInt(jack.currentStyle['width']) + 'px'
     }
 
     this.options.color && this.colorize()
     this.setSpeed()
-  } else {
+  }
+  else {
     this.checked = false
     jack.style.left = 0
     node.style.boxShadow = 'inset 0 0 0 0 ' + this.options.secondaryColor
@@ -124,20 +125,21 @@ Switch.prototype.colorize = function () {
 Switch.prototype.setSpeed = function () {
   var switcherProp = {}
   var jackProp = {
-      'background-color': this.options.speed
-      , left: this.options.speed.replace(/[a-z]/, '') / 2 + 's'
-    }
+    'background-color': this.options.speed,
+    left: this.options.speed.replace(/[a-z]/, '') / 2 + 's'
+  }
 
   if (this.checked) {
     switcherProp = {
-      border: this.options.speed
-      , 'box-shadow': this.options.speed
-      , 'background-color': this.options.speed.replace(/[a-z]/, '') * 3 + 's'
+      border: this.options.speed,
+      'box-shadow': this.options.speed,
+      'background-color': this.options.speed.replace(/[a-z]/, '') * 3 + 's'
     }
-  } else {
+  }
+  else {
     switcherProp = {
-      border: this.options.speed
-      , 'box-shadow': this.options.speed
+      border: this.options.speed,
+      'box-shadow': this.options.speed
     }
   }
 
@@ -179,7 +181,7 @@ Switch.prototype.style
           return
         }
         val = parseFloat(val)
-        if (val !== val || val < 0) { // NaN
+        if (isNaN(val) || val < 0) {
           val = this.options.width
         }
         this.width = val * this.data.scale
@@ -191,7 +193,7 @@ Switch.prototype.style
           return
         }
         val = parseFloat(val)
-        if (val !== val || val < 0) { // NaN
+        if (isNaN(val) || val < 0) {
           val = this.options.height
         }
         this.height = val * this.data.scale

@@ -1,11 +1,11 @@
 import chai from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
-const {expect} = chai
+const { expect } = chai
 chai.use(sinonChai)
 
 import * as modules from '../../../default/api/modules'
-import {registerModules, requireModule, clearModules} from '../../../default/app/register'
+import { registerModules, requireModule, clearModules } from '../../../default/app/register'
 
 describe('built-in modules', () => {
   let ctx

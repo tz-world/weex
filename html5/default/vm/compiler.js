@@ -31,7 +31,7 @@ import * as _ from '../util'
  *       build(externalDirs)
  *       foreach childNodes -> compile(childNode, template)
  */
-export function _build() {
+export function _build () {
   const opt = this._options || {}
   const template = opt.template || {}
 
@@ -61,8 +61,8 @@ export function _build() {
  * @param {object}       dest
  * @param {object}       meta
  */
-export function _compile(target, dest, meta) {
-  let context = this
+export function _compile (target, dest, meta) {
+  const context = this
   if (context._targetIsFragment(target)) {
     context._compileFragment(target, dest, meta)
     return
@@ -106,7 +106,7 @@ export function _compile(target, dest, meta) {
  * @param  {object}  target
  * @return {boolean}
  */
-export function _targetIsFragment(target) {
+export function _targetIsFragment (target) {
   return Array.isArray(target)
 }
 
@@ -116,7 +116,7 @@ export function _targetIsFragment(target) {
  * @param  {object}  target
  * @return {boolean}
  */
-export function _targetIsContent(target) {
+export function _targetIsContent (target) {
   return target.type === 'content' || target.type === 'slot'
 }
 
@@ -127,7 +127,7 @@ export function _targetIsContent(target) {
  * @param  {object}  meta
  * @return {boolean}
  */
-export function _targetNeedCheckRepeat(target, meta) {
+export function _targetNeedCheckRepeat (target, meta) {
   return !meta.hasOwnProperty('repeat') && target.repeat
 }
 
@@ -138,7 +138,7 @@ export function _targetNeedCheckRepeat(target, meta) {
  * @param  {object}  meta
  * @return {boolean}
  */
-export function _targetNeedCheckShown(target, meta) {
+export function _targetNeedCheckShown (target, meta) {
   return !meta.hasOwnProperty('shown') && target.shown
 }
 
@@ -149,7 +149,7 @@ export function _targetNeedCheckShown(target, meta) {
  * @param  {object}          meta
  * @return {boolean}
  */
-export function _targetNeedCheckType(typeGetter, meta) {
+export function _targetNeedCheckType (typeGetter, meta) {
   return (typeof typeGetter === 'function') && !meta.hasOwnProperty('type')
 }
 
@@ -159,7 +159,7 @@ export function _targetNeedCheckType(typeGetter, meta) {
  * @param  {string}  type
  * @return {boolean}
  */
-export function _targetIsComposed(target, type) {
+export function _targetIsComposed (target, type) {
   let component
   if (this._app && this._app.customComponentMap) {
     component = this._app.customComponentMap[type]
@@ -180,7 +180,7 @@ export function _targetIsComposed(target, type) {
  * @param {object} dest
  * @param {object} meta
  */
-export function _compileFragment(target, dest, meta) {
+export function _compileFragment (target, dest, meta) {
   const fragBlock = this._createBlock(dest)
   target.forEach((child) => {
     this._compile(child, fragBlock, meta)
@@ -193,12 +193,12 @@ export function _compileFragment(target, dest, meta) {
  * @param {object} target
  * @param {object} dest
  */
-export function _compileRepeat(target, dest) {
+export function _compileRepeat (target, dest) {
   const repeat = target.repeat
   const oldStyle = typeof repeat === 'function'
   let getter = repeat.getter || repeat.expression || repeat
   if (typeof getter !== 'function') {
-    getter = function () {return []}
+    getter = function () { return [] }
   }
   const key = repeat.key || '$index'
   const value = repeat.value || '$value'
@@ -210,7 +210,7 @@ export function _compileRepeat(target, dest) {
   fragBlock.data = []
   fragBlock.vms = []
 
-  this._bindRepeat(target, fragBlock, {getter, key, value, trackBy, oldStyle})
+  this._bindRepeat(target, fragBlock, { getter, key, value, trackBy, oldStyle })
 }
 
 /**
@@ -220,8 +220,8 @@ export function _compileRepeat(target, dest) {
  * @param {object} dest
  * @param {object} meta
  */
-export function _compileShown(target, dest, meta) {
-  const newMeta = {shown: true}
+export function _compileShown (target, dest, meta) {
+  const newMeta = { shown: true }
   const fragBlock = this._createBlock(dest)
 
   if (dest.element && dest.children) {
@@ -242,9 +242,9 @@ export function _compileShown(target, dest, meta) {
  * @param {object}   dest
  * @param {function} typeGetter
  */
-export function _compileType(target, dest, typeGetter, meta) {
+export function _compileType (target, dest, typeGetter, meta) {
   const type = typeGetter.call(this)
-  const newMeta = Object.assign({type}, meta)
+  const newMeta = Object.assign({ type }, meta)
   const fragBlock = this._createBlock(dest)
 
   if (dest.element && dest.children) {
@@ -252,7 +252,7 @@ export function _compileType(target, dest, typeGetter, meta) {
   }
 
   this._watch(typeGetter, (value) => {
-    const newMeta = Object.assign({type: value}, meta)
+    const newMeta = Object.assign({ type: value }, meta)
     this._removeBlock(fragBlock, true)
     this._compile(target, fragBlock, newMeta)
   })
@@ -267,7 +267,7 @@ export function _compileType(target, dest, typeGetter, meta) {
  * @param {object} dest
  * @param {string} type
  */
-export function _compileCustomComponent(component, target, dest, type, meta) {
+export function _compileCustomComponent (component, target, dest, type, meta) {
   const Vm = this.constructor
   const context = this
   const subVm = new Vm(type, component, context, dest, undefined, {
@@ -294,7 +294,7 @@ export function _compileCustomComponent(component, target, dest, type, meta) {
  * @param {object} dest
  * @param {string} type
  */
-export function _compileNativeComponent(template, dest, type) {
+export function _compileNativeComponent (template, dest, type) {
 
   this._applyNaitveComponentOptions(template)
 
@@ -303,7 +303,8 @@ export function _compileNativeComponent(template, dest, type) {
     // if its parent is documentElement then it's a body
     _.debug('compile to create body for', type)
     element = this._createBody(type)
-  } else {
+  }
+  else {
     _.debug('compile to create element for', type)
     element = this._createElement(type)
   }
@@ -341,7 +342,7 @@ export function _compileNativeComponent(template, dest, type) {
  * @param {object} template
  * @param {object} dest
  */
-export function _compileChildren(template, dest) {
+export function _compileChildren (template, dest) {
   const children = template.children
   if (children && children.length) {
     children.forEach((child) => {
@@ -357,14 +358,14 @@ export function _compileChildren(template, dest) {
  * @param {object} fragBlock {vms, data, children}
  * @param {object} info      {getter, key, value, trackBy, oldStyle}
  */
-export function _bindRepeat(target, fragBlock, info) {
+export function _bindRepeat (target, fragBlock, info) {
   const vms = fragBlock.vms
   const children = fragBlock.children
-  const {getter, trackBy, oldStyle} = info
+  const { getter, trackBy, oldStyle } = info
   const keyName = info.key
   const valueName = info.value
 
-  function compileItem(item, index, context) {
+  function compileItem (item, index, context) {
     let mergedData
     if (oldStyle) {
       mergedData = item
@@ -387,7 +388,7 @@ export function _bindRepeat(target, fragBlock, info) {
     }
     context = context._mergeContext(mergedData)
     vms.push(context)
-    context._compile(target, fragBlock, {repeat: item})
+    context._compile(target, fragBlock, { repeat: item })
   }
 
   const list = this._watchBlock(fragBlock, getter, 'repeat',
@@ -442,7 +443,8 @@ export function _bindRepeat(target, fragBlock, info) {
         if (reused) {
           if (reused.item === reusedList[0]) {
             reusedList.shift()
-          } else {
+          }
+          else {
             reusedList.$remove(reused.item)
             this._moveTarget(reused.target, fragBlock.updateMark, true)
           }
@@ -473,7 +475,7 @@ export function _bindRepeat(target, fragBlock, info) {
  * @param  {object} fragBlock
  * @param  {object} context
  */
-export function _bindShown(target, fragBlock, meta) {
+export function _bindShown (target, fragBlock, meta) {
   const display = this._watchBlock(fragBlock, target.shown, 'shown',
     (display) => {
       _.debug('the "if" item was changed', display)
@@ -507,7 +509,7 @@ export function _bindShown(target, fragBlock, meta) {
  * @param  {function} handler
  * @return {any}      init value of calc
  */
-export function _watchBlock(fragBlock, calc, type, handler) {
+export function _watchBlock (fragBlock, calc, type, handler) {
   const differ = this && this._app && this._app.differ
   const config = {}
   const depth = (fragBlock.element.depth || 0) + 1
@@ -532,7 +534,7 @@ export function _watchBlock(fragBlock, calc, type, handler) {
  * @param  {object} mergedData
  * @return {object}
  */
-export function _mergeContext(mergedData) {
+export function _mergeContext (mergedData) {
   const context = Object.create(this)
   context._data = mergedData
   context._initData()

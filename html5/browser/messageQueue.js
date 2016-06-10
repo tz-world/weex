@@ -3,14 +3,14 @@
 var config = require('./config')
 var messageQueue = []
 
-function flushMessage() {
+function flushMessage () {
   if (typeof callJS === 'function' && messageQueue.length > 0) {
     callJS(config.instanceId, JSON.stringify(messageQueue))
     messageQueue.length = 0
   }
 }
 
-function push(msg) {
+function push (msg) {
   messageQueue.push(msg)
 }
 
@@ -20,7 +20,7 @@ function push(msg) {
  * page loading.
  * 2015-11-03
  */
-function pushDirectly(msg) {
+function pushDirectly (msg) {
   callJS(config.instanceId, [msg])
 }
 

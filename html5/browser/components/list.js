@@ -14,7 +14,7 @@ var directionMap = {
 }
 
 // direction: 'v' or 'h', default is 'v'
-function List(data, nodeType) {
+function List (data, nodeType) {
   // this.loadmoreOffset = Number(data.attr.loadmoreoffset)
   // this.isAvailableToFireloadmore = true
   this.direction = directionMap.h.indexOf(data.attr.direction) === -1
@@ -31,9 +31,9 @@ List.prototype.create = function (nodeType) {
   node.classList.add('weex-container', 'list-wrap')
   this.listElement = document.createElement('div')
   this.listElement.classList.add(
-    'weex-container'
-    , 'list-element'
-    , this.direction + '-list'
+    'weex-container',
+    'list-element',
+    this.direction + '-list'
   )
 
   // Flex will cause a bug to rescale children's size if their total
@@ -47,8 +47,8 @@ List.prototype.create = function (nodeType) {
 
   node.appendChild(this.listElement)
   this.scroller = new Scroll({
-    scrollElement: this.listElement
-    , direction: this.direction === 'h' ? 'x' : 'y'
+    scrollElement: this.listElement,
+    direction: this.direction === 'h' ? 'x' : 'y'
   })
   this.scroller.init()
   this.offset = 0
@@ -67,7 +67,8 @@ List.prototype.bindEvents = function (evts) {
     var dir
     if (diff >= 0) {
       dir = this.direction === 'v' ? 'up' : 'left'
-    } else {
+    }
+    else {
       dir = this.direction === 'v' ? 'down' : 'right'
     }
     this.dispatchEvent('scroll', {
@@ -130,7 +131,8 @@ List.prototype.appendChild = function (data) {
   // update this.data.children
   if (!children || !children.length) {
     this.data.children = [data]
-  } else {
+  }
+  else {
     children.push(data)
   }
 
@@ -145,7 +147,8 @@ List.prototype.insertBefore = function (child, before) {
   // update this.data.children
   if (!children || !children.length || !before) {
     isAppend = true
-  } else {
+  }
+  else {
     for (var l = children.length; i < l; i++) {
       if (children[i].ref === before.data.ref) {
         break
@@ -159,10 +162,12 @@ List.prototype.insertBefore = function (child, before) {
   if (isAppend) {
     this.listElement.appendChild(child.node)
     children.push(child.data)
-  } else {
+  }
+  else {
     if (before.fixedPlaceholder) {
       this.listElement.insertBefore(child.node, before.fixedPlaceholder)
-    } else {
+    }
+    else {
       this.listElement.insertBefore(child.node, before.node)
     }
     children.splice(i, 0, child.data)

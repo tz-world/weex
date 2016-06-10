@@ -29,8 +29,6 @@ Timepicker.prototype.create = function () {
 Timepicker.prototype.attr = {
   disabled: function (val) {
     this.node.disabled = val && val !== 'false'
-                    ? true
-                    : false
   }
 }
 
