@@ -1,7 +1,7 @@
 'use strict'
 
 var Atomic = require('./atomic')
-var utils = require('../utils')
+// var utils = require('../utils')
 require('../styles/video.css')
 
 // attrs:

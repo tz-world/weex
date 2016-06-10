@@ -299,7 +299,6 @@ export function _bindDir (el, name, data) {
  */
 export function _bindKey (el, name, key, calc) {
   const methodName = SETTERS[name]
-  const obj = el[name]
   // watch the calc, and returns a value by calc.call()
   const value = this._watch(calc, (value) => {
     function handler () {

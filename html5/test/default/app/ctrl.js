@@ -6,11 +6,9 @@ chai.use(sinonChai)
 
 global.callNative = function () {}
 
-import * as _ from '../../../default/util'
 import * as ctrl from '../../../default/app/ctrl'
 import Differ from '../../../default/app/differ'
 import { Document } from '../../../vdom'
-import pkg from '../../../../package.json'
 
 describe('the api of app', () => {
   let app
@@ -109,7 +107,6 @@ describe('the api of app', () => {
     })
 
     it('error', () => {
-      const data = null
       const result = app.fireEvent('_rootTest', 'click')
       expect(result).to.be.an.instanceof(Error)
     })

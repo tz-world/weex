@@ -1,8 +1,8 @@
 'use strict'
 
-var extend = require('./utils').extend
+// var extend = require('./utils').extend
 var isArray = require('./utils').isArray
-var ComponentManager = require('./componentManager')
+// var ComponentManager = require('./componentManager')
 
 // for jsframework to register modules.
 var _registerModules = function (config) {
@@ -99,6 +99,7 @@ var protocol = {
     else {
       var metaIdx = -1
       metaArray.forEach(function (api, i) {
+        let name // todo
         if (meta.name === name) {
           metaIdx = i
         }

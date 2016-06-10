@@ -1,6 +1,6 @@
 'use strict'
 
-var config = require('../config')
+// var config = require('../config')
 var Component = require('./component')
 var ComponentManager = require('../componentManager')
 var LazyLoad = require('../lazyLoad')
@@ -36,7 +36,7 @@ Marquee.prototype.createChildren = function () {
   var items = []
   var componentManager = this.getComponentManager()
 
-  var fragment, isFlex, child, node, i
+  var fragment, isFlex, child, i
 
   if (children && children.length) {
     fragment = document.createDocumentFragment()
@@ -222,7 +222,6 @@ Marquee.prototype.fireEvent = function (type) {
  * - new next: {shown: true}
  */
 Marquee.prototype.end = function (e) {
-  var target = e.target
   var items = this.items
   var length = items.length
   var current, next

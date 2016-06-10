@@ -1,9 +1,11 @@
+/* global Event */
+
 'use strict'
 
-var config = require('./config')
+// var config = require('./config')
 var FrameUpdater = require('./frameUpdater')
 var AppearWatcher = require('./appearWatcher')
-var utils = require('./utils')
+// var utils = require('./utils')
 var LazyLoad = require('./lazyLoad')
 var animation = require('./animation')
 
@@ -73,9 +75,8 @@ ComponentManager.prototype = {
   },
 
   removeElementByRef: function (ref) {
-    var cmp
     var self = this
-    if (!ref || !(cmp = this.componentMap[ref])) {
+    if (!ref || !this.componentMap[ref]) {
       return
     }
     // remove from this.componentMap cursively
@@ -273,7 +274,7 @@ ComponentManager.prototype = {
    * @param {number} index
    */
   addElement: function (parentRef, element, index) {
-    var parent, children, before
+    var parent, children
 
     // fire event for rendering dom on body elment.
     this.rendering()

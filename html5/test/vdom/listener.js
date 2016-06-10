@@ -1,18 +1,12 @@
 import chai from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
-const expect = chai.expect
+const { expect } = chai
 chai.use(sinonChai)
 
 global.callNative = function () {}
 
-import {
-  instanceMap,
-  Document,
-  Node,
-  Element,
-  Comment
-} from '../../vdom'
+import { Document } from '../../vdom'
 
 global.callNative = function () {}
 
@@ -27,7 +21,7 @@ describe('dom listener basic', () => {
 })
 
 describe('dom listener details', () => {
-  let doc, listener, spy
+  let doc, spy
 
   beforeEach(() => {
     spy = sinon.spy()

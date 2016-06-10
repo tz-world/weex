@@ -1,11 +1,10 @@
 import chai from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
-import '../../shared'
+const { expect } = chai
+chai.use(sinonChai)
 
-const {
-  expect
-} = chai
+import '../../shared'
 
 describe('a polyfill of', () => {
   it('Promise', () => {

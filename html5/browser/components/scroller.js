@@ -1,3 +1,5 @@
+/* global lib */
+
 'use strict'
 
 require('../styles/scroller.css')
@@ -17,7 +19,7 @@ require('../scroll')
 //  - contentrefresh
 
 var Component = require('./component')
-var utils = require('../utils')
+// var utils = require('../utils')
 
 var directionMap = {
   h: ['row', 'horizontal', 'h', 'x'],

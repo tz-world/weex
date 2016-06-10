@@ -191,7 +191,7 @@ Element.prototype.appendChild = function (node) {
       registerNode(this.docId, node)
     }
     if (node.nodeType === 1) {
-      const index = insertIndex(node, this.pureChildren, this.pureChildren.length)
+      insertIndex(node, this.pureChildren, this.pureChildren.length)
       if (this.docId) {
         const listener = instanceMap[this.docId].listener
         listener.addElement(node, this.ref, -1)
@@ -302,7 +302,7 @@ Element.prototype.removeChild = function (node, preserved) {
   if (node.parentNode) {
     removeIndex(node, this.children, true)
     if (node.nodeType === 1) {
-      const index = removeIndex(node, this.pureChildren)
+      removeIndex(node, this.pureChildren)
       if (this.docId) {
         const listener = instanceMap[this.docId].listener
         listener.removeElement(node.ref)

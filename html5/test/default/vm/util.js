@@ -1,8 +1,5 @@
-var chai = require('chai')
-var sinon = require('sinon')
-var sinonChai = require('sinon-chai')
-var expect = chai.expect
-chai.use(sinonChai)
+import chai from 'chai'
+const { expect } = chai
 
 var _ = require('../../../default/util')
 

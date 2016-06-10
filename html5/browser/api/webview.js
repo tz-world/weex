@@ -1,7 +1,5 @@
 'use strict'
 
-var sender = require('../bridge/sender')
-
 var webview = {
 
   // ref: ref of the web component.

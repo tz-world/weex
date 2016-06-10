@@ -1,12 +1,14 @@
+/* global lib */
+
 'use strict'
 
 require('../styles/list.css')
 require('../scroll')
 
 var Component = require('./component')
-var LazyLoad = require('../lazyLoad')
+// var LazyLoad = require('../lazyLoad')
 
-var DEFAULT_LOAD_MORE_OFFSET = 500
+// var DEFAULT_LOAD_MORE_OFFSET = 500
 
 var directionMap = {
   h: ['row', 'horizontal', 'h', 'x'],

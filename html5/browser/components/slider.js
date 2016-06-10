@@ -1,10 +1,12 @@
+/* global lib */
+
 'use strict'
 
 var extend = require('../utils').extend
-var config = require('../config')
+// var config = require('../config')
 var Component = require('./component')
-var ComponentManager = require('../componentManager')
-var LazyLoad = require('../lazyLoad')
+// var ComponentManager = require('../componentManager')
+// var LazyLoad = require('../lazyLoad')
 require('carrousel')
 require('../styles/slider.css')
 

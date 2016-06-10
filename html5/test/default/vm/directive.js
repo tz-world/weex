@@ -1,7 +1,7 @@
 import chai from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
-const expect = chai.expect
+const { expect } = chai
 chai.use(sinonChai)
 
 import * as directive from '../../../default/vm/directive'

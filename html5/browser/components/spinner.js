@@ -1,3 +1,5 @@
+/* global CSSRule */
+
 'use strict'
 
 var Atomic = require('./atomic')

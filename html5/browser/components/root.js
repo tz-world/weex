@@ -2,7 +2,7 @@
 
 var ComponentManager = require('../componentManager')
 var Component = require('./component')
-var utils = require('../utils')
+// var utils = require('../utils')
 var logger = require('../logger')
 
 var rootCandidates = ['div', 'list', 'vlist', 'scroller']

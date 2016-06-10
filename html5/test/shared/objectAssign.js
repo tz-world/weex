@@ -1,11 +1,7 @@
 import chai from 'chai'
-import sinon from 'sinon'
-import sinonChai from 'sinon-chai'
-import '../../shared/objectAssign'
+const { expect } = chai
 
-const {
-  expect
-} = chai
+import '../../shared/objectAssign'
 
 describe('object.assign', () => {
   it('is a function', () => {

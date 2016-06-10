@@ -7,6 +7,7 @@ var timer = {
     var timerId = setTimeout(function () {
       sender.performCallback(timeoutCallbackId)
     }, delay)
+    return timerId
   },
 
   clearTimeout: function (timerId) {

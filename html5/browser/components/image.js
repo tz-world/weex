@@ -1,8 +1,10 @@
+/* global lib */
+
 'use strict'
 
 var Atomic = require('./atomic')
 var LazyLoad = require('../lazyLoad')
-var config = require('../config')
+// var config = require('../config')
 var utils = require('../utils')
 
 require('../styles/image.css')

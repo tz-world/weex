@@ -54,7 +54,6 @@ Refresh.prototype.adjustHeight = function (val) {
 }
 
 Refresh.prototype.handleRefresh = function (e) {
-  var scrollObj = e.scrollObj
   var parent = this.getParent()
   var scrollElement = parent.scrollElement || parent.listElement
   this.node.style.height = CLAMP + 'px'

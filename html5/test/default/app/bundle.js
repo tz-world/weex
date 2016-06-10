@@ -1,20 +1,16 @@
 import chai from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
-const {
-  expect
-} = chai
+const { expect } = chai
 chai.use(sinonChai)
 
 global.callNative = function () {}
 
-import * as _ from '../../../default/util'
 import * as bundle from '../../../default/app/bundle'
 import * as register from '../../../default/app/register'
 import { Document }
 from '../../../vdom'
 import Vm from '../../../default/vm'
-import pkg from '../../../../package.json'
 
 describe('parsing a bundle file', () => {
   const componentTemplate = {

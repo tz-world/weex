@@ -1,8 +1,5 @@
 import chai from 'chai'
-import sinon from 'sinon'
-import sinonChai from 'sinon-chai'
 const { expect } = chai
-chai.use(sinonChai)
 
 import * as Downgrade from '../../../default/app/downgrade'
 

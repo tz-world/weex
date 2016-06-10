@@ -1,8 +1,7 @@
 'use strict'
 
 var Atomic = require('./atomic')
-var msgQueue = require('../messageQueue')
-var config = require('../config')
+// var config = require('../config')
 var utils = require('../utils')
 
 // TODO: refactor this scss code since this is strongly
@@ -282,8 +281,8 @@ proto._scrollToView = function (node) {
     return
   }
 
-  var defaultVal = this._body.scrollLeft
-  var leftVal = defaultVal - node.offsetLeft + 300
+  // var defaultVal = this._body.scrollLeft
+  // var leftVal = defaultVal - node.offsetLeft + 300
 
   var scrollVal = getScrollVal(this._body.getBoundingClientRect(), node)
   doScroll(this._body, scrollVal)

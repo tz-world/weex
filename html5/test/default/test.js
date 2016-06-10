@@ -808,7 +808,6 @@ describe('test input and output', function () {
   it('a less wrong transformer version', () => {
     var name = 'transformer2'
     var inputCode = readInput(name)
-    var outputCode = readOutput(name)
     var doc = new Document(name)
     allDocs[name] = doc
 
@@ -821,7 +820,6 @@ describe('test input and output', function () {
   it('a bigger wrong transformer version', () => {
     var name = 'transformer3'
     var inputCode = readInput(name)
-    var outputCode = readOutput(name)
     var doc = new Document(name)
     allDocs[name] = doc
 

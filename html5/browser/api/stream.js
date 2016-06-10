@@ -1,3 +1,5 @@
+/* global lib, XMLHttpRequest */
+
 'use strict'
 
 var utils = require('../utils')
@@ -171,7 +173,7 @@ var stream = {
     var modeOptions = ['cors', 'no-cors', 'same-origin', 'navigate']
     var typeOptions = ['text', 'json', 'jsonp', 'arraybuffer']
 
-    var fallback = false  // fallback from 'fetch' API to XHR.
+    // var fallback = false  // fallback from 'fetch' API to XHR.
     var sender = this.sender
 
     var config = utils.extend({}, options)

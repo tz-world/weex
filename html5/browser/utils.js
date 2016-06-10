@@ -1,6 +1,8 @@
+/* global Image */
+
 'use strict'
 
-var WEAPP_STYLE_ID = 'weapp-style'
+// var WEAPP_STYLE_ID = 'weapp-style'
 
 var _isWebpSupported = false
 
@@ -125,7 +127,7 @@ function loopArray (arr, num, direction) {
   if (num === 0) {
     return arr
   }
-  var res, lp, rp
+  var lp, rp
   if (isLeft) {
     lp = arr.slice(0, num)
     rp = arr.slice(num)

@@ -1,18 +1,18 @@
 'use strict'
 
 var config = require('./config')
-var messageQueue = []
+// var messageQueue = []
 
-function flushMessage () {
-  if (typeof callJS === 'function' && messageQueue.length > 0) {
-    callJS(config.instanceId, JSON.stringify(messageQueue))
-    messageQueue.length = 0
-  }
-}
+// function flushMessage () {
+//   if (typeof callJS === 'function' && messageQueue.length > 0) {
+//     callJS(config.instanceId, JSON.stringify(messageQueue))
+//     messageQueue.length = 0
+//   }
+// }
 
-function push (msg) {
-  messageQueue.push(msg)
-}
+// function push (msg) {
+//   messageQueue.push(msg)
+// }
 
 /**
  * To fix the problem of callapp, the two-way time loop mechanism must

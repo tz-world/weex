@@ -6,13 +6,17 @@
 
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "mocha": true
   },
 
   "globals": {
     "document": false,
     "navigator": false,
-    "window": false
+    "window": false,
+    "location": false,
+    "callNative": false,
+    "callJS": false
   },
 
   "rules": {
@@ -94,14 +98,14 @@
     "no-this-before-super": 2,
     "no-throw-literal": 2,
     "no-trailing-spaces": 2,
-    // "no-undef": 2,
+    "no-undef": 2,
     "no-undef-init": 2,
     "no-unexpected-multiline": 2,
     "no-unmodified-loop-condition": 2,
     "no-unneeded-ternary": [2, { "defaultAssignment": false }],
     "no-unreachable": 2,
     "no-unsafe-finally": 2,
-    // "no-unused-vars": [2, { "vars": "all", "args": "none" }],
+    "no-unused-vars": [2, { "vars": "all", "args": "none" }],
     "no-useless-call": 2,
     "no-useless-computed-key": 2,
     "no-useless-constructor": 2,

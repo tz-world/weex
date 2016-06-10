@@ -1,7 +1,7 @@
 import chai from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
-const expect = chai.expect
+const { expect } = chai
 chai.use(sinonChai)
 
 import * as compiler from '../../../default/vm/compiler'
@@ -64,7 +64,6 @@ describe('generate workflow', () => {
     var dest = {
       ref: '_documentElement'
     }
-    var rootEl = {}
 
     function check () {
       expect(vm._compile).callCount(1)
@@ -88,7 +87,6 @@ describe('generate workflow', () => {
       type: 'a'
     }
     var dest = {}
-    var rootEl = {}
 
     function check () {
       expect(vm._compile).callCount(1)
@@ -114,7 +112,6 @@ describe('generate workflow', () => {
       type: 'b'
     }]
     var dest = {}
-    var rootEl = {}
 
     function check () {
       expect(vm._compile).callCount(3)
@@ -143,7 +140,6 @@ describe('generate workflow', () => {
       ]
     }
     var dest = {}
-    var rootEl = {}
 
     function check () {
       expect(vm._compile).callCount(4)
@@ -173,7 +169,6 @@ describe('generate workflow', () => {
       repeat: () => [1, 2, 3]
     }
     var dest = {}
-    var rootEl = {}
 
     function checkRepeatVm (args, target, meta) {
       expect(args[0]).eql(target)
@@ -205,7 +200,6 @@ describe('generate workflow', () => {
       shown: () => true
     }
     var dest = {}
-    var rootEl = {}
 
     function check () {
       expect(vm._compile).callCount(2)
@@ -235,7 +229,6 @@ describe('generate workflow', () => {
       }
     }
     var dest = {}
-    var rootEl = {}
 
     function checkRepeatVm (args, target, meta) {
       expect(args[0]).eql(target)
@@ -268,13 +261,11 @@ describe('generate workflow', () => {
   })
 
   it('generate an element with children', (done) => {
-    var index = 0
     var target = {
       type: 'a',
       children: [{ type: 'b' }, { type: 'c' }]
     }
     var dest = {}
-    var rootEl = {}
 
     function check () {
       expect(vm._compile).callCount(3)
@@ -292,14 +283,12 @@ describe('generate workflow', () => {
   })
 
   it('generate an whole element with children', (done) => {
-    var index = 0
     var target = {
       type: 'a',
       append: 'tree',
       children: [{ type: 'b' }, { type: 'c' }]
     }
     var dest = {}
-    var rootEl = {}
 
     function check () {
       expect(vm._compile).callCount(3)
@@ -339,7 +328,6 @@ describe('generate workflow', () => {
       ]
     }
     var dest = {}
-    var rootEl = {}
 
     function checkRepeatVm (args, target, meta) {
       expect(args[0]).eql(target)
@@ -391,7 +379,6 @@ describe('generate workflow', () => {
       ]
     }
     var dest = {}
-    var rootEl = {}
 
     function checkRepeatVm (args, target, meta) {
       expect(args[0]).eql(target)
@@ -438,7 +425,6 @@ describe('generate workflow', () => {
       ]
     }
     var dest = {}
-    var rootEl = {}
 
     function check () {
       expect(vm._compile).callCount(3)
@@ -476,7 +462,6 @@ describe('generate workflow', () => {
       ]
     }
     var dest = {}
-    var rootEl = {}
 
     function checkRepeatVm (args, target, meta) {
       expect(args[0]).eql(target)

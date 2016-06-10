@@ -1,10 +1,9 @@
 'use strict'
 
-var messageQueue = require('../messageQueue')
-var FrameUpdater = require('../frameUpdater')
-var Component = require('../components/component')
+// var FrameUpdater = require('../frameUpdater')
+// var Component = require('../components/component')
 var scroll = require('scroll-to')
-var config = require('../config')
+// var config = require('../config')
 var logger = require('../logger')
 
 var dom = {

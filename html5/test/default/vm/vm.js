@@ -1,7 +1,7 @@
 import chai from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
-const expect = chai.expect
+const { expect } = chai
 chai.use(sinonChai)
 
 global.callNative = function () {}
@@ -983,16 +983,7 @@ describe('generate virtual dom for sub vm', () => {
 })
 
 describe('generate dom actions', () => {
-  var doc, app, listener, spy, customComponentMap, differ
-
-  function checkReady (vm, handler) {
-    if (vm._ready) {
-      handler()
-    }
-    else {
-      vm.$on('hook:ready', handler)
-    }
-  }
+  var doc, app, spy, customComponentMap, differ
 
   beforeEach(() => {
     spy = sinon.spy()
@@ -1009,7 +1000,7 @@ describe('generate dom actions', () => {
   afterEach(() => {
     customComponentMap = {}
     doc.destroy()
-    app = doc = listener = spy = null
+    app = doc = spy = null
   })
 
   it('received create body and add element actions', () => {
@@ -1037,7 +1028,7 @@ describe('generate dom actions', () => {
       }
     }
 
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
+    new Vm('foo', customComponentMap.foo, { _app: app })
     var el = {
       ref: '_root',
       type: 'container',
@@ -1205,7 +1196,6 @@ describe('generate dom actions', () => {
     }
 
     var vm = new Vm('foo', customComponentMap.foo, { _app: app })
-    var length = spy.args.length
 
     expect(doc.body.pureChildren.length).eql(1)
     var text = doc.body.pureChildren[0]
@@ -1251,7 +1241,7 @@ describe('generate dom actions', () => {
       }
     }
 
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
+    new Vm('foo', customComponentMap.foo, { _app: app })
     var pureChildren = doc.body.pureChildren
     var first = pureChildren[0]
     var second = first.pureChildren[0]
@@ -1295,7 +1285,7 @@ describe('generate dom actions', () => {
       }
     }
 
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
+    new Vm('foo', customComponentMap.foo, { _app: app })
     var pureChildren = doc.body.pureChildren
     var first = pureChildren[0]
     var second = pureChildren[1]
@@ -1331,7 +1321,7 @@ describe('generate dom actions', () => {
       }
     }
 
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
+    new Vm('foo', customComponentMap.foo, { _app: app })
     var pureChildren = doc.body.pureChildren
 
     expect(spy.args.length).eql(7)
@@ -1374,92 +1364,5 @@ describe('generate dom actions', () => {
     expect(spy.args[6][3].type).eql('c')
     expect(spy.args[6][2]).eql('_root')
     expect(spy.args[6][4]).eql(-1)
-  })
-
-  it.skip('connected with native callback when init', function (done) {
-    this.timeout(5000)
-
-    var lastTime = 0
-
-    doc.listener = new DomListener('bar', function (actions, cb) {
-      var now = Date.now()
-      var timeDiff = now - lastTime
-      actions.forEach((action) => {
-        spy.apply(null, [timeDiff, action.method].concat(action.args))
-      })
-      lastTime = now
-      setTimeout(cb, 300)
-    })
-
-    customComponentMap.foo = {
-      template: {
-        type: 'r',
-        children: [
-          { type: 'a' }, { type: 'b', children: [
-            { type: 'd' }, { type: 'e', append: 'tree', children: [
-              { type: 'g' }, { type: 'h' }, { type: 'i' }
-            ] }, { type: 'f' }
-          ] }, { type: 'c' }
-        ]
-      }
-    }
-
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
-
-    checkReady(vm, () => {
-      expect(spy.args.length).eql(7)
-      spy.args.slice(1).forEach((callArgs) => {
-        expect(callArgs[0]).within(250, 400)
-      })
-      done()
-    })
-  })
-
-  it.skip('connected with native callback after data changes', function (done) {
-    this.timeout(5000)
-
-    var lastTime = 0
-
-    doc.listener = new DomListener('bar', function (actions, cb) {
-      var now = Date.now()
-      var timeDiff = now - lastTime
-      actions.forEach((action) => {
-        spy.apply(null, [timeDiff, action.method].concat(action.args))
-      })
-      lastTime = now
-      setTimeout(cb, 300)
-    })
-
-    customComponentMap.foo = {
-      template: {
-        type: 'r',
-        children: [
-          { type: 'a', attr: { b: function () { return this.x } }}
-        ]
-      },
-      data: () => {
-        return { x: 1 }
-      }
-    }
-
-    var vm = new Vm('foo', customComponentMap.foo, { _app: app })
-
-    checkReady(vm, () => {
-
-      expect(spy.args.length).eql(2)
-      doc.close()
-
-      vm.x = 2
-
-      expect(spy.args.length).eql(2)
-      expect(doc.listener.updates.length).eql(1)
-      expect(doc.listener.updates[0]).eql({
-        module: 'dom',
-        method: 'updateAttrs',
-        args: ['3', { b: 2 }]
-      })
-
-      done()
-    })
   })
 })

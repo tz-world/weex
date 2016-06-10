@@ -1,3 +1,5 @@
+/* global lib, WebSocket */
+
 'use strict'
 
 require('../native')
@@ -264,7 +266,7 @@ Weex.registerApi = function (moduleName, name, method, args) {
     name: name,
     args: args
   })
-  window.registerModules(protocol.getApiModuleMeta(moduleName, meta), true)
+  window.registerModules(protocol.getApiModuleMeta(moduleName), true)
 }
 
 // Register a new weex-bundle-loader.
@@ -287,7 +289,7 @@ Weex.stopTheWorld = function () {
   if (location.search.indexOf('hot-reload_controller') === -1) {
     return
   }
-  if (!window.WebSocket) {
+  if (typeof WebSocket === 'undefined') {
     console.info('auto refresh need WebSocket support')
     return
   }

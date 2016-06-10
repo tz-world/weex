@@ -1,3 +1,5 @@
+/* global lib */
+
 'use strict'
 
 var Atomic = require('./atomic')
@@ -38,7 +40,7 @@ Countdown.prototype.create = function () {
   var data = this.data
   var time = Number(data.attr.countdownTime) || 0
   var endTime = Date.now() / 1000 + time
-  var cd = lib.countdown({
+  lib.countdown({
     endDate: endTime,
     onUpdate: function (time) {
       var timeColor = data.style.timeColor || '#000'

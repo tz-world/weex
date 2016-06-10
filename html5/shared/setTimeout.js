@@ -12,7 +12,7 @@ if (typeof setTimeout === 'undefined' &&
   const timeoutMap = {}
   let timeoutId = 0
   global.setTimeout = (cb, time) => {
-    console.warn(MGS)
+    console.warn(MSG)
     timeoutMap[++timeoutId] = cb
     setTimeoutNative(timeoutId.toString(), time)
   }

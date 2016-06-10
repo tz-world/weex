@@ -1,3 +1,5 @@
+/* global XMLHttpRequest */
+
 'use strict'
 
 function loadByXHR (config, callback) {

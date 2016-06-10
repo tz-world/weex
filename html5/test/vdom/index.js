@@ -1,7 +1,7 @@
 import chai from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
-const expect = chai.expect
+const { expect } = chai
 chai.use(sinonChai)
 
 global.callNative = function () {}
@@ -9,7 +9,6 @@ global.callNative = function () {}
 import {
   instanceMap,
   Document,
-  Node,
   Element,
   Comment
 } from '../../vdom'

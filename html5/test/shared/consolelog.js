@@ -1,11 +1,10 @@
 import chai from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
-import { printlog } from '../../shared/consolelog'
+const { expect } = chai
+chai.use(sinonChai)
 
-const {
-  expect
-} = chai
+import { printlog } from '../../shared/consolelog'
 
 describe('polyfill for printlog', () => {
   before(() => {

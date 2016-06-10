@@ -1,9 +1,9 @@
 'use strict'
 
 var extend = require('../utils').extend
-var config = require('../config')
+// var config = require('../config')
 var Atomic = require('./atomic')
-var Component = require('./component')
+// var Component = require('./component')
 
 require('../styles/indicator.css')
 

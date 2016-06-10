@@ -14,7 +14,6 @@
 
 import semver from 'semver'
 import * as _ from '../util'
-import config from '../config'
 import Vm from '../vm'
 import * as downgrade from './downgrade'
 

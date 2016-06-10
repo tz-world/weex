@@ -8,7 +8,6 @@ var sender = require('../bridge/sender')
 //   - selectedIndex: the selected options' index number.
 //   - disabled
 function Select (data) {
-  var attrs = data.attr || {}
   this.options = []
   this.selectedIndex = 0
   Atomic.call(this, data)

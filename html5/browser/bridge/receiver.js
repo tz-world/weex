@@ -2,7 +2,6 @@
 
 var config = require('../config')
 var protocol = require('../protocol')
-var utils = require('../utils')
 var FrameUpdater = require('../frameUpdater')
 var Sender = require('./sender')
 

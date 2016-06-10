@@ -1,6 +1,8 @@
+/* global lib */
+
 'use strict'
 
-var config = require('../config')
+// var config = require('../config')
 var utils = require('../utils')
 var ComponentManager = require('../componentManager')
 var flexbox = require('../flexbox')
@@ -366,8 +368,9 @@ Component.prototype.style.position = function (value) {
       this.getRootContainer().appendChild(this.node)
     }.bind(this)
     if (!parent) {
+      let pre
       if (this.onAppend) {
-        const pre = this.onAppend.bind(this)
+        pre = this.onAppend.bind(this)
       }
       this.onAppend = function () {
         parent = this.node.parentNode

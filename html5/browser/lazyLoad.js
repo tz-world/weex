@@ -1,3 +1,5 @@
+/* global lib */
+
 'use strict'
 
 require('lazyimg')

@@ -1,7 +1,5 @@
 'use strict'
 
-var Sender = require('../bridge/sender')
-
 var _data = {}
 
 var animation = {
