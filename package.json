@@ -51,7 +51,7 @@
     "copy:examples": "rm -rf ./android/playground/app/src/main/assets/* && cp -vrf ./examples/build/* ./android/playground/app/src/main/assets/",
     "copy": "npm run copy:js-framework && npm run copy:examples",
     "ci:js-framework": "cd ./src/js-framework && npm run ci && cd ../../",
-    "ci:h5-render": "cd ./src/h5-render && npm run ci && cd ../../",
+    "ci:h5-render": "npm run transform && npm run build && cd ./src/h5-render && npm run ci && cd ../../",
     "ci": "npm run ci:js-framework && npm run ci:h5-render"
   },
   "dependencies": {},

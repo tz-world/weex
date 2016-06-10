@@ -33,7 +33,7 @@
     "compress": "uglifyjs dist/index.js -o dist/index.mini.js",
     "lint": "jscs --config .jscsrc src/**/*.js src/*.js test/**/*.js",
     "test": "casperjs test ./test/e2e/specs",
-    "ci": "npm run lint && cd ../../ && npm run transform && npm run build && cd src/h5-render/ && npm run test"
+    "ci": "npm run lint && npm run test"
   },
   "main": "src/weex.js",
   "devDependencies": {
