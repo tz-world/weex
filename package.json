@@ -34,23 +34,26 @@
     "install:githooks": "bash ./bin/install-hooks.sh",
     "install:components": "bash ./bin/install-components.sh",
     "postinstall": "npm run install:githooks && npm run install:components",
-
     "build:browser": "webpack --config build/webpack.browser.config.js",
     "build:native": "webpack --config build/webpack.native.config.js",
     "build:examples": "webpack --config build/webpack.examples.config.js",
     "build:test": "webpack --config build/webpack.test.config.js",
-
     "dev:browser": "webpack --watch --config build/webpack.browser.config.js",
     "dev:native": "webpack --watch --config build/webpack.native.config.js",
     "dev:examples": "webpack --watch --config build/webpack.examples.config.js",
     "dev:test": "webpack --watch --config build/webpack.test.config.js",
-
     "build": "npm run build:native && npm run build:browser && npm run build:examples && npm run build:test",
-
     "test": "mocha --compilers js:babel-core/register html5/test/*/*.js html5/test/*/*/*.js",
     "cover": "babel-node node_modules/isparta/bin/isparta cover --report text node_modules/mocha/bin/_mocha -- --reporter dot html5/test/*/*.js html5/test/*/*/*.js",
-    "lint": "echo \"Error: no lint specified\"",
-    "ci": "npm run lint && npm run cover"
+    "lint": "echo \"TODO: use eslint\"",
+    "ci": "npm run lint && npm run cover",
+    "serve": "serve ./ -p 12580",
+    "clean:examples": "echo \"\\033[36;1m[Clean]\\033[0m \\033[33mexamples\\033[0m\" && rm -vrf examples/build/*",
+    "clean:test": "echo \"\\033[36;1m[Clean]\\033[0m \\033[33mtest\\033[0m\" && rm -vrf test/build/*",
+    "clean": "npm run clean:examples && npm run clean:test",
+    "copy:js": "cp -vf ./dist/native.js ./android/sdk/assets/main.js",
+    "copy:examples": "rm -rf ./android/playground/app/src/main/assets/* && cp -vrf ./examples/build/* ./android/playground/app/src/main/assets/",
+    "copy": "npm run copy:js && npm run copy:examples"
   },
   "subversion": {
     "browser": "0.2.13",
@@ -83,6 +86,7 @@
     "istanbul": "^0.4.3",
     "json-loader": "^0.5.4",
     "mocha": "^2.5.3",
+    "serve": "^1.4.0",
     "sinon": "^1.17.4",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.1",
