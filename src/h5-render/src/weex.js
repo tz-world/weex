@@ -18,6 +18,9 @@ var api = require('./api')
 require('envd')
 require('httpurl')
 
+// gesture
+require('./gesture')
+
 var WEAPP_STYLE_ID = 'weapp-style'
 
 var DEFAULT_DESIGN_WIDTH = 750
