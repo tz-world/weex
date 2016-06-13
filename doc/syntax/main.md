@@ -1,4 +1,5 @@
 # Syntax
+<span class="weex-version">0.4</span>
 
 A simple Weex page sample is just a piece of `<template>` code, a piece of `<style>` code and a piece of `<script>` code. The three parts together describe a whole Weex page.
 
@@ -91,7 +92,7 @@ The syntax is JavaScript (ES5) and it describes data and behavior of a Weex page
   module.exports = {
     data: {
       title: 'Alibaba',
-      date: null
+      datetime: null
     },
     methods: {
       getTitle: function () {
