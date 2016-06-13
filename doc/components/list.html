@@ -414,12 +414,38 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.4.4" data-path="../advanced/extend-to-android.html">
+        <li class="chapter " data-level="1.2.4.4" data-path="../advanced/integrate-to-ios.html">
+            
+                <a href="../advanced/integrate-to-ios.html">
+            
+                    
+                    Integrate to iOS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.5" data-path="../advanced/extend-to-android.html">
             
                 <a href="../advanced/extend-to-android.html">
             
                     
                     Extend to Android
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.6" data-path="../advanced/extend-to-ios.html">
+            
+                <a href="../advanced/extend-to-ios.html">
+            
+                    
+                    Extend to iOS
             
                 </a>
             
@@ -819,7 +845,7 @@
                 <a href="../modules/stream.html">
             
                     
-                    steam
+                    stream
             
                 </a>
             
@@ -1157,8 +1183,7 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="list">&lt;list&gt;</h1>
-<p><span class="weex-version">0.4</span></p>
+                                <h1 id="list-04">&lt;list&gt; <sup class="wx-v">0.4</sup></h1>
 <h3 id="summary">Summary</h3>
 <p>A fixed height container which has multiple child components (cells) arranged in one column. If total height of its child components is higher then the height of itself, the whole child components are scrollable and it&apos;s high-performanced.</p>
 <p><strong>Notes:</strong> height of <code>list</code> must be specified (list&apos;s styles must contain <code>height</code> or pair of <code>top</code>, <code>bottom</code> or flex value if outter container&apos;s <code>flex-direction</code> value is <code>column</code>).</p>
@@ -1183,15 +1208,15 @@
 </ul>
 <h3 id="events">Events</h3>
 <ul>
-<li><code>loadmore</code> <span class="weex-version">0.5</span>: if the list scrolls to bottom, this event will be triggered immediately. You can load the next page of items in this event handler.</li>
-<li><code>onappear</code> <span class="weex-version">0.5</span>: if the list&apos;s cells scroll to visible area, this event will be triggered when list is stopped. You can do something in this event handler.</li>
-<li><code>ondisappear</code> <span class="weex-version">0.5</span>: if the list&apos;s cells scroll to invisible area, this event will be triggered when list is stopped. You can do something in this event handler.</li>
+<li><code>loadmore</code> <sup class="wx-v">0.5</sup>: if the list scrolls to bottom, this event will be triggered immediately. You can load the next page of items in this event handler.</li>
+<li><code>onappear</code> <sup class="wx-v">0.5</sup>: if the list&apos;s cells scroll to visible area, this event will be triggered when list is stopped. You can do something in this event handler.</li>
+<li><code>ondisappear</code> <sup class="wx-v">0.5</sup>: if the list&apos;s cells scroll to invisible area, this event will be triggered when list is stopped. You can do something in this event handler.</li>
 </ul>
 <p><strong>common events</strong>: check out the <a href="../references/common-event.html">common events</a></p>
 <ul>
 <li>support <code>click</code> event. Check out <a href="../references/common-event.html">common events</a></li>
 <li>support <code>appear</code> / <code>disappear</code> event. Check out <a href="../references/common-event.html">common events</a></li>
-<li>support <code>refresh</code> event  <span class="weex-version">0.5</span>.  If a refresh component is inside scroller, this event will be triggered when the scroller is swiping down.</li>
+<li>support <code>refresh</code> event  <sup class="wx-v">0.5</sup>.  If a refresh component is inside scroller, this event will be triggered when the scroller is swiping down.</li>
 <li>support <code>loading</code> event .  If a loading component is inside scroller, this event will be triggered when user scrolling to the bottom.</li>
 </ul>
 <h3 id="example">Example</h3>
@@ -1223,7 +1248,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-        gitbook.page.hasChanged({"page":{"title":"list","level":"1.3.4.7","depth":3,"next":{"title":"cell","level":"1.3.4.7.1","depth":4,"path":"components/cell.md","ref":"components/cell.md","articles":[]},"previous":{"title":"scroller","level":"1.3.4.6","depth":3,"path":"components/scroller.md","ref":"components/scroller.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.0.3","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"components/list.md","mtime":"2016-06-09T07:24:28.705Z","type":"markdown"},"gitbook":{"version":"3.0.3","time":"2016-06-09T08:13:51.066Z"},"basePath":"..","book":{"language":""}});
+        gitbook.page.hasChanged({"page":{"title":"list","level":"1.3.4.7","depth":3,"next":{"title":"cell","level":"1.3.4.7.1","depth":4,"path":"components/cell.md","ref":"components/cell.md","articles":[]},"previous":{"title":"scroller","level":"1.3.4.6","depth":3,"path":"components/scroller.md","ref":"components/scroller.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.0.3","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"components/list.md","mtime":"2016-06-13T14:51:03.963Z","type":"markdown"},"gitbook":{"version":"3.0.3","time":"2016-06-13T14:51:17.250Z"},"basePath":"..","book":{"language":""}});
         setTimeout(function(){
            window._rePostionVersion()
         },100);
