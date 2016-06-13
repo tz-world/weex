@@ -9,8 +9,12 @@ var doc = window.document
 var ua = window.navigator.userAgent
 var Firefox = !!ua.match(/Firefox/i)
 var IEMobile = !!ua.match(/IEMobile/i)
-var cssPrefix = Firefox?'-moz-':IEMobile?'-ms-':'-webkit-'
-var stylePrefix = Firefox?'Moz':IEMobile?'ms':'webkit'
+var cssPrefix = Firefox ? '-moz-' : IEMobile ? '-ms-' : '-webkit-'
+var stylePrefix = Firefox ? 'Moz' : IEMobile ? 'ms' : 'webkit'
+
+var timer = require('./timer')
+var setTimeout = timer.setTimeout
+var clearTimeout = timer.clearTimeout
 
 function getTransformOffset(element) {
   var offset = { x: 0, y: 0 }
