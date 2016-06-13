@@ -37,10 +37,12 @@
     "build:browser": "webpack --config build/webpack.browser.config.js",
     "build:native": "webpack --config build/webpack.native.config.js",
     "build:examples": "webpack --config build/webpack.examples.config.js",
+    "build:examples:vue": "webpack --config build/webpack.examples.vue.config.js",
     "build:test": "webpack --config build/webpack.test.config.js",
     "dev:browser": "webpack --watch --config build/webpack.browser.config.js",
     "dev:native": "webpack --watch --config build/webpack.native.config.js",
     "dev:examples": "webpack --watch --config build/webpack.examples.config.js",
+    "dev:examples:vue": "webpack --watch --config build/webpack.examples.vue.config.js",
     "dev:test": "webpack --watch --config build/webpack.test.config.js",
     "build": "npm run build:native && npm run build:browser && npm run build:examples && npm run build:test",
     "test": "mocha --compilers js:babel-core/register html5/test/*/*.js html5/test/*/*/*.js",
@@ -53,7 +55,9 @@
     "clean": "npm run clean:examples && npm run clean:test",
     "copy:js": "cp -vf ./dist/native.js ./android/sdk/assets/main.js",
     "copy:examples": "rm -rf ./android/playground/app/src/main/assets/* && cp -vrf ./examples/build/* ./android/playground/app/src/main/assets/",
-    "copy": "npm run copy:js && npm run copy:examples"
+    "copy": "npm run copy:js && npm run copy:examples",
+    "vue": "bash ./bin/vue-postinstall.sh",
+    "vue:start": "npm run build && build:examples:vue && npm run serve"
   },
   "subversion": {
     "browser": "0.2.13",

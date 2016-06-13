@@ -1,0 +1,43 @@
+<template>
+  <example-list :items="items" dir="examples"></example-list>
+</template>
+
+<script>
+  module.exports = {
+    components: {
+      'example-list': require('./include/example-list.vue')
+    },
+    data: {
+      items: [
+        // `name` key is the example filename without '.we'
+        // Support sub directory, e.g. 'new-fashion/index'
+        {name: 'hello', title: 'Hello World'},
+        {name: 'style/index', title: 'Common Style'},
+        {name: 'animation', title: 'Animation'},
+        // component
+        {name: 'component/text-demo', title: 'Text'},
+        {name: 'component/image-demo', title: 'Image'},
+        {name: 'component/scroller-demo', title: 'Scroller'},
+        {name: 'component/list/list-basic', title: 'List (Basic)'},
+        {name: 'component/list/list-demo', title: 'List (Advanced)'},
+        {name: 'component/slider/index', title: 'Slider'},
+        {name: 'component/a-demo',title:'A'},
+        {name: 'component/video-demo', title: 'Video'},
+        {name: 'component/countdown-demo', title: 'Countdown'},
+        {name: 'component/marquee-demo', title: 'Marquee'},
+        {name: 'component/web-demo', title: 'Web'},
+        {name: 'component/navigator-demo', title: 'Navigator'},
+        {name: 'component/tabbar/tabbar-demo', title: 'Tabbar'},
+
+        // module
+        {name: 'module/instance-api', title: 'Instance API'},
+        {name: 'module/modal', title: 'Modal'},
+        {name: 'module/stream-demo', title: 'Stream'},
+        // showcase
+        {name: 'showcase/new-fashion/index', title: 'Activity'},
+        {name: 'showcase/calculator', title: 'Calculator'},
+        {name: 'showcase/ui', title: 'UI Gallery'}
+      ]
+    }
+  }
+</script>
