@@ -30,7 +30,7 @@ const instanceMap = {}
  * @param  {object} [options] option `HAS_LOG` enable print log
  * @param  {object} [data]
  */
-function createInstance (instanceId, code, options, data) {
+export function createInstance (instanceId, code, options, data) {
   let instance = instanceMap[instanceId]
   options = options || {}
 
@@ -55,7 +55,7 @@ function createInstance (instanceId, code, options, data) {
  * @param  {string} instanceId
  * @param  {object} data
  */
-function refreshInstance (instanceId, data) {
+export function refreshInstance (instanceId, data) {
   const instance = instanceMap[instanceId]
   let result
   if (instance) {
@@ -71,7 +71,7 @@ function refreshInstance (instanceId, data) {
  * destroy a Weex instance
  * @param  {string} instanceId
  */
-function destroyInstance (instanceId) {
+export function destroyInstance (instanceId) {
   const instance = instanceMap[instanceId]
   if (!instance) {
     return new Error(`invalid instance id "${instanceId}"`)
@@ -86,7 +86,7 @@ function destroyInstance (instanceId) {
  * register the name of each native component
  * @param  {array} components array of name
  */
-function registerComponents (components) {
+export function registerComponents (components) {
   if (Array.isArray(components)) {
     components.forEach(function register (name) {
       /* istanbul ignore if */
@@ -107,7 +107,7 @@ function registerComponents (components) {
  * register the name and methods of each module
  * @param  {object} modules a object of modules
  */
-function registerModules (modules) {
+export function registerModules (modules) {
   if (typeof modules === 'object') {
     Vm.registerModules(modules)
   }
@@ -117,7 +117,7 @@ function registerModules (modules) {
  * register the name and methods of each api
  * @param  {object} apis a object of apis
  */
-function registerMethods (apis) {
+export function registerMethods (apis) {
   if (typeof apis === 'object') {
     Vm.registerMethods(apis)
   }
@@ -129,7 +129,7 @@ function registerMethods (apis) {
  * @param  {string} instanceId
  * @return {object} a virtual dom tree
  */
-function getRoot (instanceId) {
+export function getRoot (instanceId) {
   const instance = instanceMap[instanceId]
   let result
   if (instance) {
@@ -174,15 +174,4 @@ function callJS (instanceId, tasks) {
     return results
   }
   return new Error(`invalid instance id "${instanceId}" or tasks`)
-}
-
-export default {
-  createInstance,
-  refreshInstance,
-  destroyInstance,
-  registerComponents,
-  registerModules,
-  registerMethods,
-  getRoot,
-  callJS
 }
