@@ -2,6 +2,7 @@
 
 require('./styles/base.css')
 
+require('./polyfill')
 var config = require('./config')
 var Loader = require('./loader')
 var utils = require('./utils')
@@ -22,7 +23,7 @@ var WEAPP_STYLE_ID = 'weapp-style'
 var DEFAULT_DESIGN_WIDTH = 750
 var DEFAULT_SCALE = window.innerWidth / DEFAULT_DESIGN_WIDTH
 var DEFAULT_ROOT_ID = 'weex'
-var DEFAULT_JSON_CALLBACK_NAME = 'weexJsonpCallback'
+var DEFAULT_JSONP_CALLBACK_NAME = 'weexJsonpCallback'
 
 window.WXEnvironment = {
   weexVersion: config.weexVersion,
@@ -31,6 +32,7 @@ window.WXEnvironment = {
   platform: 'Web',
   osName: lib.env.browser ? lib.env.browser.name : null,
   osVersion: lib.env.browser ? lib.env.browser.version.val : null,
+  deviceWidth: DEFAULT_DESIGN_WIDTH,
   deviceHeight: window.innerHeight / DEFAULT_SCALE
 }
 
@@ -39,16 +41,16 @@ var _downgrades = {}
 
 var downgradable = ['list', 'scroller']
 
-; (function getGlobalDowngradesFromUrlParams() {
+; (function initializeWithUrlParams() {
 
-  // Get global _downgrades from url's params.
   var params = lib.httpurl(location.href).params
   for (var k in params) {
-    if (params[k] !== true && params[k] !== 'true') {
-      continue
-    }
+    // Get global _downgrades from url's params.
     var match = k.match(/downgrade_(\w+)/)
     if (!match || !match[1]) {
+      continue
+    }
+    if (params[k] !== true && params[k] !== 'true') {
       continue
     }
     var downk = match[1]
@@ -57,7 +59,15 @@ var downgradable = ['list', 'scroller']
     }
   }
 
+  // set global 'debug' config to true if there's a debug flag in current url.
+  var debug = params['debug']
+  if (debug === true || debug === 'true') {
+    config.debug = true
+  }
+
 })()
+
+require('./logger').init()
 
 function Weex(options) {
 
@@ -71,9 +81,10 @@ function Weex(options) {
   this.instanceId = options.appId
   this.rootId = options.rootId || (DEFAULT_ROOT_ID + utils.getRandom(10))
   this.designWidth = options.designWidth || DEFAULT_DESIGN_WIDTH
-  this.jsonpCallback = options.jsonpCallback || DEFAULT_JSON_CALLBACK_NAME
+  this.jsonpCallback = options.jsonpCallback || DEFAULT_JSONP_CALLBACK_NAME
   this.source = options.source
   this.loader = options.loader
+  this.embed = options.embed ? true : false
 
   this.data = options.data
 

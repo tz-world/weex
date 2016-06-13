@@ -37,7 +37,7 @@ Component.prototype = {
     return this.getComponentManager().componentMap[this.parentRef]
   },
 
-  getParentScoller: function () {
+  getParentScroller: function () {
     if (this.isInScrollable()) {
       return this._parentScroller
     }
@@ -160,12 +160,15 @@ Component.prototype = {
       }
     }
 
-
     if (isAppend) {
       this.node.appendChild(child.node)
       children.push(child.data)
     } else {
-      this.node.insertBefore(child.node, before.node)
+      if (before.fixedPlaceholder) {
+        this.node.insertBefore(child.node, before.fixedPlaceholder)
+      } else {
+        this.node.insertBefore(child.node, before.node)
+      }
       children.splice(i, 0, child.data)
     }
 
@@ -188,7 +191,10 @@ Component.prototype = {
     }
     // remove from componentMap recursively
     componentManager.removeElementByRef(child.data.ref)
-    this.node.removeChild(child.node)
+    if (child.fixedPlaceholder) {
+      this.node.removeChild(child.fixedPlaceholder)
+    }
+    child.node.parentNode.removeChild(child.node)
   },
 
   updateAttrs: function (attrs) {

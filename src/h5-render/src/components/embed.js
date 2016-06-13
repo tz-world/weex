@@ -13,20 +13,18 @@ function Embed (data, nodeType) {
   var attr = data.attr
   if (attr) {
     this.source = attr.src
-    this.loader = attr.loade || 'xhr'
+    this.loader = attr.loader || 'xhr'
+    this.jsonpCallback = attr.jsonpCallback
   }
   Component.call(this, data, nodeType)
-  this.initWeex()
 }
 
 Embed.prototype = Object.create(Component.prototype)
 
 Embed.prototype.create = function () {
-
   var node = document.createElement('div')
   node.id = this.id
   node.style.overflow = 'scroll'
-  // node.classList.add('weex-container')
   return node
 }
 
@@ -38,8 +36,10 @@ Embed.prototype.initWeex = function () {
     source: this.source,
     bundleUrl: this.source,
     loader: this.loader,
+    jsonpCallback: this.jsonpCallback,
     width: this.node.getBoundingClientRect().width,
-    rootId: this.id
+    rootId: this.id,
+    embed: true
   }
   window.weex.init(config)
 }
@@ -51,16 +51,21 @@ Embed.prototype.destroyWeex = function () {
 }
 
 Embed.prototype.reloadWeex = function () {
-  this.destroyWeex()
+  if (this.id) {
+    this.destroyWeex()
+    this.id = null
+    this.node.id = null
+    this.node.innerHTML = ''
+  }
   this.initWeex()
 }
 
-// src is not updatable temporarily
-// Embed.prototype.attr = {
-//   src: function (value) {
-//     this.src = value
-//     this.reloadWeex()
-//   }
-// }
+// not recommended, because of the leak of memory.
+Embed.prototype.attr = {
+  src: function (value) {
+    this.source = value
+    this.reloadWeex()
+  }
+}
 
 module.exports = Embed

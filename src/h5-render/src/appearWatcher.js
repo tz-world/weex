@@ -41,15 +41,16 @@ function onScroll(e) {
   // implemented through scrollerjs, then the appear/disappear events
   // should be treated specially by handleScrollerScroll.
   if (e.originalType === 'scrolling') {
-    handleScrollerScroll()
+    handleScrollerScroll(e)
   } else {
     handleWindowScroll()
   }
 }
 
-function handleScrollerScroll() {
+function handleScrollerScroll(e) {
   var cmps = componentsInScroller
   var len = cmps.length
+  direction = e.direction
   for (var i = 0; i < len; i++) {
     var component = cmps[i]
     var appear = isComponentInScrollerAppear(component)

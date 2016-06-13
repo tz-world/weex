@@ -1,5 +1,7 @@
 'use strict'
 
+var NOT_PX_NUMBER_PROPERTIES = ['flex', 'opacity', 'zIndex', 'fontWeight']
+
 var valueFilter = {
 
   filterStyles: function (styles, config) {
@@ -13,7 +15,8 @@ var valueFilter = {
   },
 
   getFilters: function (key, config) {
-    if (key === 'flex' || key === 'opacity' || key === 'zIndex') {
+
+    if (NOT_PX_NUMBER_PROPERTIES.indexOf(key) !== -1) {
       return {}
     }
     return {
@@ -21,11 +24,12 @@ var valueFilter = {
         return val * config.scale + 'px'
       },
       string: function (val) {
-        if (val.match(/^[\d]+px$/)) {
+        // string of a pure number or a number suffixed with a 'px' unit
+        if (val.match(/^\-?\d*\.?\d+(?:px)?$/)) {
           return parseFloat(val) * config.scale + 'px'
         }
         if (key.match(/transform/) && val.match(/translate/)) {
-          return val.replace(/[\d]+px/g, function (match) {
+          return val.replace(/\d*\.?\d+px/g, function (match) {
             return parseInt(parseFloat(match) * config.scale) + 'px'
           })
         }
