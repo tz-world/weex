@@ -22,6 +22,13 @@ const {
 } = config
 const instanceMap = {}
 
+export function init (cfg) {
+  config.Document = cfg.Document
+  config.Element = cfg.Element
+  config.Comment = cfg.Comment
+  config.sendTasks = cfg.sendTasks
+}
+
 /**
  * create a Weex instance
  *

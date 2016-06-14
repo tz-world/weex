@@ -48,6 +48,7 @@ Document.prototype.createDocumentElement = function () {
   if (!this.documentElement) {
     const el = new Element('document')
     el.docId = this.id
+    el.ownerDocument = this
     el.role = 'documentElement'
     el.depth = 0
     el.ref = '_documentElement'
@@ -56,23 +57,33 @@ Document.prototype.createDocumentElement = function () {
     el.appendChild = (node) => {
       appendBody(this, node)
     }
+    el.insertBefore = (node, before) => {
+      appendBody(this, node, before)
+    }
   }
 
   return this.documentElement
 }
 
-function appendBody (doc, node) {
+function appendBody (doc, node, before) {
   const { documentElement } = doc
 
   if (documentElement.pureChildren.length > 0 || node.parentNode) {
     return
   }
-
-  documentElement.children.push(node)
+  const children = documentElement.children
+  const beforeIndex = children.indexOf(before)
+  if (beforeIndex < 0) {
+    children.push(node)
+  }
+  else {
+    children.splice(beforeIndex, 0, node)
+  }
 
   if (node.nodeType === 1) {
     if (node.role === 'body') {
       node.docId = doc.id
+      node.ownerDocument = doc
       node.parentNode = documentElement
     }
     else {
@@ -81,12 +92,14 @@ function appendBody (doc, node) {
       })
       setBody(doc, node)
       node.docId = doc.id
+      node.ownerDocument = doc
       linkParent(node, documentElement)
     }
     documentElement.pureChildren.push(node)
     doc.listener.createBody(node)
   }
   else {
+    node.parentNode = documentElement
     doc.nodeMap[node.ref] = node
   }
 }
@@ -151,6 +164,9 @@ export function Node () {
   this.ref = this.nodeId
   this.children = []
   this.pureChildren = []
+  this.parentNode = null
+  this.nextSibling = null
+  this.previousSibling = null
 }
 
 Node.prototype.destroy = function () {
@@ -350,6 +366,8 @@ function linkParent (node, parent) {
   node.parentNode = parent
   if (parent.docId) {
     node.docId = parent.docId
+    node.ownerDocument = parent.ownerDocument
+    node.ownerDocument.nodeMap[node.nodeId] = node
     node.depth = parent.depth + 1
   }
   node.children.forEach(child => {
@@ -379,7 +397,6 @@ function insertIndex (target, list, newIndex, changeSibling) {
 }
 
 function moveIndex (target, list, newIndex, changeSibling) {
-  // console.log(target.type, list.map(node=>node.type), newIndex, changeSibling)
   const index = list.indexOf(target)
   if (index < 0) {
     return -1
@@ -404,7 +421,6 @@ function moveIndex (target, list, newIndex, changeSibling) {
     target.nextSibling = afterNew
     afterNew && (afterNew.previousSibling = target)
   }
-  // console.log(target.type, list.map(node=>node.type), newIndex, newIndexAfter)
   if (index === newIndexAfter) {
     return -1
   }
@@ -511,7 +527,7 @@ Element.prototype.toString = function () {
     '</' + this.type + '>'
 }
 
-export function Comment (value, ownerDocument) {
+export function Comment (value) {
   this.nodeType = 8
   this.nodeId = (nextNodeRef++).toString()
   this.ref = this.nodeId
