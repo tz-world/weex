@@ -1,5 +1,19 @@
 import frameworks from './frameworks'
 
+import { Document, Element, Comment } from '../vdom'
+
+const config = {
+  Document, Element, Comment,
+  sendTasks (...args) {
+    global.callNative(...args)
+  }
+}
+
+for (const name in frameworks) {
+  const framework = frameworks[name]
+  framework.init(config)
+}
+
 const versionRegExp = /^\/\/ *(\{[^\}]*\}) *\r?\n/
 
 function checkVersion (code) {
