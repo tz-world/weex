@@ -5,7 +5,7 @@ var config = require('../config')
 var Component = require('./component')
 var ComponentManager = require('../componentManager')
 var LazyLoad = require('../lazyLoad')
-require('carrousel')
+require('../carrousel')
 require('../styles/slider.css')
 
 var DEFAULT_INTERVAL = 3000

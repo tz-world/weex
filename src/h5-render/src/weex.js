@@ -3,6 +3,7 @@
 require('./styles/base.css')
 
 require('./polyfill')
+
 var config = require('./config')
 var Loader = require('./loader')
 var utils = require('./utils')
@@ -17,6 +18,9 @@ var components = require('./components')
 var api = require('./api')
 require('envd')
 require('httpurl')
+
+// gesture
+require('./gesture')
 
 var WEAPP_STYLE_ID = 'weapp-style'
 
@@ -43,6 +47,11 @@ var downgradable = ['list', 'scroller']
 
 ; (function initializeWithUrlParams() {
 
+  // in casperjs the protocol is file.
+  if (location.protocol.match(/file/)) {
+    return
+  }
+
   var params = lib.httpurl(location.href).params
   for (var k in params) {
     // Get global _downgrades from url's params.
@@ -67,7 +76,8 @@ var downgradable = ['list', 'scroller']
 
 })()
 
-require('./logger').init()
+var logger = require('./logger')
+logger.init()
 
 function Weex(options) {
 
@@ -107,6 +117,7 @@ function Weex(options) {
 }
 
 Weex.init = function (options) {
+
   if (utils.isArray(options)) {
     options.forEach(function (config) {
       new Weex(config)
@@ -280,7 +291,10 @@ Weex.stopTheWorld = function () {
   }
 }
 
-(function startRefreshController() {
+; (function startRefreshController() {
+  if (location.protocol.match(/file/)) {
+    return
+  }
   if (location.search.indexOf('hot-reload_controller') === -1)  {
     return
   }
