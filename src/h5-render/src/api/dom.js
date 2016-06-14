@@ -86,6 +86,7 @@ var dom = {
    */
   scrollToElement: function (ref, options) {
     !options && (options = {})
+    var offset = (Number(options.offset) || 0) * this.scale
     var componentManager = this.getComponentManager()
     var elem = componentManager.getElementByRef(ref)
     if (!elem) {
@@ -93,11 +94,10 @@ var dom = {
     }
     var parentScroller = elem.getParentScroller()
     if (parentScroller) {
-      parentScroller.scroller.scrollToElement(elem.node, true)
+      parentScroller.scroller.scrollToElement(elem.node, true, offset)
     } else {
       var offsetTop = elem.node.getBoundingClientRect().top
           + document.body.scrollTop
-      var offset = (Number(options.offset) || 0) * this.scale
       var tween = scroll(0, offsetTop + offset, options)
       tween.on('end', function () {
         logger.log('scroll end.')
