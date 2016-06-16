@@ -1022,9 +1022,10 @@ function Scroll(element, options) {
       return this
     },
 
-    scrollToElement: function (childEl, isSmooth) {
+    scrollToElement: function (childEl, isSmooth, topOffset) {
       var offset = this.offset(childEl)
       offset = offset[this.axis === 'y'?'top':'left']
+      topOffset && (offset += topOffset)
       return this.scrollTo(offset, isSmooth)
     },
 

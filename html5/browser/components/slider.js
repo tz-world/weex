@@ -7,7 +7,7 @@ const extend = require('../utils').extend
 const Component = require('./component')
 // const ComponentManager = require('../componentManager')
 // const LazyLoad = require('../lazyLoad')
-require('carrousel')
+require('../carrousel')
 require('../styles/slider.css')
 
 const DEFAULT_INTERVAL = 3000

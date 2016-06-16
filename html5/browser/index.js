@@ -7,6 +7,7 @@ require('../native')
 require('./styles/base.css')
 
 require('./polyfill')
+
 const config = require('./config')
 const Loader = require('./loader')
 const utils = require('./utils')
@@ -21,6 +22,9 @@ const components = require('./components')
 const api = require('./api')
 require('envd')
 require('httpurl')
+
+// gesture
+require('./gesture')
 
 const WEAPP_STYLE_ID = 'weapp-style'
 
@@ -46,6 +50,11 @@ const _downgrades = {}
 const downgradable = ['list', 'scroller']
 
 function initializeWithUrlParams () {
+  // in casperjs the protocol is file.
+  if (location.protocol.match(/file/)) {
+    return
+  }
+
   const params = lib.httpurl(location.href).params
   for (const k in params) {
     // Get global _downgrades from url's params.
@@ -71,7 +80,8 @@ function initializeWithUrlParams () {
 
 initializeWithUrlParams()
 
-require('./logger').init()
+const logger = require('./logger')
+logger.init()
 
 function Weex (options) {
   if (!(this instanceof Weex)) {
@@ -285,6 +295,9 @@ Weex.stopTheWorld = function () {
 }
 
 function startRefreshController () {
+  if (location.protocol.match(/file/)) {
+    return
+  }
   if (location.search.indexOf('hot-reload_controller') === -1) {
     return
   }
