@@ -847,14 +847,6 @@ function Scroll(element, options) {
       var type = isVertical ? 'height' : 'width'
       var size, rect, extraSize
 
-      // function getExtraSize(rect, parentRect, isVertical) {
-      //   var extraType = isVertical ? ['top', 'bottom'] : ['left', 'right']
-      //   return extraType.reduce(function (res, cur) {
-      //     var ind = parentRect[cur] - rect[cur]
-      //     return res + ind >= 0 ? ind : -ind
-      //   }, 0)
-      // }
-      
       function getExtraSize(el, isVertical) {
         var extraType = isVertical ? ['top', 'bottom'] : ['left', 'right']
         return parseFloat(
@@ -916,7 +908,7 @@ function Scroll(element, options) {
         }
 
         size += getExtraSize(el, isVertical)
-        
+
       }
 
       el.style[type] = size ? size + 'px' : 'auto'
@@ -924,11 +916,12 @@ function Scroll(element, options) {
       this.transformOffset = getTransformOffset(this)
       this.minScrollOffset = getMinScrollOffset(this)
       this.maxScrollOffset = getMaxScrollOffset(this)
+
       this.scrollTo(
         -this.transformOffset[this.axis]
         - this.options[this.axis + 'PaddingTop']
       )
-      fireEvent(this, 'contentrefresh')      
+      fireEvent(this, 'contentrefresh')
 
       return this
     },
