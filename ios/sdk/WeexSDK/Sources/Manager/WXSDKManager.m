@@ -7,6 +7,7 @@
  */
 
 #import "WXSDKManager.h"
+#import "WXModuleManager.h"
 #import "WXThreadSafeMutableDictionary.h"
 
 @interface WXSDKManager ()
