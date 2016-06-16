@@ -45,10 +45,10 @@ module.exports = {
         test: /\.we(\?[^?]+)?$/,
         loader: 'weex'
       },
-      {
-        test: /\.js(\?[^?]+)?$/,
-        loader: 'weex?type=script'
-      },
+      // {
+      //   test: /\.js(\?[^?]+)?$/,
+      //   loader: 'weex?type=script'
+      // },
       {
         test: /\.css(\?[^?]+)?$/,
         loader: 'weex?type=style'
