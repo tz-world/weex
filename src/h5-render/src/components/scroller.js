@@ -54,14 +54,9 @@ Scroller.prototype.create = function (nodeType) {
     this.direction + '-scroller'
   )
 
-  // Flex will cause a bug to rescale children's size if their total
-  // size exceed the limit of their parent. So to use box instead.
-  this.scrollElement.style.display = '-webkit-box'
-  this.scrollElement.style.display = 'box'
-  this.scrollElement.style.webkitBoxOrient = this.direction === 'h'
-    ? 'horizontal'
-    : 'vertical'
-  this.scrollElement.style.boxOrient = this.scrollElement.style.webkitBoxOrient
+  this.scrollElement.style.webkitBoxOrient = directionMap[this.direction][1]
+  this.scrollElement.style.webkitFlexDirection = directionMap[this.direction][0]
+  this.scrollElement.style.flexDirection = directionMap[this.direction][0]
 
   node.appendChild(this.scrollElement)
   this.scroller = new Scroll({
