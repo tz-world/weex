@@ -25,6 +25,7 @@
 #import "WXRootViewController.h"
 #import "WXSDKEngine.h"
 #import "WXSDKInstance.h"
+#import "WXSDKManager.h"
 #import "WXType.h"
 #import "WXUtility.h"
 
