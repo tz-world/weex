@@ -202,18 +202,44 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.taobao.weex.ui.component.list;
+package com.taobao.weex.bridge;
 
-import com.taobao.weex.WXSDKInstance;
-import com.taobao.weex.dom.WXDomObject;
-import com.taobao.weex.ui.component.WXVContainer;
+import com.taobao.weex.common.WXModuleAnno;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Type;
 
 /**
- * Root component for components in {@link WXListComponent}
+ * Created by sospartan on 6/16/16.
  */
-public class WXCell extends WXVContainer {
+public class MethodInvoker implements Invoker {
 
-    public WXCell(WXSDKInstance instance, WXDomObject dom, WXVContainer parent, boolean isLazy) {
-        super(instance, dom, parent,true );
-    }
+  final Method mMethod;
+
+  public MethodInvoker(Method method){
+    mMethod = method;
+  }
+
+  @Override
+  public void invoke(Object receiver, Object... params) throws InvocationTargetException, IllegalAccessException {
+    mMethod.invoke(receiver,params);
+  }
+
+  @Override
+  public Type[] getParameterTypes() {
+    return mMethod.getGenericParameterTypes();
+  }
+
+  @Override
+  public boolean isRunInUIThread() {
+    //TODO: use a separate annotation
+    WXModuleAnno annotation = mMethod.getAnnotation(WXModuleAnno.class);
+    return annotation != null && annotation.runOnUIThread();
+  }
+
+  @Override
+  public String toString() {
+    return mMethod.getName();
+  }
 }

@@ -212,6 +212,7 @@ import com.taobao.weex.WXSDKManager;
 import com.taobao.weex.common.*;
 import com.taobao.weex.dom.WXDomModule;
 import com.taobao.weex.utils.WXLogUtils;
+import com.taobao.weex.utils.WXReflectionUtils;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -300,14 +301,14 @@ public class WXModuleManager {
     }
     wxModule.mWXSDKInstance = WXSDKManager.getInstance().getSDKInstance(instanceId);
 
-    HashMap<String, Method> methodsMap = factory.getMethodMap();
+    HashMap<String, Invoker> methodsMap = factory.getMethodMap();
     if (methodsMap == null) {
       WXLogUtils.e("[WXModuleManager] callModuleMethod methodsMap is null.");
       return false;
     }
-    final Method moduleMethod = methodsMap.get(methodStr);
+    final Invoker invoker = methodsMap.get(methodStr);
     try {
-      Type[] paramClazzs = moduleMethod.getGenericParameterTypes();
+      Type[] paramClazzs = invoker.getParameterTypes();
       final Object[] params = new Object[paramClazzs.length];
       Object value;
       Type paramClazz;
@@ -328,46 +329,22 @@ public class WXModuleManager {
             throw new Exception("Parameter type not match.");
           }
         } else {
-          String sValue;
-          if (value instanceof String) {
-            sValue = (String) value;
-          } else {
-            sValue = JSON.toJSONString(value);
-          }
-
-          if (paramClazz == int.class) {
-            params[i] = Integer.parseInt(sValue);
-          } else if (paramClazz == String.class) {
-            params[i] = sValue;
-          } else if (paramClazz == long.class) {
-            params[i] = Long.parseLong(sValue);
-          } else if (paramClazz == double.class) {
-            params[i] = Double.parseDouble(sValue);
-          } else if (paramClazz == float.class) {
-            params[i] = Float.parseFloat(sValue);
-          } else if (ParameterizedType.class.isAssignableFrom(paramClazz.getClass())) {
-            params[i] = JSON.parseObject(sValue, paramClazz);
-          } else if (IWXObject.class.isAssignableFrom(paramClazz.getClass())) {
-            params[i] = JSON.parseObject(sValue, paramClazz);
-          } else {
-            params[i] = JSON.parseObject(sValue, paramClazz);
-          }
+          params[i] = WXReflectionUtils.parseArgument(paramClazz,value);
         }
       }
-      WXModuleAnno anno = moduleMethod.getAnnotation(WXModuleAnno.class);
-      if (anno.runOnUIThread()) {
+      if (invoker.isRunInUIThread()) {
         WXSDKManager.getInstance().postOnUiThread(new Runnable() {
           @Override
           public void run() {
             try {
-              moduleMethod.invoke(wxModule, params);
+              invoker.invoke(wxModule, params);
             } catch (Exception e) {
               WXLogUtils.e("callModuleMethod >>> invoke module:" + WXLogUtils.getStackTrace(e));
             }
           }
         }, 0);
       } else {
-        moduleMethod.invoke(wxModule, params);
+        invoker.invoke(wxModule, params);
       }
     } catch (Exception e) {
       WXLogUtils.e("callModuleMethod >>> invoke module:" + moduleStr + ", method:" + methodStr + " failed. " + WXLogUtils.getStackTrace(e));
@@ -449,7 +426,7 @@ public class WXModuleManager {
     public static final String TAG = "ModuleFactory";
     Class<T> mClazz;
     ArrayList<String> mMethods;
-    HashMap<String, Method> mMethodMap;
+    HashMap<String, Invoker> mMethodMap;
 
     public ModuleFactory(Class<T> clz){
       mClazz = clz;
@@ -458,14 +435,14 @@ public class WXModuleManager {
     private void generateMethodMap() {
       WXLogUtils.d(TAG,"extractMethodNames");
       ArrayList<String> methods = new ArrayList<>();
-      HashMap<String,Method> methodMap = new HashMap<>();
+      HashMap<String,Invoker> methodMap = new HashMap<>();
       try {
         for (Method method : mClazz.getMethods()) {
           // iterates all the annotations available in the method
           for (Annotation anno : method.getDeclaredAnnotations()) {
             if (anno != null && anno instanceof WXModuleAnno ) {
               methods.add(method.getName());
-              methodMap.put(method.getName(),method);
+              methodMap.put(method.getName(),new MethodInvoker(method));
               break;
             }
           }
@@ -489,7 +466,7 @@ public class WXModuleManager {
       return mMethods;
     }
 
-    HashMap<String, Method> getMethodMap(){
+    HashMap<String, Invoker> getMethodMap(){
       if(mMethodMap==null){
         generateMethodMap();
       }

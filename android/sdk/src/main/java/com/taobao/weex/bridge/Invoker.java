@@ -202,18 +202,18 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.taobao.weex.ui.component.list;
+package com.taobao.weex.bridge;
 
-import com.taobao.weex.WXSDKInstance;
-import com.taobao.weex.dom.WXDomObject;
-import com.taobao.weex.ui.component.WXVContainer;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Type;
 
 /**
- * Root component for components in {@link WXListComponent}
+ * Created by sospartan on 6/16/16.
  */
-public class WXCell extends WXVContainer {
+public interface Invoker {
+  void invoke(Object receiver,Object...params) throws InvocationTargetException, IllegalAccessException;
 
-    public WXCell(WXSDKInstance instance, WXDomObject dom, WXVContainer parent, boolean isLazy) {
-        super(instance, dom, parent,true );
-    }
+  Type[] getParameterTypes();
+
+  boolean isRunInUIThread();
 }
