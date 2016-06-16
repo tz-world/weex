@@ -1,5 +1,3 @@
-/* global lib */
-
 'use strict'
 
 const Atomic = require('./atomic')
