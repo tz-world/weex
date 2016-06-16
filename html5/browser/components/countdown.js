@@ -1,9 +1,7 @@
-/* global lib */
-
 'use strict'
 
 const Atomic = require('./atomic')
-require('kountdown/build/countdown')
+const Kountdown = require('kountdown')
 
 const FORMATTER_REGEXP = /(\\)?(dd*|hh?|mm?|ss?)/gi
 
@@ -40,7 +38,7 @@ Countdown.prototype.create = function () {
   const data = this.data
   const time = Number(data.attr.countdownTime) || 0
   const endTime = Date.now() / 1000 + time
-  lib.countdown({
+  Kountdown({
     endDate: endTime,
     onUpdate: function (time) {
       const timeColor = data.style.timeColor || '#000'
