@@ -87,7 +87,7 @@
 
 - (void)dealloc
 {
-    free_css_node(_cssNode);
+    wx_free_css_node(_cssNode);
 }
 
 - (NSDictionary *)styles

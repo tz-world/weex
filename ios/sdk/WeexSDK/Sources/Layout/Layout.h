@@ -154,9 +154,9 @@ struct css_node {
 };
 
 // Lifecycle of nodes and children
-css_node_t *new_css_node(void);
-void init_css_node(css_node_t *node);
-void free_css_node(css_node_t *node);
+css_node_t *wx_new_css_node(void);
+void wx_init_css_node(css_node_t *node);
+void wx_free_css_node(css_node_t *node);
 
 // Print utilities
 typedef enum {
@@ -164,14 +164,14 @@ typedef enum {
   CSS_PRINT_STYLE = 2,
   CSS_PRINT_CHILDREN = 4,
 } css_print_options_t;
-void print_css_node(css_node_t *node, css_print_options_t options);
+void wx_print_css_node(css_node_t *node, css_print_options_t options);
 
-bool isUndefined(float value);
+bool wx_isUndefined(float value);
 
 // Function that computes the layout!
-void layoutNode(css_node_t *node, float maxWidth, float maxHeight, css_direction_t parentDirection);
+void wx_layoutNode(css_node_t *node, float maxWidth, float maxHeight, css_direction_t parentDirection);
 
 // Reset the calculated layout values for a given node. You should call this before `layoutNode`.
-void resetNodeLayout(css_node_t *node);
+void wx_resetNodeLayout(css_node_t *node);
 
 #endif

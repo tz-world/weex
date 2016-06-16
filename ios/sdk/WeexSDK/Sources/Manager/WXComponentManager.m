@@ -8,6 +8,7 @@
 
 #import "WXComponentManager.h"
 #import "WXComponent.h"
+#import "Layout.h"
 #import "WXComponent_internal.h"
 #import "WXComponentFactory.h"
 #import "WXDefine.h"
@@ -133,7 +134,7 @@ static NSThread *WXComponentThread;
     WXSDKInstance *instance = self.weexInstance;
     instance.rootView.wx_component = rootComponent;
     
-    _rootCSSNode = new_css_node();
+    _rootCSSNode = wx_new_css_node();
     _rootCSSNode->style.position[CSS_LEFT] = instance.frame.origin.x;
     _rootCSSNode->style.position[CSS_TOP] = instance.frame.origin.y;
     _rootCSSNode->style.dimensions[CSS_WIDTH] = instance.frame.size.width;
@@ -501,7 +502,7 @@ static css_node_t * rootNodeGetChild(void *context, int i)
         return;
     }
     
-    layoutNode(_rootCSSNode, _rootCSSNode->style.dimensions[CSS_WIDTH], _rootCSSNode->style.dimensions[CSS_HEIGHT], CSS_DIRECTION_INHERIT);
+    wx_layoutNode(_rootCSSNode, _rootCSSNode->style.dimensions[CSS_WIDTH], _rootCSSNode->style.dimensions[CSS_HEIGHT], CSS_DIRECTION_INHERIT);
     //
     //    if ([WXLog logLevel] >= WXLogLevelVerbose) {
     //        print_css_node_NSLog(_cssNode);

@@ -60,7 +60,7 @@
 
 - (void)_initCSSNodeWithStyles:(NSDictionary *)styles
 {
-    _cssNode = new_css_node();
+    _cssNode = wx_new_css_node();
     
     _cssNode->print = cssNodePrint;
     _cssNode->get_child = cssNodeGetChild;
@@ -76,7 +76,7 @@
     [self _fillCSSNode:styles];
     
     // TODO: JS Default flex:1 on root, not here
-    if ([self.ref isEqualToString:WX_SDK_ROOT_REF] && isUndefined(_cssNode->style.dimensions[CSS_HEIGHT])) {
+    if ([self.ref isEqualToString:WX_SDK_ROOT_REF] && wx_isUndefined(_cssNode->style.dimensions[CSS_HEIGHT])) {
         _cssNode->style.flex = 1.0;
     }
 }
