@@ -8,6 +8,7 @@
 
 #import "WXBridgeManager.h"
 #import "WXBridgeContext.h"
+#import "WXBridgeMethod.h"
 #import "WXLog.h"
 #import "WXAssert.h"
 
