@@ -204,21 +204,15 @@
  */
 package com.taobao.weex.bridge;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.taobao.weex.WXEnvironment;
 import com.taobao.weex.WXSDKManager;
 import com.taobao.weex.common.*;
 import com.taobao.weex.dom.WXDomModule;
 import com.taobao.weex.utils.WXLogUtils;
 import com.taobao.weex.utils.WXReflectionUtils;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -252,12 +246,7 @@ public class WXModuleManager {
     }
 
     if (sModuleFactoryMap.containsKey(moduleName)) {
-      if (WXEnvironment.isApkDebugable()) {
-        throw new WXException("Duplicate the Module name:" + moduleName);
-      } else {
-        WXLogUtils.e("WXComponentRegistry Duplicate the Module name: " + moduleName);
-        return false;
-      }
+        WXLogUtils.w("WXComponentRegistry Duplicate the Module name: " + moduleName);
     }
 
     if (global) {
@@ -301,7 +290,7 @@ public class WXModuleManager {
     }
     wxModule.mWXSDKInstance = WXSDKManager.getInstance().getSDKInstance(instanceId);
 
-    HashMap<String, Invoker> methodsMap = factory.getMethodMap();
+    Map<String, Invoker> methodsMap = factory.getMethodMap();
     if (methodsMap == null) {
       WXLogUtils.e("[WXModuleManager] callModuleMethod methodsMap is null.");
       return false;
@@ -419,58 +408,6 @@ public class WXModuleManager {
     @Override
     public void invokeAndKeepAlive(Map<String, Object> data) {
       WXBridgeManager.getInstance().callback(mInstanceId,mCallbackId,data,true);
-    }
-  }
-
-  public static  class ModuleFactory<T extends WXModule>{
-    public static final String TAG = "ModuleFactory";
-    Class<T> mClazz;
-    ArrayList<String> mMethods;
-    HashMap<String, Invoker> mMethodMap;
-
-    public ModuleFactory(Class<T> clz){
-      mClazz = clz;
-    }
-
-    private void generateMethodMap() {
-      WXLogUtils.d(TAG,"extractMethodNames");
-      ArrayList<String> methods = new ArrayList<>();
-      HashMap<String,Invoker> methodMap = new HashMap<>();
-      try {
-        for (Method method : mClazz.getMethods()) {
-          // iterates all the annotations available in the method
-          for (Annotation anno : method.getDeclaredAnnotations()) {
-            if (anno != null && anno instanceof WXModuleAnno ) {
-              methods.add(method.getName());
-              methodMap.put(method.getName(),new MethodInvoker(method));
-              break;
-            }
-          }
-        }
-      } catch (Throwable e) {
-        WXLogUtils.e("[WXModuleManager] extractMethodNames:" + e.getStackTrace());
-      }
-      mMethods = methods;
-      mMethodMap = methodMap;
-    }
-
-
-    public WXModule buildInstance() throws IllegalAccessException, InstantiationException {
-      return mClazz.newInstance();
-    }
-
-    ArrayList<String> getMethodNames(){
-      if(mMethods==null){
-        generateMethodMap();
-      }
-      return mMethods;
-    }
-
-    HashMap<String, Invoker> getMethodMap(){
-      if(mMethodMap==null){
-        generateMethodMap();
-      }
-      return mMethodMap;
     }
   }
 

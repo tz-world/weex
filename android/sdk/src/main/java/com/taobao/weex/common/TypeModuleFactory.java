@@ -202,91 +202,76 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.taobao.weex.ui;
+package com.taobao.weex.common;
 
-import android.text.TextUtils;
-
-import com.taobao.weex.WXEnvironment;
-import com.taobao.weex.WXSDKManager;
-import com.taobao.weex.common.WXException;
-import com.taobao.weex.ui.component.WXComponent;
+import com.taobao.weex.bridge.Invoker;
+import com.taobao.weex.bridge.MethodInvoker;
+import com.taobao.weex.bridge.ModuleFactory;
+import com.taobao.weex.common.WXModule;
+import com.taobao.weex.common.WXModuleAnno;
 import com.taobao.weex.utils.WXLogUtils;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * All components must be registered within this class before used.
+ * Use class
+ * Created by sospartan on 6/17/16.
  */
-public class WXComponentRegistry {
+public class TypeModuleFactory<T extends WXModule> implements ModuleFactory<T> {
+  public static final String TAG = "TypeModuleFactory";
+  Class<T> mClazz;
+  ArrayList<String> mMethods;
+  Map<String, Invoker> mMethodMap;
 
-  private static Map<String, ComponentHolder> sTypeComponentMap = new HashMap<>();
-  private static Map<String, String> sClassTypeMap = new HashMap<>();
-
-  public static boolean registerComponent(String type, Class<? extends WXComponent> clazz, boolean appendTree) throws WXException {
-    if (clazz == null || TextUtils.isEmpty(type)) {
-      return false;
-    }
-
-    Map<String, String> componentInfo = new HashMap<>();
-    componentInfo.put("type", type);
-    if (appendTree) {
-      componentInfo.put("append", "tree");
-    }
-
-    return registerNativeComponent(type, clazz) && registerJSComponent(componentInfo);
+  public TypeModuleFactory(Class<T> clz) {
+    mClazz = clz;
   }
 
-  public static boolean registerNativeComponent(String type, Class<? extends WXComponent> clazz) throws WXException {
-    //same component class for different name
-    ComponentHolder holder;
-    if(sClassTypeMap.get(clazz.getName()) == null){
-      holder = new ComponentHolder(clazz);
-      sClassTypeMap.put(clazz.getName(),type);
-    }else{
-      //use the same holder
-      holder = sTypeComponentMap.get(sClassTypeMap.get(clazz.getName()));
-    }
-
-    sTypeComponentMap.put(type, holder);
-    return true;
-  }
-
-  private static boolean registerJSComponent(Map<String, String> componentInfo) throws WXException {
-    ArrayList<Map<String, String>> coms = new ArrayList<>();
-    coms.add(componentInfo);
-    WXSDKManager.getInstance().registerComponents(coms);
-    return true;
-  }
-
-  public static boolean registerComponent(Map<String, String> componentInfo, Class<? extends WXComponent> clazz) throws WXException {
-    if (componentInfo == null || clazz == null) {
-      return false;
-    }
-
-    String type = componentInfo.get("type");
-    if (type == null) {
-      if (WXEnvironment.isApkDebugable()) {
-        throw new WXException("Exist duplicate component:" + type);
-      } else {
-        WXLogUtils.e("WXComponentRegistry Exist duplicate component: " + type);
-        return false;
+  private void generateMethodMap() {
+    WXLogUtils.d(TAG, "extractMethodNames");
+    ArrayList<String> methods = new ArrayList<>();
+    HashMap<String, Invoker> methodMap = new HashMap<>();
+    try {
+      for (Method method : mClazz.getMethods()) {
+        // iterates all the annotations available in the method
+        for (Annotation anno : method.getDeclaredAnnotations()) {
+          if (anno != null && anno instanceof WXModuleAnno) {
+            methods.add(method.getName());
+            methodMap.put(method.getName(), new MethodInvoker(method));
+            break;
+          }
+        }
       }
+    } catch (Throwable e) {
+      WXLogUtils.e("[WXModuleManager] extractMethodNames:" + e.getStackTrace());
     }
-    if (sTypeComponentMap.containsKey(type)) {
-      if (WXEnvironment.isApkDebugable()) {
-        throw new WXException("Exist duplicate component:" + type);
-      } else {
-        WXLogUtils.e("WXComponentRegistry Exist duplicate component: " + type);
-        return false;
-      }
-    }
-
-    return registerNativeComponent(type, clazz) && registerJSComponent(componentInfo);
+    mMethods = methods;
+    mMethodMap = methodMap;
   }
 
-  public static ComponentHolder getComponent(String type) {
-    return sTypeComponentMap.get(type);
+
+  @Override
+  public T buildInstance() throws IllegalAccessException, InstantiationException {
+    return mClazz.newInstance();
   }
 
+  @Override
+  public ArrayList<String> getMethodNames() {
+    if (mMethods == null) {
+      generateMethodMap();
+    }
+    return mMethods;
+  }
+
+  @Override
+  public Map<String, Invoker> getMethodMap() {
+    if (mMethodMap == null) {
+      generateMethodMap();
+    }
+    return mMethodMap;
+  }
 }
