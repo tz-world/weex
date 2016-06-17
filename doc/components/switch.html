@@ -1195,14 +1195,17 @@
 </ul>
 <p>Other attributes please check out the <a href="../references/common-attrs.html">common attributes</a>.</p>
 <h3 id="styles">Styles</h3>
-<p><strong>common styles</strong>: check out <a href="../references/common-style.html">common styles for components</a></p>
+<p><strong>Notes:</strong> There are several style properties that you mustn&apos;t use on this component, mostly have impact on the layout. Here are all the invalid properties:</p>
 <ul>
-<li>support flexbox related styles</li>
-<li>support box model related styles</li>
-<li>support <code>position</code> related styles</li>
-<li>support <code>opacity</code>, <code>background-color</code> etc.</li>
+<li><code>width</code></li>
+<li><code>height</code></li>
+<li><code>min-width</code></li>
+<li><code>min-height</code></li>
+<li><code>margin</code> and <code>margin-xx</code>s</li>
+<li><code>padding</code> and <code>padding-xx</code>s</li>
+<li><code>border</code> and <code>border-xx</code>s</li>
 </ul>
-<p><strong>Notes:</strong> The <code>width</code> and <code>height</code> is not configurable and the size of this component is fixed to <code>100x60</code> (for the design width 750px).</p>
+<p><strong>Notes:</strong> Specially the <code>width</code> and <code>height</code> related properties is not configurable and the size of this component is fixed to <code>100x60</code> (for the design width 750px).</p>
 <h3 id="events">Events</h3>
 <ul>
 <li><code>click</code>: check out <a href="../references/common-event.html">common events</a></li>
@@ -1253,7 +1256,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-        gitbook.page.hasChanged({"page":{"title":"switch","level":"1.3.4.11","depth":3,"next":{"title":"slider","level":"1.3.4.12","depth":3,"path":"components/slider.md","ref":"components/slider.md","articles":[{"title":"indicator","level":"1.3.4.12.1","depth":4,"path":"components/indicator.md","ref":"components/indicator.md","articles":[]}]},"previous":{"title":"input","level":"1.3.4.10","depth":3,"path":"components/input.md","ref":"components/input.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.0.3","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"components/switch.md","mtime":"2016-06-14T15:21:29.450Z","type":"markdown"},"gitbook":{"version":"3.0.3","time":"2016-06-14T15:40:44.441Z"},"basePath":"..","book":{"language":""}});
+        gitbook.page.hasChanged({"page":{"title":"switch","level":"1.3.4.11","depth":3,"next":{"title":"slider","level":"1.3.4.12","depth":3,"path":"components/slider.md","ref":"components/slider.md","articles":[{"title":"indicator","level":"1.3.4.12.1","depth":4,"path":"components/indicator.md","ref":"components/indicator.md","articles":[]}]},"previous":{"title":"input","level":"1.3.4.10","depth":3,"path":"components/input.md","ref":"components/input.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.0.3","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"components/switch.md","mtime":"2016-06-17T03:11:45.996Z","type":"markdown"},"gitbook":{"version":"3.0.3","time":"2016-06-17T03:19:04.058Z"},"basePath":"..","book":{"language":""}});
         setTimeout(function(){
            window._rePostionVersion()
         },100);
