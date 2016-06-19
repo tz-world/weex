@@ -9,7 +9,7 @@ global.callNative = function () {}
 import AppInstance from '../../../default/app'
 import * as bundle from '../../../default/app/bundle'
 import * as ctrl from '../../../default/app/ctrl'
-import { Node } from '../../../vdom'
+import { Element } from '../../../vdom'
 import {
   registerComponent,
   requireComponent,
@@ -99,7 +99,7 @@ describe('App Instance', () => {
     })
 
     it('with node arg', (done) => {
-      const node = new Node()
+      const node = new Element()
       node.ref = '1'
 
       const tasks = [{

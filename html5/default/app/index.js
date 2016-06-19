@@ -8,7 +8,7 @@ import * as bundle from './bundle'
 import * as ctrl from './ctrl'
 import Differ from './differ'
 
-import { Document, Node } from '../../vdom'
+import renderer from '../config'
 import { registerComponent, requireComponent, requireModule } from './register'
 
 export default function AppInstance (instanceId, options) {
@@ -17,7 +17,7 @@ export default function AppInstance (instanceId, options) {
   this.vm = null
   this.customComponentMap = {}
   this.callbacks = {}
-  this.doc = new Document(
+  this.doc = new renderer.Document(
     instanceId,
     this.options.bundleUrl
   )
@@ -41,7 +41,7 @@ function normalize (app, v) {
     case 'boolean':
     case 'array':
     case 'object':
-      if (v instanceof Node) {
+      if (v instanceof renderer.Element) {
         return v.ref
       }
       return v
@@ -62,7 +62,7 @@ AppInstance.prototype.callTasks = function (tasks) {
     task.args = task.args.map(arg => normalize(this, arg))
   })
 
-  callNative(this.id, tasks, '-1')
+  renderer.sendTasks(this.id, tasks, '-1')
 }
 
 extend(AppInstance.prototype, bundle, ctrl, {
