@@ -29,9 +29,9 @@
 
 - (void)dealloc
 {
-    if (self.weexInstance) {
-        [self.weexInstance removeObserver:self forKeyPath:@"state"];
-    }
+//    if (self.weexInstance) {
+//        [self.weexInstance removeObserver:self forKeyPath:@"state"];
+//    }
     
     if (self.embedInstance) {
         [self.embedInstance destroyInstance];
@@ -44,7 +44,7 @@
         _sourceURL = [NSURL URLWithString: attributes[@"src"]];
         _visible =  [WXConvert WXVisibility:styles[@"visibility"]];
         
-        [self.weexInstance addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:nil];
+        //[self.weexInstance addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:nil];
     }
     
     return self;
