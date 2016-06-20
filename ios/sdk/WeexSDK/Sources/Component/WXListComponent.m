@@ -43,6 +43,8 @@
     NSMutableArray *     _cellComponents;
     NSMutableArray *     _completedCells;
     NSUInteger           _previousLoadMoreRowNumber;
+    
+    UIEdgeInsets _padding;
 }
 
 - (instancetype)initWithRef:(NSString *)ref type:(NSString *)type styles:(NSDictionary *)styles attributes:(NSDictionary *)attributes events:(NSArray *)events weexInstance:(WXSDKInstance *)weexInstance
@@ -51,9 +53,22 @@
         
         _cellComponents = [NSMutableArray wx_mutableArrayUsingWeakReferences];
         _completedCells = [NSMutableArray wx_mutableArrayUsingWeakReferences];
+        
+        [self fillPadding];
     }
     
     return self;
+}
+
+- (void)fillPadding
+{
+    UIEdgeInsets padding = UIEdgeInsetsMake(self.cssNode->style.padding[CSS_TOP] + self.cssNode->style.border[CSS_TOP], self.cssNode->style.padding[CSS_LEFT] + self.cssNode->style.border[CSS_LEFT], self.cssNode->style.padding[CSS_BOTTOM] + self.cssNode->style.border[CSS_BOTTOM], self.cssNode->style.padding[CSS_RIGHT] + self.cssNode->style.border[CSS_RIGHT]);
+    if (!UIEdgeInsetsEqualToEdgeInsets(padding, _padding)) {
+        _padding = padding;
+        if ([self isViewLoaded]) {
+            _tableView.contentInset = _padding;
+        }
+    }
 }
 
 - (UIView *)loadView
@@ -72,6 +87,8 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.userInteractionEnabled = YES;
+    
+    _tableView.contentInset = _padding;
 }
 
 - (void)setContentSize:(CGSize)contentSize
@@ -120,6 +137,11 @@
     }
 }
 
+- (void)updateStyles:(NSDictionary *)styles
+{
+    [self fillPadding];
+}
+
 - (void)cellWillRemove:(WXCellComponent *)cell
 {
     WXAssertComponentThread();
@@ -161,7 +183,7 @@
         }
 
     } else {
-        WXCellComponent *previousCell = _cellComponents[indexPath.row - 1];
+        WXCellComponent *previousCell = [_cellComponents wx_safeObjectAtIndex:(indexPath.row - 1)];
         CGPoint previousCellPostion = previousCell.absolutePosition;
         cell.absolutePosition = CGPointMake(previousCellPostion.x, previousCellPostion.y + previousCell.calculatedFrame.size.height);
     }
@@ -227,9 +249,8 @@
     NSArray *visibleIndexPaths = [tableView indexPathsForVisibleRows];
     if (![visibleIndexPaths containsObject:indexPath]) {
         WXCellComponent *component = [_cellComponents wx_safeObjectAtIndex:indexPath.row];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-            [component _unloadView];
-//        });
+        // Must invoke synchronously otherwise it will remove the view just added.
+        [component _unloadView];
     }
 }
 
@@ -289,7 +310,7 @@
 
 - (void)setLoadmoreretry:(NSUInteger)loadmoreretry
 {
-    if (loadmoreretry > self.loadmoreretry) {
+    if (loadmoreretry != self.loadmoreretry) {
         _previousLoadMoreRowNumber = 0;
     }
     
