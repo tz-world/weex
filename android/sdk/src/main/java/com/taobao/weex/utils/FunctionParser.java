@@ -252,20 +252,20 @@ public class FunctionParser<T> {
 
   private Map<String, T> function() {
     List<String> list = new LinkedList<>();
-    String functionName = match(Token.FUNC_NAME);
+    String functionName = match(Token.FUNC_NAME).toString();
     match(Token.LEFT_PARENT);
-    list.add(match(Token.PARAM_VALUE));
+    list.add(match(Token.PARAM_VALUE).toString());
     while (lexer.getCurrentToken() == Token.COMMA) {
       match(Token.COMMA);
-      list.add(match(Token.PARAM_VALUE));
+      list.add(match(Token.PARAM_VALUE).toString());
     }
     match(Token.RIGHT_PARENT);
     return mapper.map(functionName, list);
   }
 
-  private String match(Token token) {
+  private CharSequence match(Token token) {
     if (token == lexer.getCurrentToken()) {
-      String value = lexer.getCurrentTokenValue();
+      CharSequence value = lexer.getCurrentTokenValue();
       lexer.moveOn();
       return value;
     }
@@ -305,7 +305,7 @@ public class FunctionParser<T> {
 
     private String source;
     private Token current;
-    private String value;
+    private CharSequence value;
     private int pointer = 0;
 
     private Lexer(String source) {
@@ -316,7 +316,7 @@ public class FunctionParser<T> {
       return current;
     }
 
-    private String getCurrentTokenValue() {
+    private CharSequence getCurrentTokenValue() {
       return value;
     }
 
@@ -342,9 +342,8 @@ public class FunctionParser<T> {
           break;
         }
       }
-      String token = stringBuilder.toString();
-      if (!TextUtils.isEmpty(token) || pointer < source.length()) {
-        moveOn(token);
+      if (!TextUtils.isEmpty(stringBuilder) || pointer < source.length()) {
+        moveOn(stringBuilder);
         return true;
       } else {
         current = null;
@@ -353,7 +352,7 @@ public class FunctionParser<T> {
       }
     }
 
-    private void moveOn(String token) {
+    private void moveOn(CharSequence token) {
       if (TextUtils.equals(token, "(")) {
         current = Token.LEFT_PARENT;
         value = "(";
@@ -363,15 +362,24 @@ public class FunctionParser<T> {
       } else if (TextUtils.equals(token, ",")) {
         current = Token.COMMA;
         value = ",";
-      } else if (token.matches("(?i)[\\+-]?[0-9]+(\\.[0-9]+)?(%||deg||px)?")) {
-        current = Token.PARAM_VALUE;
-        value = token;
-      } else if (token.matches("[a-zA-Z]+")) {
+      } else if (isFuncName(token)) {
         current = Token.FUNC_NAME;
         value = token;
-      } else {
-        throw new WXInterpretationException("Illegal Token");
+      } else{
+        current = Token.PARAM_VALUE;
+        value = token;
       }
+    }
+
+    private boolean isFuncName(CharSequence funcName) {
+      char letter;
+      for (int i = 0; i < funcName.length(); i++) {
+        letter = funcName.charAt(i);
+        if (!(('A' <= letter && letter <= 'Z') || ('a' <= letter && letter <= 'z'))) {
+          return false;
+        }
+      }
+      return true;
     }
 
     private void reset() {
@@ -379,6 +387,7 @@ public class FunctionParser<T> {
       value = null;
       current = null;
     }
+
   }
 
 }
