@@ -45,7 +45,7 @@
     "build": "npm run build:native && npm run build:browser && npm run build:examples && npm run build:test",
     "test:unit": "mocha --compilers js:babel-core/register html5/test/unit/*/*.js html5/test/unit/*/*/*.js",
     "test:e2e": "babel-node html5/test/e2e/runner.js",
-    "test": "npm run test:unit && test:e2e",
+    "test": "npm run test:unit && npm run test:e2e",
     "cover": "babel-node node_modules/isparta/bin/isparta cover --report text node_modules/mocha/bin/_mocha -- --reporter dot html5/test/*/*.js html5/test/*/*/*.js",
     "lint": "eslint html5",
     "ci": "npm run lint && npm run cover",
