@@ -267,7 +267,9 @@ do {\
     
     // set font
     UIFont *font = [WXUtility fontWithSize:_fontSize textWeight:_fontWeight textStyle:_fontStyle fontFamily:_fontFamily];
-    [attributedString addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, string.length)];
+    if (font) {
+        [attributedString addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, string.length)];
+    }
     
     if(_textDecoration == WXTextDecorationUnderline){
         [attributedString addAttribute:NSUnderlineStyleAttributeName value:@(NSUnderlinePatternSolid | NSUnderlineStyleSingle) range:NSMakeRange(0, string.length)];
@@ -322,10 +324,8 @@ do {\
     return textStorage;
 }
 
-- (void)_calculatedFrameDidChange
+- (void)_frameDidCalculated
 {
-    [super _calculatedFrameDidChange];
-    
     CGFloat width = self.calculatedFrame.size.width - (_padding.left + _padding.right);
     _textStorage = [self textStorageWithWidth:width];
 }

@@ -87,7 +87,7 @@
     return (int)(count);
 }
 
-- (void)_calculatedFrameDidChange
+- (void)_frameDidCalculated
 {
     WXAssertComponentThread();
 }
@@ -111,7 +111,6 @@
     if (!CGRectEqualToRect(newFrame, _calculatedFrame)) {
         _calculatedFrame = newFrame;
         [self _recomputeBorderRadius];
-        [self _calculatedFrameDidChange];
         [dirtyComponents addObject:self];
     }
     
@@ -126,6 +125,8 @@
     _cssNode->layout.dimensions[CSS_HEIGHT] = CSS_UNDEFINED;
     _cssNode->layout.position[CSS_LEFT] = 0;
     _cssNode->layout.position[CSS_TOP] = 0;
+    
+    [self _frameDidCalculated];
     
     for (WXComponent *subcomponent in self.subcomponents) {
         [subcomponent _calculateFrameWithSuperAbsolutePosition:newAboslutePosition gatherDirtyComponents:dirtyComponents];
