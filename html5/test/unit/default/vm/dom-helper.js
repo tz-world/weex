@@ -3,8 +3,8 @@ const { expect } = chai
 
 global.callNative = function () {}
 
-import * as domHelper from '../../../default/vm/dom-helper'
-import { Document } from '../../../vdom'
+import * as domHelper from '../../../../default/vm/dom-helper'
+import { Document } from '../../../../vdom'
 
 describe('help create body', () => {
   let vm

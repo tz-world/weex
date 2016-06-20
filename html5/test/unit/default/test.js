@@ -150,8 +150,8 @@ const chai = require('chai')
 const sinon = require('sinon')
 const sinonChai = require('sinon-chai')
 
-import framework from '../../runtime'
-import { subversion } from '../../../package.json'
+import framework from '../../../runtime'
+import { subversion } from '../../../../package.json'
 
 Object.assign(global, framework, {
   frameworkVersion: subversion.native,
@@ -161,8 +161,8 @@ Object.assign(global, framework, {
 /**
  * register modules & methods
  */
-const modules = require('../../default/api/modules')
-const methods = require('../../default/api/methods')
+const modules = require('../../../default/api/modules')
+const methods = require('../../../default/api/methods')
 framework.registerModules(modules)
 framework.registerMethods(methods)
 

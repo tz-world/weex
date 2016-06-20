@@ -9,7 +9,7 @@ import {
   getModule,
   clearModules,
   registerMethods
-} from '../../../default/app/register'
+} from '../../../../default/app/register'
 
 function Ctx () {
   this.customComponentMap = {}

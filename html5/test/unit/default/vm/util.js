@@ -1,7 +1,7 @@
 import chai from 'chai'
 const { expect } = chai
 
-const _ = require('../../../default/util')
+const _ = require('../../../../default/util')
 
 describe('stringify sth.', function () {
   it('convert string to string', function () {
