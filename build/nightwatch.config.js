@@ -2,8 +2,6 @@
 module.exports = {
   'src_folders': ['html5/test/e2e/specs'],
   'output_folder': 'html5/test/e2e/reports',
-  // 'custom_commands_path': ['html5/test/e2e/custom-commands'],
-  // 'custom_assertions_path': ['html5/test/e2e/custom-assertions'],
 
   'selenium': {
     'start_process': true,
