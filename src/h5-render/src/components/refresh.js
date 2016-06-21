@@ -117,7 +117,7 @@ Refresh.prototype.style = utils.extend(
   Object.create(Component.prototype.style), {
     height: function (val) {
       val = parseFloat(val)
-      if (Number.isNaN(val) || val < 0) {
+      if (isNaN(val) || val < 0) {
         return logger.warn('<refresh>\'s height (' + val + ') is invalid.')
       }
       this.clamp = val * this.data.scale
