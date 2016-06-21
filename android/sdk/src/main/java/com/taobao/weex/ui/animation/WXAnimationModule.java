@@ -448,12 +448,10 @@ public class WXAnimationModule extends WXModule {
 
             private List<Float> parseRotation(@NonNull List<String> rawValue) {
               List<Float> convertedList = new ArrayList<>(1);
-              String lower;
               int suffix;
               for (String raw : rawValue) {
-                lower = raw.toLowerCase();
-                if ((suffix=lower.lastIndexOf(DEG)) != -1) {
-                  convertedList.add(WXUtils.getFloat(lower.substring(0,suffix)));
+                if ((suffix=raw.lastIndexOf(DEG)) != -1) {
+                  convertedList.add(WXUtils.getFloat(raw.substring(0,suffix)));
                 } else {
                   convertedList.add((float) Math.toDegrees(Double.parseDouble(raw)));
                 }
@@ -557,12 +555,11 @@ public class WXAnimationModule extends WXModule {
   }
 
   private static float parsePercentOrPx(String raw, int unit) {
-    String lower = raw.toLowerCase();
     int suffix;
-    if ((suffix=lower.lastIndexOf('%'))!=-1) {
+    if ((suffix=raw.lastIndexOf('%'))!=-1) {
       return parsePercent(raw.substring(0,suffix), unit);
-    } else if ((suffix=lower.lastIndexOf(PX)) != -1) {
-      return WXViewUtils.getRealPxByWidth(WXUtils.getFloat(lower.substring(0,suffix)));
+    } else if ((suffix=raw.lastIndexOf(PX)) != -1) {
+      return WXViewUtils.getRealPxByWidth(WXUtils.getFloat(raw.substring(0,suffix)));
     }
     return WXViewUtils.getRealPxByWidth(WXUtils.getFloat(raw));
   }

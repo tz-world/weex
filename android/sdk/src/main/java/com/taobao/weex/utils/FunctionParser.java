@@ -377,7 +377,7 @@ public class FunctionParser<T> {
       char letter;
       for (int i = 0; i < funcName.length(); i++) {
         letter = funcName.charAt(i);
-        if (!(('A' <= letter && letter <= 'Z') || ('a' <= letter && letter <= 'z'))) {
+        if (!('a' <= letter && letter <= 'z')){
           return false;
         }
       }
@@ -391,8 +391,7 @@ public class FunctionParser<T> {
     }
 
     private boolean isCharacterOrDigit(char letter){
-      return ('A' <= letter && letter <= 'Z') || ('a' <= letter && letter <= 'z')||
-             ('0'<=letter&&letter<='9');
+      return (('a' <= letter && letter <= 'z')|| ('0'<=letter&&letter<='9'));
     }
   }
 

@@ -282,7 +282,6 @@ public class WXUtils {
 
       if(!positive)
         result*=-1;
-      //WXLogUtils.d("FloatTransform ","raw : "+raw+", float: "+result);
       return result;
     }
     throw new NumberFormatException("NullNumber");
