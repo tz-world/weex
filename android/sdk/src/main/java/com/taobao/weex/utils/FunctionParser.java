@@ -321,31 +321,31 @@ public class FunctionParser<T> {
     }
 
     private boolean moveOn() {
-      StringBuilder stringBuilder = new StringBuilder();
+      int start=pointer;
       char curChar;
       while (pointer < source.length()) {
         curChar = source.charAt(pointer);
-        if (Character.isWhitespace(curChar)) {
+        if (curChar==' ') {
           pointer++;
-          if (stringBuilder.length() != 0) {
+          if (start!=pointer) {
             break;
           }
-        } else if (Character.isLetterOrDigit(curChar) || curChar == '.'
+        } else if (isCharacterOrDigit(curChar) || curChar == '.'
                    || curChar == '%' || curChar == '-' || curChar == '+') {
-          stringBuilder.append(curChar);
           pointer++;
         } else {
-          if (stringBuilder.length() == 0) {
-            stringBuilder.append(curChar);
+          if (start == pointer) {
             pointer++;
           }
           break;
         }
       }
-      if (!TextUtils.isEmpty(stringBuilder) || pointer < source.length()) {
-        moveOn(stringBuilder);
+      if(start!=pointer){
+        String symbol=source.substring(start,pointer);
+        moveOn(symbol);
         return true;
-      } else {
+      }
+      else {
         current = null;
         value = null;
         return false;
@@ -388,6 +388,10 @@ public class FunctionParser<T> {
       current = null;
     }
 
+    private boolean isCharacterOrDigit(char letter){
+      return ('A' <= letter && letter <= 'Z') || ('a' <= letter && letter <= 'z')||
+             ('0'<=letter&&letter<='9');
+    }
   }
 
 }

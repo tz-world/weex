@@ -441,10 +441,11 @@ public class WXAnimationModule extends WXModule {
             private List<Float> parseRotation(@NonNull List<String> rawValue) {
               List<Float> convertedList = new ArrayList<>(1);
               String lower;
+              int suffix;
               for (String raw : rawValue) {
                 lower = raw.toLowerCase();
-                if (lower.endsWith("deg")) {
-                  convertedList.add(WXUtils.getFloat(lower.replace("deg", "")));
+                if ((suffix=lower.lastIndexOf("deg"))!=-1) {
+                  convertedList.add(WXUtils.getFloat(lower.substring(0,suffix)));
                 } else {
                   convertedList.add((float) Math.toDegrees(Double.parseDouble(raw)));
                 }
@@ -549,16 +550,17 @@ public class WXAnimationModule extends WXModule {
 
   private static float parsePercentOrPx(String raw, int unit) {
     String lower = raw.toLowerCase();
-    if (lower.endsWith("%")) {
-      return parsePercent(raw, unit);
-    } else if (lower.endsWith("px")) {
-      return WXViewUtils.getRealPxByWidth(WXUtils.getFloat(raw.replace("px", "")));
+    int suffix;
+    if ((suffix=lower.lastIndexOf('%'))!=-1) {
+      return parsePercent(raw.substring(0,suffix), unit);
+    } else if ((suffix=lower.lastIndexOf("px"))!=-1) {
+      return WXViewUtils.getRealPxByWidth(WXUtils.getFloat(lower.substring(0,suffix)));
     }
     return WXViewUtils.getRealPxByWidth(WXUtils.getFloat(raw));
   }
 
   private static float parsePercent(String percent, int unit) {
-    return WXUtils.getFloat(percent.replace("%", "")) / 100 * unit;
+    return WXUtils.getFloat(percent) / 100 * unit;
   }
 
   private static List<PropertyValuesHolder> moveBackToOrigin() {
