@@ -246,6 +246,14 @@ import java.util.Map;
 
 public class WXAnimationModule extends WXModule {
 
+  public static final String HALF = "50%";
+  public static final String FULL = "100%";
+  public static final String ZERO = "0%";
+  public static final String PX = "px";
+  public static final String TRANSFORM = "transform";
+  public static final String TRANSFORM_ORIGIN = "transformOrigin";
+  public static final String DEG = "deg";
+
   @WXModuleAnno
   public void transition(String ref, String animation, String callBack) {
     WXSDKManager.getInstance().getWXRenderManager().
@@ -256,11 +264,11 @@ public class WXAnimationModule extends WXModule {
     if (component != null) {
       View target = component.getRealView();
       if (style != null && target != null) {
-        Object transform = style.get("transform");
+        Object transform = style.get(TRANSFORM);
         if (transform instanceof String && !TextUtils.isEmpty((String) transform) && target.getLayoutParams() != null) {
           String transformOrigin;
           try {
-            transformOrigin = (String) component.mDomObj.style.get("transformOrigin");
+            transformOrigin = (String) component.mDomObj.style.get(TRANSFORM_ORIGIN);
           } catch (NullPointerException e) {
             transformOrigin = null;
           }
@@ -444,7 +452,7 @@ public class WXAnimationModule extends WXModule {
               int suffix;
               for (String raw : rawValue) {
                 lower = raw.toLowerCase();
-                if ((suffix=lower.lastIndexOf("deg"))!=-1) {
+                if ((suffix=lower.lastIndexOf(DEG)) != -1) {
                   convertedList.add(WXUtils.getFloat(lower.substring(0,suffix)));
                 } else {
                   convertedList.add((float) Math.toDegrees(Double.parseDouble(raw)));
@@ -526,24 +534,24 @@ public class WXAnimationModule extends WXModule {
 
   private static float parsePivotX(String x, ViewGroup.LayoutParams layoutParams) {
     String value = x;
-    if (TextUtils.equals(x, WXAnimationBean.Style.LEFT)) {
-      value = "0%";
-    } else if (TextUtils.equals(x, WXAnimationBean.Style.RIGHT)) {
-      value = "100%";
-    } else if (TextUtils.equals(x, WXAnimationBean.Style.CENTER)) {
-      value = "50%";
+    if (WXAnimationBean.Style.LEFT.equals(x)) {
+      value = ZERO;
+    } else if (WXAnimationBean.Style.RIGHT.equals(x)) {
+      value = FULL;
+    } else if (WXAnimationBean.Style.CENTER.equals(x)) {
+      value = HALF;
     }
     return parsePercentOrPx(value, layoutParams.width);
   }
 
   private static float parsePivotY(String y, ViewGroup.LayoutParams layoutParams) {
     String value = y;
-    if (TextUtils.equals(y, WXAnimationBean.Style.TOP)) {
-      value = "0%";
-    } else if (TextUtils.equals(y, WXAnimationBean.Style.BOTTOM)) {
-      value = "100%";
-    } else if (TextUtils.equals(y, WXAnimationBean.Style.CENTER)) {
-      value = "50%";
+    if (WXAnimationBean.Style.TOP.equals(y)) {
+      value = ZERO;
+    } else if (WXAnimationBean.Style.BOTTOM.equals(y)) {
+      value = FULL;
+    } else if (WXAnimationBean.Style.CENTER.equals(y)) {
+      value = HALF;
     }
     return parsePercentOrPx(value, layoutParams.height);
   }
@@ -553,7 +561,7 @@ public class WXAnimationModule extends WXModule {
     int suffix;
     if ((suffix=lower.lastIndexOf('%'))!=-1) {
       return parsePercent(raw.substring(0,suffix), unit);
-    } else if ((suffix=lower.lastIndexOf("px"))!=-1) {
+    } else if ((suffix=lower.lastIndexOf(PX)) != -1) {
       return WXViewUtils.getRealPxByWidth(WXUtils.getFloat(lower.substring(0,suffix)));
     }
     return WXViewUtils.getRealPxByWidth(WXUtils.getFloat(raw));

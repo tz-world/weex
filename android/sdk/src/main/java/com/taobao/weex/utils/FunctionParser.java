@@ -205,7 +205,6 @@
 package com.taobao.weex.utils;
 
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -252,20 +251,20 @@ public class FunctionParser<T> {
 
   private Map<String, T> function() {
     List<String> list = new LinkedList<>();
-    String functionName = match(Token.FUNC_NAME).toString();
+    String functionName = match(Token.FUNC_NAME);
     match(Token.LEFT_PARENT);
-    list.add(match(Token.PARAM_VALUE).toString());
+    list.add(match(Token.PARAM_VALUE));
     while (lexer.getCurrentToken() == Token.COMMA) {
       match(Token.COMMA);
-      list.add(match(Token.PARAM_VALUE).toString());
+      list.add(match(Token.PARAM_VALUE));
     }
     match(Token.RIGHT_PARENT);
     return mapper.map(functionName, list);
   }
 
-  private CharSequence match(Token token) {
+  private String  match(Token token) {
     if (token == lexer.getCurrentToken()) {
-      CharSequence value = lexer.getCurrentTokenValue();
+      String value = lexer.getCurrentTokenValue();
       lexer.moveOn();
       return value;
     }
@@ -303,9 +302,12 @@ public class FunctionParser<T> {
    */
   private static class Lexer {
 
+    private static final String LEFT_PARENT = "(";
+    private static final String RIGHT_PARENT = ")";
+    private static final String COMMA = ",";
     private String source;
     private Token current;
-    private CharSequence value;
+    private String value;
     private int pointer = 0;
 
     private Lexer(String source) {
@@ -316,7 +318,7 @@ public class FunctionParser<T> {
       return current;
     }
 
-    private CharSequence getCurrentTokenValue() {
+    private String getCurrentTokenValue() {
       return value;
     }
 
@@ -352,16 +354,16 @@ public class FunctionParser<T> {
       }
     }
 
-    private void moveOn(CharSequence token) {
-      if (TextUtils.equals(token, "(")) {
+    private void moveOn(String token) {
+      if (LEFT_PARENT.equals(token)) {
         current = Token.LEFT_PARENT;
-        value = "(";
-      } else if (TextUtils.equals(token, ")")) {
+        value = LEFT_PARENT;
+      } else if (RIGHT_PARENT.equals(token)) {
         current = Token.RIGHT_PARENT;
-        value = ")";
-      } else if (TextUtils.equals(token, ",")) {
+        value = RIGHT_PARENT;
+      } else if (COMMA.equals(token)) {
         current = Token.COMMA;
-        value = ",";
+        value = COMMA;
       } else if (isFuncName(token)) {
         current = Token.FUNC_NAME;
         value = token;
