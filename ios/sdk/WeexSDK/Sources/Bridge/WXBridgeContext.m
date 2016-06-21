@@ -19,6 +19,8 @@
 #import "WXSDKError.h"
 #import "WXAssert.h"
 #import "WXSDKManager.h"
+#import "WXModuleManager.h"
+#import "WXSDKInstance_private.h"
 
 @interface WXBridgeContext ()
 

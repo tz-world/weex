@@ -171,7 +171,7 @@
         [self.ancestorScroller removeScrollToListener:self];
     }
     
-    for (WXComponent *subcomponents in self.subcomponents) {
+    for (WXComponent *subcomponents in [self.subcomponents reverseObjectEnumerator]) {
         [subcomponents _unloadView];
     }
     
