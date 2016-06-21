@@ -434,10 +434,10 @@ public class WXAnimationModule extends WXModule {
             }
 
             private List<Float> parseScale(int size, @NonNull List<String> rawValue) {
-              List<Float> convertedList = new ArrayList<>(rawValue.size()*2);
+              List<Float> convertedList = new ArrayList<>(rawValue.size() * 2);
               List<Float> rawFloat = new ArrayList<>(rawValue.size());
               for (String item : rawValue) {
-                rawFloat.add(WXUtils.getFloat(item));
+                rawFloat.add(WXUtils.fastGetFloat(item));
               }
               convertedList.addAll(rawFloat);
               if (size != 1 && rawValue.size() == 1) {
@@ -450,8 +450,8 @@ public class WXAnimationModule extends WXModule {
               List<Float> convertedList = new ArrayList<>(1);
               int suffix;
               for (String raw : rawValue) {
-                if ((suffix=raw.lastIndexOf(DEG)) != -1) {
-                  convertedList.add(WXUtils.getFloat(raw.substring(0,suffix)));
+                if ((suffix = raw.lastIndexOf(DEG)) != -1) {
+                  convertedList.add(WXUtils.fastGetFloat(raw.substring(0, suffix)));
                 } else {
                   convertedList.add((float) Math.toDegrees(Double.parseDouble(raw)));
                 }
@@ -555,17 +555,18 @@ public class WXAnimationModule extends WXModule {
   }
 
   private static float parsePercentOrPx(String raw, int unit) {
+    int precision = (int) Math.ceil(Math.log10(10));
     int suffix;
-    if ((suffix=raw.lastIndexOf('%'))!=-1) {
-      return parsePercent(raw.substring(0,suffix), unit);
-    } else if ((suffix=raw.lastIndexOf(PX)) != -1) {
-      return WXViewUtils.getRealPxByWidth(WXUtils.getFloat(raw.substring(0,suffix)));
+    if ((suffix = raw.lastIndexOf('%')) != -1) {
+      return parsePercent(raw.substring(0, suffix), unit, precision);
+    } else if ((suffix = raw.lastIndexOf(PX)) != -1) {
+      return WXViewUtils.getRealPxByWidth(WXUtils.fastGetFloat(raw.substring(0, suffix), precision));
     }
-    return WXViewUtils.getRealPxByWidth(WXUtils.getFloat(raw));
+    return WXViewUtils.getRealPxByWidth(WXUtils.fastGetFloat(raw, precision));
   }
 
-  private static float parsePercent(String percent, int unit) {
-    return WXUtils.getFloat(percent) / 100 * unit;
+  private static float parsePercent(String percent, int unit, int precision) {
+    return WXUtils.fastGetFloat(percent, precision) / 100 * unit;
   }
 
   private static List<PropertyValuesHolder> moveBackToOrigin() {
