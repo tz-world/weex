@@ -1,12 +1,16 @@
 'use strict'
 
 var Component = require('./component')
+var utils = require('../utils')
+var logger = require('../logger')
 
 require('../styles/loading.css')
 
 var parents = ['scroller', 'list']
 
-var DEFAULT_HEIGHT = 130
+var DEFAULT_CLAMP = 130
+var DEFAULT_ALIGN_ITEMS = 'center'
+var DEFAULT_JUSTIFY_CONTENT = 'center'
 
 var ua = window.navigator.userAgent
 var Firefox = !!ua.match(/Firefox/i)
@@ -14,6 +18,10 @@ var IEMobile = !!ua.match(/IEMobile/i)
 var cssPrefix = Firefox ? '-moz-' : IEMobile ? '-ms-' : '-webkit-'
 
 function Loading (data) {
+  this.clamp = (data.style.height || DEFAULT_CLAMP) * data.scale
+  !data.style.alignItems && (data.style.alignItems = DEFAULT_ALIGN_ITEMS)
+  !data.style.justifyContent
+    && (data.style.justifyContent = DEFAULT_JUSTIFY_CONTENT)
   Component.call(this, data)
 }
 
@@ -55,9 +63,9 @@ Loading.prototype.handleLoading = function (e) {
   var scrollElement = parent.scrollElement || parent.listElement
   var offset = scrollElement.getBoundingClientRect().height
             - parent.node.getBoundingClientRect().height
-            + DEFAULT_HEIGHT
-  this.node.style.height = DEFAULT_HEIGHT + 'px'
-  this.node.style.bottom = -DEFAULT_HEIGHT + 'px'
+            + this.clamp
+  this.node.style.height = this.clamp + 'px'
+  this.node.style.bottom = -this.clamp + 'px'
   var translateStr = 'translate3d(0px,-' + offset + 'px,0px)'
   scrollElement.style[cssPrefix + 'transform']
     = cssPrefix + translateStr
@@ -112,5 +120,16 @@ Loading.prototype.attr = {
     }
   }
 }
+
+Loading.prototype.style = utils.extend(
+  Object.create(Component.prototype.style), {
+    height: function (val) {
+      val = parseFloat(val)
+      if (Number.isNaN(val) || val < 0) {
+        return logger.warn('<loading>\'s height (' + val + ') is invalid.')
+      }
+      this.clamp = val * this.data.scale
+    }
+  })
 
 module.exports = Loading

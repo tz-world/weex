@@ -1,6 +1,8 @@
 'use strict'
 
 var Component = require('./component')
+var utils = require('../utils')
+var logger = require('../logger')
 
 require('../styles/refresh.css')
 
@@ -9,7 +11,9 @@ var parents = ['scroller', 'list']
 // Only if pulldown offset is larger than this value can this
 // component trigger the 'refresh' event, otherwise just recover
 // to the start point.
-var CLAMP = 130
+var DEFAULT_CLAMP = 130
+var DEFAULT_ALIGN_ITEMS = 'center'
+var DEFAULT_JUSTIFY_CONTENT = 'center'
 
 var ua = window.navigator.userAgent
 var Firefox = !!ua.match(/Firefox/i)
@@ -17,6 +21,10 @@ var IEMobile = !!ua.match(/IEMobile/i)
 var cssPrefix = Firefox ? '-moz-' : IEMobile ? '-ms-' : '-webkit-'
 
 function Refresh (data) {
+  this.clamp = (data.style.height || DEFAULT_CLAMP) * data.scale
+  !data.style.alignItems && (data.style.alignItems = DEFAULT_ALIGN_ITEMS)
+  !data.style.justifyContent
+    && (data.style.justifyContent = DEFAULT_JUSTIFY_CONTENT)
   Component.call(this, data)
 }
 
@@ -42,7 +50,7 @@ Refresh.prototype.onAppend = function () {
   })
   parent.scroller.addEventListener('pulldownend', function (e) {
     var top = Math.abs(e.scrollObj.getScrollTop())
-    if (top > CLAMP) {
+    if (top > self.clamp) {
       self.handleRefresh(e)
     }
   })
@@ -57,9 +65,9 @@ Refresh.prototype.handleRefresh = function (e) {
   var scrollObj = e.scrollObj
   var parent = this.getParent()
   var scrollElement = parent.scrollElement || parent.listElement
-  this.node.style.height = CLAMP + 'px'
-  this.node.style.top = -CLAMP + 'px'
-  var translateStr = 'translate3d(0px,' + CLAMP + 'px,0px)'
+  this.node.style.height = this.clamp + 'px'
+  this.node.style.top = -this.clamp + 'px'
+  var translateStr = 'translate3d(0px,' + this.clamp + 'px,0px)'
   scrollElement.style[cssPrefix + 'transform']
     = cssPrefix + translateStr
   scrollElement.style.transform = translateStr
@@ -98,11 +106,22 @@ Refresh.prototype.attr = {
       }.bind(this), 0)
     } else {
       // TODO
-      console.error('h5render:attribute value of refresh \'display\' '
+      logger.error('attribute value of refresh \'display\' '
           + val
           + ' is invalid. Should be \'show\' or \'hide\'')
     }
   }
 }
+
+Refresh.prototype.style = utils.extend(
+  Object.create(Component.prototype.style), {
+    height: function (val) {
+      val = parseFloat(val)
+      if (isNaN(val) || val < 0) {
+        return logger.warn('<refresh>\'s height (' + val + ') is invalid.')
+      }
+      this.clamp = val * this.data.scale
+    }
+  })
 
 module.exports = Refresh
