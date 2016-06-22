@@ -166,7 +166,7 @@ const jsHandlers = {
  * @param  {string} instanceId
  * @param  {array} tasks list with `method` and `args`
  */
-function callJS (instanceId, tasks) {
+export function callJS (instanceId, tasks) {
   const instance = instanceMap[instanceId]
   if (instance && Array.isArray(tasks)) {
     const results = []

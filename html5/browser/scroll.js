@@ -290,6 +290,23 @@ function Scroll(element, options) {
     this.viewport.addEventListener('tap', fireNiceTapEventHandler)
   }
 
+  function setTransitionEndHandler(h, t) {
+    if (!options.useFrameAnimation) {
+      return
+    }
+    transitionEndHandler = null
+    clearTimeout(transitionEndTimeoutId)
+
+    transitionEndTimeoutId = setTimeout(function () {
+      if (transitionEndHandler) {
+        transitionEndHandler = null
+        lib.animation.requestFrame(h)
+      }
+    }, (t || 400))
+
+    transitionEndHandler = h
+  }
+
   if (options.useFrameAnimation) {
     var scrollAnimation
 
@@ -301,20 +318,6 @@ function Scroll(element, options) {
   } else {
     var transitionEndHandler
     var transitionEndTimeoutId = 0
-
-    function setTransitionEndHandler(h, t) {
-      transitionEndHandler = null
-      clearTimeout(transitionEndTimeoutId)
-
-      transitionEndTimeoutId = setTimeout(function () {
-        if (transitionEndHandler) {
-          transitionEndHandler = null
-          lib.animation.requestFrame(h)
-        }
-      }, (t || 400))
-
-      transitionEndHandler = h
-    }
 
     element.addEventListener(
         Firefox
@@ -418,10 +421,10 @@ function Scroll(element, options) {
         setTransformStyle(that, offset)
         setTransitionEndHandler(scrollEnd, 400)
 
-        lib.animation.requestFrame(function () {
+        lib.animation.requestFrame(function doScroll() {
           if (isScrolling && that.enabled) {
             fireEvent(that, 'scrolling')
-            lib.animation.requestFrame(arguments.callee)
+            lib.animation.requestFrame(doScroll)
           }
         })
       }
@@ -507,7 +510,7 @@ function Scroll(element, options) {
       return
     }
 
-    if (e.isflick) {
+    if (e.isSwipe) {
       flickHandler(e)
     }
   }
@@ -749,12 +752,12 @@ function Scroll(element, options) {
 
       isFlickScrolling = true
       if (!options.useFrameAnimation) {
-        lib.animation.requestFrame(function () {
+        lib.animation.requestFrame(function doScroll() {
           if (isScrolling && isFlickScrolling && that.enabled) {
             fireEvent(that, 'scrolling', {
               afterFlick: true
             })
-            lib.animation.requestFrame(arguments.callee)
+            lib.animation.requestFrame(doScroll)
           }
         })
       }
@@ -1022,9 +1025,10 @@ function Scroll(element, options) {
       return this
     },
 
-    scrollToElement: function (childEl, isSmooth) {
+    scrollToElement: function (childEl, isSmooth, topOffset) {
       var offset = this.offset(childEl)
       offset = offset[this.axis === 'y'?'top':'left']
+      topOffset && (offset += topOffset)
       return this.scrollTo(offset, isSmooth)
     },
 

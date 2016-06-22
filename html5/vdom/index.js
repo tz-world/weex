@@ -94,6 +94,7 @@ function appendBody (doc, node, before) {
       node.docId = doc.id
       node.ownerDocument = doc
       linkParent(node, documentElement)
+      delete doc.nodeMap[node.nodeId]
     }
     documentElement.pureChildren.push(node)
     doc.listener.createBody(node)
