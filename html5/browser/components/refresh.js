@@ -15,11 +15,6 @@ const DEFAULT_CLAMP = 130
 const DEFAULT_ALIGN_ITEMS = 'center'
 const DEFAULT_JUSTIFY_CONTENT = 'center'
 
-const ua = window.navigator.userAgent
-const Firefox = !!ua.match(/Firefox/i)
-const IEMobile = !!ua.match(/IEMobile/i)
-const cssPrefix = Firefox ? '-moz-' : IEMobile ? '-ms-' : '-webkit-'
-
 function Refresh (data) {
   this.isRefreshing = false
   this.clamp = (data.style.height || DEFAULT_CLAMP) * data.scale
@@ -68,7 +63,8 @@ Refresh.prototype.onAppend = function () {
     const top = Math.abs(e.scrollObj.getScrollTop())
     if (top > self.clamp) {
       self.handleRefresh(e)
-    } else {
+    }
+    else {
       self.hide()
     }
   })
@@ -83,9 +79,6 @@ Refresh.prototype.adJustPosition = function (val) {
 }
 
 Refresh.prototype.handleRefresh = function (e) {
-  const scrollObj = e.scrollObj
-  const parent = this.getParent()
-  const scrollElement = parent.scrollElement || parent.listElement
   this.node.style.height = this.clamp + 'px'
   this.dispatchEvent('refresh')
   this.isRefreshing = true
@@ -115,7 +108,8 @@ Refresh.prototype.attr = {
       setTimeout(function () {
         this.hide()
       }.bind(this), 0)
-    } else {
+    }
+    else {
       logger.error('attr \'display\' of <refresh>\': value '
         + val
         + ' is invalid. Should be \'show\' or \'hide\'')

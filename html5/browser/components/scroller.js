@@ -188,12 +188,14 @@ Scroller.prototype.insertBefore = function (child, before) {
   if (isAppend) {
     this.scrollElement.appendChild(child.node)
     children.push(child.data)
-  } else {
+  }
+  else {
     const refreshLoadingPlaceholder = before.refreshPlaceholder
       || before.loadingPlaceholder
     if (refreshLoadingPlaceholder) {
       this.listElement.insertBefore(child.node, refreshLoadingPlaceholder)
-    } else if (before.fixedPlaceholder) {
+    }
+    else if (before.fixedPlaceholder) {
       this.scrollElement.insertBefore(child.node, before.fixedPlaceholder)
     }
     else {

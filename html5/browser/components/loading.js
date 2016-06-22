@@ -12,11 +12,6 @@ const DEFAULT_CLAMP = 130
 const DEFAULT_ALIGN_ITEMS = 'center'
 const DEFAULT_JUSTIFY_CONTENT = 'center'
 
-const ua = window.navigator.userAgent
-const Firefox = !!ua.match(/Firefox/i)
-const IEMobile = !!ua.match(/IEMobile/i)
-const cssPrefix = Firefox ? '-moz-' : IEMobile ? '-ms-' : '-webkit-'
-
 function Loading (data) {
   this.clamp = (data.style.height || DEFAULT_CLAMP) * data.scale
   !data.style.alignItems && (data.style.alignItems = DEFAULT_ALIGN_ITEMS)
@@ -102,7 +97,8 @@ Loading.prototype.attr = {
       setTimeout(function () {
         this.hide()
       }.bind(this), 0)
-    } else {
+    }
+    else {
       logger.error('attr \'display\' of <refresh>\': value '
         + val
         + ' is invalid. Should be \'show\' or \'hide\'')
