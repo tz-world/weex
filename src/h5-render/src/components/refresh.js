@@ -1,16 +1,19 @@
 'use strict'
 
 var Component = require('./component')
+var utils = require('../utils')
 var logger = require('../logger')
 
 require('../styles/refresh.css')
 
-var parents = ['scroller', 'list']
+var parents = ['scroller', 'list', 'vlist']
 
 // Only if pulldown offset is larger than this value can this
 // component trigger the 'refresh' event, otherwise just recover
 // to the start point.
-var CLAMP = 130
+var DEFAULT_CLAMP = 130
+var DEFAULT_ALIGN_ITEMS = 'center'
+var DEFAULT_JUSTIFY_CONTENT = 'center'
 
 var ua = window.navigator.userAgent
 var Firefox = !!ua.match(/Firefox/i)
@@ -19,6 +22,10 @@ var cssPrefix = Firefox ? '-moz-' : IEMobile ? '-ms-' : '-webkit-'
 
 function Refresh (data) {
   this.isRefreshing = false
+  this.clamp = (data.style.height || DEFAULT_CLAMP) * data.scale
+  !data.style.alignItems && (data.style.alignItems = DEFAULT_ALIGN_ITEMS)
+  !data.style.justifyContent
+    && (data.style.justifyContent = DEFAULT_JUSTIFY_CONTENT)
   Component.call(this, data)
 }
 
@@ -34,11 +41,20 @@ Refresh.prototype.onAppend = function () {
   var parent = this.getParent()
   var self = this
   if (parents.indexOf(parent.data.type) === -1) {
+    // not in a scroller or a list
     return
   }
+  this.refreshPlaceholder = document.createElement('div')
+  this.refreshPlaceholder.classList.add('weex-refresh-placeholder')
+  this.refreshPlaceholder.style.display = 'none'
+  this.refreshPlaceholder.style.width = '0px'
+  this.refreshPlaceholder.style.height = '0px'
+  var scrollElement = parent.scrollElement || parent.listElement
+  scrollElement.insertBefore(this.refreshPlaceholder, this.node)
+  parent.node.appendChild(this.node)
   parent.scroller.addEventListener('pulldown', function (e) {
     if (self.isRefreshing) {
-      return self.adJustPosition(Math.abs(e.scrollObj.getScrollTop()))
+      return
     }
     self.adjustHeight(Math.abs(e.scrollObj.getScrollTop()))
     if (!self.display) {
@@ -47,18 +63,19 @@ Refresh.prototype.onAppend = function () {
   })
   parent.scroller.addEventListener('pulldownend', function (e) {
     if (self.isRefreshing) {
-      return self.adJustPosition(0)
+      return
     }
     var top = Math.abs(e.scrollObj.getScrollTop())
-    if (top > CLAMP) {
+    if (top > self.clamp) {
       self.handleRefresh(e)
+    } else {
+      self.hide()
     }
   })
 }
 
 Refresh.prototype.adjustHeight = function (val) {
   this.node.style.height = val + 'px'
-  this.node.style.top = -val + 'px'
 }
 
 Refresh.prototype.adJustPosition = function (val) {
@@ -69,12 +86,7 @@ Refresh.prototype.handleRefresh = function (e) {
   var scrollObj = e.scrollObj
   var parent = this.getParent()
   var scrollElement = parent.scrollElement || parent.listElement
-  this.node.style.height = CLAMP + 'px'
-  this.node.style.top = -CLAMP + 'px'
-  var translateStr = 'translate3d(0px,' + CLAMP + 'px,0px)'
-  scrollElement.style[cssPrefix + 'transform']
-    = cssPrefix + translateStr
-  scrollElement.style.transform = translateStr
+  this.node.style.height = this.clamp + 'px'
   this.dispatchEvent('refresh')
   this.isRefreshing = true
 }
@@ -88,14 +100,6 @@ Refresh.prototype.show = function () {
 
 Refresh.prototype.hide = function () {
   this.display = false
-  var parent = this.getParent()
-  if (parent) {
-    var scrollElement = parent.scrollElement || parent.listElement
-    var translateStr = 'translate3d(0px,0px,0px)'
-    scrollElement.style[cssPrefix + 'transform']
-      = cssPrefix + translateStr
-    scrollElement.style.transform = translateStr
-  }
   this.node.style.display = 'none'
   this.isRefreshing = false
 }
@@ -117,5 +121,16 @@ Refresh.prototype.attr = {
     }
   }
 }
+
+Refresh.prototype.style = utils.extend(
+  Object.create(Component.prototype.style), {
+    height: function (val) {
+      val = parseFloat(val)
+      if (isNaN(val) || val < 0) {
+        return logger.warn('<refresh>\'s height (' + val + ') is invalid.')
+      }
+      this.clamp = val * this.data.scale
+    }
+  })
 
 module.exports = Refresh

@@ -1,12 +1,16 @@
 'use strict'
 
 var Component = require('./component')
+var utils = require('../utils')
+var logger = require('../logger')
 
 require('../styles/loading.css')
 
-var parents = ['scroller', 'list']
+var parents = ['scroller', 'list', 'vlist']
 
-var DEFAULT_HEIGHT = 130
+var DEFAULT_CLAMP = 130
+var DEFAULT_ALIGN_ITEMS = 'center'
+var DEFAULT_JUSTIFY_CONTENT = 'center'
 
 var ua = window.navigator.userAgent
 var Firefox = !!ua.match(/Firefox/i)
@@ -14,6 +18,10 @@ var IEMobile = !!ua.match(/IEMobile/i)
 var cssPrefix = Firefox ? '-moz-' : IEMobile ? '-ms-' : '-webkit-'
 
 function Loading (data) {
+  this.clamp = (data.style.height || DEFAULT_CLAMP) * data.scale
+  !data.style.alignItems && (data.style.alignItems = DEFAULT_ALIGN_ITEMS)
+  !data.style.justifyContent
+    && (data.style.justifyContent = DEFAULT_JUSTIFY_CONTENT)
   Component.call(this, data)
 }
 
@@ -30,9 +38,21 @@ Loading.prototype.onAppend = function () {
   var self = this
   var scrollWrapHeight = parent.node.getBoundingClientRect().height
   if (parents.indexOf(parent.data.type) === -1) {
+    // not in a scroller or a list
     return
   }
+  this.loadingPlaceholder = document.createElement('div')
+  this.loadingPlaceholder.classList.add('weex-loading-placeholder')
+  this.loadingPlaceholder.style.display = 'none'
+  this.loadingPlaceholder.style.width = '0px'
+  this.loadingPlaceholder.style.height = '0px'
+  var scrollElement = parent.scrollElement || parent.listElement
+  scrollElement.insertBefore(this.loadingPlaceholder, this.node)
+  parent.node.appendChild(this.node)
   parent.scroller.addEventListener('pullup', function (e) {
+    if (self.isLoading) {
+      return
+    }
     var obj = e.scrollObj
     self.adjustHeight(Math.abs(
       obj.getScrollHeight() - obj.getScrollTop() - scrollWrapHeight))
@@ -41,28 +61,21 @@ Loading.prototype.onAppend = function () {
     }
   })
   parent.scroller.addEventListener('pullupend', function (e) {
+    if (self.isLoading) {
+      return
+    }
     self.handleLoading(e)
   })
 }
 
 Loading.prototype.adjustHeight = function (val) {
   this.node.style.height = val + 'px'
-  this.node.style.bottom = -val + 'px'
 }
 
 Loading.prototype.handleLoading = function (e) {
-  var parent = this.getParent()
-  var scrollElement = parent.scrollElement || parent.listElement
-  var offset = scrollElement.getBoundingClientRect().height
-            - parent.node.getBoundingClientRect().height
-            + DEFAULT_HEIGHT
-  this.node.style.height = DEFAULT_HEIGHT + 'px'
-  this.node.style.bottom = -DEFAULT_HEIGHT + 'px'
-  var translateStr = 'translate3d(0px,-' + offset + 'px,0px)'
-  scrollElement.style[cssPrefix + 'transform']
-    = cssPrefix + translateStr
-  scrollElement.style.transform = translateStr
+  this.node.style.height = this.clamp + 'px'
   this.dispatchEvent('loading')
+  this.isLoading = true
 }
 
 Loading.prototype.show = function () {
@@ -74,24 +87,8 @@ Loading.prototype.show = function () {
 
 Loading.prototype.hide = function () {
   this.display = false
-  var parent = this.getParent()
-  if (parent) {
-    var scrollElement = parent.scrollElement || parent.listElement
-    var scrollElementHeight = scrollElement.getBoundingClientRect().height
-    var scrollWrapHeight = parent.node.getBoundingClientRect().height
-    var left = scrollElementHeight
-      - parent.scroller.getScrollTop()
-      - scrollWrapHeight
-    if (left < 0) {
-      var offset = scrollElementHeight
-              - parent.node.getBoundingClientRect().height
-      var translateStr = 'translate3d(0px,-' + offset + 'px,0px)'
-      scrollElement.style[cssPrefix + 'transform']
-        = cssPrefix + translateStr
-      scrollElement.style.transform = translateStr
-    }
-  }
   this.node.style.display = 'none'
+  this.isLoading = false
 }
 
 Loading.prototype.attr = {
@@ -105,12 +102,22 @@ Loading.prototype.attr = {
         this.hide()
       }.bind(this), 0)
     } else {
-      // TODO
-      console.error('h5render:attribute value of refresh \'display\' '
-          + val
-          + ' is invalid. Should be \'show\' or \'hide\'')
+      logger.error('attr \'display\' of <refresh>\': value '
+        + val
+        + ' is invalid. Should be \'show\' or \'hide\'')
     }
   }
 }
+
+Loading.prototype.style = utils.extend(
+  Object.create(Component.prototype.style), {
+    height: function (val) {
+      val = parseFloat(val)
+      if (Number.isNaN(val) || val < 0) {
+        return logger.warn('<loading>\'s height (' + val + ') is invalid.')
+      }
+      this.clamp = val * this.data.scale
+    }
+  })
 
 module.exports = Loading

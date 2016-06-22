@@ -214,6 +214,11 @@ Scroller.prototype.removeChild = function (child) {
   }
   // remove from componentMap recursively
   componentManager.removeElementByRef(child.data.ref)
+  var refreshLoadingPlaceholder = child.refreshPlaceholder
+    || child.loadingPlaceholder
+  if (refreshLoadingPlaceholder) {
+    this.scrollElement.removeChild(refreshLoadingPlaceholder)
+  }
   if (child.fixedPlaceholder) {
     this.scrollElement.removeChild(child.fixedPlaceholder)
   }
