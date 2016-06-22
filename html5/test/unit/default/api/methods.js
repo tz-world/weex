@@ -4,7 +4,7 @@ import sinonChai from 'sinon-chai'
 const { expect } = chai
 chai.use(sinonChai)
 
-import '../../../../shared/consolelog'
+import '../../../../shared/console'
 import * as modules from '../../../../default/api/modules'
 import * as methods from '../../../../default/api/methods'
 import { registerModules, requireModule, clearModules, registerMethods } from '../../../../default/app/register'
