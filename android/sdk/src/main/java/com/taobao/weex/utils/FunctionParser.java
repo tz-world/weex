@@ -218,6 +218,9 @@ import java.util.Map;
  */
 public class FunctionParser<T> {
 
+  public static final char SPACE = ' ';
+  public static final char PERCENT = '%';
+
   private Mapper<T> mapper;
   private Lexer lexer;
 
@@ -262,7 +265,7 @@ public class FunctionParser<T> {
     return mapper.map(functionName, list);
   }
 
-  private String  match(Token token) {
+  private String match(Token token) {
     if (token == lexer.getCurrentToken()) {
       String value = lexer.getCurrentTokenValue();
       lexer.moveOn();
@@ -305,6 +308,13 @@ public class FunctionParser<T> {
     private static final String LEFT_PARENT = "(";
     private static final String RIGHT_PARENT = ")";
     private static final String COMMA = ",";
+    private static final char A_LOWER = 'a';
+    private static final char Z_LOWER = 'z';
+    private static final char ZERO = '0';
+    private static final char NINE = '9';
+    private static final char DOT = '.';
+    private static final char MINUS = '-';
+    private static final char PLUS = '+';
     private String source;
     private Token current;
     private String value;
@@ -323,17 +333,17 @@ public class FunctionParser<T> {
     }
 
     private boolean moveOn() {
-      int start=pointer;
+      int start = pointer;
       char curChar;
       while (pointer < source.length()) {
         curChar = source.charAt(pointer);
-        if (curChar==' ') {
+        if (curChar == SPACE) {
           pointer++;
-          if (start!=pointer) {
+          if (start != pointer) {
             break;
           }
-        } else if (isCharacterOrDigit(curChar) || curChar == '.'
-                   || curChar == '%' || curChar == '-' || curChar == '+') {
+        } else if (isCharacterOrDigit(curChar) || curChar == DOT
+                   || curChar == PERCENT || curChar == MINUS || curChar == PLUS) {
           pointer++;
         } else {
           if (start == pointer) {
@@ -342,12 +352,11 @@ public class FunctionParser<T> {
           break;
         }
       }
-      if(start!=pointer){
-        String symbol=source.substring(start,pointer);
+      if (start != pointer) {
+        String symbol = source.substring(start, pointer);
         moveOn(symbol);
         return true;
-      }
-      else {
+      } else {
         current = null;
         value = null;
         return false;
@@ -367,7 +376,7 @@ public class FunctionParser<T> {
       } else if (isFuncName(token)) {
         current = Token.FUNC_NAME;
         value = token;
-      } else{
+      } else {
         current = Token.PARAM_VALUE;
         value = token;
       }
@@ -377,7 +386,7 @@ public class FunctionParser<T> {
       char letter;
       for (int i = 0; i < funcName.length(); i++) {
         letter = funcName.charAt(i);
-        if (!('a' <= letter && letter <= 'z')){
+        if (!(A_LOWER <= letter && letter <= Z_LOWER)) {
           return false;
         }
       }
@@ -390,8 +399,8 @@ public class FunctionParser<T> {
       current = null;
     }
 
-    private boolean isCharacterOrDigit(char letter){
-      return (('a' <= letter && letter <= 'z')|| ('0'<=letter&&letter<='9'));
+    private boolean isCharacterOrDigit(char letter) {
+      return ((ZERO <= letter && letter <= NINE)||(A_LOWER <= letter && letter <= Z_LOWER) );
     }
   }
 

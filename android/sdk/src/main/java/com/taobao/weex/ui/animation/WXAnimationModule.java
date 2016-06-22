@@ -505,15 +505,15 @@ public class WXAnimationModule extends WXModule {
   private static Pair<Float, Float> parsePivot(@Nullable String transformOrigin,
                                                ViewGroup.LayoutParams layoutParams) {
     if (!TextUtils.isEmpty(transformOrigin)) {
-      int firstSpace = transformOrigin.indexOf(' ');
+      int firstSpace = transformOrigin.indexOf(FunctionParser.SPACE);
       if (firstSpace != -1) {
         int i = firstSpace;
         for (; i < transformOrigin.length(); i++) {
-          if (transformOrigin.charAt(i) != ' ') {
+          if (transformOrigin.charAt(i) != FunctionParser.SPACE) {
             break;
           }
         }
-        if (i < transformOrigin.length() && transformOrigin.charAt(i) != ' ') {
+        if (i < transformOrigin.length() && transformOrigin.charAt(i) != FunctionParser.SPACE) {
           List<String> list = new ArrayList<>(2);
           list.add(transformOrigin.substring(0, firstSpace).trim());
           list.add(transformOrigin.substring(i, transformOrigin.length()).trim());
@@ -557,7 +557,7 @@ public class WXAnimationModule extends WXModule {
   private static float parsePercentOrPx(String raw, int unit) {
     int precision = (int) Math.ceil(Math.log10(10));
     int suffix;
-    if ((suffix = raw.lastIndexOf('%')) != -1) {
+    if ((suffix = raw.lastIndexOf(FunctionParser.PERCENT)) != -1) {
       return parsePercent(raw.substring(0, suffix), unit, precision);
     } else if ((suffix = raw.lastIndexOf(PX)) != -1) {
       return WXViewUtils.getRealPxByWidth(WXUtils.fastGetFloat(raw.substring(0, suffix), precision));
