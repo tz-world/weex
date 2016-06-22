@@ -72,7 +72,7 @@
     "httpurl": "^0.1.1",
     "kountdown": "^0.1.2",
     "lazyimg": "^0.1.2",
-    "modals": "^0.1.3",
+    "modals": "^0.1.5",
     "scroll-to": "0.0.2",
     "semver": "^5.1.0",
     "transitionize": "0.0.3"
