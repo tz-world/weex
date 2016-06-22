@@ -375,16 +375,10 @@ public class WXListComponent extends WXVContainer implements
               if (listeners != null && listeners.size() > 0) {
                 for (OnWXScrollListener listener : listeners) {
                   if (listener != null) {
-                    int tempState = RecyclerView.SCROLL_STATE_IDLE;
-                    if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
-                      newState = OnWXScrollListener.DRAGGING;
-                    } else if (newState == RecyclerView.SCROLL_STATE_SETTLING) {
-                      newState = OnWXScrollListener.SETTLING;
-                    }
                     View topView = recyclerView.getChildAt(0);
                     if (topView != null && listener != null) {
                       int y = topView.getTop();
-                      listener.onScrollStateChanged(recyclerView, 0, y, tempState);
+                      listener.onScrollStateChanged(recyclerView, 0, y, newState);
                     }
                   }
                 }
@@ -439,13 +433,16 @@ public class WXListComponent extends WXVContainer implements
     @Override
     public void addChild(WXComponent child, int index) {
         super.addChild(child, index);
-        int adapterPosition = index == -1 ? getView().getAdapter().getItemCount() - 1 : index;
-        getView().getAdapter().notifyItemInserted(adapterPosition);
-        checkRefreshOrLoading(child);
-        if (child.getDomObject().containsEvent(WXEventType.APPEAR) || child.getDomObject().containsEvent(WXEventType.DISAPPEAR)) {
-            mAppearComponents.put(adapterPosition, child);
-            child.registerAppearEvent = true;
-        }
+
+        int adapterPosition = index == -1 ? mChildren.size() - 1 : index;
+      BounceRecyclerView view =  getView();
+      if(view != null) {
+        view.getAdapter().notifyItemInserted(adapterPosition);
+      }
+      if (child.getDomObject().containsEvent(WXEventType.APPEAR) || child.getDomObject().containsEvent(WXEventType.DISAPPEAR)) {
+          mAppearComponents.put(adapterPosition, child);
+          child.registerAppearEvent = true;
+      }
     }
 
     /**
@@ -455,6 +452,13 @@ public class WXListComponent extends WXVContainer implements
      */
     @Override
     protected void addSubView(View child, int index) {
+      BounceRecyclerView view =  getView();
+      if(view == null){
+        return;
+      }
+
+      int pos = index == -1 ?view.getAdapter().getItemCount()-1:index;
+      checkRefreshOrLoading(mChildren.get(pos));
     }
 
     /**
