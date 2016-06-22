@@ -225,4 +225,28 @@ Scroller.prototype.removeChild = function (child) {
   }.bind(this), 0)
 }
 
+Scroller.prototype.onAppend = function () {
+  this._refreshWhenDomRenderend()
+}
+
+Scroller.prototype.onRemove = function () {
+  this._removeEvents()
+}
+
+Scroller.prototype._refreshWhenDomRenderend = function () {
+  var self = this
+  if (!this.renderendHandler) {
+    this.renderendHandler = function () {
+      self.scroller.refresh()
+    }
+  }
+  window.addEventListener('renderend', this.renderendHandler)
+}
+
+Scroller.prototype._removeEvents = function () {
+  if (this.renderendHandler) {
+    window.removeEventListener('renderend', this.renderendHandler)
+  }
+}
+
 module.exports = Scroller
