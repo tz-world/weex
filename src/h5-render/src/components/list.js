@@ -163,7 +163,11 @@ List.prototype.insertBefore = function (child, before) {
     this.listElement.appendChild(child.node)
     children.push(child.data)
   } else {
-    if (before.fixedPlaceholder) {
+    var refreshLoadingPlaceholder = before.refreshPlaceholder
+      || before.loadingPlaceholder
+    if (refreshLoadingPlaceholder) {
+      this.listElement.insertBefore(child.node, refreshLoadingPlaceholder)
+    } else if (before.fixedPlaceholder) {
       this.listElement.insertBefore(child.node, before.fixedPlaceholder)
     } else {
       this.listElement.insertBefore(child.node, before.node)
@@ -194,6 +198,11 @@ List.prototype.removeChild = function (child) {
   }
   // remove from componentMap recursively
   componentManager.removeElementByRef(child.data.ref)
+  var refreshLoadingPlaceholder = child.refreshPlaceholder
+    || child.loadingPlaceholder
+  if (child.refreshPlaceholder) {
+    this.scrollElement.removeChild(refreshLoadingPlaceholder)
+  }
   if (child.fixedPlaceholder) {
     this.listElement.removeChild(child.fixedPlaceholder)
   }
