@@ -165,7 +165,7 @@ export function bootstrap (name, config, data) {
         _checkDowngrade.errorMessage
       ]
     }])
-    return new Error(`Downgrade: ${config.downgrade}`)
+    return new Error(`Downgrade[${_checkDowngrade.code}]: ${_checkDowngrade.errorMessage}`)
   }
 
   this.vm = new Vm(cleanName, null, { _app: this }, null, data)
