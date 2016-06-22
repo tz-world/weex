@@ -1,7 +1,7 @@
 import chai from 'chai'
 const { expect } = chai
 
-import '../../shared/objectAssign'
+import '../../../shared/objectAssign'
 
 describe('object.assign', () => {
   it('is a function', () => {

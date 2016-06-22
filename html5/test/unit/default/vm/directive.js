@@ -4,10 +4,10 @@ import sinonChai from 'sinon-chai'
 const { expect } = chai
 chai.use(sinonChai)
 
-import * as directive from '../../../default/vm/directive'
+import * as directive from '../../../../default/vm/directive'
 
-import * as state from '../../../default/core/state'
-import config from '../../../default/config'
+import * as state from '../../../../default/core/state'
+import config from '../../../../default/config'
 
 const { nativeComponentMap } = config
 

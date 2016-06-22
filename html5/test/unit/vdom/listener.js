@@ -6,7 +6,7 @@ chai.use(sinonChai)
 
 global.callNative = function () {}
 
-import { Document } from '../../vdom'
+import { Document } from '../../../vdom'
 
 global.callNative = function () {}
 

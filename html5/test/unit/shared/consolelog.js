@@ -4,7 +4,7 @@ import sinonChai from 'sinon-chai'
 const { expect } = chai
 chai.use(sinonChai)
 
-import { printlog } from '../../shared/consolelog'
+import { printlog } from '../../../shared/consolelog'
 
 describe('polyfill for printlog', () => {
   before(() => {

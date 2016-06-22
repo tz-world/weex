@@ -6,15 +6,15 @@ chai.use(sinonChai)
 
 global.callNative = function () {}
 
-import AppInstance from '../../../default/app'
-import * as bundle from '../../../default/app/bundle'
-import * as ctrl from '../../../default/app/ctrl'
-import { Node } from '../../../vdom'
+import AppInstance from '../../../../default/app'
+import * as bundle from '../../../../default/app/bundle'
+import * as ctrl from '../../../../default/app/ctrl'
+import { Node } from '../../../../vdom'
 import {
   registerComponent,
   requireComponent,
   requireModule
-} from '../../../default/app/register'
+} from '../../../../default/app/register'
 
 describe('App Instance', () => {
   const oriCallNative = global.callNative

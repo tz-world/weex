@@ -6,9 +6,9 @@ chai.use(sinonChai)
 
 global.callNative = function () {}
 
-import * as ctrl from '../../../default/app/ctrl'
-import Differ from '../../../default/app/differ'
-import { Document } from '../../../vdom'
+import * as ctrl from '../../../../default/app/ctrl'
+import Differ from '../../../../default/app/differ'
+import { Document } from '../../../../vdom'
 
 describe('the api of app', () => {
   let app

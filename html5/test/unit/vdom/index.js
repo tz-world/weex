@@ -11,7 +11,7 @@ import {
   Document,
   Element,
   Comment
-} from '../../vdom'
+} from '../../../vdom'
 
 global.callNative = function () {}
 
