@@ -325,7 +325,7 @@ public class WXAnimationModule extends WXModule {
       }
       if (!TextUtils.isEmpty(style.opacity)) {
         holders.add(PropertyValuesHolder.ofFloat(WXAnimationBean.Style.ALPHA,
-                                                 Float.valueOf(style.opacity)));
+                                                 WXUtils.fastGetFloat(style.opacity,3)));
       }
       //TODO add a wrapper class of view to not flush out the border
       if (!TextUtils.isEmpty(style.backgroundColor)) {
