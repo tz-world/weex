@@ -163,7 +163,11 @@ List.prototype.insertBefore = function (child, before) {
     this.listElement.appendChild(child.node)
     children.push(child.data)
   } else {
-    if (before.fixedPlaceholder) {
+    var refreshLoadingPlaceholder = before.refreshPlaceholder
+      || before.loadingPlaceholder
+    if (refreshLoadingPlaceholder) {
+      this.listElement.insertBefore(child.node, refreshLoadingPlaceholder)
+    } else if (before.fixedPlaceholder) {
       this.listElement.insertBefore(child.node, before.fixedPlaceholder)
     } else {
       this.listElement.insertBefore(child.node, before.node)
