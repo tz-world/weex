@@ -183,7 +183,11 @@ Scroller.prototype.insertBefore = function (child, before) {
     this.scrollElement.appendChild(child.node)
     children.push(child.data)
   } else {
-    if (before.fixedPlaceholder) {
+    var refreshLoadingPlaceholder = before.refreshPlaceholder
+      || before.loadingPlaceholder
+    if (refreshLoadingPlaceholder) {
+      this.listElement.insertBefore(child.node, refreshLoadingPlaceholder)
+    } else if (before.fixedPlaceholder) {
       this.scrollElement.insertBefore(child.node, before.fixedPlaceholder)
     } else {
       this.scrollElement.insertBefore(child.node, before.node)
@@ -214,6 +218,11 @@ Scroller.prototype.removeChild = function (child) {
   }
   // remove from componentMap recursively
   componentManager.removeElementByRef(child.data.ref)
+  var refreshLoadingPlaceholder = child.refreshPlaceholder
+    || child.loadingPlaceholder
+  if (refreshLoadingPlaceholder) {
+    this.scrollElement.removeChild(refreshLoadingPlaceholder)
+  }
   if (child.fixedPlaceholder) {
     this.scrollElement.removeChild(child.fixedPlaceholder)
   }
@@ -223,6 +232,30 @@ Scroller.prototype.removeChild = function (child) {
   setTimeout(function () {
     this.scroller.refresh()
   }.bind(this), 0)
+}
+
+Scroller.prototype.onAppend = function () {
+  this._refreshWhenDomRenderend()
+}
+
+Scroller.prototype.onRemove = function () {
+  this._removeEvents()
+}
+
+Scroller.prototype._refreshWhenDomRenderend = function () {
+  var self = this
+  if (!this.renderendHandler) {
+    this.renderendHandler = function () {
+      self.scroller.refresh()
+    }
+  }
+  window.addEventListener('renderend', this.renderendHandler)
+}
+
+Scroller.prototype._removeEvents = function () {
+  if (this.renderendHandler) {
+    window.removeEventListener('renderend', this.renderendHandler)
+  }
 }
 
 module.exports = Scroller

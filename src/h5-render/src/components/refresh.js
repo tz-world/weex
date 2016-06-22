@@ -6,7 +6,7 @@ var logger = require('../logger')
 
 require('../styles/refresh.css')
 
-var parents = ['scroller', 'list']
+var parents = ['scroller', 'list', 'vlist']
 
 // Only if pulldown offset is larger than this value can this
 // component trigger the 'refresh' event, otherwise just recover
@@ -21,6 +21,7 @@ var IEMobile = !!ua.match(/IEMobile/i)
 var cssPrefix = Firefox ? '-moz-' : IEMobile ? '-ms-' : '-webkit-'
 
 function Refresh (data) {
+  this.isRefreshing = false
   this.clamp = (data.style.height || DEFAULT_CLAMP) * data.scale
   !data.style.alignItems && (data.style.alignItems = DEFAULT_ALIGN_ITEMS)
   !data.style.justifyContent
@@ -40,24 +41,44 @@ Refresh.prototype.onAppend = function () {
   var parent = this.getParent()
   var self = this
   if (parents.indexOf(parent.data.type) === -1) {
+    // not in a scroller or a list
     return
   }
+  this.refreshPlaceholder = document.createElement('div')
+  this.refreshPlaceholder.classList.add('weex-refresh-placeholder')
+  this.refreshPlaceholder.style.display = 'none'
+  this.refreshPlaceholder.style.width = '0px'
+  this.refreshPlaceholder.style.height = '0px'
+  var scrollElement = parent.scrollElement || parent.listElement
+  scrollElement.insertBefore(this.refreshPlaceholder, this.node)
+  parent.node.appendChild(this.node)
   parent.scroller.addEventListener('pulldown', function (e) {
+    if (self.isRefreshing) {
+      return
+    }
     self.adjustHeight(Math.abs(e.scrollObj.getScrollTop()))
-    if (!this.display) {
+    if (!self.display) {
       self.show()
     }
   })
   parent.scroller.addEventListener('pulldownend', function (e) {
+    if (self.isRefreshing) {
+      return
+    }
     var top = Math.abs(e.scrollObj.getScrollTop())
     if (top > self.clamp) {
       self.handleRefresh(e)
+    } else {
+      self.hide()
     }
   })
 }
 
 Refresh.prototype.adjustHeight = function (val) {
   this.node.style.height = val + 'px'
+}
+
+Refresh.prototype.adJustPosition = function (val) {
   this.node.style.top = -val + 'px'
 }
 
@@ -66,12 +87,8 @@ Refresh.prototype.handleRefresh = function (e) {
   var parent = this.getParent()
   var scrollElement = parent.scrollElement || parent.listElement
   this.node.style.height = this.clamp + 'px'
-  this.node.style.top = -this.clamp + 'px'
-  var translateStr = 'translate3d(0px,' + this.clamp + 'px,0px)'
-  scrollElement.style[cssPrefix + 'transform']
-    = cssPrefix + translateStr
-  scrollElement.style.transform = translateStr
   this.dispatchEvent('refresh')
+  this.isRefreshing = true
 }
 
 Refresh.prototype.show = function () {
@@ -83,15 +100,8 @@ Refresh.prototype.show = function () {
 
 Refresh.prototype.hide = function () {
   this.display = false
-  var parent = this.getParent()
-  if (parent) {
-    var scrollElement = parent.scrollElement || parent.listElement
-    var translateStr = 'translate3d(0px,0px,0px)'
-    scrollElement.style[cssPrefix + 'transform']
-      = cssPrefix + translateStr
-    scrollElement.style.transform = translateStr
-  }
   this.node.style.display = 'none'
+  this.isRefreshing = false
 }
 
 Refresh.prototype.attr = {
@@ -105,10 +115,9 @@ Refresh.prototype.attr = {
         this.hide()
       }.bind(this), 0)
     } else {
-      // TODO
-      logger.error('attribute value of refresh \'display\' '
-          + val
-          + ' is invalid. Should be \'show\' or \'hide\'')
+      logger.error('attr \'display\' of <refresh>\': value '
+        + val
+        + ' is invalid. Should be \'show\' or \'hide\'')
     }
   }
 }
