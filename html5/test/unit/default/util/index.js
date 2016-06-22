@@ -4,7 +4,7 @@ import sinonChai from 'sinon-chai'
 const { expect } = chai
 chai.use(sinonChai)
 
-import * as util from '../../../default/util'
+import * as util from '../../../../default/util'
 
 describe('Util', () => {
   describe('isReserved', () => {

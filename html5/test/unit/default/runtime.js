@@ -6,9 +6,9 @@ const {
 } = chai
 chai.use(sinonChai)
 
-import framework from '../../runtime'
-import config from '../../default/config'
-import Vm from '../../default/vm'
+import framework from '../../../runtime'
+import config from '../../../default/config'
+import Vm from '../../../default/vm'
 
 function clearRefs (json) {
   delete json.ref

@@ -4,10 +4,10 @@ import sinonChai from 'sinon-chai'
 const { expect } = chai
 chai.use(sinonChai)
 
-import '../../../shared/consolelog'
-import * as modules from '../../../default/api/modules'
-import * as methods from '../../../default/api/methods'
-import { registerModules, requireModule, clearModules, registerMethods } from '../../../default/app/register'
+import '../../../../shared/consolelog'
+import * as modules from '../../../../default/api/modules'
+import * as methods from '../../../../default/api/methods'
+import { registerModules, requireModule, clearModules, registerMethods } from '../../../../default/app/register'
 
 function Vm () {
 }

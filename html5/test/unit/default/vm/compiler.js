@@ -4,9 +4,9 @@ import sinonChai from 'sinon-chai'
 const { expect } = chai
 chai.use(sinonChai)
 
-import * as compiler from '../../../default/vm/compiler'
-import * as directive from '../../../default/vm/directive'
-import * as state from '../../../default/core/state'
+import * as compiler from '../../../../default/vm/compiler'
+import * as directive from '../../../../default/vm/directive'
+import * as state from '../../../../default/core/state'
 
 describe('generate workflow', () => {
   let contentIndex = 0

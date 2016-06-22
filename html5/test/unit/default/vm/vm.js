@@ -6,9 +6,9 @@ chai.use(sinonChai)
 
 global.callNative = function () {}
 
-import Vm from '../../../default/vm'
-import { Document } from '../../../vdom'
-import Differ from '../../../default/app/differ'
+import Vm from '../../../../default/vm'
+import { Document } from '../../../../vdom'
+import Differ from '../../../../default/app/differ'
 
 describe('generate virtual dom for a single vm', () => {
   const spy = sinon.spy()

@@ -4,7 +4,7 @@ import sinonChai from 'sinon-chai'
 const { expect } = chai
 chai.use(sinonChai)
 
-import '../../shared'
+import '../../../shared'
 
 describe('a polyfill of', () => {
   it('Promise', () => {

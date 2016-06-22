@@ -6,11 +6,11 @@ chai.use(sinonChai)
 
 global.callNative = function () {}
 
-import * as bundle from '../../../default/app/bundle'
-import * as register from '../../../default/app/register'
+import * as bundle from '../../../../default/app/bundle'
+import * as register from '../../../../default/app/register'
 import { Document }
-from '../../../vdom'
-import Vm from '../../../default/vm'
+from '../../../../vdom'
+import Vm from '../../../../default/vm'
 
 describe('parsing a bundle file', () => {
   const componentTemplate = {
