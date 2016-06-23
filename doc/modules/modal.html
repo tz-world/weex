@@ -330,12 +330,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.2" data-path="../how-to/transform-code-into-js-bundle.html">
+        <li class="chapter " data-level="1.2.3.2" data-path="../how-to/preview-in-browser.html">
             
-                <a href="../how-to/transform-code-into-js-bundle.html">
+                <a href="../how-to/preview-in-browser.html">
             
                     
-                    Transform Code Into JS Bundle
+                    Preview In Browser
             
                 </a>
             
@@ -343,12 +343,77 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.3" data-path="../how-to/preview-in-browser.html">
+        <li class="chapter " data-level="1.2.3.3" >
             
-                <a href="../how-to/preview-in-browser.html">
+                <span>
             
                     
-                    Preview In Browser
+                    [Preview in Native]/how-to/preview-in-playground-app.md)
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.4" data-path="../how-to/customize-a-native-component.html">
+            
+                <a href="../how-to/customize-a-native-component.html">
+            
+                    
+                    Customize a native Component
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.5" data-path="../how-to/cuszomize-native-apis.html">
+            
+                <a href="../how-to/cuszomize-native-apis.html">
+            
+                    
+                    Customize native APIs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.6" data-path="../how-to/debug-with-html5.html">
+            
+                <a href="../how-to/debug-with-html5.html">
+            
+                    
+                    Debug in html5 renderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.7" data-path="../how-to/require-3rd-party-libs.html">
+            
+                <a href="../how-to/require-3rd-party-libs.html">
+            
+                    
+                    Require 3rd Party Libs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.8" data-path="../how-to/transform-code-into-js-bundle.html">
+            
+                <a href="../how-to/transform-code-into-js-bundle.html">
+            
+                    
+                    Transform Code Into JS Bundle
             
                 </a>
             
@@ -1206,7 +1271,7 @@ modal.toast({<span class="hljs-string">&apos;message&apos;</span>: <span class="
 <ul>
 <li><code>options</code><em>(object)</em>: some options.<ul>
 <li><code>message</code><em>(string)</em>: the message that the alert shows.</li>
-<li><code>okTitle</code><em>(string)</em>: the title of alert button.</li>
+<li><code>okTitle</code><em>(string)</em>: the title of alert button, default is OK.</li>
 </ul>
 </li>
 <li><code>callback</code><em>(function)</em>: callback when complete.</li>
@@ -1218,7 +1283,7 @@ modal.toast({<span class="hljs-string">&apos;message&apos;</span>: <span class="
 modal.alert({
   message: arg1,
   okTitle: arg2
-}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-comment">// TODO after the alert is complete.</span>
 })
 </code></pre>
@@ -1227,18 +1292,15 @@ modal.alert({
 <ul>
 <li><code>options</code><em>(object)</em>: some options.<ul>
 <li><code>message</code><em>(string)</em>: the message that the confirm shows.</li>
-<li><code>okTitle</code><em>(string)</em>: the title of confirm button.</li>
-<li><code>cancelTitle</code><em>(string)</em>: the title of cancel button.</li>
+<li><code>okTitle</code><em>(string)</em>: the title of confirm button, default is &apos;OK&apos;.</li>
+<li><code>cancelTitle</code><em>(string)</em>: the title of cancel button, default is &apos;Cancel&apos;.</li>
 </ul>
 </li>
 <li><code>callback</code><em>(function)</em>: callback when complete.</li>
 </ul>
 <p>This method has a callback function whose arguments will be:</p>
 <ul>
-<li><code>e</code><em>(object)</em>: a event object.<ul>
-<li><code>status</code><em>(string)</em>: the title of the button that clicked by user.</li>
-</ul>
-</li>
+<li><code>result</code><em>(string)</em>: the title of the button that clicked by user.</li>
 </ul>
 <h4 id="example">Example</h4>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> arg1 = <span class="hljs-string">&apos;I am alert!&apos;</span>
@@ -1249,8 +1311,8 @@ modal.confirm({
   message: arg1,
   okTitle: arg2,
   cancelTitle: arg3
-}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
-  nativeLog(e.status)
+}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">result</span>) </span>{
+  nativeLog(result)
   <span class="hljs-comment">// TODO after the confirm is complete.</span>
 });
 </code></pre>
@@ -1259,16 +1321,16 @@ modal.confirm({
 <ul>
 <li><code>options</code><em>(object)</em>: some options.<ul>
 <li><code>message</code><em>(string)</em>: the message that the prompt shows.</li>
-<li><code>okTitle</code><em>(string)</em>: the title of confirm button.</li>
-<li><code>cancelTitle</code><em>(string)</em>: the title of cancel button.</li>
+<li><code>okTitle</code><em>(string)</em>: the title of confirm button, default is &apos;OK&apos;.</li>
+<li><code>cancelTitle</code><em>(string)</em>: the title of cancel button, default is &apos;Cancel&apos;.</li>
 </ul>
 </li>
 <li><code>callback</code><em>(function)</em>: callback when complete.</li>
 </ul>
 <p>This method has a callback function whose arguments will be:</p>
 <ul>
-<li><code>e</code><em>(object)</em>: a event object.<ul>
-<li><code>status</code><em>(string)</em>: the title of the button that clicked by user.</li>
+<li><code>res</code><em>(object)</em>: the argument will be a object, which has attributes <code>result</code> and <code>data</code>, like <code>{ result: &apos;OK&apos;, data: &apos;hello world&apos; }</code><ul>
+<li><code>result</code><em>(string)</em>: the title of the button that clicked by user.</li>
 <li><code>data</code><em>(string)</em>: the value of the text that entered by user.</li>
 </ul>
 </li>
@@ -1282,8 +1344,8 @@ modal.prompt({
   message: arg1,
   okTitle: arg2,
   cancelTitle: arg3
-}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
-  nativeLog(e.status + <span class="hljs-string">&apos;, &apos;</span> + e.data);
+}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">res</span>) </span>{
+  nativeLog(res.result + <span class="hljs-string">&apos;, &apos;</span> + res.data);
   <span class="hljs-comment">// TODO after the prompt is complete.</span>
 });
 </code></pre>
@@ -1314,7 +1376,7 @@ modal.prompt({
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-        gitbook.page.hasChanged({"page":{"title":"modal","level":"1.3.5.3","depth":3,"next":{"title":"animation","level":"1.3.5.4","depth":3,"path":"modules/animation.md","ref":"modules/animation.md","articles":[]},"previous":{"title":"stream","level":"1.3.5.2","depth":3,"path":"modules/stream.md","ref":"modules/stream.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.0.3","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"modules/modal.md","mtime":"2016-06-17T03:11:28.255Z","type":"markdown"},"gitbook":{"version":"3.0.3","time":"2016-06-17T03:19:04.058Z"},"basePath":"..","book":{"language":""}});
+        gitbook.page.hasChanged({"page":{"title":"modal","level":"1.3.5.3","depth":3,"next":{"title":"animation","level":"1.3.5.4","depth":3,"path":"modules/animation.md","ref":"modules/animation.md","articles":[]},"previous":{"title":"stream","level":"1.3.5.2","depth":3,"path":"modules/stream.md","ref":"modules/stream.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.0.3","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"modules/modal.md","mtime":"2016-06-23T07:07:42.515Z","type":"markdown"},"gitbook":{"version":"3.0.3","time":"2016-06-23T10:12:29.565Z"},"basePath":"..","book":{"language":""}});
         setTimeout(function(){
            window._rePostionVersion()
         },100);

@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="preview-in-browser.html" />
+    <link rel="next" href="../advanced/main.html" />
     
     
     <link rel="prev" href="require-3rd-party-libs.html" />
@@ -330,12 +330,12 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.3.2" data-path="transform-code-into-js-bundle.html">
+        <li class="chapter " data-level="1.2.3.2" data-path="preview-in-browser.html">
             
-                <a href="transform-code-into-js-bundle.html">
+                <a href="preview-in-browser.html">
             
                     
-                    Transform Code Into JS Bundle
+                    Preview In Browser
             
                 </a>
             
@@ -343,12 +343,77 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.3" data-path="preview-in-browser.html">
+        <li class="chapter " data-level="1.2.3.3" >
             
-                <a href="preview-in-browser.html">
+                <span>
             
                     
-                    Preview In Browser
+                    [Preview in Native]/how-to/preview-in-playground-app.md)
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.4" data-path="customize-a-native-component.html">
+            
+                <a href="customize-a-native-component.html">
+            
+                    
+                    Customize a native Component
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.5" data-path="cuszomize-native-apis.html">
+            
+                <a href="cuszomize-native-apis.html">
+            
+                    
+                    Customize native APIs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.6" data-path="debug-with-html5.html">
+            
+                <a href="debug-with-html5.html">
+            
+                    
+                    Debug in html5 renderer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.7" data-path="require-3rd-party-libs.html">
+            
+                <a href="require-3rd-party-libs.html">
+            
+                    
+                    Require 3rd Party Libs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.3.8" data-path="transform-code-into-js-bundle.html">
+            
+                <a href="transform-code-into-js-bundle.html">
+            
+                    
+                    Transform Code Into JS Bundle
             
                 </a>
             
@@ -1188,8 +1253,20 @@
 <p>Paragraphs <a href="maintain-your-component-code.md">Maintain Your Component Code</a>, <a href="maintain-your-component-code.md">Maintain Your Component Code</a> and <a href="require-3rd-party-libs.html">Require 3rd Party Libs</a> show us how to write and organize weex code. However, Weex DSL code must be transformed to <code>js bundle</code> so that <code>js framework</code> can parse and execute it for iOS, Android and HTML5 portal. For more information, please refer to <a href="../advanced/how-it-works.html">How It Works
 </a> and <a href="../specs/js-bundle-format.html">JS Bundle Format</a>.</p>
 <p>Now come back to the topic <code>transform code into js bundle</code>. There are several ways to achieve the goal.</p>
+<h2 id="weex-toolkit">weex-toolkit</h2>
+<pre><code class="lang-bash"><span class="hljs-variable">$npm</span> install -g weex-toolkit
+</code></pre>
+<h3 id="transform-a-we-file-to-js-bundle">transform a <code>we file</code> to JS Bundle</h3>
+<pre><code>$weex your_best_weex.we  -o .
+</code></pre><p><code>your_best_weex.we</code> will be transform to JS Bundle file <code>your_best_weex.js</code> , saved in your current directory</p>
+<h3 id="transform-a-we-file-to-js-bundle--watch-this-file-&#xFF0C;auto-run-transformer-if-change-happen">transform a <code>we file</code> to JS Bundle , watch this file &#xFF0C;auto run transformer if change happen.</h3>
+<pre><code>$weex your_best_weex.we  -o . --watch
+</code></pre><h3 id="transform-every-we-file-in-a-directory">transform every we file in a directory</h3>
+<pre><code>$weex we/file/storage/path  -o outputpath
+</code></pre><p>every <code>we file</code> in <code>we/file/storage/path</code> we be transform to JS Bundle  , saved in <code>outputpath</code> path</p>
+<p>please access <a href="https://www.npmjs.com/package/weex-toolkit" _target="blank">npmjs.com</a> for more information about weex-toolkit.</p>
 <h2 id="transformer">transformer</h2>
-<pre><code class="lang-bash">tnpm install weex-transformer
+<pre><code class="lang-bash">npm install weex-transformer
 </code></pre>
 <h3 id="cli-tool">CLI Tool</h3>
 <pre><code>  Usage: transformer [options] &lt;file...&gt;
@@ -1227,7 +1304,7 @@
 </li>
 </ul>
 <h2 id="gulp-weex">gulp weex</h2>
-<pre><code class="lang-bash">tnpm install gulp-weex
+<pre><code class="lang-bash">npm install gulp-weex
 </code></pre>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> gulp = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp&apos;</span>)
 <span class="hljs-keyword">var</span> weex = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp-weex&apos;</span>)
@@ -1254,12 +1331,12 @@ gulp.task(<span class="hljs-string">&apos;default&apos;</span>, <span class="hlj
 
             
                 
-                <a href="require-3rd-party-libs.html" class="navigation navigation-prev " aria-label="Previous page: Require 3rd-party Libs">
+                <a href="require-3rd-party-libs.html" class="navigation navigation-prev " aria-label="Previous page: Require 3rd Party Libs">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="preview-in-browser.html" class="navigation navigation-next " aria-label="Next page: Preview In Browser">
+                <a href="../advanced/main.html" class="navigation navigation-next " aria-label="Next page: Advanced">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1270,7 +1347,7 @@ gulp.task(<span class="hljs-string">&apos;default&apos;</span>, <span class="hlj
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-        gitbook.page.hasChanged({"page":{"title":"Transform Code Into JS Bundle","level":"1.2.3.2","depth":3,"next":{"title":"Preview In Browser","level":"1.2.3.3","depth":3,"path":"how-to/preview-in-browser.md","ref":"how-to/preview-in-browser.md","articles":[]},"previous":{"title":"Require 3rd-party Libs","level":"1.2.3.1","depth":3,"path":"how-to/require-3rd-party-libs.md","ref":"how-to/require-3rd-party-libs.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.0.3","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"how-to/transform-code-into-js-bundle.md","mtime":"2016-06-17T03:11:28.243Z","type":"markdown"},"gitbook":{"version":"3.0.3","time":"2016-06-17T03:19:04.058Z"},"basePath":"..","book":{"language":""}});
+        gitbook.page.hasChanged({"page":{"title":"Transform Code Into JS Bundle","level":"1.2.3.8","depth":3,"next":{"title":"Advanced","level":"1.2.4","depth":2,"path":"advanced/main.md","ref":"advanced/main.md","articles":[{"title":"How It Works","level":"1.2.4.1","depth":3,"path":"advanced/how-it-works.md","ref":"advanced/how-it-works.md","articles":[]},{"title":"How Data Binding Works","level":"1.2.4.2","depth":3,"path":"advanced/how-data-binding-works.md","ref":"advanced/how-data-binding-works.md","articles":[]},{"title":"Integrate to Android","level":"1.2.4.3","depth":3,"path":"advanced/integrate-to-android.md","ref":"advanced/integrate-to-android.md","articles":[]},{"title":"Integrate to iOS","level":"1.2.4.4","depth":3,"path":"advanced/integrate-to-ios.md","ref":"advanced/integrate-to-ios.md","articles":[]},{"title":"Extend to Android","level":"1.2.4.5","depth":3,"path":"advanced/extend-to-android.md","ref":"advanced/extend-to-android.md","articles":[]},{"title":"Extend to iOS","level":"1.2.4.6","depth":3,"path":"advanced/extend-to-ios.md","ref":"advanced/extend-to-ios.md","articles":[]}]},"previous":{"title":"Require 3rd Party Libs","level":"1.2.3.7","depth":3,"path":"how-to/require-3rd-party-libs.md","ref":"how-to/require-3rd-party-libs.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.0.3","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"how-to/transform-code-into-js-bundle.md","mtime":"2016-06-23T09:51:31.085Z","type":"markdown"},"gitbook":{"version":"3.0.3","time":"2016-06-23T10:12:29.565Z"},"basePath":"..","book":{"language":""}});
         setTimeout(function(){
            window._rePostionVersion()
         },100);
