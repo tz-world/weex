@@ -13,6 +13,6 @@
 
 也可以用 [poedit](https://poedit.net/) 更方便的编辑po文件，参见 [Poedit 基础教程](http://teliute.laxjyj.com/TeacHtm/TePoedit/lesson4/lesson4.html)。 
 
-运行 baidu_transalte.py 可以通过百度翻译的API自动翻译未翻译的英文，自动翻译的英文都以 ??? 作为行的结尾，以便于修改（可以在某个 po 文件翻译完成时候，统一替换删除）。
+运行 baidu_transalte.py 可以通过百度翻译的API自动翻译未翻译的英文，自动翻译的英文都以 ??? 作为行的结尾，以便于修改（可以在某个 po 文件翻译完成时候，统一替换删除 ??? ）。
 
 
