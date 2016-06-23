@@ -101,7 +101,8 @@ msgid ""
 "Here `container` tag is the root element of the component. `image` tag "
 "describes a picture, while `text` tag means a paragraph of text."
 msgstr ""
-"`container` 标签是一个根节点，其下包含描述图片的`image`标签和描述一段文字的 text 标签。"
+"`container` 标签是一个根节点，其下包含描述图片的`image`标签和描述一段文字的 "
+"text 标签。"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/main.md:39
@@ -118,7 +119,8 @@ msgid ""
 "root component which has no display logics directive. Here are three types "
 "of root component we support now:"
 msgstr ""
-"根节点: 每个 `template` 标签中的最顶层标签，我们称为根节点。下面是目前我们支持的三种不同的根节点:"
+"根节点: 每个 `template` 标签中的最顶层标签，我们称为根节点。下面是目前我们支"
+"持的三种不同的根节点:"
 
 #. type: Bullet: '- '
 #: /home/dev/download/weex/doc/syntax/main.md:45
@@ -156,13 +158,13 @@ msgstr " `<style>`"
 msgid ""
 "You can consider the Weex style syntax is a subset of the CSS syntax, but "
 "there is still some differences."
-msgstr "你可以考虑weex风格的语法的语法的一个子集，但仍有一定差异。 ???"
+msgstr "Weex中的样式语法可以理解为CSS的一个子集，当然，两者有一些区别"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/main.md:55
 #, no-wrap
 msgid "First we could write inline `style` attribute in `<template>` element. Second we could use the `class` attribute to apply stylesheets, which are defined with single-class selectors in `<style>` code. Here is an example:\n"
-msgstr "首先我们可以写内联`style`` attribute in ``<template>`` element. Second we could use the ``class`` attribute to apply stylesheets, which are defined with single-class selectors in ``<style>`代码。这里是一个例子： ???\n"
+msgstr "首先，在标签上，你可以直接通过内联(inline)的`style`属性编写样式. 其次，我们可以通过标签中的`class`属性与`style`标签中定义的样式建立对应关系，让`style`中定义的样式作用于选定标签上。"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/main.md:63
@@ -192,20 +194,18 @@ msgstr ""
 msgid ""
 "Both the two `text` components above have the same `font-size`, which is "
 "`64` pixel."
-msgstr ""
-"两`text`` components above have the same ``font-size``, which is ``64`像"
-"素。 ???"
+msgstr "上面的两个text组件都被设置了同样的字体大小 ，64px 。"
 
 #. type: Bullet: '* '
 #: /home/dev/download/weex/doc/syntax/main.md:72
 msgid "[See common styles in Weex](../references/common-style.md)"
-msgstr "[weex](../references/common-style.md)看到常见的风格 ???"
+msgstr "[参见 weex公共样式](../references/common-style.md)"
 
 #. type: Title ###
 #: /home/dev/download/weex/doc/syntax/main.md:74
 #, no-wrap
 msgid "Notes!"
-msgstr "笔记! ???"
+msgstr "注意!"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/main.md:76
@@ -214,15 +214,15 @@ msgid ""
 "HTML_attribute) naming rule , so please **do not use CamelCase** in your "
 "attribute , **long-name** with “-” as delimiter is much better."
 msgstr ""
-"weex基本HTML属性]下面的[(https://en.wikipedia.org/wiki/HTML_attribute)命名规"
-"则，所以请不要在你的属性使用CamelCase * *，* * * *长的名字“”作为分隔符是更好"
-"的。 ???"
+"weex 遵循 [HTML属性命名规范](https://en.wikipedia.org/wiki/HTML_attribute) , "
+"所以属性命名时 **请不要使用陀峰格式(CamelCase)** , 请采用以“-”分割的**long-"
+"name**形式."
 
 #. type: Title ##
 #: /home/dev/download/weex/doc/syntax/main.md:77
 #, no-wrap
 msgid "`<script>`"
-msgstr " `<script>`???"
+msgstr "`<script>`"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/main.md:80
@@ -230,8 +230,8 @@ msgid ""
 "The syntax is JavaScript (ES5) and it describes data and behavior of a Weex "
 "page. Here we create three paragraphs:"
 msgstr ""
-"语法是JavaScript(ES5)和描述了一个weex页面数据和行为。在这里，我们创建三个段"
-"落： ???"
+"`<script>` 中的代码遵循 JavaScript(ES5)语法. 描述页面中的数据和页面的行为。 "
+"下面是一个例子:"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/main.md:89
@@ -274,14 +274,14 @@ msgstr ""
 #: /home/dev/download/weex/doc/syntax/main.md:109
 #, no-wrap
 msgid "This piece of `<script>` code will generate some component options and assign it to `module.exports`. The three text components above respectively shows the current datetime, 'Alibaba' and 'Weex Team'. The `data` in the `<script>` code stores component data which could be used for [data-binding](./data-binding.md) in the `<template>`. When data changes, the bound value will be updated automatically. Also it could be read and written by `this.x` in its methods.\n"
-msgstr "这件`<script>`` code will generate some component options and assign it to ``module.exports``. The three text components above respectively shows the current datetime, 'Alibaba' and 'Weex Team'. The ``data`` in the ``<script>`` code stores component data which could be used for [data-binding](./data-binding.md) in the ``<template>``. When data changes, the bound value will be updated automatically. Also it could be read and written by ``this.x`的方法。 ???\n"
+msgstr "上面`<script>`标签中定义了被赋值给 module.exports 的对象。其作用是让三个`<text>`标签显示当前时间,'Alibaba' 和 'Weex Team'。`<script>` 中的data存储可以用于在 `<template>` 标签中进行数据绑定的数据,  当这些数据变更时, 被进行了数据绑定的标签也会自动更新。 这些数据在`<script>`中的各个方法内可以通过`this.x`读写."
 
 #. type: Bullet: '* '
 #: /home/dev/download/weex/doc/syntax/main.md:111
 msgid "[See component definitions references](../references/component-defs.md)"
-msgstr "[参考](../references/component-defs.md)看到组件的定义 ???"
+msgstr "[参见 组件定义](../references/component-defs.md)"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/main.md:112
 msgid "Next, let's have a look at [data-binding](./data-binding.md)."
-msgstr "接下来，让我们在[数据绑定](./data-binding.md)一看。 ???"
+msgstr "接下来，让我们看看[数据绑定](./data-binding.md)。"
