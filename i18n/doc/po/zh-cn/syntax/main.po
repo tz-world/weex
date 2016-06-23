@@ -6,7 +6,7 @@ msgstr ""
 #: /home/dev/download/weex/doc/syntax/main.md:1
 #, no-wrap
 msgid "Syntax"
-msgstr "语法 ???"
+msgstr "语法"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/main.md:4
