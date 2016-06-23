@@ -90,10 +90,12 @@ def translate_po(lang, po):
         if not i.msgstr:
             t = []
             for j in msgid.split("\n"):
-                txt = lang_dict.get(j.strip("\n "), 0)
+                sj = j.strip("\n ")
+                txt = lang_dict.get(sj, 0)
 
                 if txt:
-                    txt = txt + " ???"
+                    if txt.strip() != sj:
+                        txt = txt + " ???"
                 else:
                     txt = j
                 txt = " " * (len(j) - len(j.lstrip())) + \
