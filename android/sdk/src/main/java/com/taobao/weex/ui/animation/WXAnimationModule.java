@@ -229,30 +229,20 @@ import com.taobao.weex.common.WXModule;
 import com.taobao.weex.common.WXModuleAnno;
 import com.taobao.weex.ui.component.WXComponent;
 import com.taobao.weex.ui.view.WXBackgroundDrawable;
-import com.taobao.weex.utils.FunctionParser;
-import com.taobao.weex.utils.WXDataStructureUtil;
 import com.taobao.weex.utils.WXLogUtils;
 import com.taobao.weex.utils.WXResourceUtils;
 import com.taobao.weex.utils.WXUtils;
-import com.taobao.weex.utils.WXViewUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 public class WXAnimationModule extends WXModule {
 
-  public static final String HALF = "50%";
-  public static final String FULL = "100%";
-  public static final String ZERO = "0%";
-  public static final String PX = "px";
   public static final String TRANSFORM = "transform";
   public static final String TRANSFORM_ORIGIN = "transformOrigin";
-  public static final String DEG = "deg";
 
   @WXModuleAnno
   public void transition(String ref, String animation, String callBack) {
@@ -275,9 +265,11 @@ public class WXAnimationModule extends WXModule {
           WXAnimationBean animationBean = new WXAnimationBean();
           animationBean.styles = new WXAnimationBean.Style();
           animationBean.styles.setPivot(
-              WXAnimationModule.parsePivot(transformOrigin, target.getLayoutParams()));
+              WXAnimationBean.Style.parsePivot(transformOrigin, target.getLayoutParams().width,
+                                               target.getLayoutParams().height));
           animationBean.styles.setTransformMap(
-              WXAnimationModule.parseTransForm((String) transform, target.getLayoutParams()));
+              WXAnimationBean.Style.parseTransForm((String) transform, target.getLayoutParams()
+                  .width, target.getLayoutParams().height));
           Animator animator = WXAnimationModule.createAnimator(animationBean, target);
           if (animator != null) {
             animator.setDuration(0);
@@ -297,8 +289,12 @@ public class WXAnimationModule extends WXModule {
           JSONObject.parseObject(animation, WXAnimationBean.class);
       if (animationBean != null && animationBean.styles != null) {
         WXAnimationBean.Style style = animationBean.styles;
-        style.setTransformMap(parseTransForm(style.transform, layoutParams));
-        style.setPivot(parsePivot(style.transformOrigin, layoutParams));
+        style.setTransformMap(WXAnimationBean.Style.parseTransForm(style.transform,
+                                                                   layoutParams.width,
+                                                                   layoutParams.height));
+        style.setPivot(WXAnimationBean.Style.parsePivot(style.transformOrigin,
+                                                        layoutParams.width,
+                                                        layoutParams.height));
       }
       return animationBean;
     } catch (RuntimeException e) {
@@ -325,7 +321,7 @@ public class WXAnimationModule extends WXModule {
       }
       if (!TextUtils.isEmpty(style.opacity)) {
         holders.add(PropertyValuesHolder.ofFloat(WXAnimationBean.Style.ALPHA,
-                                                 WXUtils.fastGetFloat(style.opacity,3)));
+                                                 WXUtils.fastGetFloat(style.opacity, 3)));
       }
       //TODO add a wrapper class of view to not flush out the border
       if (!TextUtils.isEmpty(style.backgroundColor)) {
@@ -394,179 +390,6 @@ public class WXAnimationModule extends WXModule {
       }
     }
     return null;
-  }
-
-  private static Map<String, Float> parseTransForm(@Nullable String rawTransform, final ViewGroup.LayoutParams layoutParams) {
-    if (!TextUtils.isEmpty(rawTransform)) {
-      FunctionParser<Float> parser = new FunctionParser<>
-          (rawTransform, new FunctionParser.Mapper<Float>() {
-            @Override
-            public Map<String, Float> map(String functionName, List<String> raw) {
-              if (raw != null && !raw.isEmpty()) {
-                if (WXAnimationBean.Style.wxToAndroidMap.containsKey(functionName)) {
-                  return convertParam(layoutParams,
-                                      WXAnimationBean.Style.wxToAndroidMap.get(functionName), raw);
-                }
-              }
-              return new HashMap<>();
-            }
-
-            private Map<String, Float> convertParam(ViewGroup.LayoutParams layoutParams,
-                                                    @NonNull List<String> nameSet,
-                                                    @NonNull List<String> rawValue) {
-              Map<String, Float> result = WXDataStructureUtil.newHashMapWithExpectedSize(nameSet.size());
-              List<Float> convertedList = new ArrayList<>(nameSet.size());
-              if (nameSet.contains(WXAnimationBean.Style.ANDROID_ROTATION)) {
-                convertedList.addAll(parseRotation(rawValue));
-              } else if (nameSet.contains(WXAnimationBean.Style.ANDROID_TRANSLATION_X) ||
-                         nameSet.contains(WXAnimationBean.Style.ANDROID_TRANSLATION_Y)) {
-                convertedList.addAll(parseTranslation(nameSet, layoutParams, rawValue));
-              } else if (nameSet.contains(WXAnimationBean.Style.ANDROID_SCALE_X) ||
-                         nameSet.contains(WXAnimationBean.Style.ANDROID_SCALE_Y)) {
-                convertedList.addAll(parseScale(nameSet.size(), rawValue));
-              }
-              if (nameSet.size() == convertedList.size()) {
-                for (int i = 0; i < nameSet.size(); i++) {
-                  result.put(nameSet.get(i), convertedList.get(i));
-                }
-              }
-              return result;
-            }
-
-            private List<Float> parseScale(int size, @NonNull List<String> rawValue) {
-              List<Float> convertedList = new ArrayList<>(rawValue.size() * 2);
-              List<Float> rawFloat = new ArrayList<>(rawValue.size());
-              for (String item : rawValue) {
-                rawFloat.add(WXUtils.fastGetFloat(item));
-              }
-              convertedList.addAll(rawFloat);
-              if (size != 1 && rawValue.size() == 1) {
-                convertedList.addAll(rawFloat);
-              }
-              return convertedList;
-            }
-
-            private List<Float> parseRotation(@NonNull List<String> rawValue) {
-              List<Float> convertedList = new ArrayList<>(1);
-              int suffix;
-              for (String raw : rawValue) {
-                if ((suffix = raw.lastIndexOf(DEG)) != -1) {
-                  convertedList.add(WXUtils.fastGetFloat(raw.substring(0, suffix)));
-                } else {
-                  convertedList.add((float) Math.toDegrees(Double.parseDouble(raw)));
-                }
-              }
-              return convertedList;
-            }
-
-
-            private List<Float> parseTranslation(List<String> nameSet,
-                                                 ViewGroup.LayoutParams layoutParams,
-                                                 @NonNull List<String> rawValue) {
-              List<Float> convertedList = new ArrayList<>(2);
-              String first = rawValue.get(0);
-              if (nameSet.size() == 1) {
-                parseSingleTranslation(nameSet, layoutParams, convertedList, first);
-              } else {
-                parseDoubleTranslation(layoutParams, rawValue, convertedList, first);
-              }
-              return convertedList;
-            }
-
-            private void parseSingleTranslation(List<String> nameSet, ViewGroup.LayoutParams layoutParams,
-                                                List<Float> convertedList, String first) {
-              if (nameSet.contains(WXAnimationBean.Style.ANDROID_TRANSLATION_X)) {
-                convertedList.add(parsePercentOrPx(first, layoutParams.width));
-              } else if (nameSet.contains(WXAnimationBean.Style.ANDROID_TRANSLATION_Y)) {
-                convertedList.add(parsePercentOrPx(first, layoutParams.height));
-              }
-            }
-
-            private void parseDoubleTranslation(ViewGroup.LayoutParams layoutParams,
-                                                @NonNull List<String> rawValue,
-                                                List<Float> convertedList, String first) {
-              String second;
-              if (rawValue.size() == 1) {
-                second = first;
-              } else {
-                second = rawValue.get(1);
-              }
-              if (layoutParams != null) {
-                convertedList.add(parsePercentOrPx(first, layoutParams.width));
-                convertedList.add(parsePercentOrPx(second, layoutParams.height));
-              }
-            }
-          });
-      return parser.parse();
-    }
-    return new LinkedHashMap<>();
-  }
-
-  private static Pair<Float, Float> parsePivot(@Nullable String transformOrigin,
-                                               ViewGroup.LayoutParams layoutParams) {
-    if (!TextUtils.isEmpty(transformOrigin)) {
-      int firstSpace = transformOrigin.indexOf(FunctionParser.SPACE);
-      if (firstSpace != -1) {
-        int i = firstSpace;
-        for (; i < transformOrigin.length(); i++) {
-          if (transformOrigin.charAt(i) != FunctionParser.SPACE) {
-            break;
-          }
-        }
-        if (i < transformOrigin.length() && transformOrigin.charAt(i) != FunctionParser.SPACE) {
-          List<String> list = new ArrayList<>(2);
-          list.add(transformOrigin.substring(0, firstSpace).trim());
-          list.add(transformOrigin.substring(i, transformOrigin.length()).trim());
-          return parsePivot(list, layoutParams);
-        }
-      }
-    }
-    return parsePivot(Arrays.asList(WXAnimationBean.Style.CENTER,
-                                    WXAnimationBean.Style.CENTER), layoutParams);
-  }
-
-  private static Pair<Float, Float> parsePivot(@NonNull List<String> list, ViewGroup.LayoutParams layoutParams) {
-    return new Pair<>(
-        parsePivotX(list.get(0), layoutParams), parsePivotY(list.get(1), layoutParams));
-  }
-
-  private static float parsePivotX(String x, ViewGroup.LayoutParams layoutParams) {
-    String value = x;
-    if (WXAnimationBean.Style.LEFT.equals(x)) {
-      value = ZERO;
-    } else if (WXAnimationBean.Style.RIGHT.equals(x)) {
-      value = FULL;
-    } else if (WXAnimationBean.Style.CENTER.equals(x)) {
-      value = HALF;
-    }
-    return parsePercentOrPx(value, layoutParams.width);
-  }
-
-  private static float parsePivotY(String y, ViewGroup.LayoutParams layoutParams) {
-    String value = y;
-    if (WXAnimationBean.Style.TOP.equals(y)) {
-      value = ZERO;
-    } else if (WXAnimationBean.Style.BOTTOM.equals(y)) {
-      value = FULL;
-    } else if (WXAnimationBean.Style.CENTER.equals(y)) {
-      value = HALF;
-    }
-    return parsePercentOrPx(value, layoutParams.height);
-  }
-
-  private static float parsePercentOrPx(String raw, int unit) {
-    int precision = (int) Math.ceil(Math.log10(10));
-    int suffix;
-    if ((suffix = raw.lastIndexOf(FunctionParser.PERCENT)) != -1) {
-      return parsePercent(raw.substring(0, suffix), unit, precision);
-    } else if ((suffix = raw.lastIndexOf(PX)) != -1) {
-      return WXViewUtils.getRealPxByWidth(WXUtils.fastGetFloat(raw.substring(0, suffix), precision));
-    }
-    return WXViewUtils.getRealPxByWidth(WXUtils.fastGetFloat(raw, precision));
-  }
-
-  private static float parsePercent(String percent, int unit, int precision) {
-    return WXUtils.fastGetFloat(percent, precision) / 100 * unit;
   }
 
   private static List<PropertyValuesHolder> moveBackToOrigin() {

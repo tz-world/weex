@@ -338,8 +338,9 @@ public class FunctionParser<T> {
       while (pointer < source.length()) {
         curChar = source.charAt(pointer);
         if (curChar == SPACE) {
-          pointer++;
-          if (start != pointer) {
+          if (start == pointer++) {
+            start++;
+          } else {
             break;
           }
         } else if (isCharacterOrDigit(curChar) || curChar == DOT
@@ -400,7 +401,7 @@ public class FunctionParser<T> {
     }
 
     private boolean isCharacterOrDigit(char letter) {
-      return ((ZERO <= letter && letter <= NINE)||(A_LOWER <= letter && letter <= Z_LOWER) );
+      return ((ZERO <= letter && letter <= NINE) || (A_LOWER <= letter && letter <= Z_LOWER));
     }
   }
 
