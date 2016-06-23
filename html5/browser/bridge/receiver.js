@@ -41,6 +41,7 @@ function callNative (instanceId, tasks, callbackId) {
   // be replaced by calling directly except the situation of page loading.
   // 2015-11-03
   for (let i = 0; i < len; i++) {
+    console.log(calls[i])
     if (FrameUpdater.isActive()) {
       callQueue.push({
         instanceId: instanceId,

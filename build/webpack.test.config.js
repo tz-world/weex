@@ -2,13 +2,6 @@ var path = require('path');
 var fs = require('fs');
 var webpack = require('webpack');
 var loader = require('weex-loader');
-var scripter = require('weex-scripter');
-var styler = require('weex-styler');
-var templater = require('weex-templater');
-
-loader.useScripter(scripter);
-loader.useStyler(styler);
-loader.useTemplater(templater);
 
 var entry = {};
 
