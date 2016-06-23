@@ -1,0 +1,3 @@
+syntax: glob
+doc/_book
+i18n/doc/doc
