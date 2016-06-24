@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.0.3">
+        <meta name="generator" content="GitBook 3.1.1">
         
         
         
@@ -75,6 +75,8 @@
     <script src="ali_addition/weex_doc.js"></script>
     -->    
     
+    <link rel="stylesheet"  href="http://g.alicdn.com/mtb/lab-zikuan/0.1.3/weex/weex_doc.css" >    
+    <link rel="icon" type="image/x-icon" href="http://alibaba.github.io/weex/img/favicon.ico">    
 
     </head>
     <body>
@@ -99,7 +101,9 @@
             <ul class="menu">
                 <li>
                     <a href="https://github.com/alibaba/weex">
-                        <img class='github' src='//g.alicdn.com/mtb/lab-zikuan/0.1.1/weex/github.png' alt='github' >                                          </a>
+                        <img class='github' src='//g.alicdn.com/mtb/lab-zikuan/0.1.1/weex/github.png' alt='github' >
+                    </a>
+                 </li>
                 </li>
             </ul>                    
         </div>
@@ -343,14 +347,14 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.3" >
+        <li class="chapter " data-level="1.2.3.3" data-path="../how-to/preview-in-playground-app.html">
             
-                <span>
+                <a href="../how-to/preview-in-playground-app.html">
             
                     
-                    [Preview in Native]/how-to/preview-in-playground-app.md)
+                    Preview in Native
             
-                </span>
+                </a>
             
 
             
@@ -1249,7 +1253,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="weex-toolkit">Weex-Toolkit</h1>
-<p>Please access <a href="https://www.npmjs.com/package/weex-toolkit" _target="blank">npmjs.com</a> for latest version</p>
+<p>Please access <a href="https://www.npmjs.com/package/weex-toolkit" target="_blank">npmjs.com</a> for latest version</p>
 <p>Weex CLI tool set</p>
 <h2 id="pre-install">Pre Install</h2>
 <p>some dependencies need recent version of npm to install</p>
@@ -1290,37 +1294,14 @@ Options:
 <pre><code>$weex we/file/storage/path  -o outputpath
 </code></pre><p>every <code>we file</code> in <code>we/file/storage/path</code> we be transform to JS Bundle  , saved in <code>outputpath</code> path</p>
 <h4 id="preview-your-we-file-using-weex-playground-app">preview your we file using Weex Playground App</h4>
-<p>download &amp; install <a href="http://alibaba.github.io/weex/download.html" _target="blank">weex playground App</a></p>
+<p>download &amp; install <a href="http://alibaba.github.io/weex/download.html" target="_blank">weex playground App</a></p>
 <pre><code>$weex your_best_weex.we  --qr
 </code></pre><p>a QR code will display in your terminal , using Playground App scan that.</p>
 <h4 id="start-http-server">start http server</h4>
 <pre><code>$weex -s .
 </code></pre><p>a http server will start running , your current directory(.) will be the document root for the server , every weex .we file will be transforme to JS Bundle when access through the server</p>
 <h2 id="issue--feedback">Issue &amp; Feedback</h2>
-<p><a href="https://github.com/alibaba/weex_toolchain/issues" _target="blank">Github Issue List</a></p>
-<h2 id="changelog">Changelog</h2>
-<ul>
-<li>160602(0.0.39) : improve weex debugger ui </li>
-<li>160525(0.0.38) : add examples , improve create sub command</li>
-<li>160525(0.0.37) : add <code>create</code> sub command for create we file using standard weex template</li>
-<li>160509(0.0.30) : add --port &amp;  --wsport options , show encoding url when QR displayed</li>
-<li>160506(0.0.29) : improve --watch &amp; -s feature ; fixing hot-reload with playground App.</li>
-<li>160505(0.0.25) : support batch transform  &amp; option --watch added</li>
-<li>160427(0.0.22) : improve -s feedback information &amp; update upstream transformer lib</li>
-<li>160418 : temporary turnoff H5 preview</li>
-<li>160401 : format for opensource</li>
-<li>160331 : update upstream lib , ready for opensource</li>
-<li>160321 : update HTML5 runtime</li>
-<li>160301 : add -s option  &amp;  update upstream lib</li>
-<li>160224 : update upstream weex-html5 lib , improve stability</li>
-<li>160223 : add -o option for transform weex JS bundle directly</li>
-<li>160201 : adopt new weex JS bundle style(define / require) &amp; output transformer Error/Warning logs</li>
-<li>160129 : add  native runtime  support  with --qr option</li>
-<li>160122 : add -n , -h options &amp;  improve CLI feedback output</li>
-<li>160119 : update upstream weex-html5 lib</li>
-<li>160118 : hot reload function &amp; English document</li>
-<li>160114 : first version </li>
-</ul>
+<p><a href="https://github.com/alibaba/weex_toolchain/issues" target="_blank">Github Issue List</a></p>
 
                                 
                                 </section>
@@ -1348,7 +1329,7 @@ Options:
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-        gitbook.page.hasChanged({"page":{"title":"CLI","level":"1.5.1","depth":2,"next":{"title":"Transformer","level":"1.5.2","depth":2,"path":"tools/transformer.md","ref":"tools/transformer.md","articles":[]},"previous":{"title":"Service & Tools","level":"1.5","depth":1,"path":"tools/main.md","ref":"tools/main.md","articles":[{"title":"CLI","level":"1.5.1","depth":2,"path":"tools/cli.md","ref":"tools/cli.md","articles":[]},{"title":"Transformer","level":"1.5.2","depth":2,"path":"tools/transformer.md","ref":"tools/transformer.md","articles":[]},{"title":"Playground App","level":"1.5.3","depth":2,"path":"tools/playground-app.md","ref":"tools/playground-app.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"3.0.3","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"tools/cli.md","mtime":"2016-06-23T07:07:24.003Z","type":"markdown"},"gitbook":{"version":"3.0.3","time":"2016-06-23T10:12:29.565Z"},"basePath":"..","book":{"language":""}});
+        gitbook.page.hasChanged({"page":{"title":"CLI","level":"1.5.1","depth":2,"next":{"title":"Transformer","level":"1.5.2","depth":2,"path":"tools/transformer.md","ref":"tools/transformer.md","articles":[]},"previous":{"title":"Service & Tools","level":"1.5","depth":1,"path":"tools/main.md","ref":"tools/main.md","articles":[{"title":"CLI","level":"1.5.1","depth":2,"path":"tools/cli.md","ref":"tools/cli.md","articles":[]},{"title":"Transformer","level":"1.5.2","depth":2,"path":"tools/transformer.md","ref":"tools/transformer.md","articles":[]},{"title":"Playground App","level":"1.5.3","depth":2,"path":"tools/playground-app.md","ref":"tools/playground-app.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"3.1.1","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"tools/cli.md","mtime":"2016-06-24T07:37:35.729Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-06-24T07:43:16.030Z"},"basePath":"..","book":{"language":""}});
         setTimeout(function(){
            window._rePostionVersion()
         },100);
@@ -1381,7 +1362,7 @@ Options:
         
     
         
-        <script src="../gitbook/gitbook-plugin-fontsettings/buttons.js"></script>
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
         
     
 

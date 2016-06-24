@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.0.3">
+        <meta name="generator" content="GitBook 3.1.1">
         
         
         
@@ -75,6 +75,8 @@
     <script src="ali_addition/weex_doc.js"></script>
     -->    
     
+    <link rel="stylesheet"  href="http://g.alicdn.com/mtb/lab-zikuan/0.1.3/weex/weex_doc.css" >    
+    <link rel="icon" type="image/x-icon" href="http://alibaba.github.io/weex/img/favicon.ico">    
 
     </head>
     <body>
@@ -99,7 +101,9 @@
             <ul class="menu">
                 <li>
                     <a href="https://github.com/alibaba/weex">
-                        <img class='github' src='//g.alicdn.com/mtb/lab-zikuan/0.1.1/weex/github.png' alt='github' >                                          </a>
+                        <img class='github' src='//g.alicdn.com/mtb/lab-zikuan/0.1.1/weex/github.png' alt='github' >
+                    </a>
+                 </li>
                 </li>
             </ul>                    
         </div>
@@ -343,14 +347,14 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.3" >
+        <li class="chapter " data-level="1.2.3.3" data-path="../how-to/preview-in-playground-app.html">
             
-                <span>
+                <a href="../how-to/preview-in-playground-app.html">
             
                     
-                    [Preview in Native]/how-to/preview-in-playground-app.md)
+                    Preview in Native
             
-                </span>
+                </a>
             
 
             
@@ -1254,10 +1258,10 @@
 <p>Assuming you have the Android SDK installed, run <code>android</code> to open the Android SDK Manager.</p>
 <p>Make sure you have the following installed:</p>
 <ol>
-<li>Android SDK version 23 (compileSdkVersion in <a href="https://github.com/alibaba/weex/blob/master/android/sdk/build.gradle" _target="blank"><code>build.gradle</code></a>)</li>
-<li>SDK build tools version 23.0.1 (buildToolsVersion in <a href="https://github.com/alibaba/weex/blob/master/android/sdk/build.gradle" _target="blank"><code>build.gradle</code></a>)</li>
+<li>Android SDK version 23 (compileSdkVersion in <a href="https://github.com/alibaba/weex/blob/master/android/sdk/build.gradle" target="_blank"><code>build.gradle</code></a>)</li>
+<li>SDK build tools version 23.0.1 (buildToolsVersion in <a href="https://github.com/alibaba/weex/blob/master/android/sdk/build.gradle" target="_blank"><code>build.gradle</code></a>)</li>
 <li>Android Support Repository &gt;= 17 (for Android Support Library)</li>
-<li>Android NDK (download &amp; extraction instructions <a href="http://developer.android.com/ndk/downloads/index.html" _target="blank">here</a>)</li>
+<li>Android NDK (download &amp; extraction instructions <a href="http://developer.android.com/ndk/downloads/index.html" target="_blank">here</a>)</li>
 </ol>
 <p>Point Gradle to your Android SDK: either have <code>$ANDROID_SDK</code> and <code>$ANDROID_NDK</code> defined, or create a local.properties file in the root of your weex checkout with the following contents:</p>
 <pre><code>sdk.dir=absolute_path_to_android_sdk
@@ -1294,7 +1298,12 @@ ndk.dir=/Users/your_name/android-ndk-r10e
     <span class="hljs-keyword">exclude</span> <span class="hljs-keyword">group</span>: <span class="hljs-string">&apos;com.taobao.weex&apos;</span>, module: <span class="hljs-string">&apos;weex_sdk_android&apos;</span>
 }
 </code></pre>
-<h2 id="building-from-android-studio">Building from Android Studio</h2>
+<h4 id="4&#x3001;how-to-load-local-your-js-bundle-in-the-directory-of-android-assets">4&#x3001;How to load local Your Js bundle in the directory of Android assets</h4>
+<p>Besides load a Js Bundle online, you also can load the js bundle from the directory of Android assets.</p>
+<p>For Example:</p>
+<pre><code>   String yourbundleStr =  WXFileUtils.loadFileContent(&quot;yourBundle.js&quot;, context);
+   WXSDKInstance.render(TAG, yourbundleStr, options, null, width, Height, WXRenderStrategy.APPEND_ASYNC);
+</code></pre><h2 id="building-from-android-studio">Building from Android Studio</h2>
 <p>From the Welcome screen of Android Studio choose &quot;Import project&quot; and select the <code>playground</code> folder of your app.</p>
 <p>You should be able to use the <em>Run</em> button to run your app on a device. </p>
 <h2 id="tip">Tip</h2>
@@ -1312,7 +1321,7 @@ ndk.dir=/Users/your_name/android-ndk-r10e
 <h2 id="prepare-your-app">Prepare your app</h2>
 <p>In your app&apos;s <code>build.gradle</code> file add the WEEX dependency:</p>
 <pre><code>compile &apos;com.taobao.android:weex_sdk:0.4.1&apos;
-</code></pre><p>You can find the latest version of the WEEX library on <a href="https://bintray.com/search?query=weex_sdk&amp;forceAgnostic=true" _target="blank">jcenter</a>. Next, make sure you have the Internet permission in your <code>AndroidManifest.xml</code>:</p>
+</code></pre><p>You can find the latest version of the WEEX library on <a href="https://bintray.com/search?query=weex_sdk&amp;forceAgnostic=true" target="_blank">jcenter</a>. Next, make sure you have the Internet permission in your <code>AndroidManifest.xml</code>:</p>
 <pre><code>&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;
 </code></pre><h2 id="add-native-code">Add native code</h2>
 <p>You need to add some native code in order to start the Weex runtime and get it to render something. To do this, we&apos;re going to create an <code>Application</code> to init weex, then we we&apos;re going to create an <code>Activity</code> that creates a WeexContainerView, starts a Weex application inside it and sets it as the main content view.</p>
@@ -1362,7 +1371,7 @@ mInstance.render(pageName,template, <span class="hljs-keyword">null</span>, <spa
 </code></pre>
 <p>That&apos;s it, your activity is ready to run some JavaScript code.</p>
 <h2 id="reference-example">Reference Example</h2>
-<p><a href="https://github.com/alibaba/weex/tree/master/examples" _target="blank"><code>Weex Examples</code></a></p>
+<p><a href="https://github.com/alibaba/weex/tree/master/examples" target="_blank"><code>Weex Examples</code></a></p>
 
                                 
                                 </section>
@@ -1390,7 +1399,7 @@ mInstance.render(pageName,template, <span class="hljs-keyword">null</span>, <spa
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-        gitbook.page.hasChanged({"page":{"title":"Integrate to Android","level":"1.2.4.3","depth":3,"next":{"title":"Integrate to iOS","level":"1.2.4.4","depth":3,"path":"advanced/integrate-to-ios.md","ref":"advanced/integrate-to-ios.md","articles":[]},"previous":{"title":"How Data Binding Works","level":"1.2.4.2","depth":3,"path":"advanced/how-data-binding-works.md","ref":"advanced/how-data-binding-works.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.0.3","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"advanced/integrate-to-android.md","mtime":"2016-06-23T07:07:23.935Z","type":"markdown"},"gitbook":{"version":"3.0.3","time":"2016-06-23T10:12:29.565Z"},"basePath":"..","book":{"language":""}});
+        gitbook.page.hasChanged({"page":{"title":"Integrate to Android","level":"1.2.4.3","depth":3,"next":{"title":"Integrate to iOS","level":"1.2.4.4","depth":3,"path":"advanced/integrate-to-ios.md","ref":"advanced/integrate-to-ios.md","articles":[]},"previous":{"title":"How Data Binding Works","level":"1.2.4.2","depth":3,"path":"advanced/how-data-binding-works.md","ref":"advanced/how-data-binding-works.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.1.1","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"advanced/integrate-to-android.md","mtime":"2016-06-24T07:37:35.681Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-06-24T07:43:16.030Z"},"basePath":"..","book":{"language":""}});
         setTimeout(function(){
            window._rePostionVersion()
         },100);
@@ -1423,7 +1432,7 @@ mInstance.render(pageName,template, <span class="hljs-keyword">null</span>, <spa
         
     
         
-        <script src="../gitbook/gitbook-plugin-fontsettings/buttons.js"></script>
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
         
     
 
