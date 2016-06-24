@@ -138,7 +138,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
-import com.alibaba.fastjson.JSON;
 import com.taobao.weex.IWXActivityStateListener;
 import com.taobao.weex.WXEnvironment;
 import com.taobao.weex.WXSDKInstance;
@@ -151,7 +150,6 @@ import com.taobao.weex.common.WXRuntimeException;
 import com.taobao.weex.dom.WXDomObject;
 import com.taobao.weex.dom.flex.Spacing;
 import com.taobao.weex.ui.ComponentHolder;
-import com.taobao.weex.ui.WXComponentRegistry;
 import com.taobao.weex.ui.component.list.WXListComponent;
 import com.taobao.weex.ui.view.WXBackgroundDrawable;
 import com.taobao.weex.ui.view.WXCircleIndicator;
@@ -159,10 +157,12 @@ import com.taobao.weex.ui.view.gesture.WXGesture;
 import com.taobao.weex.ui.view.gesture.WXGestureObservable;
 import com.taobao.weex.ui.view.gesture.WXGestureType;
 import com.taobao.weex.ui.view.listview.BounceRecyclerView;
-import com.taobao.weex.utils.*;
+import com.taobao.weex.utils.WXLogUtils;
+import com.taobao.weex.utils.WXReflectionUtils;
+import com.taobao.weex.utils.WXResourceUtils;
+import com.taobao.weex.utils.WXUtils;
+import com.taobao.weex.utils.WXViewUtils;
 
-import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -915,9 +915,11 @@ public abstract class WXComponent implements IWXObject, IWXActivityStateListener
   }
 
   public void notifyAppearStateChange(String wxEventType,String direction){
-    Map<String, Object> params = new HashMap<>();
-    params.put("direction", direction);
-    WXBridgeManager.getInstance().fireEvent(mInstanceId,getRef(),wxEventType,params);
+    if(getDomObject().containsEvent(WXEventType.APPEAR) || getDomObject().containsEvent(WXEventType.DISAPPEAR)) {
+      Map<String, Object> params = new HashMap<>();
+      params.put("direction", direction);
+      WXBridgeManager.getInstance().fireEvent(mInstanceId, getRef(), wxEventType, params);
+    }
   }
 
   public boolean isUsing() {

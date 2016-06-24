@@ -439,14 +439,36 @@ public class WXListComponent extends WXVContainer implements
       if(view != null) {
         view.getAdapter().notifyItemInserted(adapterPosition);
       }
-      if (child.getDomObject().containsEvent(WXEventType.APPEAR) || child.getDomObject().containsEvent(WXEventType.DISAPPEAR)) {
-          mAppearComponents.put(adapterPosition, child);
-          child.registerAppearEvent = true;
+
+      long start=System.currentTimeMillis();
+      if(hasAppearAndDisAppearEvent(child)){
+        mAppearComponents.put(adapterPosition, child);
+        child.registerAppearEvent = true;
       }
+      WXLogUtils.d("spendTime","addAppearEventSpendTime:"+(System.currentTimeMillis()-start));
+
       checkRefreshOrLoading(child);
     }
 
-    /**
+  private boolean hasAppearAndDisAppearEvent(WXComponent child) {
+
+    if(child.getDomObject().containsEvent(WXEventType.APPEAR) || child.getDomObject().containsEvent(WXEventType.DISAPPEAR)){
+      return true;
+    }else if(child instanceof WXVContainer){
+      WXVContainer container=(WXVContainer)child;
+      for(int i=0;i<container.childCount();i++){
+        WXComponent component=container.getChild(i);
+        if(hasAppearAndDisAppearEvent(component)){
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
+
+  /**
      * RecyclerView manage its children in a way that different from {@link WXVContainer}. Therefore,
      * {@link WXVContainer#addSubView(View, int)} is an empty implementation in {@link
      * com.taobao.weex.ui.view.listview.WXRecyclerView}
@@ -667,6 +689,8 @@ public class WXListComponent extends WXVContainer implements
     @Override
     public void notifyAppearStateChange(int firstVisible, int lastVisible,int directionX,int directionY) {
 
+      long start=System.currentTimeMillis();
+
         List<Integer> unRegisterKeys = new ArrayList<>();
 
         //notify appear state
@@ -693,6 +717,8 @@ public class WXListComponent extends WXVContainer implements
         for (int i = 0, len = unRegisterKeys.size(); i < len; i++) {
             mAppearComponents.remove(unRegisterKeys.get(i));
         }
+
+      WXLogUtils.d("spendTime","List notifyTime:"+(System.currentTimeMillis()-start));
 
     }
 
