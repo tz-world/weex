@@ -102,11 +102,6 @@
     // Do Nothing
 }
 
-- (NSUInteger)childrenCountForScrollerLayout
-{
-    return [super childrenCountForScrollerLayout] - _cellComponents.count;
-}
-
 #pragma mark - Inheritance
 
 - (void)_insertSubcomponent:(WXComponent *)subcomponent atIndex:(NSInteger)index
