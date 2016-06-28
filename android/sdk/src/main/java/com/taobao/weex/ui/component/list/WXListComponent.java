@@ -438,13 +438,10 @@ public class WXListComponent extends WXVContainer implements
         view.getAdapter().notifyItemInserted(adapterPosition);
       }
 
-      long start=System.currentTimeMillis();
       if(hasAppearAndDisAppearEvent(child)){
         mAppearComponents.put(adapterPosition, child);
         child.registerAppearEvent = true;
       }
-      WXLogUtils.d("spendTime","addAppearEventSpendTime:"+(System.currentTimeMillis()-start));
-
       checkRefreshOrLoading(child);
     }
 
@@ -666,10 +663,10 @@ public class WXListComponent extends WXVContainer implements
             String offset = mDomObj.attr.getLoadMoreOffset();
 
             if (TextUtils.isEmpty(offset)) {
-                return;
+                offset="0";
             }
 
-            if (offScreenY < Integer.parseInt(offset)) {
+            if (offScreenY <= Integer.parseInt(offset)) {
                 String loadMoreRetry = mDomObj.attr.getLoadMoreRetry();
 
                 if (mListCellCount != mChildren.size()
@@ -686,11 +683,7 @@ public class WXListComponent extends WXVContainer implements
 
     @Override
     public void notifyAppearStateChange(int firstVisible, int lastVisible,int directionX,int directionY) {
-
-      long start=System.currentTimeMillis();
-
         List<Integer> unRegisterKeys = new ArrayList<>();
-
         //notify appear state
         for (int i = 0, len = mAppearComponents.size(); i < len; i++) {
             int key = mAppearComponents.keyAt(i);
@@ -703,21 +696,18 @@ public class WXListComponent extends WXVContainer implements
               String direction=directionY>0?"up":"down";
                 value.notifyAppearStateChange(WXEventType.APPEAR,direction);
                 value.appearState = true;
+
             } else if ((key < firstVisible || key > lastVisible) && value.appearState) {
               String direction=directionY>0?"up":"down";
               value.notifyAppearStateChange(WXEventType.DISAPPEAR,direction);
                 value.appearState = false;
             }
-            WXLogUtils.d(TAG, "key:" + key + " " + "appear:" + value.appearState);
         }
 
         //remove unregister Event
         for (int i = 0, len = unRegisterKeys.size(); i < len; i++) {
             mAppearComponents.remove(unRegisterKeys.get(i));
         }
-
-      WXLogUtils.d("spendTime","List notifyTime:"+(System.currentTimeMillis()-start));
-
     }
 
     public void unbindAppearComponents(WXComponent component) {

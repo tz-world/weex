@@ -204,13 +204,11 @@
  */
 package com.taobao.weex.ui.component;
 
-import android.graphics.Rect;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.dom.WXDomObject;
-import com.taobao.weex.utils.WXLogUtils;
 
 import java.util.ArrayList;
 
@@ -383,17 +381,11 @@ public abstract class WXVContainer extends WXComponent {
     if(getView()==null || mChildren==null){
       return;
     }
-    long start=System.currentTimeMillis();
     for(WXComponent component:mChildren){
-      if(wxEventType==WXEventType.APPEAR){
-        Rect rect=new Rect();
-        getView().getHitRect(rect);
-        if(component.getView()!=null && !component.getView().getLocalVisibleRect(rect)){
-          wxEventType=WXEventType.DISAPPEAR;
-        }
+      if(component.getView()!=null && !(component.getView().getVisibility()==View.VISIBLE)){
+        wxEventType=WXEventType.DISAPPEAR;
       }
       component.notifyAppearStateChange(wxEventType,direction);
     }
-    WXLogUtils.d("spendTime","WXVContainer notifySpendTime:"+(System.currentTimeMillis()-start));
   }
 }
