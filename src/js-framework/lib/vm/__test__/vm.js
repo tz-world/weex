@@ -487,9 +487,10 @@ describe('generate virtual dom for sub vm', () => {
         }
       },
       template: {
-        type: 'container',
+        type: 'div',
         children: [
-          {type: 'bar', id: 'bar', component: true},
+          {type: 'bar', id: 'bar', component: true,
+            events: {click: 'handleClick'}},
           {type: 'bar1',
             shown: function () {return this.showbar1},
             id: 'bar1', component: true
@@ -501,6 +502,9 @@ describe('generate virtual dom for sub vm', () => {
               component: true
           }
         ]
+      },
+      methods: {
+        handleClick: sinon.spy()
       }
     }
     customComponentMap.bar = {
@@ -528,7 +532,7 @@ describe('generate virtual dom for sub vm', () => {
     expect(vm._childrenVms[0]._rootEl).to.deep.equal(vm._ids['bar'].el)
 
     var el = doc.body
-    expect(el.type).eql('container')
+    expect(el.type).eql('div')
     expect(el.pureChildren).is.an.array
     expect(el.pureChildren.length).eql(1)
 
@@ -538,6 +542,12 @@ describe('generate virtual dom for sub vm', () => {
     expect(sub.children.length).eql(2)
     expect(sub.children[0].type).eql('aaa')
     expect(sub.children[1].type).eql('bbb')
+    expect(sub.event.click).is.a.function
+
+    const spy = customComponentMap.foo.methods.handleClick
+    sub.event.click(1, 2, 3)
+    expect(spy.args.length).eql(1)
+    expect(spy.args[0]).eql([1, 2, 3])
 
     vm.showbar1 = true
     differ.flush()

@@ -76,7 +76,6 @@ export function _bindSubVm(subVm, template, repeatItem) {
 export function _bindSubVmAfterInitialized(subVm, template) {
   mergeClassStyle(template.classList, this, subVm)
   mergeStyle(template.style, this, subVm)
-  mergeEvent(template.events, this, subVm)
 }
 
 function mergeProps(target, props, vm, subVm) {
@@ -133,17 +132,6 @@ function mergeClassStyle(target, vm, subVm) {
     setClassStyle(subVm._rootEl, css, value)
   } else if (target != null) {
     setClassStyle(subVm._rootEl, css, target)
-  }
-}
-
-function mergeEvent(target, vm, subVm) {
-  if (target && subVm._rootEl) {
-    for (const type in target) {
-      const handler = vm[target[type]]
-      if (handler) {
-        subVm._rootEl.addEvent(type, _.bind(handler, vm))
-      }
-    }
   }
 }
 
