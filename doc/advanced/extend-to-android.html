@@ -321,20 +321,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.3.1" data-path="../how-to/require-3rd-party-libs.html">
-            
-                <a href="../how-to/require-3rd-party-libs.html">
-            
-                    
-                    Require 3rd-party Libs
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.3.2" data-path="../how-to/preview-in-browser.html">
+        <li class="chapter " data-level="1.2.3.1" data-path="../how-to/preview-in-browser.html">
             
                 <a href="../how-to/preview-in-browser.html">
             
@@ -347,7 +334,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.3" data-path="../how-to/preview-in-playground-app.html">
+        <li class="chapter " data-level="1.2.3.2" data-path="../how-to/preview-in-playground-app.html">
             
                 <a href="../how-to/preview-in-playground-app.html">
             
@@ -360,7 +347,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.4" data-path="../how-to/customize-a-native-component.html">
+        <li class="chapter " data-level="1.2.3.3" data-path="../how-to/customize-a-native-component.html">
             
                 <a href="../how-to/customize-a-native-component.html">
             
@@ -373,7 +360,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.5" data-path="../how-to/cuszomize-native-apis.html">
+        <li class="chapter " data-level="1.2.3.4" data-path="../how-to/cuszomize-native-apis.html">
             
                 <a href="../how-to/cuszomize-native-apis.html">
             
@@ -386,7 +373,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.6" data-path="../how-to/debug-with-html5.html">
+        <li class="chapter " data-level="1.2.3.5" data-path="../how-to/debug-with-html5.html">
             
                 <a href="../how-to/debug-with-html5.html">
             
@@ -399,7 +386,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.7" data-path="../how-to/require-3rd-party-libs.html">
+        <li class="chapter " data-level="1.2.3.6" data-path="../how-to/require-3rd-party-libs.html">
             
                 <a href="../how-to/require-3rd-party-libs.html">
             
@@ -412,7 +399,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.8" data-path="../how-to/transform-code-into-js-bundle.html">
+        <li class="chapter " data-level="1.2.3.7" data-path="../how-to/transform-code-into-js-bundle.html">
             
                 <a href="../how-to/transform-code-into-js-bundle.html">
             
@@ -632,6 +619,19 @@
             
                     
                     Text Style
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.2.2" data-path="../references/color-names.html">
+            
+                <a href="../references/color-names.html">
+            
+                    
+                    Color
             
                 </a>
             
@@ -882,9 +882,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.5" data-path="../modules/">
+        <li class="chapter " data-level="1.3.5" data-path="../modules/main.html">
             
-                <a href="../modules/">
+                <a href="../modules/main.html">
             
                     
                     Built-in Modules
@@ -1042,14 +1042,14 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4" data-path="../demo/main.html">
+        <li class="chapter " data-level="1.4" >
             
-                <a href="../demo/main.html">
+                <span>
             
                     
                     Examples
             
-                </a>
+                </span>
             
 
             
@@ -1139,14 +1139,14 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5" data-path="../tools/main.html">
+        <li class="chapter " data-level="1.5" >
             
-                <a href="../tools/main.html">
+                <span>
             
                     
                     Service & Tools
             
-                </a>
+                </span>
             
 
             
@@ -1266,7 +1266,8 @@
                                 <section class="normal markdown-section">
                                 
                                 <h2 id="extend-to-android">Extend to Android</h2>
-<p><span class="weex-version">0.4</span></p>
+<p><span class="weex-version">0.4</span>
+<a href="https://github.com/weexteam/article/issues/27" class="weex-translate" target="_blank">cn</a></p>
 <h3 id="module-extend">Module extend</h3>
 <p>weex sdk support Moulde extend,
 Weex SDK provides only rendering capabilities, rather than have other capabilities, such as network, picture, and URL redirection. If you want the these features, you need to implement it.  </p>
@@ -1281,48 +1282,46 @@ Weex SDK provides only rendering capabilities, rather than have other capabiliti
 <li>Module methods will be invoked in UI thread, do not put time consuming operation there</li>
 <li>Weex params can be int, double, float, String, Map, List, self-defined class that implements WXObject interface</li>
 </ol>
-<p>Refer to the following example </p>
-<pre><code class="lang-java">
-    <span class="hljs-keyword">import</span> android.content.Intent;
-    <span class="hljs-keyword">import</span> android.net.Uri;
-     &#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;
-
-    <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WXEventModule</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WXModule</span></span>{
+<p>Refer to the following example: </p>
+<pre><code class="lang-java">    <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WXEventModule</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WXModule</span></span>{
 
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String WEEX_CATEGORY=<span class="hljs-string">&quot;com.taobao.android.intent.category.WEEX&quot;</span>;
 
-    <span class="hljs-meta">@WXModuleAnno</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">openURL</span><span class="hljs-params">(String url)</span></span>{
-        <span class="hljs-keyword">if</span> (TextUtils.isEmpty(url)) {
-            <span class="hljs-keyword">return</span>;
+        <span class="hljs-meta">@WXModuleAnno</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">openURL</span><span class="hljs-params">(String url)</span></span>{
+            <span class="hljs-comment">//implement your module logic here</span>
         }
-        StringBuilder builder=<span class="hljs-keyword">new</span> StringBuilder(<span class="hljs-string">&quot;http:&quot;</span>);
-        builder.append(url);
-        Uri uri = Uri.parse(builder.toString());
-        Intent intent = <span class="hljs-keyword">new</span> Intent(Intent.ACTION_VIEW, uri);
-        intent.addCategory(WEEX_CATEGORY);
-        mWXSDKInstance.getContext().startActivity(intent);
-       }
     }
 </code></pre>
 <h4 id="register-the-moulde">Register the moulde</h4>
-<pre><code class="lang-java"><span class="hljs-comment">/**
-   * Register module. This is a wrapper method for
-   * {<span class="hljs-doctag">@link</span> WXModuleManager#registerModule(String, Class)}. 
-   * The module register here only needto
-   * be singleton in {<span class="hljs-doctag">@link</span> WXSDKInstance} level.
-   * <span class="hljs-doctag">@param</span> moduleName  module name
-   * <span class="hljs-doctag">@param</span> moduleClass module to be registered.
-   * <span class="hljs-doctag">@return</span> true for registration success, false for otherwise.
-   * <span class="hljs-doctag">@see</span> {<span class="hljs-doctag">@link</span> WXModuleManager#registerModule(String, Class, boolean)}
-   */</span>
-
+<pre><code class="lang-java">
   WXSDKEngine.registerModule(<span class="hljs-string">&quot;event&quot;</span>, WXEventModule.class);
+</code></pre>
+<h3 id="use-this-module-in-weex-dsl">Use this module in weex DSL</h3>
+<p>Now <code>event</code> moudle is avaiable in weex, use the module like this:   </p>
+<pre><code class="lang-javascript">
+<span class="hljs-keyword">var</span> event = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;@weex-module/event&apos;</span>);
+event.openURL(<span class="hljs-string">&quot;http://www.github.com&quot;</span>);
+</code></pre>
+<h3 id="javascript-callback">Javascript callback</h3>
+<p>If the module need implement a callback to javascript, you just add <code>JSCallback</code> argument to the method you want expose to javascript:   </p>
+<pre><code class="lang-java">
+    <span class="hljs-meta">@WXModuleAnno</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">openURL</span><span class="hljs-params">(String url,JSCallback callback)</span></span>{
+        <span class="hljs-comment">//implement your module logic here</span>
+        Map&lt;String,Object&gt; resp = <span class="hljs-keyword">new</span> HashMap();
+        resp.put(<span class="hljs-string">&quot;result&quot;</span>,<span class="hljs-string">&quot;ok&quot;</span>);
+        callback.invoke(resp);
+    }
+</code></pre>
+<p>At the javascript side, call the module with javascript function to receive callback data:   </p>
+<pre><code class="lang-javascript">
+event.openURL(<span class="hljs-string">&quot;http://www.github.com&quot;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resp</span>)</span>{ <span class="hljs-built_in">console</span>.log(resp.result); });
 </code></pre>
 <h3 id="component-extend">Component extend</h3>
 <p><font color="gray">
 There are label, image, div, scroll, ect. components in weex, you can also customize your own components.  </font></p>
-<h4 id="step-to-customize-a-module">Step to customize a module</h4>
+<h4 id="step-to-customize-a-component">Step to customize a component</h4>
 <ol>
 <li>Customize components must extend WXComponent or WXContainer  </li>
 <li>@WXComponentProp(name=value(value is attr or style of dsl)) for it be recognized by weex SDK.</li>
@@ -1334,9 +1333,6 @@ There are label, image, div, scroll, ect. components in weex, you can also custo
 </ol>
 <p>Refer to the following example </p>
 <pre><code class="lang-java">
-    <span class="hljs-keyword">package</span> com.taobao.weextest;
-    &#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;
-
     <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyViewComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WXComponent</span></span>{ 
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyViewComponent</span><span class="hljs-params">(WXSDKInstance instance, WXDomObject dom,
                        WXVContainer parent, String instanceId, <span class="hljs-keyword">boolean</span> isLazy)</span> 
@@ -1345,7 +1341,6 @@ There are label, image, div, scroll, ect. components in weex, you can also custo
        WXVContainer parent, String instanceId, <span class="hljs-keyword">boolean</span> isLazy)</span> </span>{
       <span class="hljs-keyword">super</span>(instance, dom, parent, instanceId, isLazy);
      }
-
 
      <span class="hljs-meta">@Override</span>
      <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initView</span><span class="hljs-params">()</span> </span>{
@@ -1358,32 +1353,13 @@ There are label, image, div, scroll, ect. components in weex, you can also custo
     }
 </code></pre>
 <h4 id="register-the-component">Register the Component</h4>
-<pre><code class="lang-java">  <span class="hljs-comment">/**
-   * Register component. The registration is singleton in {<span class="hljs-doctag">@link</span> WXSDKEngine} level
-   * <span class="hljs-doctag">@param</span> type name of component. Same as type filed in the JS.
-   * <span class="hljs-doctag">@param</span> clazz the class of the {<span class="hljs-doctag">@link</span> WXComponent} to be registered.
-   * <span class="hljs-doctag">@param</span> appendTree true for appendTree flag
-   * <span class="hljs-doctag">@return</span> true for registration success, false for otherwise.
-   * <span class="hljs-doctag">@throws</span> WXException Throws exception if type conflicts.
-   */</span>   
-   WXSDKEngine.registerComponent(<span class="hljs-string">&quot;MyView&quot;</span>, MyViewComponent.class);
+<pre><code class="lang-java">   WXSDKEngine.registerComponent(<span class="hljs-string">&quot;MyView&quot;</span>, MyViewComponent.class);
 </code></pre>
 <h3 id="adapter-extend">Adapter extend</h3>
 <h4 id="imagedownloadadapter">ImagedownloadAdapter</h4>
 <p><font color="gray">
-Weex SDK has no image download capability, you need to implement IWXImgLoaderAdapter. Refer to the following examples.</font></p>
-<pre><code class="lang-java"><span class="hljs-keyword">package</span> com.alibaba.weex.extend;
-
-<span class="hljs-keyword">import</span> android.app.Activity;
-<span class="hljs-keyword">import</span> android.text.TextUtils;
-<span class="hljs-keyword">import</span> android.widget.ImageView;
-
-<span class="hljs-keyword">import</span> com.squareup.picasso.Picasso;
-<span class="hljs-keyword">import</span> com.taobao.weex.WXEnvironment;
-<span class="hljs-keyword">import</span> com.taobao.weex.adapter.IWXImgLoaderAdapter;
-<span class="hljs-keyword">import</span> com.taobao.weex.common.WXImageStrategy;
-<span class="hljs-keyword">import</span> com.taobao.weex.dom.WXImageQuality;
-
+Weex SDK has no image download capability, you need to implement <code>IWXImgLoaderAdapter</code>. Refer to the following examples.</font></p>
+<pre><code class="lang-java">
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ImageAdapter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IWXImgLoaderAdapter</span> </span>{
 
     <span class="hljs-keyword">private</span> Activity mContext;
@@ -1446,7 +1422,7 @@ Weex SDK has no image download capability, you need to implement IWXImgLoaderAda
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-        gitbook.page.hasChanged({"page":{"title":"Extend to Android","level":"1.2.4.5","depth":3,"next":{"title":"Extend to iOS","level":"1.2.4.6","depth":3,"path":"advanced/extend-to-ios.md","ref":"advanced/extend-to-ios.md","articles":[]},"previous":{"title":"Integrate to iOS","level":"1.2.4.4","depth":3,"path":"advanced/integrate-to-ios.md","ref":"advanced/integrate-to-ios.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.1.1","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"advanced/extend-to-android.md","mtime":"2016-06-24T08:14:03.473Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-06-24T09:37:44.239Z"},"basePath":"..","book":{"language":""}});
+        gitbook.page.hasChanged({"page":{"title":"Extend to Android","level":"1.2.4.5","depth":3,"next":{"title":"Extend to iOS","level":"1.2.4.6","depth":3,"path":"advanced/extend-to-ios.md","ref":"advanced/extend-to-ios.md","articles":[]},"previous":{"title":"Integrate to iOS","level":"1.2.4.4","depth":3,"path":"advanced/integrate-to-ios.md","ref":"advanced/integrate-to-ios.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.1.1","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"advanced/extend-to-android.md","mtime":"2016-06-28T04:20:43.821Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-06-28T06:49:45.495Z"},"basePath":"..","book":{"language":""}});
         setTimeout(function(){
            window._rePostionVersion()
         },100);

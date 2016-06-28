@@ -321,20 +321,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.3.1" data-path="../how-to/require-3rd-party-libs.html">
-            
-                <a href="../how-to/require-3rd-party-libs.html">
-            
-                    
-                    Require 3rd-party Libs
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.3.2" data-path="../how-to/preview-in-browser.html">
+        <li class="chapter " data-level="1.2.3.1" data-path="../how-to/preview-in-browser.html">
             
                 <a href="../how-to/preview-in-browser.html">
             
@@ -347,7 +334,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.3" data-path="../how-to/preview-in-playground-app.html">
+        <li class="chapter " data-level="1.2.3.2" data-path="../how-to/preview-in-playground-app.html">
             
                 <a href="../how-to/preview-in-playground-app.html">
             
@@ -360,7 +347,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.4" data-path="../how-to/customize-a-native-component.html">
+        <li class="chapter " data-level="1.2.3.3" data-path="../how-to/customize-a-native-component.html">
             
                 <a href="../how-to/customize-a-native-component.html">
             
@@ -373,7 +360,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.5" data-path="../how-to/cuszomize-native-apis.html">
+        <li class="chapter " data-level="1.2.3.4" data-path="../how-to/cuszomize-native-apis.html">
             
                 <a href="../how-to/cuszomize-native-apis.html">
             
@@ -386,7 +373,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.6" data-path="../how-to/debug-with-html5.html">
+        <li class="chapter " data-level="1.2.3.5" data-path="../how-to/debug-with-html5.html">
             
                 <a href="../how-to/debug-with-html5.html">
             
@@ -399,7 +386,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.7" data-path="../how-to/require-3rd-party-libs.html">
+        <li class="chapter " data-level="1.2.3.6" data-path="../how-to/require-3rd-party-libs.html">
             
                 <a href="../how-to/require-3rd-party-libs.html">
             
@@ -412,7 +399,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.8" data-path="../how-to/transform-code-into-js-bundle.html">
+        <li class="chapter " data-level="1.2.3.7" data-path="../how-to/transform-code-into-js-bundle.html">
             
                 <a href="../how-to/transform-code-into-js-bundle.html">
             
@@ -632,6 +619,19 @@
             
                     
                     Text Style
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.2.2" data-path="../references/color-names.html">
+            
+                <a href="../references/color-names.html">
+            
+                    
+                    Color
             
                 </a>
             
@@ -882,9 +882,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.5" data-path="../modules/">
+        <li class="chapter " data-level="1.3.5" data-path="../modules/main.html">
             
-                <a href="../modules/">
+                <a href="../modules/main.html">
             
                     
                     Built-in Modules
@@ -1042,14 +1042,14 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4" data-path="../demo/main.html">
+        <li class="chapter " data-level="1.4" >
             
-                <a href="../demo/main.html">
+                <span>
             
                     
                     Examples
             
-                </a>
+                </span>
             
 
             
@@ -1139,14 +1139,14 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5" data-path="../tools/main.html">
+        <li class="chapter " data-level="1.5" >
             
-                <a href="../tools/main.html">
+                <span>
             
                     
                     Service & Tools
             
-                </a>
+                </span>
             
 
             
@@ -1266,7 +1266,8 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="how-it-works">How it works</h1>
-<p><span class="weex-version">0.4</span></p>
+<p><span class="weex-version">0.4</span>
+<a href="https://github.com/weexteam/article/issues/32" class="weex-translate" target="_blank">cn</a></p>
 <h2 id="overview">Overview</h2>
 <p>Weex is a extendable cross-platform solution for dynamic programming and publishing projects. In the source code you can write pages or components with <code>&lt;template&gt;</code>, <code>&lt;style&gt;</code> and <code>&lt;script&gt;</code> tags, and then transform them into bundles for deploying. In server-side we can use these JS bundles for client request. When client get a bundle from server, it will be processed by client-side JavaScript engine and manages the native view rendering, the native API invoking and user interactions.</p>
 <h3 id="whole-workflow">Whole Workflow</h3>
@@ -1327,6 +1328,8 @@ Native view ----------- client(render-engine)
 }
 bootstrap(&apos;@weex-component/main&apos;)
 </code></pre><p>Additionally, the transformer could also do more things: combo the bundles, bootstrap with config and external data. For more information, please see the syntax specs.</p>
+<h2 id="notice">NOTICE</h2>
+<p>Most of Weex utility output JS Bundle after  <a href="https://webpack.github.io/" target="_blank">Webpack</a> re-bundle. So the eventual format of Weex JSBundle is webpack packed .</p>
 <h2 id="js-framework">JS Framework</h2>
 <p>JS Framework will run in native JavaScript engine at the beginning preparation phase. It has <code>define()</code> and <code>bootstrap()</code> functions for each the bunlde code. Once a JS bundle requested from server, the code will be executed. <code>define()</code> will register all modules first, then <code>bootstrap()</code> will start compiling main component into virtual DOM and send rendering calls to native.</p>
 <p>There are two key methods for the bridge between JS and native:</p>
@@ -1393,7 +1396,7 @@ user interactions
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-        gitbook.page.hasChanged({"page":{"title":"How It Works","level":"1.2.4.1","depth":3,"next":{"title":"How Data Binding Works","level":"1.2.4.2","depth":3,"path":"advanced/how-data-binding-works.md","ref":"advanced/how-data-binding-works.md","articles":[]},"previous":{"title":"Advanced","level":"1.2.4","depth":2,"path":"advanced/main.md","ref":"advanced/main.md","articles":[{"title":"How It Works","level":"1.2.4.1","depth":3,"path":"advanced/how-it-works.md","ref":"advanced/how-it-works.md","articles":[]},{"title":"How Data Binding Works","level":"1.2.4.2","depth":3,"path":"advanced/how-data-binding-works.md","ref":"advanced/how-data-binding-works.md","articles":[]},{"title":"Integrate to Android","level":"1.2.4.3","depth":3,"path":"advanced/integrate-to-android.md","ref":"advanced/integrate-to-android.md","articles":[]},{"title":"Integrate to iOS","level":"1.2.4.4","depth":3,"path":"advanced/integrate-to-ios.md","ref":"advanced/integrate-to-ios.md","articles":[]},{"title":"Extend to Android","level":"1.2.4.5","depth":3,"path":"advanced/extend-to-android.md","ref":"advanced/extend-to-android.md","articles":[]},{"title":"Extend to iOS","level":"1.2.4.6","depth":3,"path":"advanced/extend-to-ios.md","ref":"advanced/extend-to-ios.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"3.1.1","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"advanced/how-it-works.md","mtime":"2016-06-24T08:14:03.473Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-06-24T09:37:44.239Z"},"basePath":"..","book":{"language":""}});
+        gitbook.page.hasChanged({"page":{"title":"How It Works","level":"1.2.4.1","depth":3,"next":{"title":"How Data Binding Works","level":"1.2.4.2","depth":3,"path":"advanced/how-data-binding-works.md","ref":"advanced/how-data-binding-works.md","articles":[]},"previous":{"title":"Advanced","level":"1.2.4","depth":2,"path":"advanced/main.md","ref":"advanced/main.md","articles":[{"title":"How It Works","level":"1.2.4.1","depth":3,"path":"advanced/how-it-works.md","ref":"advanced/how-it-works.md","articles":[]},{"title":"How Data Binding Works","level":"1.2.4.2","depth":3,"path":"advanced/how-data-binding-works.md","ref":"advanced/how-data-binding-works.md","articles":[]},{"title":"Integrate to Android","level":"1.2.4.3","depth":3,"path":"advanced/integrate-to-android.md","ref":"advanced/integrate-to-android.md","articles":[]},{"title":"Integrate to iOS","level":"1.2.4.4","depth":3,"path":"advanced/integrate-to-ios.md","ref":"advanced/integrate-to-ios.md","articles":[]},{"title":"Extend to Android","level":"1.2.4.5","depth":3,"path":"advanced/extend-to-android.md","ref":"advanced/extend-to-android.md","articles":[]},{"title":"Extend to iOS","level":"1.2.4.6","depth":3,"path":"advanced/extend-to-ios.md","ref":"advanced/extend-to-ios.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"3.1.1","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"advanced/how-it-works.md","mtime":"2016-06-28T04:18:05.349Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-06-28T06:49:45.495Z"},"basePath":"..","book":{"language":""}});
         setTimeout(function(){
            window._rePostionVersion()
         },100);
