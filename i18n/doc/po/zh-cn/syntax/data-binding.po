@@ -12,7 +12,7 @@ msgstr "数据绑定"
 #: /home/dev/download/weex/doc/syntax/data-binding.md:4
 #, no-wrap
 msgid "In Weex, we use the *mustache* syntax `{{...}}` to bind data in `<template>` which are defined in `<script>`. Once data and template is bound, the data changes will influence the corresponding template content immediately and automatically.\n"
-msgstr "在 weex 中，我们使用 *mustache* 的语法 `{{...}}`，来对绑定 `<template>` 模板 和 `<script>` 脚本 中的数据。 一旦 数据-模板 绑定了，脚本中数据的修改，会模板内容中实时生效。\n"
+msgstr "在 weex 中，我们使用 *mustache* 的语法 `{{...}}`，来对绑定 `<template>` 模板 和 `<script>` 脚本 中的数据。 一旦 数据-模板 绑定了，脚本中数据的修改，会在模板的内容中实时生效。\n"
 
 #. type: Title ##
 #: /home/dev/download/weex/doc/syntax/data-binding.md:5
@@ -51,14 +51,14 @@ msgstr ""
 #: /home/dev/download/weex/doc/syntax/data-binding.md:25
 msgid ""
 "The code above will bind the `title` and `size` data field to `template`."
-msgstr "上面的代码会将`title`` and ``size`` data field to ``template`。 ???"
+msgstr "上面的代码会把 `title` 和 `size` 绑定到模板上。"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:27
 msgid ""
 "We can also use `.` syntax to bind cascading data structure. Let's look at "
 "the following code snippet:"
-msgstr "我们也可以用`.`语法绑定级联数据结构。让我们来看看下面的代码片段： ???"
+msgstr "我们也可以用 `.` 语法来绑定多层的数据结构。让我们来看看下面的代码片段："
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:34
@@ -93,12 +93,12 @@ msgstr ""
 #: /home/dev/download/weex/doc/syntax/data-binding.md:47
 #, no-wrap
 msgid "In-template expression"
-msgstr "模板中的表达 ???"
+msgstr "模板表达式"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:50
 msgid "Inside data bindings, Weex supports simply javascript expressions, e.g."
-msgstr "在数据绑定，weex支持简单的JavaScript表达式，例如 ???"
+msgstr "在数据绑定中， weex 支持简单的 JavaScript 表达式计算，例如："
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:57
@@ -130,19 +130,19 @@ msgstr ""
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:69
 msgid "The expression will be evaluated in the data scope of current context."
-msgstr "该表达式将在当前上下文的数据范围内进行评估。 ???"
+msgstr "该表达式将在当前上下文内进行求值。"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:71
 #, no-wrap
 msgid "**NOTE: EACH BINDING CAN ONLY CONTAIN ONE SINGLE EXPRESSION**\n"
-msgstr "注：每一个绑定只能包含一个表达式 ???\n"
+msgstr "*** 注意：每一个绑定只能包含一个表达式 **"
 
 #. type: Title ##
 #: /home/dev/download/weex/doc/syntax/data-binding.md:72
 #, no-wrap
 msgid "Computed Properties"
-msgstr "计算机性能 ???"
+msgstr "求值属性"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:75
@@ -151,8 +151,8 @@ msgid ""
 "But if you want to put more logic into the template, you should use a "
 "computed property."
 msgstr ""
-"根据简单的操作，在模板表达式中非常方便。但是如果你想把更多的逻辑放在模板中，"
-"你应该使用一个计算属性。 ???"
+"简单的计算，用模板表达式非常方便。但是，如果你想把更多的逻辑放在模板中，"
+"你应该使用一个求值属性。"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:84
@@ -184,17 +184,6 @@ msgid ""
 "          return this.firstName + ' ' + this.lastName\n"
 "        },\n"
 msgstr ""
-" <script>???\n"
-"  module.exports = { ???\n"
-"    数据：{ ???\n"
-"      名：“约翰”， ???\n"
-"      姓：史密斯 ???\n"
-"    }， ???\n"
-"    计算机：{ ???\n"
-"      姓名：{ ???\n"
-"        得到：功能(){ ???\n"
-"          返回this.firstname +“+ this.lastname ???\n"
-"        }， ???\n"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:112

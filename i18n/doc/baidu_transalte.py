@@ -71,7 +71,7 @@ def translate_po(lang, po):
         if not i.msgstr:
             msgid = i.msgid
             ms = msgid.strip("\n ")
-            if ms.startswith("```") or "</" in msgid or ms.startswith("<style>"):
+            if ms.startswith("```") or "</" in msgid or ms.startswith("<style>") or ms.startswith("<script>"):
                 continue
             msgid = hide_bracket.hide(msgid)
             msgid_li.append((msgid, i))
