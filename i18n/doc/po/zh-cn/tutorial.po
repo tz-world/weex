@@ -62,10 +62,6 @@ msgid ""
 "</style>\n"
 "```\n"
 msgstr ""
-" <style>\n"
-"  .cell{margin-top:10 ; margin-left:10 ; flex-direction: row; }\n"
-"  .thumb {width: 200; height: 200; }\n"
-"  .title {text-align: center ; flex: 1; color: grey; font-size: 50; }  \n"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/tutorial.md:30
@@ -80,7 +76,7 @@ msgstr ""
 #: /home/dev/download/weex/doc/tutorial.md:31
 #, no-wrap
 msgid "Preview"
-msgstr "预览 ???"
+msgstr "初见"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/tutorial.md:34
@@ -121,10 +117,10 @@ msgid ""
 "  -o,--output  transform weex we file to JS Bundle, output path (single JS bundle file or dir)\n"
 "  -s,--server  start a http file server, weex .we file will be transforme to JS bundle on the server , specify local root path using the option  \n"
 msgstr ""
-"选项： ???\n"
-"  对于本地运行时显示二维码QR， ???\n"
-"  啊，输出变换weex我们文件的输出路径(single JS bundle file or dir)JS束， ???\n"
-"  -，-服务器启动一个HTTP文件服务器，weex。我们将文件服务器上的js包变压器，使用选项指定本地路径 ???\n"
+"选项： \n"
+"  -qr     显示原生组件运行时(Weex Playground App)访问的二维码 \n"
+"  -o,--output  transform weex we file to JS Bundle, output path (single JS bundle file or dir)\n"
+"  -s,--server  start a http file server, weex .we file will be transforme to JS bundle on the server , specify local root path using the option  \n"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/tutorial.md:52
@@ -136,9 +132,9 @@ msgid ""
 "```\n"
 msgstr ""
 "  ......\n"
-"  -帮助显示帮助 ???\n"
-"  H、主机[默认：“127.0.0.1”] ???\n"
-" ````???\n"
+"  --help  显示帮助        \n"
+"  -h, --host [default: \"127.0.0.1\"]\n"
+"```\n"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/tutorial.md:54
@@ -157,7 +153,7 @@ msgstr ""
 #: /home/dev/download/weex/doc/tutorial.md:60
 #, no-wrap
 msgid "A browser window will open automatically  to display  something like below     ( weex-toolkit version must greater then 0.1.0 , please check using `weex --version` cmd)\n"
-msgstr "一个浏览器窗口将自动打开，显示类似下面( weex-toolkit version must greater then 0.1.0 , please check using  z59813328476z  cmd)???\n"
+msgstr "将自动打开一个浏览器窗口，显示内容如下( weex-toolkit 版本必须大于 0.1.0 , 请用 `weex --version` 检查 )\n"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/tutorial.md:62
@@ -305,7 +301,7 @@ msgstr ""
 msgid ""
 "It's ***RECOMMENDED*** to use `-h` option to specify your local ip address "
 "or hostname."
-msgstr "这是***推荐***使用`-h`选项来指定本地IP地址或主机名。 ???"
+msgstr "***推荐*** 使用 `-h` 选项来指定本地IP地址或主机名。"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/tutorial.md:113
@@ -315,7 +311,7 @@ msgstr "``` 然后，命令行中会出现一个二维码，类似:"
 #. type: Plain text
 #: /home/dev/download/weex/doc/tutorial.md:115
 msgid "![Weex CLI](images/tut-cli-qrcode.png)"
-msgstr "![weex CLI](images/tut-cli-qrcode.png)???"
+msgstr "![weex CLI](images/tut-cli-qrcode.png)"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/tutorial.md:117
@@ -334,7 +330,7 @@ msgstr ""
 #. type: Plain text
 #: /home/dev/download/weex/doc/tutorial.md:119
 msgid "![Second Example](images/tut-second.png)"
-msgstr "![例](images/tut-second.png)二 ???"
+msgstr "![例2](images/tut-second.png)"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/tutorial.md:121
@@ -343,8 +339,8 @@ msgid ""
 "so your app get faster loading and less memory overhead than common Webview "
 "renderer."
 msgstr ""
-"在这里，我要强调的是，该名单由自然观( not Webkit )渲染，所以你的应用程序获得"
-"更快的加载速度和减少内存开销比普通Web视图渲染器。 ???"
+"在这里，我要强调的是，该列表是原生的渲染( not Webkit )，所以你的应用程序会"
+"有比普通的 Webview 更快的加载速度以及更少内存开销。"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/tutorial.md:123
@@ -475,7 +471,7 @@ msgstr "你应该在我们的列表中看到一个Slider。 "
 #. type: Plain text
 #: /home/dev/download/weex/doc/tutorial.md:200
 msgid "![Third Example](images/tut4.gif)"
-msgstr "![例]第三(images/tut4.gif)???"
+msgstr "![例3](images/tut4.gif)"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/tutorial.md:202
@@ -495,63 +491,3 @@ msgstr ""
 "Android应用程序。Android整合请参阅[集成weex到您的Android程序](advanced/"
 "integrate-to-android.md)。 "
 
-#~ msgid ""
-#~ "Options:\n"
-#~ "  --qr    display QR code for native runtime                           "
-#~ "[boolean]\n"
-#~ "  -o      transform weex JS bundle only, specify bundle file name using "
-#~ "the\n"
-#~ "          option                                 [default: \"no JSBundle "
-#~ "output\"]\n"
-#~ "  -s      start a http file server, weex .we file will be transformed on "
-#~ "the\n"
-#~ "          server, specify local root path using the option     [default: "
-#~ "false]\n"
-#~ "  --help  Show help                                                    "
-#~ "[boolean]\n"
-#~ "```\n"
-#~ msgstr ""
-#~ "选项： \n"
-#~ "  -qr     显示原生组件运行时(Weex Playground App)访问的二维码 \n"
-#~ "  -o      transform weex JS bundle only, specify bundle file name using "
-#~ "the\n"
-#~ "          option                                 [default: \"no JSBundle "
-#~ "output\"]\n"
-#~ "  -s      start a http file server, weex .we file will be transformed on "
-#~ "the\n"
-#~ "          server, specify local root path using the option     [default: "
-#~ "false]\n"
-#~ "  --help  Show help                                                    "
-#~ "[boolean]\n"
-#~ "```\n"
-
-#~ msgid ""
-#~ "A browser window will open automatically to display something like below"
-#~ msgstr "一个浏览器窗口会自动打开，显示类似下面的内容"
-
-#~ msgid ""
-#~ "**Weex H5 renderer is not released , So please using Weex Playground App "
-#~ "based preview for a while**\n"
-#~ msgstr ""
-#~ "** weex H5 渲染器尚未公布，所以请使用 Weex Playground App 预览 ** \n"
-
-#~ msgid ""
-#~ "![weex qr](http://gtms01.alicdn.com/tps/i1/"
-#~ "TB1ggfiLVXXXXbPXXXXELJK6FXX-334-379.jpg)"
-#~ msgstr ""
-#~ "![weex QR](http://gtms01.alicdn.com/tps/i1/"
-#~ "TB1ggfiLVXXXXbPXXXXELJK6FXX-334-379.jpg)"
-
-#~ msgid ""
-#~ "![list1 in Android](http://gtms04.alicdn.com/tps/i4/"
-#~ "TB1FH15LVXXXXcYXFXXFzbANVXX-504-896.png)"
-#~ msgstr ""
-#~ "![Android中的列表](http://gtms04.alicdn.com/tps/i4/"
-#~ "TB1FH15LVXXXXcYXFXXFzbANVXX-504-896.png)"
-
-#~ msgid ""
-#~ "![slider demo](http://gtms02.alicdn.com/tps/i2/TB1MB2gLVXXXXaLXpXXB8."
-#~ "XUXXX-596-1000.gif)"
-#~ msgstr ""
-#~ "![Slider演示](http://gtms02.alicdn.com/tps/i2/TB1MB2gLVXXXXaLXpXXB8."
-#~ "XUXXX-596-1000.gif)"
