@@ -184,7 +184,7 @@ msgstr ""
 #: /home/dev/download/weex/doc/syntax/style-n-class.md:74
 #, no-wrap
 msgid "Notes"
-msgstr "笔记 ???"
+msgstr "***注意***"
 
 #. type: Bullet: '* '
 #: /home/dev/download/weex/doc/syntax/style-n-class.md:81
