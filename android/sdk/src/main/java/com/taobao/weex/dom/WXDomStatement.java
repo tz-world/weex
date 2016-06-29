@@ -1130,13 +1130,11 @@ class WXDomStatement {
       WXAnimationBean animationBean =
           JSONObject.parseObject(animation, WXAnimationBean.class);
       if (animationBean != null && animationBean.styles != null) {
-        WXAnimationBean.Style style = animationBean.styles;
         WXDomObject domObject=mRegistry.get(ref);
         int width=(int)domObject.getLayoutWidth();
         int height=(int)domObject.getLayoutHeight();
-        style.setTransformMap(WXAnimationBean.Style.parseTransForm(style.transform,
-                                                                   width, height));
-        style.setPivot(WXAnimationBean.Style.parsePivot(style.transformOrigin, width, height));
+        animationBean.styles.init(animationBean.styles.transformOrigin,
+                                  animationBean.styles.transform,width,height);
       }
       return animationBean;
     } catch (RuntimeException e) {
@@ -1147,25 +1145,21 @@ class WXDomStatement {
 
   private WXAnimationBean createAnimationBean(String ref,Map<String, Object> style){
     if (style != null) {
-      Object transform = style.get(WXStyle.TRANSFORM);
-      if (transform instanceof String && !TextUtils.isEmpty((String) transform)) {
-        String transformOrigin;
-        try {
-          transformOrigin = (String) style.get(WXStyle.TRANSFORM_ORIGIN);
-        } catch (RuntimeException e) {
-          WXLogUtils.e(WXLogUtils.getStackTrace(e));
-          transformOrigin = null;
+      try {
+        Object transform = style.get(WXStyle.TRANSFORM);
+        if (transform instanceof String && !TextUtils.isEmpty((String) transform)) {
+          String transformOrigin = (String) style.get(WXStyle.TRANSFORM_ORIGIN);
+          WXAnimationBean animationBean = new WXAnimationBean();
+          WXDomObject domObject = mRegistry.get(ref);
+          int width = (int) domObject.getLayoutWidth();
+          int height = (int) domObject.getLayoutHeight();
+          animationBean.styles = new WXAnimationBean.Style();
+          animationBean.styles.init(transformOrigin, (String) transform, width, height);
+          return animationBean;
         }
-        WXAnimationBean animationBean = new WXAnimationBean();
-        WXDomObject domObject=mRegistry.get(ref);
-        int width=(int)domObject.getLayoutWidth();
-        int height=(int)domObject.getLayoutHeight();
-        animationBean.styles = new WXAnimationBean.Style();
-        animationBean.styles.setPivot(
-            WXAnimationBean.Style.parsePivot(transformOrigin, width, height));
-        animationBean.styles.setTransformMap(
-            WXAnimationBean.Style.parseTransForm((String) transform, width, height));
-        return animationBean;
+      }catch (RuntimeException e){
+        WXLogUtils.e(WXLogUtils.getStackTrace(e));
+        return null;
       }
     }
     return null;

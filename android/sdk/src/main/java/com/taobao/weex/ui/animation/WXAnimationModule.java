@@ -210,6 +210,7 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -232,13 +233,10 @@ import com.taobao.weex.ui.component.WXComponent;
 import com.taobao.weex.ui.view.WXBackgroundDrawable;
 import com.taobao.weex.utils.WXLogUtils;
 import com.taobao.weex.utils.WXResourceUtils;
-import com.taobao.weex.utils.WXUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 public class WXAnimationModule extends WXModule {
 
@@ -262,13 +260,16 @@ public class WXAnimationModule extends WXModule {
                                     @Nullable String callback) {
     try {
       WXAnimationBean animationBean = component.getDomObject().style.getAnimationBean();
-      Animator animator = WXAnimationModule.createAnimator(animationBean, component.getRealView());
+      Animator animator = createAnimator(animationBean, component.getRealView());
       if (animator != null) {
-        Animator.AnimatorListener animatorListener =
-            WXAnimationModule.createAnimatorListener(mWXSDKInstance, callback);
-        Interpolator interpolator = WXAnimationModule.createTimeInterpolator(animationBean);
-        if (animatorListener != null) {
-          animator.addListener(animatorListener);
+        Animator.AnimatorListener animatorCallback = createAnimatorListener(mWXSDKInstance, callback);
+        Animator.AnimatorListener layerType= prepareLayerType(component.getRealView());
+        Interpolator interpolator = createTimeInterpolator(animationBean);
+        if (animatorCallback != null) {
+          animator.addListener(animatorCallback);
+        }
+        if(layerType!=null){
+          animator.addListener(layerType);
         }
         if (interpolator != null) {
           animator.setInterpolator(interpolator);
@@ -286,21 +287,7 @@ public class WXAnimationModule extends WXModule {
     WXAnimationBean.Style style = animation.styles;
     if (style != null) {
       ObjectAnimator animator;
-      List<PropertyValuesHolder> holders = new LinkedList<>();
-      if (style.getTransformMap() != null) {
-        if (style.getTransformMap().isEmpty()) {
-          holders.addAll(moveBackToOrigin());
-        } else {
-          for (Map.Entry<String, Float> entry : style.getTransformMap().entrySet()) {
-            holders.add(PropertyValuesHolder.ofFloat(entry.getKey(), entry.getValue()));
-          }
-        }
-      }
-      if (!TextUtils.isEmpty(style.opacity)) {
-        holders.add(PropertyValuesHolder.ofFloat(WXAnimationBean.Style.ALPHA,
-                                                 WXUtils.fastGetFloat(style.opacity, 2)));
-      }
-      //TODO add a wrapper class of view to not flush out the border
+      List<PropertyValuesHolder> holders =style.getHolders();
       if (!TextUtils.isEmpty(style.backgroundColor)) {
         if (target.getBackground() instanceof WXBackgroundDrawable) {
           holders.add(PropertyValuesHolder.ofObject(
@@ -349,6 +336,22 @@ public class WXAnimationModule extends WXModule {
     }
   }
 
+  private static Animator.AnimatorListener prepareLayerType(final View target){
+    if(Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
+      final int originalLayerType=target.getLayerType();
+      target.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+      return new AnimatorListenerAdapter() {
+        @Override
+        public void onAnimationEnd(Animator animation) {
+          target.setLayerType(originalLayerType, null);
+        }
+      };
+    }
+    else{
+      return null;
+    }
+  }
+
   private static @Nullable
   Interpolator createTimeInterpolator(@NonNull WXAnimationBean animation) {
     String interpolator = animation.timingFunction;
@@ -362,19 +365,9 @@ public class WXAnimationModule extends WXModule {
           return new AccelerateDecelerateInterpolator();
         case WXAnimationBean.LINEAR:
           return new LinearInterpolator();
-        //TODO Add PathInterpolator to support cubic-bezier curve
       }
     }
     return null;
   }
 
-  private static List<PropertyValuesHolder> moveBackToOrigin() {
-    List<PropertyValuesHolder> holders = new ArrayList<>(5);
-    holders.add(PropertyValuesHolder.ofFloat(WXAnimationBean.Style.ANDROID_TRANSLATION_X, 0));
-    holders.add(PropertyValuesHolder.ofFloat(WXAnimationBean.Style.ANDROID_TRANSLATION_Y, 0));
-    holders.add(PropertyValuesHolder.ofFloat(WXAnimationBean.Style.ANDROID_SCALE_X, 1));
-    holders.add(PropertyValuesHolder.ofFloat(WXAnimationBean.Style.ANDROID_SCALE_Y, 1));
-    holders.add(PropertyValuesHolder.ofFloat(WXAnimationBean.Style.ANDROID_ROTATION, 0));
-    return holders;
-  }
 }

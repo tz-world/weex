@@ -283,7 +283,7 @@ public class WXAnimationBean {
     private Pair<Float, Float> pivot;
     private List<PropertyValuesHolder> holders=new LinkedList<>();
 
-    public static Map<String, Float> parseTransForm(@Nullable String rawTransform, final int width,
+    private static Map<String, Float> parseTransForm(@Nullable String rawTransform, final int width,
                                                 final int height) {
       if (!TextUtils.isEmpty(rawTransform)) {
         FunctionParser<Float> parser = new FunctionParser<>
@@ -388,7 +388,7 @@ public class WXAnimationBean {
       return new LinkedHashMap<>();
     }
 
-    public static Pair<Float, Float> parsePivot(@Nullable String transformOrigin,
+    private static Pair<Float, Float> parsePivot(@Nullable String transformOrigin,
                                                  int width, int height) {
       if (!TextUtils.isEmpty(transformOrigin)) {
         int firstSpace = transformOrigin.indexOf(FunctionParser.SPACE);
@@ -455,20 +455,45 @@ public class WXAnimationBean {
       return WXUtils.fastGetFloat(percent, precision) / 100 * unit;
     }
 
-    public Map<String, Float> getTransformMap() {
-      return transformMap;
-    }
-
-    public void setTransformMap(Map<String, Float> transformMap) {
-      this.transformMap = transformMap;
+    private static List<PropertyValuesHolder> moveBackToOrigin() {
+      List<PropertyValuesHolder> holders = new ArrayList<>(5);
+      holders.add(PropertyValuesHolder.ofFloat(WXAnimationBean.Style.ANDROID_TRANSLATION_X, 0));
+      holders.add(PropertyValuesHolder.ofFloat(WXAnimationBean.Style.ANDROID_TRANSLATION_Y, 0));
+      holders.add(PropertyValuesHolder.ofFloat(WXAnimationBean.Style.ANDROID_SCALE_X, 1));
+      holders.add(PropertyValuesHolder.ofFloat(WXAnimationBean.Style.ANDROID_SCALE_Y, 1));
+      holders.add(PropertyValuesHolder.ofFloat(WXAnimationBean.Style.ANDROID_ROTATION, 0));
+      return holders;
     }
 
     public Pair<Float, Float> getPivot() {
       return pivot;
     }
 
-    public void setPivot(Pair<Float, Float> pivot) {
-      this.pivot = pivot;
+    public void init(@Nullable String transformOrigin,@Nullable String rawTransform,
+                     final int width, final int height){
+      pivot = parsePivot(transformOrigin,width,height);
+      transformMap = parseTransForm(rawTransform,width,height);
+      initHolders();
+    }
+
+    private void initHolders(){
+      if (transformMap != null) {
+        if (transformMap.isEmpty()) {
+          holders.addAll(moveBackToOrigin());
+        } else {
+          for (Map.Entry<String, Float> entry : transformMap.entrySet()) {
+            holders.add(PropertyValuesHolder.ofFloat(entry.getKey(), entry.getValue()));
+          }
+        }
+      }
+      if (!TextUtils.isEmpty(opacity)) {
+        holders.add(PropertyValuesHolder.ofFloat(WXAnimationBean.Style.ALPHA,
+                                                 WXUtils.fastGetFloat(opacity, 3)));
+      }
+    }
+
+    public List<PropertyValuesHolder> getHolders(){
+      return holders;
     }
   }
 }
