@@ -6,13 +6,13 @@ msgstr ""
 #: /home/dev/download/weex/doc/guide.md:1
 #, no-wrap
 msgid "Guide"
-msgstr "指南 ???"
+msgstr "指南"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/guide.md:3
 #, no-wrap
 msgid "***Keep calm and code on.***\n"
-msgstr "***保持冷静和代码上。 ???\n"
+msgstr "***心若止水 ，继续编码。\n"
 
 #~ msgid "[Tutorial](tutorial.md)"
 #~ msgstr "[教程](tutorial.md)???"
