@@ -244,8 +244,7 @@ msgstr "数据绑定"
 msgid ""
 "Page [data](./data-binding.md) can be bound in `style` and `class` "
 "attribute. For example:"
-msgstr ""
-"[数据绑定](./data-binding.md) 能用在 `style` 与 `class` 属性上。例如："
+msgstr "[数据绑定](./data-binding.md) 能用在 `style` 与 `class` 属性上。例如："
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/style-n-class.md:106
