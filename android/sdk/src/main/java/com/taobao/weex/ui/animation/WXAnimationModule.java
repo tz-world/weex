@@ -210,23 +210,24 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 
-import com.alibaba.fastjson.JSONObject;
 import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.WXSDKManager;
 import com.taobao.weex.common.WXModule;
 import com.taobao.weex.common.WXModuleAnno;
+import com.taobao.weex.dom.WXDomHandler;
+import com.taobao.weex.dom.WXDomTask;
 import com.taobao.weex.ui.component.WXComponent;
 import com.taobao.weex.ui.view.WXBackgroundDrawable;
 import com.taobao.weex.utils.WXLogUtils;
@@ -241,70 +242,46 @@ import java.util.Map;
 
 public class WXAnimationModule extends WXModule {
 
-  public static final String TRANSFORM = "transform";
-  public static final String TRANSFORM_ORIGIN = "transformOrigin";
-
   @WXModuleAnno
-  public void transition(String ref, String animation, String callBack) {
-    WXSDKManager.getInstance().getWXRenderManager().
-        startAnimation(mWXSDKInstance.getInstanceId(), ref, animation, callBack);
-  }
-
-  public static void applyTransformStyle(@Nullable Map<String, Object> style, WXComponent component) {
-    if (component != null) {
-      View target = component.getRealView();
-      if (style != null && target != null) {
-        Object transform = style.get(TRANSFORM);
-        if (transform instanceof String && !TextUtils.isEmpty((String) transform) && target.getLayoutParams() != null) {
-          String transformOrigin;
-          try {
-            transformOrigin = (String) component.mDomObj.style.get(TRANSFORM_ORIGIN);
-          } catch (NullPointerException e) {
-            transformOrigin = null;
-          }
-          WXAnimationBean animationBean = new WXAnimationBean();
-          animationBean.styles = new WXAnimationBean.Style();
-          animationBean.styles.setPivot(
-              WXAnimationBean.Style.parsePivot(transformOrigin, target.getLayoutParams().width,
-                                               target.getLayoutParams().height));
-          animationBean.styles.setTransformMap(
-              WXAnimationBean.Style.parseTransForm((String) transform, target.getLayoutParams()
-                  .width, target.getLayoutParams().height));
-          Animator animator = WXAnimationModule.createAnimator(animationBean, target);
-          if (animator != null) {
-            animator.setDuration(0);
-            animator.start();
-          }
-        }
-      }
+  public void transition(@Nullable String ref, @Nullable String animation, @Nullable String callBack) {
+    if(!TextUtils.isEmpty(ref)&&!TextUtils.isEmpty(animation)) {
+      Message msg = Message.obtain();
+      WXDomTask task = new WXDomTask();
+      task.instanceId = mWXSDKInstance.getInstanceId();
+      task.args = new ArrayList<>();
+      task.args.add(ref);
+      task.args.add(animation);
+      task.args.add(callBack);
+      msg.what = WXDomHandler.MsgType.WX_ANIMATION;
+      msg.obj = task;
+      WXSDKManager.getInstance().getWXDomManager().sendMessage(msg);
     }
   }
 
-  public static
-  @Nullable
-  WXAnimationBean parseAnimation(@Nullable String animation,
-                                 ViewGroup.LayoutParams layoutParams) {
+  public static void startAnimation(WXSDKInstance mWXSDKInstance,WXComponent component,
+                                    @Nullable String callback) {
     try {
-      WXAnimationBean animationBean =
-          JSONObject.parseObject(animation, WXAnimationBean.class);
-      if (animationBean != null && animationBean.styles != null) {
-        WXAnimationBean.Style style = animationBean.styles;
-        style.setTransformMap(WXAnimationBean.Style.parseTransForm(style.transform,
-                                                                   layoutParams.width,
-                                                                   layoutParams.height));
-        style.setPivot(WXAnimationBean.Style.parsePivot(style.transformOrigin,
-                                                        layoutParams.width,
-                                                        layoutParams.height));
+      WXAnimationBean animationBean = component.getDomObject().style.getAnimationBean();
+      Animator animator = WXAnimationModule.createAnimator(animationBean, component.getRealView());
+      if (animator != null) {
+        Animator.AnimatorListener animatorListener =
+            WXAnimationModule.createAnimatorListener(mWXSDKInstance, callback);
+        Interpolator interpolator = WXAnimationModule.createTimeInterpolator(animationBean);
+        if (animatorListener != null) {
+          animator.addListener(animatorListener);
+        }
+        if (interpolator != null) {
+          animator.setInterpolator(interpolator);
+        }
+        animator.setDuration(animationBean.duration);
+        animator.start();
       }
-      return animationBean;
     } catch (RuntimeException e) {
       WXLogUtils.e(WXLogUtils.getStackTrace(e));
-      return null;
     }
   }
 
-  public static
-  @Nullable
+  private static @Nullable
   ObjectAnimator createAnimator(@NonNull WXAnimationBean animation, @NonNull View target) {
     WXAnimationBean.Style style = animation.styles;
     if (style != null) {
@@ -321,7 +298,7 @@ public class WXAnimationModule extends WXModule {
       }
       if (!TextUtils.isEmpty(style.opacity)) {
         holders.add(PropertyValuesHolder.ofFloat(WXAnimationBean.Style.ALPHA,
-                                                 WXUtils.fastGetFloat(style.opacity, 3)));
+                                                 WXUtils.fastGetFloat(style.opacity, 2)));
       }
       //TODO add a wrapper class of view to not flush out the border
       if (!TextUtils.isEmpty(style.backgroundColor)) {
@@ -372,8 +349,7 @@ public class WXAnimationModule extends WXModule {
     }
   }
 
-  public static
-  @Nullable
+  private static @Nullable
   Interpolator createTimeInterpolator(@NonNull WXAnimationBean animation) {
     String interpolator = animation.timingFunction;
     if (!TextUtils.isEmpty(interpolator)) {

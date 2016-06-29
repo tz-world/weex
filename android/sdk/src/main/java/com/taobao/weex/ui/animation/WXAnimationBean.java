@@ -204,6 +204,7 @@
  */
 package com.taobao.weex.ui.animation;
 
+import android.animation.PropertyValuesHolder;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -219,6 +220,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -279,6 +281,7 @@ public class WXAnimationBean {
     public String transformOrigin;
     private Map<String, Float> transformMap = new HashMap<>();
     private Pair<Float, Float> pivot;
+    private List<PropertyValuesHolder> holders=new LinkedList<>();
 
     public static Map<String, Float> parseTransForm(@Nullable String rawTransform, final int width,
                                                 final int height) {
@@ -438,7 +441,7 @@ public class WXAnimationBean {
     }
 
     private static float parsePercentOrPx(String raw, int unit) {
-      int precision = (int) Math.ceil(Math.log10(10));
+      final int precision = 1;
       int suffix;
       if ((suffix = raw.lastIndexOf(FunctionParser.PERCENT)) != -1) {
         return parsePercent(raw.substring(0, suffix), unit, precision);
