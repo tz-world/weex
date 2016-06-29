@@ -12,7 +12,7 @@ msgstr "数据绑定"
 #: /home/dev/download/weex/doc/syntax/data-binding.md:4
 #, no-wrap
 msgid "In Weex, we use the *mustache* syntax `{{...}}` to bind data in `<template>` which are defined in `<script>`. Once data and template is bound, the data changes will influence the corresponding template content immediately and automatically.\n"
-msgstr "在 weex 中，我们使用 *mustache* 的语法 `{{...}}`，来对绑定 `<template>` 模板 和 `<script>` 脚本 中的数据。 一旦 数据-模板 绑定了，脚本中数据的修改，会在模板的内容中实时生效。\n"
+msgstr "在 weex 中，我们使用 *mustache* 的语法 `{{...}}`，来绑定 `<template>` 模板 和 `<script>` 脚本 中的数据。 一旦 数据-模板 绑定了，脚本中数据的修改，会在模板的内容中实时生效。\n"
 
 #. type: Title ##
 #: /home/dev/download/weex/doc/syntax/data-binding.md:5
