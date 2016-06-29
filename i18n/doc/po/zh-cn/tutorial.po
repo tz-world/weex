@@ -307,7 +307,7 @@ msgstr "***推荐*** 使用 `-h` 选项来指定本地IP地址或主机名。"
 #. type: Plain text
 #: /home/dev/download/weex/doc/tutorial.md:113
 msgid "An QR code will be display in the terminal window like:"
-msgstr "``` 然后，命令行中会出现一个二维码，类似:"
+msgstr "然后，命令行中会出现一个二维码，类似:"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/tutorial.md:115
