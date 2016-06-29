@@ -58,7 +58,8 @@ msgstr "上面的代码会把 `title` 和 `size` 绑定到模板上。"
 msgid ""
 "We can also use `.` syntax to bind cascading data structure. Let's look at "
 "the following code snippet:"
-msgstr "我们也可以用 `.` 语法来绑定多层的数据结构。让我们来看看下面的代码片段："
+msgstr ""
+"我们也可以用 `.` 语法来绑定多层的数据结构。让我们来看看下面的代码片段："
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:34
@@ -151,8 +152,8 @@ msgid ""
 "But if you want to put more logic into the template, you should use a "
 "computed property."
 msgstr ""
-"简单的计算，用模板表达式非常方便。但是，如果你想把更多的逻辑放在模板中，"
-"你应该使用一个求值属性。"
+"简单的计算，用模板表达式非常方便。但是，如果你想把更多的逻辑放在模板中，你应"
+"该使用一个求值属性。"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:84
@@ -212,8 +213,8 @@ msgid ""
 "Here we have declared a computed property fullName. The function we provided "
 "will be used as the getter function for concating firstName and lastName."
 msgstr ""
-"在这里，我们已经宣布计算机性能表。我们提供的功能将作为getter函数连铸FirstName"
-"和LastName。 ???"
+"在这里，我们声明了一个求值属性 fullName 。 同时，定义了求值函数来连接 "
+"firstName和 lastName 。"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:116
@@ -221,8 +222,8 @@ msgid ""
 "Otherwise when you call `changeName` after click, the setter will be invoked "
 "and this.firstName and this.lastName will be updated accordingly."
 msgstr ""
-"否则，当你打电话`changeName`点击之后，会调用setter和this.firstname和this."
-"lastname会相应的更新。 ???"
+"同时，当你点击调用 `changeName` 后， 会通过 set 函数来赋值，this.firstname "
+"和 this.lastname 会相应的更新。"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:118
