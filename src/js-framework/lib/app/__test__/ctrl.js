@@ -71,6 +71,7 @@ describe('the api of app', () => {
     })
 
     it('a simple bundle', () => {
+      app.requireModule = () => {}
       app.init(`
         define('main', {
           "type": "container",
