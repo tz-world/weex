@@ -286,7 +286,8 @@ msgid ""
 "here if `{{size}}` and `{{status}}` have empty value, then only `class="
 "\"title\"` will be rendered."
 msgstr ""
-"在上面的代码中如果 `{{size}}` 和 `{{status}}` 是空值, 就只有 `class=\"title\"` 会被渲染。"
+"在上面的代码中如果 `{{size}}` 和 `{{status}}` 是空值, 就只有 `class=\"title"
+"\"` 会被渲染。"
 
 #. type: Bullet: '* '
 #: /home/dev/download/weex/doc/syntax/data-binding.md:145
@@ -307,8 +308,8 @@ msgid ""
 "don't need to add mustache around the method name or add parentheses to call "
 "it."
 msgstr ""
-"事件响应是一个以 `on` 为前缀的属性 。 属性名称的另一部分是事件类型，值是响应事"
-"件的函数名。调用时，我们无需添加 mustache 语法中的括号。"
+"事件响应是一个以 `on` 为前缀的属性 。 属性名称的另一部分是事件类型，值是响应"
+"事件的函数名。调用时，我们无需添加 mustache 语法中的括号。"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:154
@@ -394,4 +395,4 @@ msgstr "[参见 显示逻辑控制](./display-logic.md)"
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:197
 msgid "Next, let's have a look at [style and class](./style-n-class.md)."
-msgstr "接下来，让我们在[样式和类](./style-n-class.md)一看。 ???"
+msgstr "接下来，我们看看 [样式和类](./style-n-class.md)。 "
