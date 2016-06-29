@@ -1,4 +1,4 @@
-PREFIX=`realpath $(cd "$(dirname "$0")"; pwd)/..`
+PREFIX=`realpath $(cd "$(dirname "$0")"; pwd)`
 
 cd $PREFIX
 
