@@ -405,7 +405,7 @@ msgstr "`repeat` 属性可以用于生成一个列表。 "
 #: /home/dev/download/weex/doc/syntax/data-binding.md:198
 #, no-wrap
 msgid "**NOTE: When you want to mutate an array in `data`. Something limitations existing below:**\n"
-msgstr "**注意：当你想改变在`data`数组。一些存在的局限性：** ???\n"
+msgstr "**注意：想改变在 `data` 数组，有些限制：** ???\n"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:200
@@ -413,8 +413,8 @@ msgid ""
 "When you directly set an item with the index (`vm.items[0] = {};`), it won't "
 "trigger view update. So we have a prototype methods: `$set(index, item)`."
 msgstr ""
-"当你直接设置一个项目指标(`vm.items[0] = {};``), it won't trigger view "
-"update. So we have a prototype methods: ``$set(index, item)`。 ???"
+"当你通过索引位置直接设置一个条目 (`vm.items[0] = {};`) , 不会触发模板视图的更"
+"新。所以，更新数组用这个函数 : `$set(index, item)`。 "
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:205
@@ -430,8 +430,8 @@ msgid ""
 "trigger view update too. We recommend you just replace `items` with an empty "
 "array instead."
 msgstr ""
-"当你修改数组的长度(`vm.items.length = 0``), it won't trigger view update "
-"too. We recommend you just replace ``items`空数组。 ???"
+"当你修改数组的长度(`vm.items.length = 0`), 不会触发模板视图的更新。 你可以直"
+"接给 `items` 赋值空数组。"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:212
