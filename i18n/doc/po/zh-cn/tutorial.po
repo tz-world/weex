@@ -280,6 +280,7 @@ msgstr ""
 "  .cell{margin-top:10 ; margin-left:10 ; flex-direction: row; }\n"
 "  .thumb {width: 200; height: 200; }\n"
 "  .title {text-align: center ; flex: 1; color: grey; font-size: 50; }  \n"
+"```\n"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/tutorial.md:105
