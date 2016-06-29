@@ -1,0 +1,398 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#. type: Title #
+#: /home/dev/download/weex/doc/syntax/data-binding.md:1
+#, no-wrap
+msgid "Data-Binding"
+msgstr "数据绑定"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:4
+#, no-wrap
+msgid "In Weex, we use the *mustache* syntax `{{...}}` to bind data in `<template>` which are defined in `<script>`. Once data and template is bound, the data changes will influence the corresponding template content immediately and automatically.\n"
+msgstr "在 weex 中，我们使用 *mustache* 的语法 `{{...}}`，来绑定 `<template>` 模板 和 `<script>` 脚本 中的数据。 一旦 数据-模板 绑定了，脚本中数据的修改，会在模板的内容中实时生效。\n"
+
+#. type: Title ##
+#: /home/dev/download/weex/doc/syntax/data-binding.md:5
+#, no-wrap
+msgid "Binding data path"
+msgstr "如何绑定数据？"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:13
+#, no-wrap
+msgid ""
+"```html\n"
+"<template>\n"
+"  <container>\n"
+"    <text style=\"font-size: {{size}}\">{{title}}</text>\n"
+"  </container>\n"
+"</template>\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:23
+#, no-wrap
+msgid ""
+"<script>\n"
+"  module.exports = {\n"
+"    data: {\n"
+"      size: 48,\n"
+"      title: 'Alibaba Weex Team'\n"
+"    }\n"
+"  }\n"
+"</script>\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:25
+msgid ""
+"The code above will bind the `title` and `size` data field to `template`."
+msgstr "上面的代码会把 `title` 和 `size` 绑定到模板上。"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:27
+msgid ""
+"We can also use `.` syntax to bind cascading data structure. Let's look at "
+"the following code snippet:"
+msgstr ""
+"我们也可以用 `.` 语法来绑定多层的数据结构。让我们来看看下面的代码片段："
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:34
+#, no-wrap
+msgid ""
+"```html\n"
+"<template>\n"
+"  <container>\n"
+"    <text style=\"font-size: {{title.size}}\">{{title.value}}</text>\n"
+"  </container>\n"
+"</template>\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:46
+#, no-wrap
+msgid ""
+"<script>\n"
+"  module.exports = {\n"
+"    data: {\n"
+"      title: {\n"
+"        size: 48,\n"
+"        value: 'Alibaba Weex Team'\n"
+"      }\n"
+"    }\n"
+"  }\n"
+"</script>\n"
+"```\n"
+msgstr ""
+
+#. type: Title ##
+#: /home/dev/download/weex/doc/syntax/data-binding.md:47
+#, no-wrap
+msgid "In-template expression"
+msgstr "模板表达式"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:50
+msgid "Inside data bindings, Weex supports simply javascript expressions, e.g."
+msgstr "在数据绑定中， weex 支持简单的 JavaScript 表达式计算，例如："
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:57
+#, no-wrap
+msgid ""
+"```html\n"
+"<template>\n"
+"  <container style=\"flex-direction: row;\">\n"
+"    <text>{{firstName + ' ' + lastName}}</text>\n"
+"  </container>\n"
+"</template>\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:67
+#, no-wrap
+msgid ""
+"<script>\n"
+"  module.exports = {\n"
+"    data: {\n"
+"      firstName: 'John',\n"
+"      lastName: 'Smith'\n"
+"    }\n"
+"  }\n"
+"</script>\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:69
+msgid "The expression will be evaluated in the data scope of current context."
+msgstr "该表达式将在当前上下文内进行求值。"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:71
+#, no-wrap
+msgid "**NOTE: EACH BINDING CAN ONLY CONTAIN ONE SINGLE EXPRESSION**\n"
+msgstr "*** 注意：每一个绑定只能包含一个表达式 **"
+
+#. type: Title ##
+#: /home/dev/download/weex/doc/syntax/data-binding.md:72
+#, no-wrap
+msgid "Computed Properties"
+msgstr "求值属性"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:75
+msgid ""
+"According to simple operations, in-template expressions are very convenient. "
+"But if you want to put more logic into the template, you should use a "
+"computed property."
+msgstr ""
+"简单的计算，用模板表达式非常方便。但是，如果你想把更多的逻辑放在模板中，你应"
+"该使用一个求值属性。"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:84
+#, no-wrap
+msgid ""
+"e.g.\n"
+"```html\n"
+"<template>\n"
+"  <container style=\"flex-direction: row;\">\n"
+"    <text>{{fullName}}</text>\n"
+"    <text onclick=\"changeName\"></text>\n"
+"  </container>\n"
+"</template>\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:96
+#, no-wrap
+msgid ""
+"<script>\n"
+"  module.exports = {\n"
+"    data: {\n"
+"      firstName: 'John',\n"
+"      lastName: 'Smith'\n"
+"    },\n"
+"    computed: {\n"
+"      fullName: {\n"
+"        get: function() {\n"
+"          return this.firstName + ' ' + this.lastName\n"
+"        },\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:112
+#, no-wrap
+msgid ""
+"        set: function(v) {\n"
+"          var s = v.split(' ')\n"
+"          this.firstName = s[0]\n"
+"          this.lastName = s[1]\n"
+"        }\n"
+"      }\n"
+"    },\n"
+"    methods: {\n"
+"      changeName: function() {\n"
+"        this.fullName = 'Terry King'\n"
+"      }\n"
+"    }\n"
+"  }\n"
+"</script>\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:114
+msgid ""
+"Here we have declared a computed property fullName. The function we provided "
+"will be used as the getter function for concating firstName and lastName."
+msgstr ""
+"在这里，我们声明了一个求值属性 fullName 。 同时，定义了求值函数来连接 "
+"firstName和 lastName 。"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:116
+msgid ""
+"Otherwise when you call `changeName` after click, the setter will be invoked "
+"and this.firstName and this.lastName will be updated accordingly."
+msgstr ""
+"同时，当你点击调用 `changeName` 后， 会通过 set 函数来赋值，this.firstname "
+"和 this.lastname 会相应的更新。"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:118
+#, no-wrap
+msgid "**NOTE: `data` and `methods` can't have duplicate fields. 'Cause in the execution context -- `this`, we can access both of them.**\n"
+msgstr "***注意：`data` 和 `methods` 的字段不能重复。 因为在执行上下文中 - 通过 `this` ，我们可以同时访问这两者 **。 \n"
+
+#. type: Title ##
+#: /home/dev/download/weex/doc/syntax/data-binding.md:119
+#, no-wrap
+msgid "Usage of some special attributes in Data-Binding"
+msgstr "特殊属性的数据绑定"
+
+#. type: Title ###
+#: /home/dev/download/weex/doc/syntax/data-binding.md:121
+#, no-wrap
+msgid "Styles: `style` or `class`"
+msgstr "样式 ：`style` 或 `class`"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:124
+msgid "the style of a component can be bind using the `style` attribute:"
+msgstr "一个组件的样式可以通过 `style` 属性来绑定："
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:130
+#, no-wrap
+msgid ""
+"```html\n"
+"<template>\n"
+"  <text style=\"font-size: {{size}}; color: {{color}}; ...\">...</text>\n"
+"</template>\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:132
+msgid ""
+"while style can also get bound with `class` attribute, multiple classnames "
+"can be split by spaces:"
+msgstr "样式也能够通过 `class` 属性实现绑定，多个 classname 之间通过空格分隔:"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:141
+#, no-wrap
+msgid ""
+"```html\n"
+"<template>\n"
+"  <container>\n"
+"    <text class=\"{{size}}\"></text>\n"
+"    <text class=\"title {{status}}\"></text>\n"
+"  </container>\n"
+"</template>\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:143
+msgid ""
+"here if `{{size}}` and `{{status}}` have empty value, then only `class="
+"\"title\"` will be rendered."
+msgstr ""
+"在上面的代码中如果 `{{size}}` 和 `{{status}}` 是空值, 就只有 `class=\"title"
+"\"` 会被渲染。"
+
+#. type: Bullet: '* '
+#: /home/dev/download/weex/doc/syntax/data-binding.md:145
+msgid "[See more about style and class](./style-n-class.md)"
+msgstr "[参见 样式和类](./style-n-class.md)"
+
+#. type: Title ###
+#: /home/dev/download/weex/doc/syntax/data-binding.md:146
+#, no-wrap
+msgid "Event Handler: `on...`"
+msgstr "事件响应：`on...`"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:149
+msgid ""
+"The event handler is an attribute which name has a prefix `on...`. The other "
+"part of attribute name is event type and the value is event handler name. We "
+"don't need to add mustache around the method name or add parentheses to call "
+"it."
+msgstr ""
+"事件响应是一个以 `on` 为前缀的属性 。 属性名称的另一部分是事件类型，值是响应"
+"事件的函数名。调用时，我们无需添加 mustache 语法中的括号。"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:154
+#, no-wrap
+msgid ""
+"```html\n"
+"<template>\n"
+"  <text onclick=\"toggle\">Toggle</text>\n"
+"</template>\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:165
+#, no-wrap
+msgid ""
+"<script>\n"
+"  module.exports = {\n"
+"    methods: {\n"
+"      toggle: function () {\n"
+"        // todo\n"
+"      }\n"
+"    }\n"
+"  }\n"
+"</script>\n"
+"```\n"
+msgstr ""
+
+#. type: Title ###
+#: /home/dev/download/weex/doc/syntax/data-binding.md:166
+#, no-wrap
+msgid "`if` & `repeat`"
+msgstr " `if` & `repeat`"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:169
+msgid ""
+"`if` attribute can control the display of a component by a truthy/falsy "
+"value."
+msgstr " `if` 属性可以通过值的真/假，来控制一个组件是否显示。"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:177
+#, no-wrap
+msgid ""
+"```html\n"
+"<template>\n"
+"  <container style=\"flex-direction: column;\">\n"
+"    <text onclick=\"toggle\">Toggle</text>\n"
+"    <image src=\"...\" if=\"{{shown}}\"></image>\n"
+"  </container>\n"
+"</template>\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:191
+#, no-wrap
+msgid ""
+"<script>\n"
+"  module.exports = {\n"
+"    data: {\n"
+"      shown: true\n"
+"    },\n"
+"    methods: {\n"
+"      toggle: function () {\n"
+"        this.shown = !this.shown\n"
+"      }\n"
+"    }\n"
+"  }\n"
+"</script>\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:193
+msgid "We can also use `repeat` attribute to generate a list."
+msgstr "`repeat` 属性可以用于生成一个列表。 "
+
+#. type: Bullet: '* '
+#: /home/dev/download/weex/doc/syntax/data-binding.md:195
+msgid "[See more about display logic control](./display-logic.md)"
+msgstr "[参见 显示逻辑控制](./display-logic.md)"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/data-binding.md:197
+msgid "Next, let's have a look at [style and class](./style-n-class.md)."
+msgstr "接下来，我们看看 [样式和类](./style-n-class.md)。 "
