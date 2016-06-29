@@ -1296,25 +1296,44 @@
 <h2 id="summary">Summary</h2>
 <p>A series of stream api. It provides a network request.</p>
 <h2 id="api">API</h2>
-<h3 id="sendhttpparams-callback">sendHttp(params, callback)</h3>
+<h3 id="fetchoptions-callbackprogresscallback">fetch(options, callback[,progressCallback])</h3>
 <h3 id="arguments">Arguments</h3>
 <ul>
-<li><code>params</code><em>(object)</em>: the request parameters.<ul>
-<li><code>method</code><em>(string)</em>: the HTTP method like <code>GET</code>, <code>POST</code>.</li>
+<li><code>options</code><em>(object)</em>: the request options.<ul>
+<li><code>method</code><em>(string)</em>: the HTTP method <code>GET</code> or <code>POST</code>.</li>
 <li><code>url</code><em>(string)</em>: the request url.</li>
-<li><code>header</code><em>(object)</em>: the HTTP request header.</li>
+<li><code>headers</code><em>(object)</em>: the HTTP request headers.</li>
+<li><code>type</code><em>(string)</em>: request type, &apos;json&apos;,&apos;text&apos; or &apos;jsonp&apos;(same as &apos;json&apos; in native implementation)</li>
 <li><code>body</code><em>(string)</em>: the HTTP body.</li>
 </ul>
 </li>
-<li><code>callback</code><em>(function)</em>: A callback function whose argument is the response string of the request.</li>
+<li><code>callback</code><em>(function)</em>: A callback function whose argument is the response object of the request. Callback function will receive a <code>response</code> object:   <ul>
+<li><code>status</code><em>(number)</em>&#xFF1A;response status code.</li>
+<li><code>ok</code><em>(boolean)</em>: true if status code is bewteen 200&#xFF5E;299.</li>
+<li><code>statusText</code><em>(string)</em>&#xFF1A;status text </li>
+<li><code>data</code>: response data. It&apos;s a object if request option is <code>json</code>/<code>jsonp</code>, or <em>(string)</em> in other type value.</li>
+<li><code>headers</code><em>(object)</em>: response headers</li>
+</ul>
+</li>
+<li><code>progressCallback</code><em>(function)</em>: A progress callback. This callback will be invoked before request finished:   <ul>
+<li><code>readyState</code><em>(number)</em>: Current request state.&apos;1&apos;:request connection opened;&apos;2&apos;:response headers received.;&apos;3&apos;:response data is loading;</li>
+<li><code>status</code><em>(number)</em>&#xFF1A;response status code.</li>
+<li><code>length</code><em>(number)</em>: bytes of data have received. You can read full length of response from &apos;headers&apos;.</li>
+<li><code>statusText</code><em>(string)</em>&#xFF1A;status text </li>
+<li><code>headers</code><em>(object)</em>: response headers</li>
+</ul>
+</li>
 </ul>
 <h3 id="example">Example</h3>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> stream = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;@weex-module/stream&apos;</span>);
-stream.sendHttp({
+<pre><code class="lang-javascript">stream.fetch({
   method: <span class="hljs-string">&apos;GET&apos;</span>,
-  url: <span class="hljs-string">&apos;path/to/a/uri&apos;</span>, <span class="hljs-comment">// can&apos;t not support CORS yet!</span>
-}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ret</span>) </span>{
-  <span class="hljs-comment">// TODO after response</span>
+  url: <span class="hljs-string">&quot;http://httpbin.org/get&quot;</span>,
+  type:<span class="hljs-string">&apos;json&apos;</span>
+}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) </span>{
+  <span class="hljs-comment">//process response</span>
+},<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;bytes received:&quot;</span>+response.length);
+
 });
 </code></pre>
 
@@ -1344,7 +1363,7 @@ stream.sendHttp({
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-        gitbook.page.hasChanged({"page":{"title":"stream","level":"1.3.5.2","depth":3,"next":{"title":"modal","level":"1.3.5.3","depth":3,"path":"modules/modal.md","ref":"modules/modal.md","articles":[]},"previous":{"title":"dom","level":"1.3.5.1","depth":3,"path":"modules/dom.md","ref":"modules/dom.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.1.1","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"modules/stream.md","mtime":"2016-06-29T02:51:33.607Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-06-29T03:33:23.535Z"},"basePath":"..","book":{"language":""}});
+        gitbook.page.hasChanged({"page":{"title":"stream","level":"1.3.5.2","depth":3,"next":{"title":"modal","level":"1.3.5.3","depth":3,"path":"modules/modal.md","ref":"modules/modal.md","articles":[]},"previous":{"title":"dom","level":"1.3.5.1","depth":3,"path":"modules/dom.md","ref":"modules/dom.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.1.1","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"modules/stream.md","mtime":"2016-06-29T10:52:40.708Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-06-29T10:59:38.290Z"},"basePath":"..","book":{"language":""}});
         setTimeout(function(){
            window._rePostionVersion()
         },100);
