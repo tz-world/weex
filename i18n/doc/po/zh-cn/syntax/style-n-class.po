@@ -6,13 +6,13 @@ msgstr ""
 #: /home/dev/download/weex/doc/syntax/style-n-class.md:1
 #, no-wrap
 msgid "Style & Class"
-msgstr "风格类 ???"
+msgstr "样式与类（Style & Class）"
 
 #. type: Title ##
 #: /home/dev/download/weex/doc/syntax/style-n-class.md:3
 #, no-wrap
 msgid "The Basic Syntax"
-msgstr "基本语法 ???"
+msgstr "基本语法"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/style-n-class.md:6
