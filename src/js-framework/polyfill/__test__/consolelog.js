@@ -1,75 +1,51 @@
 import chai from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
-import {printlog}  from '../consolelog'
+const { expect } = chai
+chai.use(sinonChai)
 
-const {
-  expect
-} = chai
+import '../consolelog'
 
-describe('polyfill for printlog', () => {
-  before(() => {
-    global.WXEnvironment = {
-      logLevel: 'all'
-    }
-    global.nativeLog = sinon.spy()
-  })
+describe('polyfill for console', () => {
+  const oriEnv = global.WXEnvironment
+  const originLog = console.__ori__.log
+  const originWarn = console.__ori__.warn
 
   beforeEach(() => {
-    global.nativeLog.reset()
+    global.WXEnvironment = { logLevel: 'log' }
+    console.__ori__.log = sinon.spy()
+    console.__ori__.warn = sinon.spy()
   })
-
-  after(() => {
-    global.nativeLog = undefined
-    global.WXEnvironment = undefined
+  afterEach(() => {
+    global.WXEnvironment = oriEnv
+    console.__ori__.log = originLog
+    console.__ori__.warn = originWarn
   })
 
   it('a log message', () => {
-    printlog('a log message', {msg: 'msg'}, '__VERBOSE')
-    expect(global.nativeLog.callCount).to.be.equal(1)
-    expect(global.nativeLog.firstCall.args).eql(
-      ['a log message', '{"msg":"msg"}', '__VERBOSE']
-    )
-  })
-
-  it('a debug message', () => {
-    printlog('a debug message', '__DEBUG')
-    expect(global.nativeLog.callCount).to.be.equal(1)
-    expect(global.nativeLog.firstCall.args).eql(
-      ['a debug message', '__DEBUG']
-    )
-  })
-
-  it('a info message', () => {
-    printlog('a info message', '__INFO')
-    expect(global.nativeLog.callCount).to.be.equal(1)
-    expect(global.nativeLog.firstCall.args).eql(
-      ['a info message', '__INFO']
+    console.log('a log message', { msg: 'msg' })
+    expect(console.__ori__.log.callCount).to.be.equal(1)
+    expect(console.__ori__.log.firstCall.args).eql(
+      ['a log message', { msg: 'msg' }]
     )
   })
 
   it('a warn message', () => {
-    printlog('a warn message', '__WARN')
-    expect(global.nativeLog.callCount).to.be.equal(1)
-    expect(global.nativeLog.firstCall.args).eql(
-      ['a warn message', '__WARN']
+    console.warn('a warn message')
+    expect(console.__ori__.warn.callCount).to.be.equal(1)
+    expect(console.__ori__.warn.firstCall.args).eql(
+      ['a warn message']
     )
   })
 
-  it('a error message', () => {
-    printlog('a error message', '__ERROR')
-    expect(global.nativeLog.callCount).to.be.equal(1)
-    expect(global.nativeLog.firstCall.args).eql(
-      ['a error message', '__ERROR']
+  it('change env', () => {
+    global.WXEnvironment.logLevel = 'warn'
+    console.log('a log message')
+    expect(console.__ori__.log.callCount).to.be.equal(0)
+    console.warn('a warn message')
+    expect(console.__ori__.warn.callCount).to.be.equal(1)
+    expect(console.__ori__.warn.firstCall.args).eql(
+      ['a warn message']
     )
-  })
-
-  it('no message', () => {
-    global.WXEnvironment = {
-      logLevel: 'error'
-    }
-
-    printlog('a info message', '__INFO')
-    expect(global.nativeLog.callCount).to.be.equal(0)
   })
 })

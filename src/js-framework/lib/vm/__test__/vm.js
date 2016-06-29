@@ -474,6 +474,9 @@ describe('generate virtual dom for sub vm', () => {
   })
 
   it('generate sub elements', () => {
+    doc.setEventManager({
+      add: sinon.spy()
+    })
     customComponentMap.foo = {
       data: function () {
         return {
@@ -545,7 +548,9 @@ describe('generate virtual dom for sub vm', () => {
     expect(sub.event.click).is.a.function
 
     const spy = customComponentMap.foo.methods.handleClick
-    sub.event.click(1, 2, 3)
+    expect(doc.eventManager.add.args.length).eql(1)
+    const click = doc.eventManager.add.args[0][2]
+    click(1, 2, 3)
     expect(spy.args.length).eql(1)
     expect(spy.args[0]).eql([1, 2, 3])
 
