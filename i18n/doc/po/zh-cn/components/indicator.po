@@ -8,38 +8,44 @@ msgstr ""
 msgid "&lt;indicator&gt;"
 msgstr "&lt;指标&gt; ???"
 
-#. type: Title ###
+#. type: Plain text
 #: /home/dev/download/weex/doc/components/indicator.md:3
+#, no-wrap
+msgid "<span class=\"weex-version\">0.4</span>\n"
+msgstr ""
+
+#. type: Title ###
+#: /home/dev/download/weex/doc/components/indicator.md:4
 #, no-wrap
 msgid "Summary"
 msgstr "总结 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/indicator.md:6
+#: /home/dev/download/weex/doc/components/indicator.md:7
 msgid ""
 "This component must be used as a subcomponent of a [`slider`](slider.md) "
 "component."
 msgstr "这部分必须作为子一[`slider`](slider.md)组件。 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/indicator.md:7
+#: /home/dev/download/weex/doc/components/indicator.md:8
 #, no-wrap
 msgid "Child Components"
 msgstr "子组件 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/indicator.md:10
+#: /home/dev/download/weex/doc/components/indicator.md:11
 msgid "This component supports no child components."
 msgstr "此组件不支持子组件。 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/indicator.md:11
+#: /home/dev/download/weex/doc/components/indicator.md:12
 #, no-wrap
 msgid "Attributes"
 msgstr "属性 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/indicator.md:14
+#: /home/dev/download/weex/doc/components/indicator.md:15
 msgid ""
 "There is no specific attribute for this component other than the [common "
 "attributes](../references/common-attrs.md)."
@@ -48,13 +54,13 @@ msgstr ""
 "性。 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/indicator.md:15
+#: /home/dev/download/weex/doc/components/indicator.md:16
 #, no-wrap
 msgid "Styles"
 msgstr "款式 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/indicator.md:20
+#: /home/dev/download/weex/doc/components/indicator.md:21
 msgid ""
 "- `item-color`: &lt;colors&gt; This style attribute sets the normal item "
 "color using either a named color or a color specified in the hexadecimal "
@@ -71,7 +77,7 @@ msgstr ""
 "指示元素的大小，这是一个浮动属性。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/indicator.md:22
+#: /home/dev/download/weex/doc/components/indicator.md:23
 #, no-wrap
 msgid "**common styles**: check out the [common styles](../references/common-attrs.md)\n"
 msgstr "* * *：常见的方式查看[共同](../references/common-attrs.md)风格 ???\n"
@@ -80,26 +86,37 @@ msgstr "* * *：常见的方式查看[共同](../references/common-attrs.md)风�
 #: /home/dev/download/weex/doc/components/indicator.md:27
 msgid ""
 "- support flexbox related styles - support box model related styles - "
-"support ``position`` related styles - support ``opacity``, ``background-"
-"color`` etc."
+"support ``position`` related styles"
 msgstr ""
 "支持flexbox相关的风格支持盒模型相关的风格支持```position```` related styles "
 "- support ````opacity````, ````background-color```等 ???"
 
+#. type: Plain text
+#: /home/dev/download/weex/doc/components/indicator.md:29
+#, no-wrap
+msgid "**Note:** There are some specific details about the style `width` and `height` on this component: the position of indicator will not only depend on the `top`, `left`, `bottom` and `right`, but also depend on the value of `width` and `height`. Imagine there is a virtual container outside the indicator, and it inherit the `width` and `height` of the indicator. The `top`, `left`, `right` and `bottom` will always take effect on this container, not the indicator points themselves, and the indicator points will be positioned in the center of it. And also you should know the default `width` and `height` is the parent slider's `width` and `height`.\n"
+msgstr "*注：*有关于风格`width`` and ``height`` on this component: the position of indicator will not only depend on the ``top``, ``left``, ``bottom`` and ``right``, but also depend on the value of ``width`` and ``height``. Imagine there is a virtual container outside the indicator, and it inherit the ``width`` and ``height`` of the indicator. The ``top``, ``left``, ``right`` and ``bottom`` will always take effect on this container, not the indicator points themselves, and the indicator points will be positioned in the center of it. And also you should know the default ``width`` and ``height`` is the parent slider's ``width`` and ``height`一些具体的细节。 ???\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/components/indicator.md:31
+#, no-wrap
+msgid "**Note:** `background-color` is not recommended to apply on this component, and you should use `item-color` and `item-selectedColor` instead.\n"
+msgstr "*注：* *`background-color`` is not recommended to apply on this component, and you should use ``item-color`` and ``item-selectedColor`相反。 ???\n"
+
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/indicator.md:28
+#: /home/dev/download/weex/doc/components/indicator.md:32
 #, no-wrap
 msgid "Events"
 msgstr "事件 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/indicator.md:31
+#: /home/dev/download/weex/doc/components/indicator.md:35
 #, no-wrap
 msgid "**common events**: check out the [common events](../references/common-event.md)\n"
 msgstr "* * *：常见的事件查看[事件](../references/common-event.md)常见 ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/indicator.md:34
+#: /home/dev/download/weex/doc/components/indicator.md:38
 msgid ""
 "- support `click` event. Check out [common events](../references/common-"
 "event.md)  - support `appear` / `disappear` event. Check out [common events]"
@@ -110,35 +127,37 @@ msgstr ""
 "common-event.md)常见 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/indicator.md:35
+#: /home/dev/download/weex/doc/components/indicator.md:39
 #, no-wrap
 msgid "Example"
 msgstr "例子 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/indicator.md:44
+#: /home/dev/download/weex/doc/components/indicator.md:49
 #, no-wrap
 msgid ""
 "```\n"
 "<template>\n"
-"  <slider class=\"slider\">\n"
-"    <div class=\"slider-pages\" repeat=\"{{itemList}}\">\n"
-"      <image class=\"img\" src=\"{{pictureUrl}}\"></image>\n"
-"      <text class=\"title\">{{title}}</text>\n"
-"    </div>\n"
+"  <div>\n"
+"    <slider class=\"slider\">\n"
+"      <div class=\"slider-pages\" repeat=\"{{itemList}}\">\n"
+"        <image class=\"img\" src=\"{{pictureUrl}}\"></image>\n"
+"        <text class=\"title\">{{title}}</text>\n"
+"      </div>\n"
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/indicator.md:48
+#: /home/dev/download/weex/doc/components/indicator.md:54
 #, no-wrap
 msgid ""
-"    <indicator class=\"indicator\"></indicator>\n"
-"  </slider>\n"
+"      <indicator class=\"indicator\"></indicator>\n"
+"    </slider>\n"
+"  </div>\n"
 "</template>\n"
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/indicator.md:74
+#: /home/dev/download/weex/doc/components/indicator.md:80
 #, no-wrap
 msgid ""
 "<style>\n"
@@ -169,7 +188,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/indicator.md:86
+#: /home/dev/download/weex/doc/components/indicator.md:92
 #, no-wrap
 msgid ""
 "<script>\n"

@@ -4,5 +4,698 @@ msgstr ""
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/advanced/extend-to-ios.md:1
-msgid "TODO"
-msgstr "待办事项 ???"
+#, no-wrap
+msgid "##Extend to iOS\n"
+msgstr "# #延伸到iOS ???\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:3
+#, no-wrap
+msgid "<a href=\"https://github.com/weexteam/article/issues/17\"  class=\"weex-translate\">cn</a>\n"
+msgstr ""
+
+#. type: Title ###
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:4
+#, no-wrap
+msgid "Module extend"
+msgstr "扩展模块 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:7
+msgid ""
+"Weex SDK provides only rendering capabilities, rather than have other "
+"capabilities, such as network, picture, and URL redirection. If you want "
+"these features, you need to implement it."
+msgstr ""
+"weex SDK提供了唯一的渲染能力，而不是有其他的功能，如网络、图片、URL重定向。如"
+"果你想要这些功能，你需要实现它。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:9
+msgid ""
+"For example: If you want to implement an address jumping function, you can "
+"achieve a Module following the steps below."
+msgstr "例如：如果你想实现一个地址跳转功能，你可以实现一个模块下面的步骤。 ???"
+
+#. type: Title ####
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:9
+#, no-wrap
+msgid "Step to customize a module"
+msgstr "自定义模块的一步 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:17
+#, no-wrap
+msgid ""
+"1. Module \n"
+"customized must implement WXModuleProtocol\n"
+"2. A macro named `WX_EXPORT_METHOD` must be added, as it is the only way to be recognized by Weex. It takes arguments that specifies the method in module called by JavaScript code.\n"
+"3. The weexInstance should be synthesized. Each module object is bind to a specific instance.\n"
+"4. Module methods will be invoked in UI thread, so do not put time consuming operation there. If you want to  execute the whole module methods in other thread, please implement the method `- (NSThread *)targetExecuteThread` in protocol. In the way, tasks distributed to this module will be executed in targetExecuteThread. \n"
+"5. Weex params can be String or Map.\n"
+"6. Module supports to return results to Javascript in callback. This callback is type of `WXModuleCallback`, the params of which can be String or Map.\n"
+msgstr ""
+"1。模块 ???\n"
+"定制必须实现wxmoduleprotocol ???\n"
+"2。一个宏`WX_EXPORT_METHOD`` must be added, as it is the only way to be recognized by Weex. It takes arguments that specifies the method in module called by JavaScript code.\n"
+"3. The weexInstance should be synthesized. Each module object is bind to a specific instance.\n"
+"4. Module methods will be invoked in UI thread, so do not put time consuming operation there. If you want to  execute the whole module methods in other thread, please implement the method ``- (NSThread *)targetExecuteThread`` in protocol. In the way, tasks distributed to this module will be executed in targetExecuteThread. \n"
+"5. Weex params can be String or Map.\n"
+"6. Module supports to return results to Javascript in callback. This callback is type of ``WXModuleCallback`，其参数可以串或地图。 ???\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:19
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:47
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:67
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:88
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:112
+msgid "```objective-c"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:23
+#, no-wrap
+msgid ""
+"    @implementation WXEventModule\n"
+"    @synthesize weexInstance;\n"
+"       WX_EXPORT_METHOD(@selector(openURL:callback))\n"
+msgstr ""
+"    “实施wxeventmodule ???\n"
+"    “综合weexinstance; ???\n"
+"       wx_export_method(@selector(openURL:callback)(openURL:callback)) ???\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:32
+#, no-wrap
+msgid ""
+"    - (void)openURL:(NSString *)url callback:(WXModuleCallback)callback\n"
+"    {\n"
+"        NSString *newURL = url;\n"
+"        if ([url hasPrefix:@\"//\"]) {\n"
+"            newURL = [NSString stringWithFormat:@\"http:%@\", url];\n"
+"        } else if (![url hasPrefix:@\"http\"]) {\n"
+"           newURL = [NSURL URLWithString:url relativeToURL:weexInstance.scriptURL].absoluteString;\n"
+"        }\n"
+msgstr ""
+"    -(void)OpenURL：(NSString *)回调：回调URL(WXModuleCallback)???\n"
+"    {\n"
+"        NSString * newurl =网址; ???\n"
+"        如果([url hasPrefix:@\"//\"]){ ???\n"
+"            newurl = [NSString stringwithformat：@“http：% @“，网址]; ???\n"
+"        如果(![url hasPrefix:@\"http\"]){ } ???\n"
+"           newurl = [NSURL urlwithstring：URL relativetourl：weexinstance。scripturl absolutestring]; ???\n"
+"        }\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:35
+#, no-wrap
+msgid ""
+"        UIViewController *controller = [[WXDemoViewController alloc] init];\n"
+"        ((WXDemoViewController *)controller).url = [NSURL URLWithString:newURL];\n"
+msgstr ""
+"        *控制器UIViewController = [[] wxdemoviewcontroller alloc init]; ???\n"
+"         ((WXDemoViewController *)(WXDemoViewController *)控制器)。网址= [NSURL urlwithstring：newurl]; ???\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:39
+#, no-wrap
+msgid ""
+"        [[weexInstance.viewController navigationController] pushViewController:controller animated:YES];\n"
+"        callback(@{@\"result\":@\"success\"});\n"
+"    }\n"
+msgstr ""
+"        [[weexinstance.viewcontroller navigationcontroller] pushviewcontroller：控制器动画：是]; ???\n"
+"        回调(@{@\"result\":@\"success\"}); ???\n"
+"    }\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:41
+#, no-wrap
+msgid "    @end```\n"
+msgstr "    @结束````???\n"
+
+#. type: Title ####
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:42
+#, no-wrap
+msgid "Register the module"
+msgstr "登记模块 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:45
+msgid ""
+"You can register the customized module by calling the method `registerModule:"
+"withClass` in WXSDKEngine."
+msgstr ""
+"你可以通过在wxsdkengine调用方法`registerModule:withClass`登记定制模块。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:55
+#, no-wrap
+msgid ""
+"      WXSDKEngine.h\n"
+"      /**\n"
+" \t\t*  @abstract Registers a module for a given name\n"
+" \t\t*  @param name The module name to register\n"
+" \t\t*  @param clazz  The module class to register\n"
+" \t   **/\n"
+"\t\t+ (void)registerModule:(NSString *)name withClass:(Class)clazz;\n"
+msgstr ""
+"      wxsdkengine。H ???\n"
+"      / * * ???\n"
+"   *  @abstract Registers a module for a given name\n"
+"   *  @param name The module name to register\n"
+"   *  @param clazz  The module class to register\n"
+"     **/\n"
+"  + (void)registerModule:(NSString *)name withClass:(Class)clazz;\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:57
+#, no-wrap
+msgid "    \t[WXSDKEngine registerModule:@\"event\" withClass:[WXEventModule class]];```\n"
+msgstr "     [WXSDKEngine registerModule:@\"event\" withClass:[WXEventModule class]];````\n"
+
+#. type: Title ###
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:58
+#, no-wrap
+msgid "Handler extend"
+msgstr "处理器扩展 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:61
+msgid ""
+"Weex SDK doesn't have capabilitis, such as image download 、navigator "
+"operation，please implement these protocols by yourself."
+msgstr "weex SDK没有的功能，如图像下载、导航操作，请自己实现这些协议。 ???"
+
+#. type: Title ####
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:62
+#, no-wrap
+msgid "WXImgLoaderProtocol"
+msgstr "wximgloaderprotocol ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:65
+#, no-wrap
+msgid ""
+"<font color=\"gray\">\n"
+"Weex SDK has no image download capability, you need to implement `WXImgLoaderProtocol`. Refer to the following examples.\n"
+msgstr ""
+" <font color=\"gray\">\n"
+"weex SDK没有图像的下载功能，你需要实现`WXImgLoaderProtocol`。参考下面的例子。 ???\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:70
+#, no-wrap
+msgid ""
+"    WXImageLoaderProtocol.h\n"
+"    @protocol WXImgLoaderProtocol <WXModuleProtocol>\n"
+msgstr ""
+"    wximageloaderprotocol。H ???\n"
+"    “协议wximgloaderprotocol<WXModuleProtocol>???\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:83
+#, no-wrap
+msgid ""
+"    /**\n"
+"      * @abstract Creates a image download handler with a given URL\n"
+"      * @param imageUrl The URL of the image to download\n"
+"      * @param imageFrame  The frame of the image you want to set\n"
+"      * @param options : The options to be used for this download\n"
+"      * @param completedBlock : A block called once the download is completed.\n"
+"        image : the image which has been download to local.\n"
+"        error : the error which has happened in download.\n"
+"        finished : a Boolean value indicating whether download action has finished.\n"
+"     */\n"
+"\t -(id<WXImageOperationProtocol>)downloadImageWithURL:(NSString *)url imageFrame:(CGRect)imageFrame userInfo:(NSDictionary *)options completed:(void(^)(UIImage *image,  NSError *error, BOOL finished))completedBlock;\n"
+"\t @end```\n"
+msgstr ""
+"    / * * ???\n"
+"      *抽象创建一个给定的网址的图像下载处理程序 ???\n"
+"      * @param所在的图像的URL下载 ???\n"
+"      * @param帧图像的帧的图像要设置 ???\n"
+"      * @param选项：用来下载选项 ???\n"
+"      * @param completedblock：一块叫做一旦下载完毕。 ???\n"
+"        图像：已下载到本地的图像。 ???\n"
+"        错误：在下载中发生的错误。 ???\n"
+"        完成：一个布尔值，指示是否已完成下载动作。 ???\n"
+"     * / ???\n"
+"  -(id<WXImageOperationProtocol>)downloadImageWithURL:(NSString *)url imageFrame:(CGRect)imageFrame userInfo:(NSDictionary *)options completed:(void(^)(^)(UIImage *image,  NSError *error, BOOL finished))completedBlock;\n"
+"  @end````\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:85
+msgid "Implement above protocol as follows."
+msgstr "实现以上协议如下。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:92
+#, no-wrap
+msgid ""
+"\t@implementation WXImgLoaderDefaultImpl\n"
+"\t#pragma mark -\n"
+"\t#pragma mark WXImgLoaderProtocol\n"
+msgstr ""
+" @implementation WXImgLoaderDefaultImpl\n"
+" #pragma mark -\n"
+" #pragma mark WXImgLoaderProtocol\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:106
+#, no-wrap
+msgid ""
+"\t- (id<WXImageOperationProtocol>)downloadImageWithURL:(NSString *)url imageFrame:(CGRect)imageFrame userInfo:(NSDictionary *)userInfo completed:(void(^)(UIImage *image,  NSError *error, BOOL finished))completedBlock\n"
+"\t{\n"
+"    \tif ([url hasPrefix:@\"//\"]) {\n"
+"        \turl = [@\"http:\" stringByAppendingString:url];\n"
+"    \t}\n"
+"    \treturn (id<WXImageOperationProtocol>)[[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:url] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {     \n"
+"    \t} completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {\n"
+"        if (completedBlock) {\n"
+"            completedBlock(image, error, finished);\n"
+"        }\n"
+"    \t}];\n"
+"\t}\n"
+"\t@end```\n"
+msgstr ""
+" - (id<WXImageOperationProtocol>)downloadImageWithURL:(NSString *)url imageFrame:(CGRect)imageFrame userInfo:(NSDictionary *)userInfo completed:(void(^)(^)(UIImage *image,  NSError *error, BOOL finished))completedBlock\n"
+" {\n"
+"     if ([url hasPrefix:@\"//\"]) {\n"
+"         url = [@\"http:\" stringByAppendingString:url];\n"
+"     }\n"
+"     return (id<WXImageOperationProtocol>)[[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:url] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {     \n"
+"     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {\n"
+"        如果(completedBlock){ ???\n"
+"            completedblock(image, error, finished); ???\n"
+"        }\n"
+"     }];\n"
+" }\n"
+" @end````\n"
+
+#. type: Title ####
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:107
+#, no-wrap
+msgid "Register the handler"
+msgstr "登记处理程序 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:110
+msgid ""
+"You can register the handler which implements the protocol by calling "
+"`registerHandler:withProtocol` in WXSDKEngine."
+msgstr ""
+"你可以通过调用登记wxsdkengine`registerHandler:withProtocol`实现协议处理程"
+"序。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:120
+#, no-wrap
+msgid ""
+"      WXSDKEngine.h\n"
+"      /**\n"
+" \t   * @abstract Registers a handler for a given handler instance and specific protocol\n"
+" \t   * @param handler The handler instance to register\n"
+" \t   * @param protocol The protocol to confirm\n"
+" \t   */\n"
+"       + (void)registerHandler:(id)handler withProtocol:(Protocol *)protocol;\n"
+msgstr ""
+"      wxsdkengine。H ???\n"
+"      / * * ???\n"
+"     * @abstract Registers a handler for a given handler instance and specific protocol\n"
+"     * @param handler The handler instance to register\n"
+"     * @param protocol The protocol to confirm\n"
+"     */\n"
+"       +(void)registerhandler：(id)withprotocol(Protocol *)协议处理程序; ???\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:122
+#, no-wrap
+msgid "       [WXSDKEngine registerHandler:[WXImgLoaderDefaultImpl new] withProtocol:@protocol(WXImgLoaderProtocol)];```\n"
+msgstr "       [wxsdkengine registerhandler：[新] wximgloaderdefaultimpl withprotocol：@协议(WXImgLoaderProtocol)];````???\n"
+
+#. type: Title ##
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:123
+#, no-wrap
+msgid "Custom Native Components for iOS"
+msgstr "为iOS定制本地组件 ???"
+
+#. type: Title ###
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:125
+#, no-wrap
+msgid "Component extend"
+msgstr "组件扩展 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:128
+msgid ""
+"There are a lot of native components ready to be used in the Weex SDK, but "
+"users always have their own use cases. You might have written an awesome "
+"native UI widget in your previous work and just want to wrap up it and "
+"export to Weex. So we provide a way to enable developers to create their own "
+"custom fully-native components."
+msgstr ""
+"有很多本地组件可以用在weex SDK，但用户总是有自己的使用案例。你可能已经写了一"
+"个可怕的原生的UI控件在你以前的工作，只想把它和出口weex。因此，我们提供了一种"
+"方法，使开发人员能够创建自己的自定义完全原生组件。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:130
+msgid ""
+"This guide will use the implementation of existing component `image` to show "
+"you how to build a native component. It will also assume that you are "
+"familiar with iOS programming."
+msgstr ""
+"本指南将使用现有的组件`image`实施告诉你如何建立一个本地组件。它还假定您熟悉"
+"iOS编程。 ???"
+
+#. type: Title ####
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:131
+#, no-wrap
+msgid "Registration"
+msgstr "登记处 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:134
+msgid ""
+"Defining a custom native component is simple. Just call `[WXSDKEngine "
+"registerComponent:withClass:]` with the component's tag name as first "
+"argument."
+msgstr ""
+"定义一个自定义的本地组件是简单的。打电话给`[WXSDKEngine registerComponent:"
+"withClass:]`与组件的标记名称的第一个参数。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:138
+msgid ""
+"``` [WXSDKEngine registerComponent:@\"image\" withClass:[WXImageComponent "
+"class]]; ```"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:140
+msgid ""
+"Then you can create a `WXImageComponent` class to represent the "
+"implementation of image component."
+msgstr "然后，您可以创建一个`WXImageComponent`类来表示图像组件的实现。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:142
+#, no-wrap
+msgid "Now you can use `<image>` wherever you want in the template.\n"
+msgstr "现在你可以使用任何你想要的模板`<image>`。 ???\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:146
+#, no-wrap
+msgid ""
+"```\n"
+"<image></image>\n"
+"```\n"
+msgstr ""
+
+#. type: Title ####
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:147
+#, no-wrap
+msgid "Adding Properties"
+msgstr "添加属性 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:150
+msgid ""
+"The next thing we can do is to extend some native properties to make the "
+"component more powerful. As an image, let's say we should have a `src` "
+"attribute as image's remote source and a `resize` attribute as image's "
+"resize mode(contain/cover/stretch)."
+msgstr ""
+"我们可以做的下一件事是扩展一些原生属性，使组件更强大。作为一个图像，让我们"
+"说，我们应该有一个`src`` attribute as image's remote source and a ``resize`属"
+"性为图像的大小模式(contain/cover/stretch)。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:153
+msgid "``` @interface WXImageComponent ()"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:156
+msgid ""
+"@property (nonatomic, strong) NSString *imageSrc; @property (nonatomic, "
+"assign) UIViewContentMode resizeMode;"
+msgstr ""
+"“物业(nonatomic, strong)NSString * imagesrc;@物业(nonatomic, "
+"assign)uiviewcontentmode resizemode; ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:159
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:177
+msgid "@end ```"
+msgstr "@结束````???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:161
+msgid ""
+"All of the styles, attributes and events will be passed to the component's "
+"initialization method, so here you can store the properties which you are "
+"interested in."
+msgstr ""
+"所有的样式，属性和事件将被传递到组件的初始化方法，所以在这里你可以存储你感兴"
+"趣的属性。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:164
+msgid "``` @implementation WXImageComponent"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:171
+#, no-wrap
+msgid ""
+"- (instancetype)initWithRef:(NSString *)ref type:(NSString *)type styles:(NSDictionary *)styles attributes:(NSDictionary *)attributes events:(NSArray *)events weexInstance:(WXSDKInstance *)weexInstance\n"
+"{\n"
+"    if (self = [super initWithRef:ref type:type styles:styles attributes:attributes events:events weexInstance:weexInstance]) {\n"
+"        _imageSrc = [WXConvert NSString:attributes[@\"src\"]];\n"
+"        _resizeMode = [WXConvert UIViewContentMode:attributes[@\"resize\"]];\n"
+"    }\n"
+msgstr ""
+"-(instancetype)initwithref：(NSString *)ref类型：(NSString *)型风格：(NSDictionary *)样式属性：属性(NSArray *)weexinstance(NSDictionary *)事件：事件：(WXSDKInstance *)weexinstance ???\n"
+"{\n"
+"    如果(self = [super initWithRef:ref type:type styles:styles attributes:attributes events:events weexInstance:weexInstance]){ ???\n"
+"        _imagesrc = [wxconvert NSString：属性[@“src”]]; ???\n"
+"        _resizemode = [wxconvert uiviewcontentmode：@“调整大小”属性[]]; ???\n"
+"    }\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:174
+#, no-wrap
+msgid ""
+"    return self;\n"
+"}\n"
+msgstr ""
+"    回归自我; ???\n"
+"}\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:179
+msgid ""
+"The properties getted in the attributes are of `id` type, so we have to "
+"convert them to the type we want using a conversion function.  Basic "
+"conversion functions can be found in the `WXConvert` file, or you can just "
+"add your own conversion function."
+msgstr ""
+"得到的属性在属性是`id`` type, so we have to convert them to the type we want "
+"using a conversion function.  Basic conversion functions can be found in the "
+"``WXConvert`文件，或者你可以添加你自己的转换功能。 ???"
+
+#. type: Title ####
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:181
+#, no-wrap
+msgid "Hooking Render Life Cycle"
+msgstr "挂钩使生命周期 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:184
+msgid ""
+"A Native Component has a life cycle managed by Weex. Weex creates it, layout "
+"it, renders it and destroys it."
+msgstr "本地组件的生命周期管理weex。weex创造它，布置它，使它和破坏它。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:186
+msgid ""
+"Weex offers component life cycle hooks that give you visibility into these "
+"key moments and the ability to act when they occur."
+msgstr "weex提供组件生命周期挂钩，让你参与这些关键时刻和行动能力时。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:191
+#, no-wrap
+msgid ""
+"method| description \n"
+":----:|------\n"
+"initWithRef:type:...| Initializes a new component using the specified  properties. \n"
+"layoutDidFinish | Called when the component has just laid out.\n"
+"loadView   | Creates the view that the component manages.  \n"
+msgstr ""
+"|描述方法 ???\n"
+"：：：| ------ ???\n"
+"initwithref：类型：…|初始化一个新的组件使用指定的属性。 ???\n"
+"layoutdidfinish |称当组件已经奠定了。 ???\n"
+"全部|创建认为组件管理。 ???\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:192
+#, no-wrap
+msgid "viewWillLoad | Called before the load of component's view .  \n"
+msgstr "viewwillload |在组件负载的观点称。 ???\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:200
+msgid ""
+"viewDidLoad | Called after the component's view is loaded and set.  "
+"viewWillUnload | Called just before releasing the component's view.  "
+"viewDidUnload | Called when the component's view is released.  "
+"updateStyles:| Called when component's style are updated.  "
+"updateAttributes:| Called when component's attributes are updated.  "
+"addEvent:| Called when adding an event to the component.  removeEvent:| "
+"Called when removing an event frome the component."
+msgstr ""
+"viewDidLoad |称后组件看来是加载和设置。viewwillunload |之前释放组件的视图称"
+"为。| viewDidUnload时调用组件的视图释放。updatestyles：|称当组件的方式更新。"
+"updateattributes：|称当组件的属性更新。| AddEvent：称为组件添加事件时。"
+"removeevent：|称当移除事件从组件。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:203
+msgid ""
+"As in the image component example, if we need to use our own image view, we "
+"can override the `loadView` method."
+msgstr ""
+"在图像组件的例子，如果我们需要用我们自己的形象的看法，我们可以重写`loadView`"
+"方法。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:211
+#, no-wrap
+msgid ""
+"```\n"
+"- (UIView *)loadView\n"
+"{\n"
+"    return [[WXImageView alloc] init];\n"
+"}\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:213
+msgid "Now Weex will use `WXImageView` to render the `image` component."
+msgstr "现在weex将使用`WXImageView`` to render the ``image`组件。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:215
+msgid ""
+"As an image component, we will need to fetch the remote image and set it to "
+"the image view.  This can be done in `viewDidLoad` method when the view is "
+"created and loaded. `viewDidLoad` is also the best time to perform "
+"additional initialization for your view， such as content mode changing."
+msgstr ""
+"作为一个图像组件，我们将需要获取远程图像，并将其设置为图像视图。这可以在"
+"`viewDidLoad`` method when the view is created and loaded. ``viewDidLoad`做为"
+"你的观点进行额外的初始化的最佳时间，如内容模式的改变。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:225
+#, no-wrap
+msgid ""
+"```\n"
+"- (void)viewDidLoad\n"
+"{\n"
+"    UIImageView *imageView = (UIImageView *)self.view;\n"
+"    imageView.contentMode = _resizeMode;\n"
+"    imageView.userInteractionEnabled = YES;\n"
+"    imageView.clipsToBounds = YES;\n"
+"    imageView.exclusiveTouch = YES;\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:229
+#, no-wrap
+msgid ""
+"    // Do your image fetching and updating logic\n"
+"}\n"
+"```\n"
+msgstr ""
+"    做你的图像获取和更新逻辑 ???\n"
+"}\n"
+" ````???\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:231
+msgid ""
+"If image's remote source can be changed, you can also hook the "
+"`updateAttributes:` method to perform your attributes changing logic. "
+"Component's view always has been loaded while `updateAttributes:` or "
+"`updateStyles:` is called."
+msgstr ""
+"如果图像的远程源是可以改变的，你也可以勾`updateAttributes:`` method to "
+"perform your attributes changing logic. Component's view always has been "
+"loaded while ``updateAttributes:`` or ``updateStyles:`叫做。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:240
+#, no-wrap
+msgid ""
+"```\n"
+"- (void)updateAttributes:(NSDictionary *)attributes\n"
+"{\n"
+"    if (attributes[@\"src\"]) {\n"
+"        _imageSrc = [WXConvert NSString:attributes[@\"src\"]];\n"
+"        // Do your image updating logic\n"
+"    }\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:247
+#, no-wrap
+msgid ""
+"    if (attributes[@\"resize\"]) {\n"
+"        _resizeMode = [WXConvert UIViewContentMode:attributes[@\"resize\"]];\n"
+"        self.view.contentMode = _resizeMode;\n"
+"    }\n"
+"}\n"
+"```\n"
+msgstr ""
+"    如果(attributes[@\"resize\"]){ ???\n"
+"        _resizemode = [wxconvert uiviewcontentmode：@“调整大小”属性[]]; ???\n"
+"        self.view.contentmode = _resizemode; ???\n"
+"    }\n"
+"}\n"
+" ````???\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:249
+msgid ""
+"Maybe there is even more life cycle hooks you might need to consider, such "
+"as `layoutDidFinish` while layout computing is finished.  If you want to go "
+"deeper, check out the `WXComponent.h` file in the source code."
+msgstr ""
+"也许有更多的生命周期挂钩，你可能需要考虑，如`layoutDidFinish`` while layout "
+"computing is finished.  If you want to go deeper, check out the "
+"``WXComponent.h`文件的源代码。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:251
+#, no-wrap
+msgid "Now you can use `<image>` and its attributes wherever you want in the template.\n"
+msgstr "现在你可以在你想要的地方在模板中使用`<image>`及其属性。 ???\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/extend-to-ios.md:255
+#, no-wrap
+msgid ""
+"```\n"
+"<image style=\"your-custom-style\" src=\"image-remote-source\" resize=\"contain/cover/stretch\"></image>\n"
+"```\n"
+msgstr ""
+
+#~ msgid "TODO"
+#~ msgstr "待办事项 ???"

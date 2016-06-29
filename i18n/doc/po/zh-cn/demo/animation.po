@@ -32,7 +32,7 @@ msgstr "weex代码 ???"
 #. type: Plain text
 #: /home/dev/download/weex/doc/demo/animation.md:10
 msgid ""
-"See [animation example](https://github.com/alibaba/weex/tree/master/examples/"
+"See [animation example](https://github.com/alibaba/weex/tree/dev/examples/"
 "animation.we)."
 msgstr ""
 "[例](https://github.com/alibaba/weex/tree/master/examples/animation.we)看动"

@@ -9,7 +9,15 @@ msgid "Tutorial"
 msgstr "入门教程"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:4
+#: /home/dev/download/weex/doc/tutorial.md:5
+#, no-wrap
+msgid ""
+"<span class=\"weex-version\">0.4</span>\n"
+"<a href=\"https://github.com/weexteam/article/issues/4\"  class=\"weex-translate\">cn</a>\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/tutorial.md:7
 msgid ""
 "We will make a simple but realistic list of tech that weex used, this form "
 "of list also work for a lot of e-commerce app/mobile site."
@@ -18,46 +26,41 @@ msgstr ""
 "站很常见。"
 
 #. type: Title ##
-#: /home/dev/download/weex/doc/tutorial.md:5
+#: /home/dev/download/weex/doc/tutorial.md:8
 #, no-wrap
 msgid "Getting Started"
 msgstr "启航"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:8
+#: /home/dev/download/weex/doc/tutorial.md:11
 msgid "Let's start easy though, making a item of list."
 msgstr "让我们开始编写列表。 "
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:13
+#: /home/dev/download/weex/doc/tutorial.md:21
 #, no-wrap
 msgid ""
 "```html\n"
 "<template>\n"
-"  <div class=\"container\" >\n"
+"  <div class=\"container\">\n"
 "    <div class=\"cell\">\n"
-"       <image class=\"thumb\" src=\"http://t.cn/RGE3AJt\"></image>  \n"
-msgstr ""
-
-#. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:18
-#, no-wrap
-msgid ""
-"       <text class=\"title\">JavaScript</text>\n"
+"        <image class=\"thumb\" src=\"http://t.cn/RGE3AJt\"></image>\n"
+"        <text class=\"title\">JavaScript</text>\n"
 "    </div>\n"
 "  </div>\n"
 "</template>\n"
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:22
-#: /home/dev/download/weex/doc/tutorial.md:98
+#: /home/dev/download/weex/doc/tutorial.md:28
 #, no-wrap
 msgid ""
 "<style>\n"
-"  .cell{margin-top:10 ; margin-left:10 ; flex-direction: row; }\n"
-"  .thumb {width: 200; height: 200; }\n"
-"  .title {text-align: center ; flex: 1; color: grey; font-size: 50; }  \n"
+"  .cell { margin-top: 10; margin-left: 10; flex-direction: row; }\n"
+"  .thumb { width: 200; height: 200; }\n"
+"  .title { text-align: center; flex: 1; color: grey; font-size: 50; }\n"
+"</style>\n"
+"```\n"
 msgstr ""
 " <style>\n"
 "  .cell{margin-top:10 ; margin-left:10 ; flex-direction: row; }\n"
@@ -65,16 +68,7 @@ msgstr ""
 "  .title {text-align: center ; flex: 1; color: grey; font-size: 50; }  \n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:25
-#: /home/dev/download/weex/doc/tutorial.md:101
-#, no-wrap
-msgid ""
-"</style>\n"
-"```\n"
-msgstr ""
-
-#. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:27
+#: /home/dev/download/weex/doc/tutorial.md:30
 msgid ""
 "You can copy and paste above code to a Weex file named `tech_list.we` (`.we` "
 "is our recommended the file extension name)"
@@ -82,33 +76,39 @@ msgstr ""
 "你可以复制和粘贴上面的代码到名为 `tech_list.we` 的 weex 文件 (`.we`是我们推荐"
 "的文件扩展名) "
 
+#. type: Title ##
+#: /home/dev/download/weex/doc/tutorial.md:31
+#, no-wrap
+msgid "Preview"
+msgstr "预览 ???"
+
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:29
+#: /home/dev/download/weex/doc/tutorial.md:34
 msgid ""
-"The Weex CLI toolchain is Node JS based, so you need to install [Node]"
-"(https://nodejs.org/en/download/stable/) first. Then you can install Weex "
-"CLI program using Node JS npm command."
+"First you need to install [Node](https://nodejs.org/en/download/stable/). "
+"Then you can install Weex CLI program [Weex Toolkit](https://www.npmjs.com/"
+"package/weex-toolkit) with command:"
 msgstr ""
 "Weex 的命令行工具基于NodeJs，所以你需要安装[NodeJs](https://nodejs.org/en/"
 "download/stable/)。然后你可以使用NodeJs的 npm 命令来安装 weex"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:33
+#: /home/dev/download/weex/doc/tutorial.md:38
 msgid "``` npm install -g weex-toolkit ```"
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:35
+#: /home/dev/download/weex/doc/tutorial.md:40
 msgid ""
-"After Weex CLI program install finished, you should test to ensure the Weex "
-"CLI is properly installed by typing weex on the command line. You should see "
-"the following help text displayed:"
+"After the installation finished, you could ensure the Weex CLI is properly "
+"installed by typing `weex` on the command line. You should see the following "
+"help text displayed:"
 msgstr ""
 "weex 命令行安装后，输入 `weex` ，测试下 weex 命令行是否正确安装。您应该会看到"
 "以下的文本显示： "
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:38
+#: /home/dev/download/weex/doc/tutorial.md:43
 msgid "``` Usage: weex foo/bar/your_next_best_weex_script_file.we [options]"
 msgstr ""
 
@@ -117,47 +117,50 @@ msgstr ""
 #, no-wrap
 msgid ""
 "Options:\n"
-"  --qr    display QR code for native runtime                           [boolean]\n"
-"  -o      transform weex JS bundle only, specify bundle file name using the\n"
-"          option                                 [default: \"no JSBundle output\"]\n"
-"  -s      start a http file server, weex .we file will be transformed on the\n"
-"          server, specify local root path using the option     [default: false]\n"
-"  --help  Show help                                                    [boolean]\n"
-"```\n"
+"  --qr     display QR code for native runtime, \n"
+"  -o,--output  transform weex we file to JS Bundle, output path (single JS bundle file or dir)\n"
+"  -s,--server  start a http file server, weex .we file will be transforme to JS bundle on the server , specify local root path using the option  \n"
 msgstr ""
-"选项： \n"
-"  -qr     显示原生组件运行时(Weex Playground App)访问的二维码 \n"
-"  -o      transform weex JS bundle only, specify bundle file name using the\n"
-"          option                                 [default: \"no JSBundle output\"]\n"
-"  -s      start a http file server, weex .we file will be transformed on the\n"
-"          server, specify local root path using the option     [default: false]\n"
-"  --help  Show help                                                    [boolean]\n"
-"```\n"
+"选项： ???\n"
+"  对于本地运行时显示二维码QR， ???\n"
+"  啊，输出变换weex我们文件的输出路径(single JS bundle file or dir)JS束， ???\n"
+"  -，-服务器启动一个HTTP文件服务器，weex。我们将文件服务器上的js包变压器，使用选项指定本地路径 ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:49
+#: /home/dev/download/weex/doc/tutorial.md:52
+#, no-wrap
+msgid ""
+"  ......\n"
+"  --help  Show help         \n"
+"  -h, --host [default: \"127.0.0.1\"]\n"
+"```\n"
+msgstr ""
+"  ......\n"
+"  -帮助显示帮助 ???\n"
+"  H、主机[默认：“127.0.0.1”] ???\n"
+" ````???\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/tutorial.md:54
 msgid ""
 "If all works well, navigate to the directory where you save the newly "
-"created tech_list.we, then type"
+"created `tech_list.we`, then type:"
 msgstr "如果一切正常，进入到你新建 tech_list.we 的目录，然后键入 "
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:53
-#, no-wrap
-msgid ""
-"```\n"
-"weex tech_list.we   // Weex H5 renderer is not released , so , the commond not works now\n"
-"```\n"
+#: /home/dev/download/weex/doc/tutorial.md:58
+#: /home/dev/download/weex/doc/tutorial.md:196
+msgid "``` weex tech_list.we ```"
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:55
-msgid ""
-"A browser window will open automatically to display something like below"
-msgstr "一个浏览器窗口会自动打开，显示类似下面的内容"
+#: /home/dev/download/weex/doc/tutorial.md:60
+#, no-wrap
+msgid "A browser window will open automatically  to display  something like below     ( weex-toolkit version must greater then 0.1.0 , please check using `weex --version` cmd)\n"
+msgstr "一个浏览器窗口将自动打开，显示类似下面( weex-toolkit version must greater then 0.1.0 , please check using  z59813328476z  cmd)???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:57
+#: /home/dev/download/weex/doc/tutorial.md:62
 msgid ""
 "![weex html5 render](http://gtms02.alicdn.com/tps/i2/"
 "TB1y151LVXXXXXXaXXXoRYgWVXX-495-584.jpg)"
@@ -165,36 +168,39 @@ msgstr ""
 "![weex HTML5渲染](http://gtms02.alicdn.com/tps/i2/"
 "TB1y151LVXXXXXXaXXXoRYgWVXX-495-584.jpg)"
 
-#. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:60
-#, no-wrap
-msgid "**Weex H5 renderer is not released , So please using Weex Playground App based preview for a while**\n"
-msgstr "** weex H5 渲染器尚未公布，所以请使用 Weex Playground App 预览 ** \n"
-
 #. type: Title ##
-#: /home/dev/download/weex/doc/tutorial.md:62
+#: /home/dev/download/weex/doc/tutorial.md:63
 #, no-wrap
 msgid "Intro Weex Syntax"
 msgstr "介绍weex语法 "
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:64
+#: /home/dev/download/weex/doc/tutorial.md:66
 msgid ""
-"So it's time for some \"boring syntax\", as content of tech_list.we showing, "
-"Weex source code is written in three parts -- *template*, *style*, *script* "
-"just like html,css,javascript for the Web."
+"So it's time for introduce the syntax. As the content of `tech_list.we` "
+"showing, Weex source code is written in three parts -- *template*, *style*, "
+"*script* just like html,css,javascript for the Web."
 msgstr ""
 "是时候聊聊无趣的语法了，tech_list.we 代码分三部分 - 模板(template), 样式"
 "(style), 脚本(script)；正如 HTML，CSS，JavaScript 之于 Web 。 "
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:66
-#, no-wrap
-msgid "Template is the skeleton that give weex structure, it composed by tags which surround content and apply meaning to it. Weex has two type of tag, opening tag & closing tag, we call every couple  of opening tag &  closing tag a Weex tag. Tag have *attributes*,  different attribute have different meaning,   class attribute makes it possible to define equal styles for multiple tags,  onclick attribute makes the tag  responds to click  event.\n"
-msgstr "模板是weex结构的骨架，它由各式各样的标签组成。weex的标签有两部分，标签开始和标签结束，我们称每对开始和结束为一个weex标签。标签有属性，不同的属性有不同的意义，class属性可以定义一批标签的样式，onclick属性使得标签可以响应单击事件。 \n"
+#: /home/dev/download/weex/doc/tutorial.md:68
+msgid ""
+"Template is the skeleton that give weex structure, it composed by tags which "
+"surround content and apply meaning to it. Weex has two type of tag, opening "
+"tag & closing tag, we call every couple of opening tag & closing tag a Weex "
+"tag. Tag have *attributes*, different attribute have different meaning, "
+"class attribute makes it possible to define equal styles for multiple tags, "
+"onclick attribute makes the tag responds to click event."
+msgstr ""
+"模板是weex结构的骨架，它由各式各样的标签组成。weex的标签有两部分，标签开始和"
+"标签结束，我们称每对开始和结束为一个weex标签。标签有属性，不同的属性有不同的"
+"意义，class属性可以定义一批标签的样式，onclick属性使得标签可以响应单击事"
+"件。 \n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:68
+#: /home/dev/download/weex/doc/tutorial.md:70
 msgid ""
 "Style describes how Weex tags are to be displayed. We like you, love the "
 "CSS, so we try to keep consistent with CSS standard as possible. Weex Style "
@@ -206,7 +212,7 @@ msgstr ""
 "布局。 "
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:70
+#: /home/dev/download/weex/doc/tutorial.md:72
 msgid ""
 "Script add *data* & *logic* to Weex tags, help you easy access local or "
 "remote data and update tags. You can also define some methods for your tag "
@@ -218,59 +224,46 @@ msgstr ""
 "CommonJS的模块风格。 "
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:72
+#: /home/dev/download/weex/doc/tutorial.md:74
 msgid ""
 "More complete information about Weex syntax can be found in our [Syntax "
 "chapter](syntax/main.md)."
 msgstr "关于weex语法的更多信息，请参阅[语法](syntax/main.md)。 "
 
 #. type: Title ##
-#: /home/dev/download/weex/doc/tutorial.md:73
+#: /home/dev/download/weex/doc/tutorial.md:75
 #, no-wrap
 msgid "Add More Item"
 msgstr "添加更多的条目"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:76
+#: /home/dev/download/weex/doc/tutorial.md:78
 msgid ""
-"We can't call one item an list, so we need add more item to our tech list.  "
-"open tech_list.we in your favorite editor and update it's content like below"
+"We can't call one item an list, so we need add more item to our tech list. "
+"open `tech_list.we` in your favorite editor and update it's content like "
+"below:"
 msgstr ""
 "单个条目不能称之为列表，所以我们需要在列表中添加更多的条目。用你最喜欢的编辑"
 "器打开tech_list.we，更新内容如下 "
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:81
+#: /home/dev/download/weex/doc/tutorial.md:96
 #, no-wrap
 msgid ""
 "```html\n"
 "<template>\n"
-"  <div class=\"container\"  >\n"
+"  <div class=\"container\">\n"
 "    <div class=\"cell\">\n"
-"       <image class=\"thumb\" src=\"http://t.cn/RGE3AJt\"></image>  \n"
-msgstr ""
-
-#. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:89
-#: /home/dev/download/weex/doc/tutorial.md:145
-#, no-wrap
-msgid ""
-"       <text class=\"title\">JavaScript</text>\n"
+"        <image class=\"thumb\" src=\"http://t.cn/RGE3AJt\"></image>\n"
+"        <text class=\"title\">JavaScript</text>\n"
 "    </div>\n"
 "    <div class=\"cell\">\n"
-"       <image class=\"thumb\" src=\"http://t.cn/RGE3uo9\"></image>\n"
-"       <text class=\"title\">Java</text>\n"
+"        <image class=\"thumb\" src=\"http://t.cn/RGE3uo9\"></image>\n"
+"        <text class=\"title\">Java</text>\n"
 "    </div>\n"
 "    <div class=\"cell\">\n"
-"       <image class=\"thumb\" src=\"http://t.cn/RGE31hq\"></image>  \n"
-msgstr ""
-
-#. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:94
-#: /home/dev/download/weex/doc/tutorial.md:150
-#, no-wrap
-msgid ""
-"       <text class=\"title\">Objective C</text>\n"
+"        <image class=\"thumb\" src=\"http://t.cn/RGE31hq\"></image>\n"
+"        <text class=\"title\">Objective C</text>\n"
 "    </div>\n"
 "  </div>\n"
 "</template>\n"
@@ -278,43 +271,59 @@ msgstr ""
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/tutorial.md:103
+#, no-wrap
 msgid ""
-"Now we will try to render our tech_list.we with Weex native renderer.  open "
+"<style>\n"
+"  .cell{ margin-top:10 ; margin-left:10 ; flex-direction: row; }\n"
+"  .thumb { width: 200; height: 200; }\n"
+"  .title { text-align: center ; flex: 1; color: grey; font-size: 50; }\n"
+"</style>\n"
+"```\n"
+msgstr ""
+" <style>\n"
+"  .cell{margin-top:10 ; margin-left:10 ; flex-direction: row; }\n"
+"  .thumb {width: 200; height: 200; }\n"
+"  .title {text-align: center ; flex: 1; color: grey; font-size: 50; }  \n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/tutorial.md:105
+msgid ""
+"Now we will try to render our tech_list.we with Weex native renderer.  Open "
 "your terminal and navigate to the directory where you save the tech_list.we "
-"again,then type"
+"again, then type"
 msgstr ""
 "现在，我们将用原生组件渲染器来渲染 tech_list.we 。打开终端，进入到你的 "
 "tech_list.we 目录，然后键入 "
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:106
-msgid "``` weex tech_list.we --qr"
+#: /home/dev/download/weex/doc/tutorial.md:109
+msgid "``` weex tech_list.we --qr -h {ip or hostname} ```"
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:109
-msgid "``` An QR code will be display in the terminal window, like:"
+#: /home/dev/download/weex/doc/tutorial.md:111
+msgid ""
+"It's ***RECOMMENDED*** to use `-h` option to specify your local ip address "
+"or hostname."
+msgstr "这是***推荐***使用`-h`选项来指定本地IP地址或主机名。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/tutorial.md:113
+msgid "An QR code will be display in the terminal window like:"
 msgstr "``` 然后，命令行中会出现一个二维码，类似:"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:112
-msgid ""
-"![weex qr](http://gtms01.alicdn.com/tps/i1/"
-"TB1ggfiLVXXXXbPXXXXELJK6FXX-334-379.jpg)"
-msgstr ""
-"![weex QR](http://gtms01.alicdn.com/tps/i1/"
-"TB1ggfiLVXXXXbPXXXXELJK6FXX-334-379.jpg)"
+#: /home/dev/download/weex/doc/tutorial.md:115
+msgid "![Weex CLI](images/tut-cli-qrcode.png)"
+msgstr "![weex CLI](images/tut-cli-qrcode.png)???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:115
+#: /home/dev/download/weex/doc/tutorial.md:117
 msgid ""
-"The QR code will work together with Weex playground App, you can download "
-"the app [here](http://alibaba.github.io/weex/download.html).  After "
-"successful installation, open Weex playground App then click scan icon at "
-"top right corner, then scan the Qr code in your terminal.If all works well, "
-"a beautiful list will be displayed in your phone. Here, i must stress that "
-"the list is render using native widget ( no webkit ), so your app get faster "
-"loading and less memory overhead than common embedded webkit renderer."
+"The QR code can work together with [Weex Playground App](http://alibaba."
+"github.io/weex/download.html). Open it and tap the scan icon at the top-"
+"right corner, then scan the Qr code in your terminal.If all works well, a "
+"beautiful list will be displayed in your phone."
 msgstr ""
 "你可以用手机[到这里下载](http://alibaba.github.io/weex/download.html) Weex "
 "Playground App 应用。安装后，打开应用程序，然后单击 Weex playground App 右上"
@@ -323,40 +332,51 @@ msgstr ""
 "内嵌网页，你的应用程序加载速度更快、使用内存更少。 "
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:117
-msgid ""
-"![list1 in Android](http://gtms04.alicdn.com/tps/i4/"
-"TB1FH15LVXXXXcYXFXXFzbANVXX-504-896.png)"
-msgstr ""
-"![Android中的列表](http://gtms04.alicdn.com/tps/i4/"
-"TB1FH15LVXXXXcYXFXXFzbANVXX-504-896.png)"
+#: /home/dev/download/weex/doc/tutorial.md:119
+msgid "![Second Example](images/tut-second.png)"
+msgstr "![例](images/tut-second.png)二 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:119
+#: /home/dev/download/weex/doc/tutorial.md:121
 msgid ""
-"Now open tech_list.we again and trying to change some text, after changes "
-"saved the Weex playground App will immediately display these changes.  this "
-"called **Hot-Reload**, it also works with default Weex browser renderer. We "
-"hope hot-reload will be helpful when you debug Weex script."
+"Here, I must stress that the list is rendered by native view ( not Webkit ), "
+"so your app get faster loading and less memory overhead than common Webview "
+"renderer."
+msgstr ""
+"在这里，我要强调的是，该名单由自然观( not Webkit )渲染，所以你的应用程序获得"
+"更快的加载速度和减少内存开销比普通Web视图渲染器。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/tutorial.md:123
+msgid ""
+"Now open tech_list.we again and trying to change some text,after changes "
+"saved the Weex playground App will immediately display these changes. we "
+"called it **Hot-Reload**. Hope it can help you use Weex better."
 msgstr ""
 "现在打开tech_list.we，再次改变一些文本，更改后保存。weex playground app 会立"
 "即显示这些变化。这叫**热加载（Hot-Reload）**，weex默认的浏览器渲染器也支持热"
 "加载。我们希望热加载能方便您去调试weex脚本。 "
 
 #. type: Title ##
-#: /home/dev/download/weex/doc/tutorial.md:120
+#: /home/dev/download/weex/doc/tutorial.md:124
 #, no-wrap
 msgid "Add Build-in Component"
 msgstr "添加内置组件 "
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:123
-#, no-wrap
-msgid "Beyond writing basic tag by yourself, Weex provide  a lot of build-in components.   For example,  Slider is common to many App/Mobile Web, So Weex include  a  build-in  Slider  and you can easily using the component in your script.  Let's open tech_list.we and update it's content like below.\n"
-msgstr "除了自己定义去基本标签，weex也提供了大量的内置部件。例如，走马灯(Slider)是许多网站和移动应用常见的，所以weex包括内置走马灯模块，它很容易使用。让我们打开 tech_list.we 更新内容如下。 \n"
+#: /home/dev/download/weex/doc/tutorial.md:127
+msgid ""
+"Beyond writing basic tag by yourself, Weex provide a lot of build-in "
+"components. For example, Slider is common to many App/Mobile Web, So Weex "
+"include a build-in Slider and you can easily using the component in your "
+"script. Let's open tech_list.we and update it's content like below."
+msgstr ""
+"除了自己定义去基本标签，weex也提供了大量的内置部件。例如，走马灯(Slider)是许"
+"多网站和移动应用常见的，所以weex包括内置走马灯模块，它很容易使用。让我们打开 "
+"tech_list.we 更新内容如下。 \n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:134
+#: /home/dev/download/weex/doc/tutorial.md:137
 #, no-wrap
 msgid ""
 "```html\n"
@@ -371,42 +391,53 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:137
+#: /home/dev/download/weex/doc/tutorial.md:153
 #, no-wrap
 msgid ""
 "  <div class=\"container\" onclick=\"goWeexSite\" >\n"
 "    <div class=\"cell\">\n"
-"       <image class=\"thumb\" src=\"http://t.cn/RGE3AJt\"></image>  \n"
+"        <image class=\"thumb\" src=\"http://t.cn/RGE3AJt\"></image>\n"
+"        <text class=\"title\">JavaScript</text>\n"
+"    </div>\n"
+"    <div class=\"cell\">\n"
+"        <image class=\"thumb\" src=\"http://t.cn/RGE3uo9\"></image>\n"
+"        <text class=\"title\">Java</text>\n"
+"    </div>\n"
+"    <div class=\"cell\">\n"
+"        <image class=\"thumb\" src=\"http://t.cn/RGE31hq\"></image>\n"
+"        <text class=\"title\">Objective C</text>\n"
+"    </div>\n"
+"  </div>\n"
+"</template>\n"
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:164
+#: /home/dev/download/weex/doc/tutorial.md:169
 #, no-wrap
 msgid ""
 "<style>\n"
-"  .cell{margin-top:10 ; margin-left:10 ; flex-direction: row; }\n"
-"  .thumb {width: 200; height: 200; }\n"
-"  .title {text-align: center ; flex: 1; color: grey; font-size: 50; }\n"
+"  .cell { margin-top:10 ; margin-left:10 ; flex-direction: row; }\n"
+"  .thumb { width: 200; height: 200; }\n"
+"  .title { text-align: center ; flex: 1; color: grey; font-size: 50; }\n"
 "  .slider {\n"
-"        margin: 18;\n"
-"        width: 714;\n"
-"        height: 230;\n"
+"    margin: 18;\n"
+"    width: 714;\n"
+"    height: 230;\n"
 "  }\n"
 "  .slider-pages {\n"
-"        flex-direction: row;\n"
-"        width: 714;\n"
-"        height: 200;\n"
-"  }  \n"
+"    flex-direction: row;\n"
+"    width: 714;\n"
+"    height: 200;\n"
+"  }\n"
+"</style>\n"
 msgstr ""
+" <style>\n"
+"  .cell{margin-top:10 ; margin-left:10 ; flex-direction: row; }\n"
+"  .thumb {width: 200; height: 200; }\n"
+"  .title {text-align: center ; flex: 1; color: grey; font-size: 50; }  \n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:166
-#, no-wrap
-msgid "</style>\n"
-msgstr ""
-
-#. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:187
+#: /home/dev/download/weex/doc/tutorial.md:190
 #, no-wrap
 msgid ""
 "<script>\n"
@@ -424,7 +455,7 @@ msgid ""
 "    methods: {\n"
 "      goWeexSite: function () {\n"
 "        this.$openURL('http://alibaba.github.io/weex/')\n"
-"      }       \n"
+"      }\n"
 "    }\n"
 "}\n"
 "</script>\n"
@@ -432,38 +463,29 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:189
+#: /home/dev/download/weex/doc/tutorial.md:192
 msgid "Open terminal and run the command again."
 msgstr "打开终端并重新运行命令。 "
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:193
-msgid "``` weex tech_list.we ```"
-msgstr ""
-
-#. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:196
+#: /home/dev/download/weex/doc/tutorial.md:198
 msgid "You should see a slider prepend to our list."
 msgstr "你应该在我们的列表中看到一个Slider。 "
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:198
-msgid ""
-"![slider demo](http://gtms02.alicdn.com/tps/i2/TB1MB2gLVXXXXaLXpXXB8."
-"XUXXX-596-1000.gif)"
-msgstr ""
-"![Slider演示](http://gtms02.alicdn.com/tps/i2/TB1MB2gLVXXXXaLXpXXB8."
-"XUXXX-596-1000.gif)"
+#: /home/dev/download/weex/doc/tutorial.md:200
+msgid "![Third Example](images/tut4.gif)"
+msgstr "![例]第三(images/tut4.gif)???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:201
+#: /home/dev/download/weex/doc/tutorial.md:202
 msgid ""
 "More information about Slider Component can be found [here](components/"
 "slider.md)."
 msgstr "关于Slider组件的更多信息见[这里](components/slider.md)。 "
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/tutorial.md:202
+#: /home/dev/download/weex/doc/tutorial.md:203
 msgid ""
 "Just as previous example, the slider can be rendering in native, easily in "
 "Weex playground,also in your App. Please refer [the document](advanced/"
@@ -472,3 +494,64 @@ msgstr ""
 "就像前面的例子，Slider可以被原生的渲染，无论是在weex playground，还是你的"
 "Android应用程序。Android整合请参阅[集成weex到您的Android程序](advanced/"
 "integrate-to-android.md)。 "
+
+#~ msgid ""
+#~ "Options:\n"
+#~ "  --qr    display QR code for native runtime                           "
+#~ "[boolean]\n"
+#~ "  -o      transform weex JS bundle only, specify bundle file name using "
+#~ "the\n"
+#~ "          option                                 [default: \"no JSBundle "
+#~ "output\"]\n"
+#~ "  -s      start a http file server, weex .we file will be transformed on "
+#~ "the\n"
+#~ "          server, specify local root path using the option     [default: "
+#~ "false]\n"
+#~ "  --help  Show help                                                    "
+#~ "[boolean]\n"
+#~ "```\n"
+#~ msgstr ""
+#~ "选项： \n"
+#~ "  -qr     显示原生组件运行时(Weex Playground App)访问的二维码 \n"
+#~ "  -o      transform weex JS bundle only, specify bundle file name using "
+#~ "the\n"
+#~ "          option                                 [default: \"no JSBundle "
+#~ "output\"]\n"
+#~ "  -s      start a http file server, weex .we file will be transformed on "
+#~ "the\n"
+#~ "          server, specify local root path using the option     [default: "
+#~ "false]\n"
+#~ "  --help  Show help                                                    "
+#~ "[boolean]\n"
+#~ "```\n"
+
+#~ msgid ""
+#~ "A browser window will open automatically to display something like below"
+#~ msgstr "一个浏览器窗口会自动打开，显示类似下面的内容"
+
+#~ msgid ""
+#~ "**Weex H5 renderer is not released , So please using Weex Playground App "
+#~ "based preview for a while**\n"
+#~ msgstr ""
+#~ "** weex H5 渲染器尚未公布，所以请使用 Weex Playground App 预览 ** \n"
+
+#~ msgid ""
+#~ "![weex qr](http://gtms01.alicdn.com/tps/i1/"
+#~ "TB1ggfiLVXXXXbPXXXXELJK6FXX-334-379.jpg)"
+#~ msgstr ""
+#~ "![weex QR](http://gtms01.alicdn.com/tps/i1/"
+#~ "TB1ggfiLVXXXXbPXXXXELJK6FXX-334-379.jpg)"
+
+#~ msgid ""
+#~ "![list1 in Android](http://gtms04.alicdn.com/tps/i4/"
+#~ "TB1FH15LVXXXXcYXFXXFzbANVXX-504-896.png)"
+#~ msgstr ""
+#~ "![Android中的列表](http://gtms04.alicdn.com/tps/i4/"
+#~ "TB1FH15LVXXXXcYXFXXFzbANVXX-504-896.png)"
+
+#~ msgid ""
+#~ "![slider demo](http://gtms02.alicdn.com/tps/i2/TB1MB2gLVXXXXaLXpXXB8."
+#~ "XUXXX-596-1000.gif)"
+#~ msgstr ""
+#~ "![Slider演示](http://gtms02.alicdn.com/tps/i2/TB1MB2gLVXXXXaLXpXXB8."
+#~ "XUXXX-596-1000.gif)"

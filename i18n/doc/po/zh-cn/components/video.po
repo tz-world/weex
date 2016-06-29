@@ -8,14 +8,20 @@ msgstr ""
 msgid "&lt;video&gt;"
 msgstr "&lt;视频&gt; ???"
 
-#. type: Title ###
+#. type: Plain text
 #: /home/dev/download/weex/doc/components/video.md:3
+#, no-wrap
+msgid "<span class=\"weex-version\">0.4</span>\n"
+msgstr ""
+
+#. type: Title ###
+#: /home/dev/download/weex/doc/components/video.md:4
 #, no-wrap
 msgid "Summary"
 msgstr "总结 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/video.md:6
+#: /home/dev/download/weex/doc/components/video.md:7
 msgid ""
 "Use the &lt;video&gt; component to embed video content in a weex page. The "
 "video component use src attribute to specify the source of a video."
@@ -24,24 +30,24 @@ msgstr ""
 "频源。 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/video.md:7
+#: /home/dev/download/weex/doc/components/video.md:8
 #, no-wrap
 msgid "Child Components"
 msgstr "子组件 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/video.md:10
+#: /home/dev/download/weex/doc/components/video.md:11
 msgid "This component supports no child components but a text content."
 msgstr "此组件不支持子组件，但支持文本内容。 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/video.md:11
+#: /home/dev/download/weex/doc/components/video.md:12
 #, no-wrap
 msgid "Attributes"
 msgstr "属性 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/video.md:16
+#: /home/dev/download/weex/doc/components/video.md:17
 msgid ""
 "- `src`: &lt;string&gt; The URL of the video to embed.  - `play-status`: &lt;"
 "boolean&gt; `play` | `pause`. Use it to control video's play/pause. Default "
@@ -56,26 +62,26 @@ msgstr ""
 "initialization finished. Defalut value is ``false`。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/video.md:18
+#: /home/dev/download/weex/doc/components/video.md:19
 msgid ""
 "Other attributes please check out the [common attributes](../references/"
 "common-attrs.md)."
 msgstr "其他属性，请查看[共性](../references/common-attrs.md)。 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/video.md:19
+#: /home/dev/download/weex/doc/components/video.md:20
 #, no-wrap
 msgid "Styles"
 msgstr "款式 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/video.md:22
+#: /home/dev/download/weex/doc/components/video.md:23
 #, no-wrap
 msgid "**common styles**: check out the [common styles](../references/common-attrs.md)\n"
 msgstr "* * *：常见的方式查看[共同](../references/common-attrs.md)风格 ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/video.md:27
+#: /home/dev/download/weex/doc/components/video.md:28
 msgid ""
 "- support flexbox related styles - support box model related styles - "
 "support ``position`` related styles - support ``opacity``, ``background-"
@@ -85,13 +91,13 @@ msgstr ""
 "- support ````opacity````, ````background-color```等 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/video.md:28
+#: /home/dev/download/weex/doc/components/video.md:29
 #, no-wrap
 msgid "Events"
 msgstr "事件 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/video.md:34
+#: /home/dev/download/weex/doc/components/video.md:35
 msgid ""
 "- `start`: triggered when playback state is Playing.  - `pause`: triggered "
 "when playback state is Paused.  - `finish`: triggered when playback state is "
@@ -102,13 +108,13 @@ msgstr ""
 "is Finished.  - ``fail`：触发时，播放状态失败。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/video.md:36
+#: /home/dev/download/weex/doc/components/video.md:37
 #, no-wrap
 msgid "**common events**: check out the [common events](../references/common-event.md)\n"
 msgstr "* * *：常见的事件查看[事件](../references/common-event.md)常见 ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/video.md:39
+#: /home/dev/download/weex/doc/components/video.md:40
 msgid ""
 "- support `click` event. Check out [common events](../references/common-"
 "event.md)  - support `appear` / `disappear` event. Check out [common events]"
@@ -119,13 +125,13 @@ msgstr ""
 "common-event.md)常见 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/video.md:40
+#: /home/dev/download/weex/doc/components/video.md:41
 #, no-wrap
 msgid "Example"
 msgstr "例子 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/video.md:47
+#: /home/dev/download/weex/doc/components/video.md:48
 #, no-wrap
 msgid ""
 "```\n"

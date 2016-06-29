@@ -8,14 +8,20 @@ msgstr ""
 msgid "&lt;switch&gt;"
 msgstr "&lt;开关&gt; ???"
 
-#. type: Title ###
+#. type: Plain text
 #: /home/dev/download/weex/doc/components/switch.md:3
+#, no-wrap
+msgid "<span class=\"weex-version\">0.4</span>\n"
+msgstr ""
+
+#. type: Title ###
+#: /home/dev/download/weex/doc/components/switch.md:4
 #, no-wrap
 msgid "Summary"
 msgstr "总结 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/switch.md:6
+#: /home/dev/download/weex/doc/components/switch.md:7
 msgid ""
 "The weex builtin component `switch` is used to create and manage a IOS "
 "styled On/Off buttons used, for example, in the Settings app for options "
@@ -25,24 +31,24 @@ msgstr ""
 "用程序的选项，如“静音”和“切换颜色。 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/switch.md:7
+#: /home/dev/download/weex/doc/components/switch.md:8
 #, no-wrap
 msgid "Child Components"
 msgstr "子组件 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/switch.md:10
+#: /home/dev/download/weex/doc/components/switch.md:11
 msgid "This component supports no child components."
 msgstr "此组件不支持子组件。 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/switch.md:11
+#: /home/dev/download/weex/doc/components/switch.md:12
 #, no-wrap
 msgid "Attributes"
 msgstr "属性 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/switch.md:14
+#: /home/dev/download/weex/doc/components/switch.md:15
 msgid ""
 "- `checked`: &lt;boolean&gt; `true` | `false`. The initial value of whether "
 "the status of this button is On or Off."
@@ -51,59 +57,59 @@ msgstr ""
 "状态的初始值。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/switch.md:16
+#: /home/dev/download/weex/doc/components/switch.md:17
 msgid ""
 "Other attributes please check out the [common attributes](../references/"
 "common-attrs.md)."
 msgstr "其他属性，请查看[共性](../references/common-attrs.md)。 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/switch.md:17
+#: /home/dev/download/weex/doc/components/switch.md:18
 #, no-wrap
 msgid "Styles"
 msgstr "款式 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/switch.md:20
+#: /home/dev/download/weex/doc/components/switch.md:21
 #, no-wrap
-msgid "**common styles**: check out [common styles for components](../references/common-style.md)\n"
-msgstr "* * *：常见的方式检查[组件](../references/common-style.md)常见的风格 ???\n"
+msgid "**Notes:** There are several style properties that you mustn't use on this component, mostly have impact on the layout. Here are all the invalid properties:\n"
+msgstr "* *注释：*有几个风格属性，你不能使用这个组件，主要是对布局的影响。这里都是无效的属性： ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/switch.md:25
+#: /home/dev/download/weex/doc/components/switch.md:29
 msgid ""
-"- support flexbox related styles - support box model related styles - "
-"support ``position`` related styles - support ``opacity``, ``background-"
-"color`` etc."
+"- `width` - `height` - `min-width` - `min-height` - `margin` and `margin-"
+"xx`s - `padding` and `padding-xx`s - `border` and `border-xx`s"
 msgstr ""
-"支持flexbox相关的风格支持盒模型相关的风格支持```position```` related styles "
-"- support ````opacity````, ````background-color```等 ???"
+"-`width`` - ``height`` - ``min-width`` - ``min-height`` - ``margin`` and "
+"``margin-xx``s - ``padding`` and ``padding-xx``s - ``border`` and ``border-"
+"xx`S ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/switch.md:27
+#: /home/dev/download/weex/doc/components/switch.md:31
 #, no-wrap
-msgid "**Notes:** The `width` and `height` is not configurable and the size of this component is fixed to `100x60` (for the design width 750px).\n"
+msgid "**Notes:** Specially the `width` and `height` related properties is not configurable and the size of this component is fixed to `100x60` (for the design width 750px).\n"
 msgstr "*注：* *`width`` and ``height`` is not configurable and the size of this component is fixed to ``100x60`(for the design width 750px)。 ???\n"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/switch.md:28
+#: /home/dev/download/weex/doc/components/switch.md:32
 #, no-wrap
 msgid "Events"
 msgstr "事件 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/switch.md:31
+#: /home/dev/download/weex/doc/components/switch.md:35
 msgid "- `click`: check out [common events](../references/common-event.md)"
 msgstr "-`click`：看看[事件](../references/common-event.md)常见 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/switch.md:33
+#: /home/dev/download/weex/doc/components/switch.md:37
 #, no-wrap
 msgid "**common events**: check out the [common events](../references/common-event.md)\n"
 msgstr "* * *：常见的事件查看[事件](../references/common-event.md)常见 ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/switch.md:36
+#: /home/dev/download/weex/doc/components/switch.md:40
 msgid ""
 "- support `click` event. Check out [common events](../references/common-"
 "event.md)  - support `appear` / `disappear` event. Check out [common events]"
@@ -114,13 +120,13 @@ msgstr ""
 "common-event.md)常见 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/switch.md:37
+#: /home/dev/download/weex/doc/components/switch.md:41
 #, no-wrap
 msgid "Parameters of events' object"
 msgstr "事件对象参数 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/switch.md:42
+#: /home/dev/download/weex/doc/components/switch.md:46
 #, no-wrap
 msgid ""
 "- for `change` event:\n"
@@ -132,13 +138,13 @@ msgstr ""
 "  -时间戳：该事件的时间戳。 ???\n"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/switch.md:43
+#: /home/dev/download/weex/doc/components/switch.md:47
 #, no-wrap
 msgid "Example"
 msgstr "例子 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/switch.md:50
+#: /home/dev/download/weex/doc/components/switch.md:54
 #, no-wrap
 msgid ""
 "```html\n"
@@ -148,3 +154,17 @@ msgid ""
 "</div>\n"
 "```\n"
 msgstr ""
+
+#~ msgid ""
+#~ "**common styles**: check out [common styles for components](../references/"
+#~ "common-style.md)\n"
+#~ msgstr ""
+#~ "* * *：常见的方式检查[组件](../references/common-style.md)常见的风格 ???\n"
+
+#~ msgid ""
+#~ "- support flexbox related styles - support box model related styles - "
+#~ "support ``position`` related styles - support ``opacity``, ``background-"
+#~ "color`` etc."
+#~ msgstr ""
+#~ "支持flexbox相关的风格支持盒模型相关的风格支持```position```` related "
+#~ "styles - support ````opacity````, ````background-color```等 ???"

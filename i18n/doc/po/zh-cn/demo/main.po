@@ -8,7 +8,10 @@ msgstr ""
 msgid "Examples"
 msgstr "实例 ???"
 
-#. type: Bullet: '* '
+#. type: Plain text
 #: /home/dev/download/weex/doc/demo/main.md:3
-msgid "[Hello World](./hello-world.md)"
-msgstr "[世界](./hello-world.md)你好 ???"
+msgid "[Weex examples](https://github.com/alibaba/weex/tree/dev/examples)."
+msgstr "[例](https://github.com/alibaba/weex/tree/dev/examples)weex。 ???"
+
+#~ msgid "[Hello World](./hello-world.md)"
+#~ msgstr "[世界](./hello-world.md)你好 ???"

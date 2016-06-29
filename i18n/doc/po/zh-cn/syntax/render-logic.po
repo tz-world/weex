@@ -8,14 +8,22 @@ msgstr ""
 msgid "Render Logic Control"
 msgstr "使逻辑控制 ???"
 
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/render-logic.md:4
+#, no-wrap
+msgid ""
+"<span class=\"weex-version\">0.4</span>\n"
+"<a href=\"https://github.com/weexteam/article/issues/7\"  class=\"weex-translate\">cn</a>\n"
+msgstr ""
+
 #. type: Title ##
-#: /home/dev/download/weex/doc/syntax/render-logic.md:3
+#: /home/dev/download/weex/doc/syntax/render-logic.md:5
 #, no-wrap
 msgid "`append`"
 msgstr " `append`???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/render-logic.md:6
+#: /home/dev/download/weex/doc/syntax/render-logic.md:8
 msgid ""
 "Attribute `append` do not have data-binding. It won't change the final "
 "rendering effect. But it determines whether this component should be "
@@ -25,12 +33,12 @@ msgstr ""
 "该被渲染为一个完整的树或一个单一的节点后添加的子节点。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/render-logic.md:8
+#: /home/dev/download/weex/doc/syntax/render-logic.md:10
 msgid "`append` has two key attributes, `tree` and `node`, the usage is:"
 msgstr " `append`` has two key attributes, ``tree`` and ``node`，使用： ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/render-logic.md:21
+#: /home/dev/download/weex/doc/syntax/render-logic.md:23
 #, no-wrap
 msgid ""
 "```html\n"
@@ -48,7 +56,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/render-logic.md:23
+#: /home/dev/download/weex/doc/syntax/render-logic.md:25
 msgid ""
 "In the code snippet above, the element with id 'world' will wait for all its "
 "children to be rendered then it will be rendered entiely, while the element "
@@ -59,7 +67,7 @@ msgstr ""
 "而我的weex的元素只会使自己的网页，然后它的子元素将由一个页面渲染。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/render-logic.md:25
+#: /home/dev/download/weex/doc/syntax/render-logic.md:27
 msgid ""
 "The rendering result is obvious, The latter statement will render the "
 "element a bit faster on the first-paint, but the total time might be longger "
@@ -69,7 +77,7 @@ msgstr ""
 "\"tree\"`情况比。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/render-logic.md:27
+#: /home/dev/download/weex/doc/syntax/render-logic.md:29
 msgid ""
 "By default, elements are rendered as `node` mode. Once an element is in "
 "`tree` rendering mode, its children elements will always be rendered in "
@@ -79,6 +87,6 @@ msgstr ""
 "mode, its children elements will always be rendered in ``tree`模式。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/render-logic.md:28
+#: /home/dev/download/weex/doc/syntax/render-logic.md:30
 msgid "Next we will introduce [composed component](./composed-component.md)."
 msgstr "接下来我们将介绍[组成](./composed-component.md)。 ???"

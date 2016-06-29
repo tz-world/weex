@@ -10,6 +10,14 @@ msgstr "显示逻辑控制 ???"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/display-logic.md:4
+#, no-wrap
+msgid ""
+"<span class=\"weex-version\">0.4</span>\n"
+"<a href=\"https://github.com/weexteam/article/issues/12\"  class=\"weex-translate\">cn</a>\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/display-logic.md:6
 msgid ""
 "There are two attributes for display logic control: `if` and `repeat`. We "
 "can create Weex page structure and effects more flexible with them."
@@ -18,13 +26,13 @@ msgstr ""
 "他们更灵活。 ???"
 
 #. type: Title ##
-#: /home/dev/download/weex/doc/syntax/display-logic.md:5
+#: /home/dev/download/weex/doc/syntax/display-logic.md:7
 #, no-wrap
 msgid "`if`"
 msgstr " `if`???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/display-logic.md:8
+#: /home/dev/download/weex/doc/syntax/display-logic.md:10
 msgid ""
 "`if` attribute can control the display of a component by a truthy/falsy "
 "value. If the value is truthy, then the component will generated, otherwise "
@@ -34,7 +42,7 @@ msgstr ""
 "的组件，否则将被删除。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/display-logic.md:16
+#: /home/dev/download/weex/doc/syntax/display-logic.md:18
 #, no-wrap
 msgid ""
 "```html\n"
@@ -47,7 +55,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/display-logic.md:30
+#: /home/dev/download/weex/doc/syntax/display-logic.md:32
 #, no-wrap
 msgid ""
 "<script>\n"
@@ -66,13 +74,13 @@ msgid ""
 msgstr ""
 
 #. type: Title ##
-#: /home/dev/download/weex/doc/syntax/display-logic.md:31
+#: /home/dev/download/weex/doc/syntax/display-logic.md:33
 #, no-wrap
 msgid "`repeat`"
 msgstr " `repeat`???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/display-logic.md:34
+#: /home/dev/download/weex/doc/syntax/display-logic.md:36
 msgid ""
 "`repeat` statement is just for array rendering. Every item in an array is "
 "also a structed data. This means in `repeat`ed component, you can bind their "
@@ -83,7 +91,7 @@ msgstr ""
 "接。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/display-logic.md:44
+#: /home/dev/download/weex/doc/syntax/display-logic.md:46
 #, no-wrap
 msgid ""
 "```html\n"
@@ -98,8 +106,8 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/display-logic.md:49
-#: /home/dev/download/weex/doc/syntax/display-logic.md:79
+#: /home/dev/download/weex/doc/syntax/display-logic.md:51
+#: /home/dev/download/weex/doc/syntax/display-logic.md:81
 #, no-wrap
 msgid ""
 "<style>\n"
@@ -109,7 +117,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/display-logic.md:62
+#: /home/dev/download/weex/doc/syntax/display-logic.md:64
 #, no-wrap
 msgid ""
 "<script>\n"
@@ -127,13 +135,13 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/display-logic.md:64
+#: /home/dev/download/weex/doc/syntax/display-logic.md:66
 msgid ""
 "The origin data properties which not belongs to the array will also be bound:"
 msgstr "不属于数组的原始数据属性也将被绑定： ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/display-logic.md:74
+#: /home/dev/download/weex/doc/syntax/display-logic.md:76
 #, no-wrap
 msgid ""
 "```html\n"
@@ -148,7 +156,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/display-logic.md:93
+#: /home/dev/download/weex/doc/syntax/display-logic.md:95
 #, no-wrap
 msgid ""
 "<script>\n"
@@ -167,25 +175,33 @@ msgid ""
 msgstr ""
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/syntax/display-logic.md:94
+#: /home/dev/download/weex/doc/syntax/display-logic.md:96
 #, no-wrap
 msgid "A extension of repeat syntax"
 msgstr "重复语法的扩展 ???"
 
 #. type: Title ####
-#: /home/dev/download/weex/doc/syntax/display-logic.md:96
+#: /home/dev/download/weex/doc/syntax/display-logic.md:98
 #, no-wrap
 msgid "use default `$index` for the index of array."
 msgstr "对数组的索引使用默认`$index`。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/display-logic.md:99
-#: /home/dev/download/weex/doc/syntax/display-logic.md:109
+#: /home/dev/download/weex/doc/syntax/display-logic.md:100
+#: /home/dev/download/weex/doc/syntax/display-logic.md:111
+#: /home/dev/download/weex/doc/syntax/display-logic.md:128
+#, no-wrap
+msgid "<span class=\"weex-version\">0.5</span>\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/display-logic.md:102
+#: /home/dev/download/weex/doc/syntax/display-logic.md:113
 msgid "e.g."
 msgstr "例如 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/display-logic.md:105
+#: /home/dev/download/weex/doc/syntax/display-logic.md:108
 #, no-wrap
 msgid ""
 "```html\n"
@@ -196,13 +212,13 @@ msgid ""
 msgstr ""
 
 #. type: Title ####
-#: /home/dev/download/weex/doc/syntax/display-logic.md:106
+#: /home/dev/download/weex/doc/syntax/display-logic.md:109
 #, no-wrap
 msgid "specify the key and value of array."
 msgstr "指定数组的键和值。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/display-logic.md:115
+#: /home/dev/download/weex/doc/syntax/display-logic.md:119
 #, no-wrap
 msgid ""
 "```html\n"
@@ -213,7 +229,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/display-logic.md:121
+#: /home/dev/download/weex/doc/syntax/display-logic.md:125
 #, no-wrap
 msgid ""
 "```html\n"
@@ -224,13 +240,13 @@ msgid ""
 msgstr ""
 
 #. type: Title ####
-#: /home/dev/download/weex/doc/syntax/display-logic.md:122
+#: /home/dev/download/weex/doc/syntax/display-logic.md:126
 #, no-wrap
 msgid "use `track-by` to specify unique attribute"
 msgstr "使用`track-by`指定唯一的属性 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/display-logic.md:125
+#: /home/dev/download/weex/doc/syntax/display-logic.md:130
 msgid ""
 "By default when replacing an array, `repeat` will cause the entire list to "
 "be re-rendered. However you can use `track-by` to specify an unique "
@@ -242,13 +258,13 @@ msgstr ""
 "weex可以重用现有的元素尽可能多的。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/display-logic.md:127
+#: /home/dev/download/weex/doc/syntax/display-logic.md:132
 #, no-wrap
 msgid "**NOTE: DO NOT USE DATA-BINDING SYNTAX FOR `track-by`**\n"
 msgstr "*注意：不要用data-binding为`track-by`**语法 ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/display-logic.md:139
+#: /home/dev/download/weex/doc/syntax/display-logic.md:144
 #, no-wrap
 msgid ""
 "e.g.\n"
@@ -265,7 +281,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/display-logic.md:141
+#: /home/dev/download/weex/doc/syntax/display-logic.md:146
 msgid ""
 "Later on, when you replace the array including an item of the same nickname, "
 "it knows it can reuse the existing scope and DOM elements associated with "
@@ -275,22 +291,23 @@ msgstr ""
 "拥有相同的昵称相关。 ???"
 
 #. type: Title ##
-#: /home/dev/download/weex/doc/syntax/display-logic.md:142
+#: /home/dev/download/weex/doc/syntax/display-logic.md:147
 #, no-wrap
-msgid "Omitted mustach wrapper"
+msgid "Omitted mustache wrapper"
 msgstr "略胡子包装 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/display-logic.md:145
+#: /home/dev/download/weex/doc/syntax/display-logic.md:150
 msgid ""
-"Particularly for the `if` and `repeat` attribute, the mustache wrapper in "
-"values could be omitted: just the same as data-binding syntax."
+"Particularly for the `if` and `repeat` attribute, the [mustache](https://"
+"mustache.github.io/) wrapper in values could be omitted: just the same as "
+"data-binding syntax."
 msgstr ""
 "特别是对`if`` and ``repeat`属性，在价值观的小胡子的包装可以省略：作为数据绑定"
 "语法一样。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/display-logic.md:153
+#: /home/dev/download/weex/doc/syntax/display-logic.md:158
 #, no-wrap
 msgid ""
 "```html\n"
@@ -303,7 +320,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/display-logic.md:160
+#: /home/dev/download/weex/doc/syntax/display-logic.md:165
 #, no-wrap
 msgid ""
 "<script>\n"
@@ -315,12 +332,12 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/display-logic.md:162
+#: /home/dev/download/weex/doc/syntax/display-logic.md:167
 #, no-wrap
 msgid "The two `<text>` components are both displayed.\n"
 msgstr "两`<text>`组件都显示。 ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/display-logic.md:163
+#: /home/dev/download/weex/doc/syntax/display-logic.md:168
 msgid "Next is [render logic control](./render-logic.md)."
 msgstr "其次是逻辑控制(./render-logic.md)[渲染]。 ???"

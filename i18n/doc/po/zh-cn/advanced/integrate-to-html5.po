@@ -8,14 +8,22 @@ msgstr ""
 msgid "Integrate Weex HTML5 to your project"
 msgstr "weex HTML5整合到你的项目中 ???"
 
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:4
+#, no-wrap
+msgid ""
+"<span class=\"weex-version\">0.4</span>\n"
+"<a href=\"https://github.com/weexteam/article/issues/10\"  class=\"weex-translate\">cn</a>\n"
+msgstr ""
+
 #. type: Title ###
-#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:3
+#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:5
 #, no-wrap
 msgid "Intro"
 msgstr "简介 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:6
+#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:8
 msgid ""
 "Weex is a extendable cross-platform solution for dynamic programming and "
 "publishing projects, which is for developers to write code once and run the "
@@ -25,7 +33,7 @@ msgstr ""
 "代码到处。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:8
+#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:10
 msgid ""
 "The bundle transformed from the source can currently run on android, ios and "
 "web platform. Weex HTML5 is a renderer for weex bundle to run on a webview "
@@ -35,77 +43,59 @@ msgstr ""
 "WebView或现代浏览器等渲染器 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:9
+#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:11
 #, no-wrap
 msgid "Get Weex HTML5"
 msgstr "得到weex HTML5 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:12
+#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:14
 msgid ""
 "Use npm to install the latest version of Weex HTML5, require it in your code "
-"by CommonJS and use it as a npm package. You should require Weex JS "
-"Framework as well, which is as a dependency to Weex HTML5, or you can "
-"require a whole javascript file with path `./node_modules/weex-html5/dist/"
-"bundle.js`. In this way you don't need to require Weex JS Framework manually "
-"anymore since it is already embeded."
+"by CommonJS and use it as a npm package."
 msgstr ""
 "使用新安装weex HTML5的最新版本，需要在您的代码通过CommonJS和使用它作为一个新"
-"的包。你应该要求weex JS框架，这是作为一个依赖于weex HTML5，或者你可以要求一个"
-"`./node_modules/weex-html5/dist/bundle.js`整个JavaScript文件路径。这样你就不"
-"需要再手动weex JS框架既然已经嵌入。 ???"
+"的包。 ???"
 
 #. type: Title ####
-#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:13
+#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:15
 #, no-wrap
 msgid "Install from npm"
 msgstr "从新安装 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:16
+#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:18
 msgid ""
 "Make sure you get the latest version by `npm install` or `npm update`. For "
-"more informations of npm, please visit the [npm official site](https://docs."
+"more information of npm, please visit the [npm official site](https://docs."
 "npmjs.com/)."
 msgstr ""
 "确保你得到`npm install`` or ``npm update`最新版本。更多信息请访问[NPM，NPM官"
 "方网站](https://docs.npmjs.com/)。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:21
-msgid "``` npm install weex-jsframework npm install weex-html5 ```"
+#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:22
+msgid "``` npm install weex-html5 ```"
 msgstr ""
 
-#. type: Title ####
-#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:22
-#, no-wrap
-msgid "1. require weex-jsframework and weex-html5."
-msgstr "1。需要weex JS框架和weex-html5。 ???"
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:24
+msgid "require weex-html5:"
+msgstr "需要weex-html5： ???"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:28
-msgid "``` require('weex-jsframework')  var weex = require('weex-html5')  ```"
-msgstr ""
-
-#. type: Title ####
-#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:29
-#, no-wrap
-msgid "2. require the total-bundle."
-msgstr "2。需要总束。 ???"
-
-#. type: Plain text
-#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:34
-msgid "``` var weex = require('weex-html5/dist/bundle')  ```"
+msgid "``` const weex = require('weex-html5')  ```"
 msgstr ""
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:35
+#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:29
 #, no-wrap
 msgid "Initialize and run"
 msgstr "初始化和运行 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:38
+#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:32
 msgid ""
 "You can initialize weex through the API `init`. This method takes a config "
 "object as the first argument to confirm the runtime infomation and "
@@ -115,18 +105,18 @@ msgstr ""
 "的第一个参数。下面的参数可以通过这个配置对象设置： ???"
 
 #. type: Bullet: '* '
-#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:46
+#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:40
 msgid "`appId`: app instance id, can be either a string or a number"
 msgstr " `appId`：应用实例ID，可以是字符串或数字 ???"
 
 #. type: Bullet: '* '
-#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:46
+#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:40
 msgid ""
 "`source`: the requested url of weex bundle, or the transformed code it self."
 msgstr " `source`：对weex束请求的URL，或改变代码本身。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:46
+#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:40
 #, no-wrap
 msgid ""
 "* `loader`: the loader type to load the weex bundle, which value is 'xhr' or 'jsonp' or 'source'.\n"
@@ -142,12 +132,12 @@ msgstr ""
 "* ``rootId`：根元素的ID。默认值为“weex”。 ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:48
+#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:42
 msgid "Here is a example to do the initialzation:"
 msgstr "这里是一个例子做初始： ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:56
+#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:50
 #, no-wrap
 msgid ""
 "```\n"
@@ -160,7 +150,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:59
+#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:53
 #, no-wrap
 msgid ""
 "  var loader = getUrlParam('loader') || 'xhr'\n"
@@ -170,7 +160,7 @@ msgstr ""
 "  var = geturlparam('page')页 ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:63
+#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:57
 #, no-wrap
 msgid ""
 "  // jsonp callback name should be specified or be the default\n"
@@ -182,7 +172,7 @@ msgstr ""
 "  无功jsonp_callback_name =“weexjsonpcallback” ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:72
+#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:66
 #, no-wrap
 msgid ""
 "  window.weex.init({\n"
@@ -204,18 +194,31 @@ msgstr ""
 "} ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:75
+#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:69
 msgid "weexInit()  ```"
 msgstr "weexinit()````???"
 
-#. type: Title ###
-#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:76
-#, no-wrap
-msgid "github repo"
-msgstr "GitHub的回购 ???"
+#~ msgid ""
+#~ "Use npm to install the latest version of Weex HTML5, require it in your "
+#~ "code by CommonJS and use it as a npm package. You should require Weex JS "
+#~ "Framework as well, which is as a dependency to Weex HTML5, or you can "
+#~ "require a whole javascript file with path `./node_modules/weex-html5/dist/"
+#~ "bundle.js`. In this way you don't need to require Weex JS Framework "
+#~ "manually anymore since it is already embeded."
+#~ msgstr ""
+#~ "使用新安装weex HTML5的最新版本，需要在您的代码通过CommonJS和使用它作为一个"
+#~ "新的包。你应该要求weex JS框架，这是作为一个依赖于weex HTML5，或者你可以要"
+#~ "求一个`./node_modules/weex-html5/dist/bundle.js`整个JavaScript文件路径。这"
+#~ "样你就不需要再手动weex JS框架既然已经嵌入。 ???"
 
-#. type: Title ###
-#: /home/dev/download/weex/doc/advanced/integrate-to-html5.md:78
-#, no-wrap
-msgid "links"
-msgstr "链接 ???"
+#~ msgid "1. require weex-jsframework and weex-html5."
+#~ msgstr "1。需要weex JS框架和weex-html5。 ???"
+
+#~ msgid "2. require the total-bundle."
+#~ msgstr "2。需要总束。 ???"
+
+#~ msgid "github repo"
+#~ msgstr "GitHub的回购 ???"
+
+#~ msgid "links"
+#~ msgstr "链接 ???"

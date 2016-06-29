@@ -9,13 +9,19 @@ msgid "&lt;a&gt;"
 msgstr "&lt;&gt; ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/a.md:2
+#: /home/dev/download/weex/doc/components/a.md:3
+#, no-wrap
+msgid "<span class=\"weex-version\">0.5</span>\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/components/a.md:4
 #, no-wrap
 msgid "###Summary\n"
 msgstr "# # #总结 ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/a.md:4
+#: /home/dev/download/weex/doc/components/a.md:6
 msgid ""
 "&lt;a&gt; defines a hyperlink to a page in the web. Its purpose and syntax "
 "is very simliar to [&lt;a&gt;](https://developer.mozilla.org/en-US/docs/Web/"
@@ -25,67 +31,67 @@ msgstr ""
 "&gt;](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a)HTML5。 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/a.md:5
+#: /home/dev/download/weex/doc/components/a.md:7
 #, no-wrap
 msgid "Child Components"
 msgstr "子组件 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/a.md:8
+#: /home/dev/download/weex/doc/components/a.md:10
 msgid ""
 "This type of component supports all kinds of weex component as its child "
 "components except for its own kind."
 msgstr "这种类型的组件支持各种weex组件的子组件除了它自己。 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/a.md:9
+#: /home/dev/download/weex/doc/components/a.md:11
 #, no-wrap
 msgid "Attributes"
 msgstr "属性 ???"
 
 #. type: Title #####
-#: /home/dev/download/weex/doc/components/a.md:10
+#: /home/dev/download/weex/doc/components/a.md:12
 #, no-wrap
 msgid "href"
 msgstr "href ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/a.md:12
+#: /home/dev/download/weex/doc/components/a.md:14
 msgid "href attributes defines the URL of the hyperlink."
 msgstr "href属性定义了超链接的URL。 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/a.md:13
+#: /home/dev/download/weex/doc/components/a.md:15
 #, no-wrap
 msgid "Styles"
 msgstr "款式 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/a.md:15
+#: /home/dev/download/weex/doc/components/a.md:17
 #, no-wrap
 msgid "**common styles**: check out the [common styles](../references/common-attrs.md)\n"
 msgstr "* * *：常见的方式查看[共同](../references/common-attrs.md)风格 ???\n"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/a.md:16
+#: /home/dev/download/weex/doc/components/a.md:18
 #, no-wrap
 msgid "Events"
 msgstr "事件 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/a.md:18
+#: /home/dev/download/weex/doc/components/a.md:20
 #, no-wrap
 msgid "**common events**: check out the [common events](../references/common-event.md)\n"
 msgstr "* * *：常见的事件查看[事件](../references/common-event.md)常见 ???\n"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/a.md:19
+#: /home/dev/download/weex/doc/components/a.md:21
 #, no-wrap
 msgid "Examples"
 msgstr "实例 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/a.md:22
+#: /home/dev/download/weex/doc/components/a.md:24
 #, no-wrap
 msgid ""
 "    <a href=\"http://g.tbcdn.cn/ali-wireless-h5/res/0.0.16/hello.js\">\n"

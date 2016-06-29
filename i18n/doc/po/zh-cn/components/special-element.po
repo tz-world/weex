@@ -8,33 +8,41 @@ msgstr ""
 msgid "Special Element"
 msgstr "特殊的元素 ???"
 
+#. type: Plain text
+#: /home/dev/download/weex/doc/components/special-element.md:4
+#, no-wrap
+msgid ""
+"<span class=\"weex-version\">0.4</span>\n"
+"<a href=\"https://github.com/weexteam/article/issues/36\"  class=\"weex-translate\">cn</a>\n"
+msgstr ""
+
 #. type: Title ##
-#: /home/dev/download/weex/doc/components/special-element.md:3
+#: /home/dev/download/weex/doc/components/special-element.md:5
 #, no-wrap
 msgid "&lt;content&gt;"
 msgstr "&lt;内容&gt; ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/special-element.md:6
+#: /home/dev/download/weex/doc/components/special-element.md:8
 msgid ""
 "The element serves as content distribution outlest in a composed component "
 "template. The element itself will be replaced."
 msgstr "元素作为内容分发outlest由组件模板。元素本身将被替换。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/special-element.md:8
+#: /home/dev/download/weex/doc/components/special-element.md:10
 #, no-wrap
 msgid "alias: `<slot>`\n"
 msgstr "别名：`<slot>`???\n"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/special-element.md:9
+#: /home/dev/download/weex/doc/components/special-element.md:11
 #, no-wrap
 msgid "Code Example"
 msgstr "代码示例 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/special-element.md:19
+#: /home/dev/download/weex/doc/components/special-element.md:21
 #, no-wrap
 msgid ""
 "```html\n"
@@ -48,7 +56,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/special-element.md:28
+#: /home/dev/download/weex/doc/components/special-element.md:30
 #, no-wrap
 msgid ""
 "<template>\n"

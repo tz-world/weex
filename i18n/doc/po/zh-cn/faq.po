@@ -31,7 +31,7 @@ msgid "Gradle errors in Android Studio"
 msgstr "在Android Studio工具误差 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/faq.md:11
+#: /home/dev/download/weex/doc/faq.md:12
 msgid ""
 "Downloading `license-gradle-plugin.jar` may trigger errors, like `Connection "
 "reset` or `peer not authenticated`.  Maybe a network problem, try a proxy or "
@@ -39,3 +39,47 @@ msgid ""
 msgstr ""
 "下载`license-gradle-plugin.jar`` may trigger errors, like ``Connection "
 "reset`` or ``peer not authenticated`。可能是网络问题，尝试代理或VPN。 ???"
+
+#. type: Title ##
+#: /home/dev/download/weex/doc/faq.md:13
+#, no-wrap
+msgid "Use local image   "
+msgstr "利用局部图像 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/faq.md:15
+#, no-wrap
+msgid "Weex's native runtime support load image file from device's disk, all you have to do set the file url like `file:///sdcard/image_new0.png`. As to load image file in your project, Weex is not support yet.   \n"
+msgstr "weex本地运行时支持负载设备的磁盘映像文件，你所要做的设置文件的URL，如`file:///sdcard/image_new0.png`。作为项目中的图像文件加载，weex不支持呢。 ???\n"
+
+#. type: Title ##
+#: /home/dev/download/weex/doc/faq.md:16
+#, no-wrap
+msgid "Error（`The header content contains invalid characters`) in windows"
+msgstr "错误(`The header content contains invalid characters`)在Windows ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/faq.md:18
+msgid ""
+"This's is caused by weex-toolkit's dependency 'http-server', whose old "
+"version is not working well in chinese windows environment. We have fixed "
+"that, you should upgrade weex-toolkit before use that."
+msgstr ""
+"这是由weex工具包的依赖的HTTP服务器”造成的，而老版本不在中文Windows环境下的工"
+"作。我们有固定的，你应该升级weex工具包使用前。 ???"
+
+#. type: Title ##
+#: /home/dev/download/weex/doc/faq.md:19
+#, no-wrap
+msgid "Playground app display nothing (white screen) after scan    "
+msgstr "操场上的应用程序显示没有(white screen)扫描后 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/faq.md:20
+msgid ""
+"Best way to find out what's happening is read debug log, you can follow "
+"[this document](https://github.com/alibaba/weex/blob/doc/doc/tools/how-to-"
+"debug.md) to firgure out how to do that."
+msgstr ""
+"找出发生了什么事最好的方法是阅读调试日志，您可以按照本文件](https://github."
+"com/alibaba/weex/blob/doc/doc/tools/how-to-debug.md)[来指出了如何去做。 ???"

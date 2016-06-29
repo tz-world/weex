@@ -8,14 +8,22 @@ msgstr ""
 msgid "Style & Class"
 msgstr "样式与类（Style & Class）"
 
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:4
+#, no-wrap
+msgid ""
+"<span class=\"weex-version\">0.4</span>\n"
+"<a href=\"https://github.com/weexteam/article/issues/6\"  class=\"weex-translate\">cn</a>\n"
+msgstr ""
+
 #. type: Title ##
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:3
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:5
 #, no-wrap
 msgid "The Basic Syntax"
 msgstr "基本语法"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:6
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:8
 msgid ""
 "CSS style description can be viewed as a series of key-value pairs,each of "
 "which describes a particular style, such as the width and height of a "
@@ -25,12 +33,12 @@ msgstr ""
 "的宽度和高度。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:10
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:12
 msgid "``` width: 400; height: 50; ...  ```"
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:12
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:14
 msgid ""
 "The format of key-value pairs is `prop-name: prop-value;`. The key name is "
 "`prop-name`, the value name is `prop-value`.  Usually,the key name and the "
@@ -45,33 +53,33 @@ msgstr ""
 "between each key-value pairs must be separated by ``;`。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:14
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:16
 msgid "The style description will appear on a weex page in two formats:"
 msgstr "风格描述将出现在weex页两种格式： ???"
 
 #. type: Bullet: '* '
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:17
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:19
 msgid "Style attribute of `<template>` label"
 msgstr "`<template>`标签的样式属性 ???"
 
 #. type: Bullet: '* '
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:17
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:19
 msgid "Stylesheets of `<style>` label"
 msgstr "对`<style>`标签样式 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:18
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:20
 #, no-wrap
 msgid "style attribute"
 msgstr "样式属性 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:21
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:23
 msgid "The style written in the style label, for example:"
 msgstr "样式标签中的样式，例如： ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:29
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:31
 #, no-wrap
 msgid ""
 "```\n"
@@ -84,24 +92,24 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:31
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:33
 #, no-wrap
 msgid "It is said that the width and height of `<container>` label is 400 pixels and 50 pixels respectively.\n"
 msgstr "这是说，`<container>`标签的宽度和高度为400像素和50像素分别。 ???\n"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:32
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:34
 #, no-wrap
 msgid "the `<style>` tag"
 msgstr "的`<style>`标签 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:35
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:37
 msgid "For example:"
 msgstr "例如： ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:43
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:45
 #, no-wrap
 msgid ""
 "```\n"
@@ -114,7 +122,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:45
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:47
 msgid ""
 "The stylesheets contain multiple style rules, each style rule has only one "
 "class which is contained by its style selector, a pair of curly braces `{...}"
@@ -124,29 +132,29 @@ msgstr ""
 "括号和花括号`{...}`，风格。例如： ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:49
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:51
 msgid "``` .title {width: 400; height: 50;} ```"
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:51
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:53
 msgid "The above is a rule."
 msgstr "以上是一个规则。 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:52
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:54
 #, no-wrap
 msgid "Class attribute"
 msgstr "类属性 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:55
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:57
 #, no-wrap
 msgid "The selectors of `<style>` label are matched with the class attribute of `<template>` label, we should use spaces to separate the class names. For example:\n"
 msgstr "对`<style>`` label are matched with the class attribute of ``<template>`标签选择器，我们应该使用空格分开的类名称。例如： ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:69
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:71
 #, no-wrap
 msgid ""
 "```\n"
@@ -165,7 +173,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:71
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:73
 msgid ""
 "It means that the width of the outermost container is 600px, The inside of "
 "the two title text is 400 pixels high 50 pixels wide, the second piece of "
@@ -175,13 +183,13 @@ msgstr ""
 "宽，正文第二片是红色的。 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:72
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:74
 #, no-wrap
 msgid "Notes"
 msgstr "笔记 ???"
 
 #. type: Bullet: '* '
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:79
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:81
 msgid ""
 "In order to simplify the page design and the complete underlying "
 "implementation, the width of our default screen is unified to 750 pixels, "
@@ -191,14 +199,14 @@ msgstr ""
 "的屏幕应按比例缩小与相应的比例。 ???"
 
 #. type: Bullet: '* '
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:79
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:81
 msgid ""
 "The CSS standard may support a lot of selectors, but now weex only support "
 "single-class selector."
 msgstr "CSS标准可以支持很多的选择，但现在weex只支持单类选择器。 ???"
 
 #. type: Bullet: '* '
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:79
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:81
 msgid ""
 "The CSS standard can support many types of length units, but now weex only "
 "support pixel, and the `px` unit could be ignored, you can write number "
@@ -210,7 +218,7 @@ msgstr ""
 "格。 ???"
 
 #. type: Bullet: '* '
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:79
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:81
 msgid ""
 "The styles of Weex cannot be inherited to children elements, this is "
 "different to the CSS standard, such as `color` and `font-size`."
@@ -219,7 +227,7 @@ msgstr ""
 "size`。 ???"
 
 #. type: Bullet: '* '
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:79
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:81
 msgid ""
 "The CSS standard contains a lot of styles, but weex only sopport few styles "
 "which include layouts such as box model, flexbox, positions. And styles "
@@ -229,13 +237,13 @@ msgstr ""
 "风格包括`font-size``, ``color`，等。 ???"
 
 #. type: Title ##
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:80
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:82
 #, no-wrap
 msgid "With Data-binding"
 msgstr "通过数据绑定 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:83
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:85
 msgid ""
 "Page [data](./data-binding.md) can be bound in `style` and `class` "
 "attribute. For example:"
@@ -243,7 +251,7 @@ msgstr ""
 "页[数据](./data-binding.md)可以绑定在`style`` and ``class`属性。例如： ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:104
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:106
 #, no-wrap
 msgid ""
 "```\n"
@@ -269,6 +277,6 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/style-n-class.md:105
+#: /home/dev/download/weex/doc/syntax/style-n-class.md:107
 msgid "Next, let's have a look at [events](./events.md)."
 msgstr "接下来，让我们在[事件](./events.md)一看。 ???"

@@ -8,42 +8,31 @@ msgstr ""
 msgid "Advanced"
 msgstr "先进的 ???"
 
-#. type: Bullet: '* '
-#: /home/dev/download/weex/doc/advanced/main.md:10
-msgid "[How It Works](./how-it-works.md)"
-msgstr "[如何](./how-it-works.md)???"
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/main.md:3
+msgid "You will learn how Weex works and how to integrate and extend Weex."
+msgstr "您将学习如何weex工作以及如何整合与扩展weex。 ???"
 
-#. type: Bullet: '* '
-#: /home/dev/download/weex/doc/advanced/main.md:10
-msgid "[How Data Binding Works](./how-data-binding-works.md)"
-msgstr "[如何](./how-data-binding-works.md)数据绑定的工作 ???"
+#~ msgid "[How It Works](./how-it-works.md)"
+#~ msgstr "[如何](./how-it-works.md)???"
 
-#. type: Bullet: '* '
-#: /home/dev/download/weex/doc/advanced/main.md:10
-msgid "[Integrate to iOS](./integrate-to-ios.md)"
-msgstr "[综合](./integrate-to-ios.md)iOS ???"
+#~ msgid "[How Data Binding Works](./how-data-binding-works.md)"
+#~ msgstr "[如何](./how-data-binding-works.md)数据绑定的工作 ???"
 
-#. type: Bullet: '* '
-#: /home/dev/download/weex/doc/advanced/main.md:10
-msgid "[Extend to iOS](./extend-to-ios.md)"
-msgstr "[延伸](./extend-to-ios.md)iOS ???"
+#~ msgid "[Integrate to iOS](./integrate-to-ios.md)"
+#~ msgstr "[综合](./integrate-to-ios.md)iOS ???"
 
-#. type: Bullet: '* '
-#: /home/dev/download/weex/doc/advanced/main.md:10
-msgid "[Integrate to Android](./integrate-to-android.md)"
-msgstr "[综合](./integrate-to-android.md)Android ???"
+#~ msgid "[Extend to iOS](./extend-to-ios.md)"
+#~ msgstr "[延伸](./extend-to-ios.md)iOS ???"
 
-#. type: Bullet: '* '
-#: /home/dev/download/weex/doc/advanced/main.md:10
-msgid "[Extend to Android](./extend-to-android.md)"
-msgstr "[延伸](./extend-to-android.md)Android ???"
+#~ msgid "[Integrate to Android](./integrate-to-android.md)"
+#~ msgstr "[综合](./integrate-to-android.md)Android ???"
 
-#. type: Bullet: '* '
-#: /home/dev/download/weex/doc/advanced/main.md:10
-msgid "[Integrate to HTML5](./integrate-to-html5.md)"
-msgstr "[综合](./integrate-to-html5.md)HTML5 ???"
+#~ msgid "[Extend to Android](./extend-to-android.md)"
+#~ msgstr "[延伸](./extend-to-android.md)Android ???"
 
-#. type: Bullet: '* '
-#: /home/dev/download/weex/doc/advanced/main.md:10
-msgid "[Extend to HTML5](./extend-to-html5.md)"
-msgstr "[延伸](./extend-to-html5.md)HTML5 ???"
+#~ msgid "[Integrate to HTML5](./integrate-to-html5.md)"
+#~ msgstr "[综合](./integrate-to-html5.md)HTML5 ???"
+
+#~ msgid "[Extend to HTML5](./extend-to-html5.md)"
+#~ msgstr "[延伸](./extend-to-html5.md)HTML5 ???"

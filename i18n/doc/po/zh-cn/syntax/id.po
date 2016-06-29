@@ -10,6 +10,14 @@ msgstr "找到一个元素 ???"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/id.md:4
+#, no-wrap
+msgid ""
+"<span class=\"weex-version\">0.4</span>\n"
+"<a href=\"https://github.com/weexteam/article/issues/3\"  class=\"weex-translate\">cn</a>\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/id.md:6
 msgid ""
 "In Weex, we may set the `id` property for a particular element, just as "
 "unique identification of a particular element."
@@ -18,16 +26,17 @@ msgstr ""
 "识。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/id.md:6
+#: /home/dev/download/weex/doc/syntax/id.md:8
 msgid ""
-"`id` can be used by `this.$(id)` to find an element with a certain id. Take `"
-"$scrollTo()` For example:"
+"`id` can be used by `this.$el(id)` to find an element with a certain id. "
+"Take the API [`scrollToElement()`](../modules/dom.md#scrolltoelementnode-"
+"options) For example:"
 msgstr ""
 " `id`` can be used by ``this.$(id)`` to find an element with a certain id. "
 "Take ``$scrollTo()`例如： ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/id.md:28
+#: /home/dev/download/weex/doc/syntax/id.md:30
 #, no-wrap
 msgid ""
 "```\n"
@@ -40,12 +49,12 @@ msgid ""
 "    </container>\n"
 "  </template>\n"
 "  <script>\n"
+"    var dom = require('@weex-module/dom')\n"
 "    module.exports = {\n"
 "      methods: {\n"
 "        back2Top: function () {\n"
-"          var top = this.$('top')\n"
-"          this.$scrollTo(top)   // both work\n"
-"          this.$scrollTo('top') // both work\n"
+"          var top = this.$el('top')\n"
+"          dom.scrollToElement(top)\n"
 "        }\n"
 "      }\n"
 "    }\n"
@@ -54,7 +63,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/id.md:30
+#: /home/dev/download/weex/doc/syntax/id.md:32
 msgid ""
 "`id` can also work with `repeat` attribute [See more about display logical "
 "control](./display-logic.md), and ensure repetitive elements with different "
@@ -65,7 +74,7 @@ msgstr ""
 "different ``id`： ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/id.md:55
+#: /home/dev/download/weex/doc/syntax/id.md:57
 #, no-wrap
 msgid ""
 "```\n"
@@ -95,7 +104,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/id.md:57
+#: /home/dev/download/weex/doc/syntax/id.md:59
 msgid ""
 "Additionally, in the [composed components](./composed-component.md), we can "
 "get the corresponding sub component through `this.$vm(id)` APIs."
@@ -104,6 +113,6 @@ msgstr ""
 "到相应的子组件。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/id.md:58
+#: /home/dev/download/weex/doc/syntax/id.md:60
 msgid "Next is how to [send messages between composed components](./comm.md)."
 msgstr "二是如何[发送](./comm.md)组成成分之间的消息。 ???"

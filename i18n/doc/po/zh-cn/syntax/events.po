@@ -11,11 +11,19 @@ msgstr "事件 ???"
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/events.md:4
 #, no-wrap
+msgid ""
+"<span class=\"weex-version\">0.4</span>\n"
+"<a href=\"https://github.com/weexteam/article/issues/15\"  class=\"weex-translate\">cn</a>\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/events.md:6
+#, no-wrap
 msgid "Weex allow `<template>` to bind event type and handler on an Element. The attribute name is the event type with prefix `on...` and the attribute value is handler method name. For instance: `onclick=\"handler\"`. e.g.\n"
 msgstr "weex允许`<template>`` to bind event type and handler on an Element. The attribute name is the event type with prefix ``on...`` and the attribute value is handler method name. For instance: ``onclick=\"handler\"`。例如 ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/events.md:9
+#: /home/dev/download/weex/doc/syntax/events.md:11
 #, no-wrap
 msgid ""
 "```html\n"
@@ -25,7 +33,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/events.md:20
+#: /home/dev/download/weex/doc/syntax/events.md:22
 #, no-wrap
 msgid ""
 "<script>\n"
@@ -41,24 +49,30 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/events.md:22
+#: /home/dev/download/weex/doc/syntax/events.md:24
 #, no-wrap
 msgid "When user clicks the image , handler function which defined in `<script>` code will be executed.\n"
 msgstr "当用户点击图像处理函数中定义`<script>`代码会被执行。 ???\n"
 
 #. type: Title ##
-#: /home/dev/download/weex/doc/syntax/events.md:23
+#: /home/dev/download/weex/doc/syntax/events.md:25
 #, no-wrap
-msgid "Inline Handler"
+msgid "Inline Handler "
 msgstr "内嵌处理器 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/events.md:26
+#: /home/dev/download/weex/doc/syntax/events.md:27
+#, no-wrap
+msgid "<span class=\"weex-version\">0.5</span>\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/events.md:29
 msgid "Beside a handler method name, you can also call a handler inline."
 msgstr "在处理方法名称旁边，也可以调用一个内联的处理程序。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/events.md:32
+#: /home/dev/download/weex/doc/syntax/events.md:35
 #, no-wrap
 msgid ""
 "e.g.\n"
@@ -69,7 +83,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/events.md:43
+#: /home/dev/download/weex/doc/syntax/events.md:46
 #, no-wrap
 msgid ""
 "<script>\n"
@@ -85,13 +99,13 @@ msgid ""
 msgstr ""
 
 #. type: Title ##
-#: /home/dev/download/weex/doc/syntax/events.md:44
+#: /home/dev/download/weex/doc/syntax/events.md:47
 #, no-wrap
 msgid "Event Object"
 msgstr "事件对象 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/events.md:47
+#: /home/dev/download/weex/doc/syntax/events.md:50
 msgid ""
 "When an event handler called, it will receive an event object as the first "
 "argument. Every event object will contains following properties."
@@ -100,21 +114,21 @@ msgstr ""
 "将包含以下属性。 ???"
 
 #. type: Bullet: '* '
-#: /home/dev/download/weex/doc/syntax/events.md:51
+#: /home/dev/download/weex/doc/syntax/events.md:54
 msgid "`type`: event name, eg: `click`"
 msgstr " `type``: event name, eg: ``click`???"
 
 #. type: Bullet: '* '
-#: /home/dev/download/weex/doc/syntax/events.md:51
+#: /home/dev/download/weex/doc/syntax/events.md:54
 msgid "`target`: target `Element` of the event"
 msgstr " `target``: target ``Element`的事件 ???"
 
 #. type: Bullet: '* '
-#: /home/dev/download/weex/doc/syntax/events.md:51
+#: /home/dev/download/weex/doc/syntax/events.md:54
 msgid "`timestamp`: time stamp that event triggered"
 msgstr " `timestamp`：邮票，事件触发时间 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/events.md:52
+#: /home/dev/download/weex/doc/syntax/events.md:55
 msgid "Next, let's have a look at [display logic control](./display-logic.md)."
 msgstr "接下来，让我们在[显示](./display-logic.md)看逻辑控制。 ???"

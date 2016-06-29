@@ -10,80 +10,65 @@ msgstr "组成成分 ???"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/composed-component.md:4
+#, no-wrap
 msgid ""
-"if some part of weex file is repeated often , you could create a composed "
+"<span class=\"weex-version\">0.4</span>\n"
+"<a href=\"https://github.com/weexteam/article/issues/2\"  class=\"weex-translate\">cn</a>\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/composed-component.md:6
+msgid ""
+"If some part of weex file is reused often, you could create a composed "
 "component represent these part."
 msgstr "如果weex文件的某些部分重复，你可以创建一个代表这些部分组成。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/composed-component.md:6
+#: /home/dev/download/weex/doc/syntax/composed-component.md:8
 #, no-wrap
-msgid "you can use `<we-element>` tag to create composed component, the value of `name` attribute is the component name.\n"
-msgstr "你可以使用`<we-element>`` tag to create composed component, the value of ``name`属性是组件的名称。 ???\n"
+msgid "You can create a file named `foo.we` to define a composed component, the component name is just `<foo>`.\n"
+msgstr "你可以创建一个名为`foo.we`` to define a composed component, the component name is just ``<foo>`文件。 ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/composed-component.md:25
+#: /home/dev/download/weex/doc/syntax/composed-component.md:26
 #, no-wrap
 msgid ""
 "```html\n"
-"<we-element name=\"foo\">\n"
-"  <template>\n"
-"    <container style=\"flex-direction: row;\">\n"
-"      <image src=\"{{image}}\"></image>\n"
-"      <text>{{title}}</text>\n"
-"    </container>\n"
-"  </template>\n"
-"  <script>\n"
-"    module.exports = {\n"
-"      data: {\n"
-"        title: null,\n"
-"        image: null\n"
-"      }\n"
+"<!-- foo.we -->\n"
+"<template>\n"
+"  <container style=\"flex-direction: row;\">\n"
+"    <image src=\"{{image}}\" style=\"width:100;height:100;\"></image>\n"
+"    <text>{{title}}</text>\n"
+"  </container>\n"
+"</template>\n"
+"<script>\n"
+"  module.exports = {\n"
+"    data: {\n"
+"      title: null,\n"
+"      image: null\n"
 "    }\n"
-"  </script>\n"
-"</we-element>\n"
+"  }\n"
+"</script>\n"
 "```\n"
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/composed-component.md:27
+#: /home/dev/download/weex/doc/syntax/composed-component.md:28
 #, no-wrap
-msgid "Content of `<we-element>` tag is the same as normal weex file, consists of `<template>`, `<style>` and `<script>` .\n"
+msgid "The content of `foo.we` also consists of `<template>`, `<style>` and `<script>`.\n"
 msgstr "对`<we-element>`` tag is the same as normal weex file, consists of ``<template>``, ``<style>`` and ``<script>`内容。 ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/composed-component.md:29
-msgid "Once composed component been defined, you can use it like following."
+#: /home/dev/download/weex/doc/syntax/composed-component.md:30
+#, no-wrap
+msgid "Once composed component been defined, you can use `<foo>` in a file which is in the same folder with `foo.we`.\n"
 msgstr "一旦组成组件被定义，你可以使用它像以下。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/composed-component.md:47
-#: /home/dev/download/weex/doc/syntax/composed-component.md:76
+#: /home/dev/download/weex/doc/syntax/composed-component.md:36
 #, no-wrap
 msgid ""
 "```html\n"
-"<we-element name=\"foo\">\n"
-"  <template>\n"
-"    <container style=\"flex-direction: row;\">\n"
-"      <image src=\"{{image}}\"></image>\n"
-"      <text>{{title}}</text>\n"
-"    </container>\n"
-"  </template>\n"
-"  <script>\n"
-"    module.exports = {\n"
-"      data: {\n"
-"        title: null,\n"
-"        image: null\n"
-"      }\n"
-"    }\n"
-"  </script>\n"
-"</we-element>\n"
-msgstr ""
-
-#. type: Plain text
-#: /home/dev/download/weex/doc/syntax/composed-component.md:52
-#, no-wrap
-msgid ""
 "<template>\n"
 "  <foo title=\"...\" image=\"...\"></foo>\n"
 "</template>\n"
@@ -91,60 +76,71 @@ msgid ""
 msgstr ""
 
 #. type: Title ##
-#: /home/dev/download/weex/doc/syntax/composed-component.md:53
+#: /home/dev/download/weex/doc/syntax/composed-component.md:37
 #, no-wrap
-msgid "Nesting Component"
+msgid "Nesting Components"
 msgstr "嵌套组件 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/composed-component.md:56
-msgid ""
-"Composed component supports nesting. For easy access nesting component, you "
-"should name nesting component with \"parent name and hyphen\" prefix."
-msgstr ""
-"组合组件支持嵌套。为方便嵌套的组件，你应该叫嵌套组件“父母姓名和字号”前"
-"缀。 ???"
+#: /home/dev/download/weex/doc/syntax/composed-component.md:40
+msgid "Composed component supports nesting. For example:"
+msgstr "组合组件支持嵌套。例如： ???"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/composed-component.md:58
-msgid "for example:"
-msgstr "例如： ???"
-
-#. type: Plain text
-#: /home/dev/download/weex/doc/syntax/composed-component.md:93
 #, no-wrap
 msgid ""
-"<we-element name=\"foo-list\">\n"
-"  <template>\n"
-"    <container>\n"
-"      <text>{{description}}</text>\n"
-"      <foo repeat=\"{{list}}\" title=\"{{text}}\" image=\"{{img}}\"></foo>\n"
-"    </container>\n"
-"  </template>\n"
-"  <script>\n"
-"    module.exports = {\n"
-"      data: {\n"
-"        description: '',\n"
-"        list: []\n"
-"      }\n"
+"```html\n"
+"<!-- somepath/foo.we -->\n"
+"<template>\n"
+"  <container style=\"flex-direction: row;\">\n"
+"    <image src=\"{{image}}\"></image>\n"
+"    <text>{{title}}</text>\n"
+"  </container>\n"
+"</template>\n"
+"<script>\n"
+"  module.exports = {\n"
+"    data: {\n"
+"      title: null,\n"
+"      image: null\n"
 "    }\n"
-"  </script>\n"
-"</we-element>\n"
+"  }\n"
+"</script>\n"
+"```\n"
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/composed-component.md:97
+#: /home/dev/download/weex/doc/syntax/composed-component.md:76
 #, no-wrap
 msgid ""
+"```html\n"
+"<!-- somepath/foo-list.we -->\n"
+"<template>\n"
+"  <container>\n"
+"    <text>{{description}}</text>\n"
+"    <foo repeat=\"{{list}}\" title=\"{{text}}\" image=\"{{img}}\"></foo>\n"
+"  </container>\n"
+"</template>\n"
+"<script>\n"
+"  module.exports = {\n"
+"    data: {\n"
+"      description: '',\n"
+"      list: []\n"
+"    }\n"
+"  }\n"
+"</script>\n"
+"```\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/composed-component.md:95
+#, no-wrap
+msgid ""
+"```html\n"
+"<!-- somepath/main.we -->\n"
 "<template>\n"
 "  <foo-list list=\"{{list}}\"></foo-list>\n"
 "</template>\n"
-msgstr ""
-
-#. type: Plain text
-#: /home/dev/download/weex/doc/syntax/composed-component.md:111
-#, no-wrap
-msgid ""
 "<script>\n"
 "  module.exports = {\n"
 "    data: {\n"
@@ -160,34 +156,58 @@ msgid ""
 "```\n"
 msgstr ""
 
+#. type: Plain text
+#: /home/dev/download/weex/doc/syntax/composed-component.md:97
+#, no-wrap
+msgid "The `main.we` uses `<foo-list>` from `foo-list.we`. And `<foo-list>` uses `<foo>` from `foo.we`.\n"
+msgstr "的`main.we`` uses ``<foo-list>`` from ``foo-list.we``. And ``<foo-list>`` uses ``<foo>`` from ``foo.we`。 ???\n"
+
 #. type: Title ##
-#: /home/dev/download/weex/doc/syntax/composed-component.md:113
+#: /home/dev/download/weex/doc/syntax/composed-component.md:98
 #, no-wrap
 msgid "Notes"
 msgstr "笔记 ???"
 
 #. type: Bullet: '- '
-#: /home/dev/download/weex/doc/syntax/composed-component.md:118
+#: /home/dev/download/weex/doc/syntax/composed-component.md:103
 msgid "Every composed component have an independent `<style>` work scope."
 msgstr "每一个组成部分有一个独立的`<style>`工作范围。 ???"
 
 #. type: Bullet: '- '
-#: /home/dev/download/weex/doc/syntax/composed-component.md:118
+#: /home/dev/download/weex/doc/syntax/composed-component.md:103
 msgid ""
 "If child component have `id` attribute, you can access the context of the "
-"child component by `this.$vm(id)`. See more about [find an element](./id.md)."
+"child component by `this.$vm(id)` and find an element by `this.$el(id)`. See "
+"more about [find an element](./id.md)."
 msgstr ""
 "如果孩子有`id`` attribute, you can access the context of the child component "
 "by ``this.$vm(id)`组件。了解更多关于[发现](./id.md)元素。 ???"
 
 #. type: Bullet: '- '
-#: /home/dev/download/weex/doc/syntax/composed-component.md:118
+#: /home/dev/download/weex/doc/syntax/composed-component.md:103
 msgid ""
 "Please refer to [communicate between components](./comm.md) for more "
 "communication issues."
 msgstr "请参阅[交流](./comm.md)组件之间更多的沟通问题。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/syntax/composed-component.md:119
+#: /home/dev/download/weex/doc/syntax/composed-component.md:104
 msgid "Next is how to [find an element](./id.md)."
 msgstr "其次是如何找到一个元素(./id.md)[]。 ???"
+
+#~ msgid ""
+#~ "you can use `<we-element>` tag to create composed component, the value of "
+#~ "`name` attribute is the component name.\n"
+#~ msgstr ""
+#~ "你可以使用`<we-element>`` tag to create composed component, the value of "
+#~ "``name`属性是组件的名称。 ???\n"
+
+#~ msgid ""
+#~ "Composed component supports nesting. For easy access nesting component, "
+#~ "you should name nesting component with \"parent name and hyphen\" prefix."
+#~ msgstr ""
+#~ "组合组件支持嵌套。为方便嵌套的组件，你应该叫嵌套组件“父母姓名和字号”前"
+#~ "缀。 ???"
+
+#~ msgid "for example:"
+#~ msgstr "例如： ???"

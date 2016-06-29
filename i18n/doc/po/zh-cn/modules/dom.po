@@ -8,42 +8,72 @@ msgstr ""
 msgid "dom"
 msgstr "DOM ???"
 
-#. type: Title ##
+#. type: Plain text
 #: /home/dev/download/weex/doc/modules/dom.md:3
+#, no-wrap
+msgid "<span class=\"weex-version\">0.4</span>\n"
+msgstr ""
+
+#. type: Title ##
+#: /home/dev/download/weex/doc/modules/dom.md:4
 #, no-wrap
 msgid "Summary"
 msgstr "总结 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/modules/dom.md:6
-msgid "A series of dom api."
-msgstr "一系列的DOM API。 ???"
+#: /home/dev/download/weex/doc/modules/dom.md:7
+#, no-wrap
+msgid "A series of dom apis that sending virtual-dom's messages to the native renderer to update the dom tree. The only API for developers to use in a `.we` file is `scrollToElement` <del>which you can use by calling the `$scrollTo` method</del>. Other APIs mentioned on this page should only be used through the native renderer in the `callNative` process.\n"
+msgstr ""
 
 #. type: Title ##
-#: /home/dev/download/weex/doc/modules/dom.md:7
+#: /home/dev/download/weex/doc/modules/dom.md:8
 #, no-wrap
 msgid "API"
 msgstr "美国石油学会 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/modules/dom.md:9
+#: /home/dev/download/weex/doc/modules/dom.md:10
 #, no-wrap
-msgid "scrollTo(node, options)"
+msgid "scrollToElement(node, options)"
 msgstr "scrollto(node, options)???"
 
+#. type: Plain text
+#: /home/dev/download/weex/doc/modules/dom.md:13
+msgid ""
+"Scroll the page to the specified node. This API should only be used on the "
+"element in the `scroller` or `list` component."
+msgstr ""
+"将页面滚动到指定的节点。这个API应该只用于在`scroller`` or ``list`组成元"
+"素。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/modules/dom.md:15
+#, no-wrap
+msgid "<del>This API can be used by calling the VM's method `$scrollTo` **(deprecated)**.</del> You can use `require('@weex-module/dom').scrollToElement` to call this API in your `.we` file.\n"
+msgstr ""
+
 #. type: Title ####
-#: /home/dev/download/weex/doc/modules/dom.md:11
+#: /home/dev/download/weex/doc/modules/dom.md:16
+#: /home/dev/download/weex/doc/modules/dom.md:33
+#: /home/dev/download/weex/doc/modules/dom.md:41
+#: /home/dev/download/weex/doc/modules/dom.md:51
+#: /home/dev/download/weex/doc/modules/dom.md:59
+#: /home/dev/download/weex/doc/modules/dom.md:69
+#: /home/dev/download/weex/doc/modules/dom.md:78
+#: /home/dev/download/weex/doc/modules/dom.md:87
+#: /home/dev/download/weex/doc/modules/dom.md:96
 #, no-wrap
 msgid "Arguments"
 msgstr "争论 ???"
 
 #. type: Bullet: '* '
-#: /home/dev/download/weex/doc/modules/dom.md:16
+#: /home/dev/download/weex/doc/modules/dom.md:21
 msgid "`node`*(Node)*: an element that scrolled into the view."
 msgstr " `node`*(Node)*：一元，滚动到视图。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/modules/dom.md:16
+#: /home/dev/download/weex/doc/modules/dom.md:21
 #, no-wrap
 msgid ""
 "* `options`*(object)*: some options.\n"
@@ -53,14 +83,224 @@ msgstr ""
 "  * ``offset``*(number)*: An offset to the visible position, default is ``0`。 ???\n"
 
 #. type: Title ####
-#: /home/dev/download/weex/doc/modules/dom.md:17
+#: /home/dev/download/weex/doc/modules/dom.md:22
 #, no-wrap
 msgid "Example"
 msgstr "例子 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/modules/dom.md:23
+#: /home/dev/download/weex/doc/modules/dom.md:28
 msgid ""
-"```javascript var dom = require('@weex-module/dom'); dom.scrollTo(this."
-"$el('someId'), {offset: 10}); ```"
+"```javascript var dom = require('@weex-module/dom'); dom."
+"scrollToElement(this.$el('someId'), {offset: 10}); ```"
 msgstr ""
+
+#. type: Title ###
+#: /home/dev/download/weex/doc/modules/dom.md:29
+#, no-wrap
+msgid "createBody(element)"
+msgstr "createbody(element)???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/modules/dom.md:32
+msgid ""
+"Create the body for the whole dom tree. Element type should only be the ones "
+"that can be used as roots (`div`, `scroller` and `list`)."
+msgstr ""
+"创建整个DOM树体。元素类型必须可以作为根的( z59813428476z  z59813528476z  "
+"z59813628476z  z59813728476z  z59813828476z )。 ???"
+
+#. type: Bullet: '* '
+#: /home/dev/download/weex/doc/modules/dom.md:36
+msgid ""
+"`element`*(object)*: a object that specified the body node info like ref, "
+"type, children, etc."
+msgstr ""
+" `element`* *：一个对象(object)指定的节点信息编号，类型，孩子，等等。 ???"
+
+#. type: Title ###
+#: /home/dev/download/weex/doc/modules/dom.md:37
+#, no-wrap
+msgid "addElement(parentNode, element, index)"
+msgstr "(parentNode, element, index)addComment ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/modules/dom.md:40
+msgid "Add a element into the dom tree."
+msgstr "添加一个元素到DOM树。 ???"
+
+#. type: Bullet: '* '
+#: /home/dev/download/weex/doc/modules/dom.md:46
+msgid "`parentNode`*(Node)*: specify the element's parent node."
+msgstr " `parentNode`*(Node)*：指定元素的父节点。 ???"
+
+#. type: Bullet: '* '
+#: /home/dev/download/weex/doc/modules/dom.md:46
+msgid ""
+"`element`*(object)*: a object that specified the config info for the node to "
+"be added."
+msgstr " `element`* *：一个对象(object)指定的配置信息为要添加的节点。 ???"
+
+#. type: Bullet: '* '
+#: /home/dev/download/weex/doc/modules/dom.md:46
+msgid "`index`*(number)*: insert the element to the specified position."
+msgstr " `index`*(number)*：插入到指定位置的元素。 ???"
+
+#. type: Title ###
+#: /home/dev/download/weex/doc/modules/dom.md:47
+#, no-wrap
+msgid "removeElement(node)"
+msgstr "removeelement(node)???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/modules/dom.md:50
+msgid "Remove a node in the dom tree."
+msgstr "去除DOM树中的节点。 ???"
+
+#. type: Bullet: '* '
+#: /home/dev/download/weex/doc/modules/dom.md:54
+msgid "`node`*(Node)*: the node to be removed."
+msgstr " `node`*(Node)*：一元，滚动到视图。 ???"
+
+#. type: Title ###
+#: /home/dev/download/weex/doc/modules/dom.md:55
+#, no-wrap
+msgid "moveElement(node, parentNode, index)"
+msgstr "moveelement(node, parentNode, index)???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/modules/dom.md:58
+msgid ""
+"Move a exsited node into another parent (or the same parent) before the "
+"specified position."
+msgstr "移动节点到另一个家长(or the same parent)存在在指定的位置。 ???"
+
+#. type: Bullet: '* '
+#: /home/dev/download/weex/doc/modules/dom.md:64
+msgid "`node`*(Node)*: the node to be moved."
+msgstr " `node`*(Node)*：一元，滚动到视图。 ???"
+
+#. type: Bullet: '* '
+#: /home/dev/download/weex/doc/modules/dom.md:64
+msgid "`parentNode`*(Node)*: the parent node to move into."
+msgstr " `parentNode`*(Node)*：父节点移动到。 ???"
+
+#. type: Bullet: '* '
+#: /home/dev/download/weex/doc/modules/dom.md:64
+msgid ""
+"`index`*(number)*:: according to the specified position index, will the node "
+"be inserted into."
+msgstr " `index`*(number)*：：根据指定的索引位置，将节点插入。 ???"
+
+#. type: Title ###
+#: /home/dev/download/weex/doc/modules/dom.md:65
+#, no-wrap
+msgid "addEvent(node, type)"
+msgstr "(node, type)AddEvent ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/modules/dom.md:68
+msgid ""
+"Inform the renderer that there are listeners for a specified event type."
+msgstr "通知的渲染器，有一个指定的事件类型的听众。 ???"
+
+#. type: Bullet: '* '
+#: /home/dev/download/weex/doc/modules/dom.md:73
+msgid "`node`*(Node)*: the node to be listened on."
+msgstr " `node`*(Node)*：一元，滚动到视图。 ???"
+
+#. type: Bullet: '* '
+#: /home/dev/download/weex/doc/modules/dom.md:73
+msgid "`type`*(string)*: which type of events the node should be listened for."
+msgstr " `type`*(string)*：这类型的节点应该倾听事件。 ???"
+
+#. type: Title ###
+#: /home/dev/download/weex/doc/modules/dom.md:74
+#, no-wrap
+msgid "removeEvent(node, type)"
+msgstr "removeevent(node, type)???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/modules/dom.md:77
+msgid ""
+"Remove event listeners on the specified node for the specified event type."
+msgstr "在指定的事件类型的指定节点上删除事件侦听器。 ???"
+
+#. type: Bullet: '* '
+#: /home/dev/download/weex/doc/modules/dom.md:82
+msgid "`node`*(Node)*: on which node should the listeners to be removed"
+msgstr " `node`*(Node)*：在哪个节点应该被移除的听众 ???"
+
+#. type: Bullet: '* '
+#: /home/dev/download/weex/doc/modules/dom.md:82
+msgid "`type`*(string)*: specify the event type."
+msgstr " `type`*(string)*：指定事件类型。 ???"
+
+#. type: Title ###
+#: /home/dev/download/weex/doc/modules/dom.md:83
+#, no-wrap
+msgid "updateAttrs(node, attr)"
+msgstr "updateattrs(node, attr)???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/modules/dom.md:86
+msgid "Update attrbutes of the specified node."
+msgstr "更新指定节点的因素。 ???"
+
+#. type: Bullet: '* '
+#: /home/dev/download/weex/doc/modules/dom.md:91
+#: /home/dev/download/weex/doc/modules/dom.md:100
+msgid "`node`*(Node)*: the node to be updated."
+msgstr " `node`*(Node)*：一元，滚动到视图。 ???"
+
+#. type: Bullet: '* '
+#: /home/dev/download/weex/doc/modules/dom.md:91
+msgid ""
+"`attr`*(object)*: the attributes object with the attribute items to be "
+"updated."
+msgstr " `attr`* *：(object)属性对象与属性的物品进行更新。 ???"
+
+#. type: Title ###
+#: /home/dev/download/weex/doc/modules/dom.md:92
+#, no-wrap
+msgid "updateStyle(node, style)"
+msgstr "updatestyle(node, style)???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/modules/dom.md:95
+msgid "Update styles of the specified node."
+msgstr "指定节点的更新样式。 ???"
+
+#. type: Bullet: '* '
+#: /home/dev/download/weex/doc/modules/dom.md:100
+msgid "`style`*(object)*: the style object with the style rules to be updated."
+msgstr " `style`* *：(object)的样式规则的样式对象被更新。 ???"
+
+#. type: Title ###
+#: /home/dev/download/weex/doc/modules/dom.md:101
+#, no-wrap
+msgid "createFinish()"
+msgstr "createfinish()???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/modules/dom.md:104
+msgid ""
+"Notify native renders that the series of messages for updating the native "
+"dom tree have reached a end."
+msgstr "通知指出，更新本地原生DOM树的系列信息，达成结束。 ???"
+
+#. type: Title ###
+#: /home/dev/download/weex/doc/modules/dom.md:105
+#, no-wrap
+msgid "refreshFinish()"
+msgstr "refreshfinish()???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/modules/dom.md:108
+msgid ""
+"Notify native renders that the series of messages for refreshing a native "
+"dom tree have reached a end."
+msgstr "通知显示刷新本地土生土长的DOM树的系列信息，达成结束。 ???"
+
+#~ msgid "A series of dom api."
+#~ msgstr "一系列的DOM API。 ???"

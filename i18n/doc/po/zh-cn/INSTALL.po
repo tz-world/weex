@@ -5,25 +5,98 @@ msgstr ""
 #. type: Title #
 #: /home/dev/download/weex/doc/INSTALL.md:1
 #, no-wrap
-msgid "Install Book"
+msgid "Weex Document Site Build Process"
+msgstr "weex文档网站的构建过程 ???"
+
+#. type: Title ##
+#: /home/dev/download/weex/doc/INSTALL.md:3
+#, no-wrap
+msgid "Get Latest Document Source"
+msgstr "获取最新的文档源 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/INSTALL.md:5
+#, no-wrap
+msgid "we maintain latest weex document in [doc branch](https://github.com/alibaba/weex/tree/doc) , please checkout this branch & pull latest content.      \n"
+msgstr "我们维持最新的weex文件[文件](https://github.com/alibaba/weex/tree/doc)分支，请结帐分拉新内容。 ???\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/INSTALL.md:10
+msgid "```shell $git checkout doc $git pull origin doc ```"
+msgstr ""
+
+#. type: Title ##
+#: /home/dev/download/weex/doc/INSTALL.md:11
+#, no-wrap
+msgid "Install Gitbook"
 msgstr "安装书 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/INSTALL.md:9
-#, no-wrap
+#: /home/dev/download/weex/doc/INSTALL.md:13
 msgid ""
-"0. Prerequisites\n"
-"    0. Install [Node.js](http://nodejs.org/) 4.0+\n"
-"    0. `npm install -g gitbook-cli`\n"
-"    0. `gitbook install`\n"
-"0. Build book\n"
-"    0. `gitbook build`\n"
-"    0. `open _book/index.html`\n"
+"we use [gitbook](https://github.com/GitbookIO/gitbook) for document site "
+"building,so you need install gitbook first"
 msgstr ""
-"0。先决条件 ???\n"
-"    0。安装[节点。JS](http://nodejs.org/)4 + ???\n"
-"    0。`npm install -g gitbook-cli``\n"
-"    0. ``gitbook install``\n"
-"0. Build book\n"
-"    0. ``gitbook build``\n"
-"    0. ``open _book/index.html`???\n"
+"我们用[gitbook](https://github.com/GitbookIO/gitbook)文档网站建设，所以你需要"
+"先安装gitbook ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/INSTALL.md:16
+msgid "- Install [Node.js](http://nodejs.org/) 4.0+ - Install gitbook-cli"
+msgstr "安装[节点。JS](http://nodejs.org/)4 +安装gitbook CLI ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/INSTALL.md:20
+msgid "```shell $npm install -g gitbook-cli ```"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/INSTALL.md:23
+msgid ""
+"- check gitbook template version in book.json(“gitbook” attribute)  - "
+"install gitbook template"
+msgstr "检查gitbook模板版本在book.json(“gitbook” attribute)安装gitbook模板 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/INSTALL.md:27
+msgid "``` $gitbook fetch [GITBOOK_TEMPLATE_VERSION_IN_book.json] ```"
+msgstr ""
+
+#. type: Title ##
+#: /home/dev/download/weex/doc/INSTALL.md:28
+#, no-wrap
+msgid "Build Document Site"
+msgstr "建立文档网站 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/INSTALL.md:33
+msgid "``` $gitbook build ``` build result will be exist in `_book` directory."
+msgstr ""
+
+#. type: Title ##
+#: /home/dev/download/weex/doc/INSTALL.md:34
+#, no-wrap
+msgid "Preview"
+msgstr "预览 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/INSTALL.md:37
+msgid "``` $gitbook serve ```"
+msgstr ""
+
+#~ msgid ""
+#~ "0. Prerequisites\n"
+#~ "    0. Install [Node.js](http://nodejs.org/) 4.0+\n"
+#~ "    0. `npm install -g gitbook-cli`\n"
+#~ "    0. `gitbook install`\n"
+#~ "0. Build book\n"
+#~ "    0. `gitbook build`\n"
+#~ "    0. `open _book/index.html`\n"
+#~ msgstr ""
+#~ "0。先决条件 ???\n"
+#~ "    0。安装[节点。JS](http://nodejs.org/)4 + ???\n"
+#~ "    0。`npm install -g gitbook-cli``\n"
+#~ "    0. ``gitbook install``\n"
+#~ "0. Build book\n"
+#~ "    0. ``gitbook build``\n"
+#~ "    0. ``open _book/index.html`???\n"

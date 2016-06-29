@@ -8,38 +8,44 @@ msgstr ""
 msgid "navigator"
 msgstr "领航员 ???"
 
+#. type: Plain text
+#: /home/dev/download/weex/doc/modules/navigator.md:3
+#, no-wrap
+msgid "<span class=\"weex-version\">0.4</span>\n"
+msgstr ""
+
 #. type: Title ##
-#: /home/dev/download/weex/doc/modules/navigator.md:2
+#: /home/dev/download/weex/doc/modules/navigator.md:4
 #, no-wrap
 msgid "Summary"
 msgstr "总结 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/modules/navigator.md:5
+#: /home/dev/download/weex/doc/modules/navigator.md:7
 msgid "A series of navigator operation apis like `push`, `pop`."
 msgstr "一系列的导航操作API像`push``, ``pop`。 ???"
 
 #. type: Title ##
-#: /home/dev/download/weex/doc/modules/navigator.md:6
+#: /home/dev/download/weex/doc/modules/navigator.md:8
 #, no-wrap
 msgid "API"
 msgstr "美国石油学会 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/modules/navigator.md:8
+#: /home/dev/download/weex/doc/modules/navigator.md:10
 #, no-wrap
 msgid "push(options, callback)"
 msgstr "推(options, callback)???"
 
 #. type: Title ####
-#: /home/dev/download/weex/doc/modules/navigator.md:11
-#: /home/dev/download/weex/doc/modules/navigator.md:35
+#: /home/dev/download/weex/doc/modules/navigator.md:13
+#: /home/dev/download/weex/doc/modules/navigator.md:37
 #, no-wrap
 msgid "Arguments"
 msgstr "争论 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/modules/navigator.md:16
+#: /home/dev/download/weex/doc/modules/navigator.md:18
 #, no-wrap
 msgid ""
 "* `options`*(object)*: some options.\n"
@@ -53,14 +59,14 @@ msgstr ""
 "* ``callback`*(object)*：执行此动作后的回调函数。 ???\n"
 
 #. type: Title #####
-#: /home/dev/download/weex/doc/modules/navigator.md:18
-#: /home/dev/download/weex/doc/modules/navigator.md:40
+#: /home/dev/download/weex/doc/modules/navigator.md:20
+#: /home/dev/download/weex/doc/modules/navigator.md:42
 #, no-wrap
 msgid "Example"
 msgstr "例子 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/modules/navigator.md:30
+#: /home/dev/download/weex/doc/modules/navigator.md:32
 #, no-wrap
 msgid ""
 "```js\n"
@@ -76,13 +82,13 @@ msgid ""
 msgstr ""
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/modules/navigator.md:31
+#: /home/dev/download/weex/doc/modules/navigator.md:33
 #, no-wrap
 msgid "pop(options, callback)"
 msgstr "流行(options, callback)???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/modules/navigator.md:39
+#: /home/dev/download/weex/doc/modules/navigator.md:41
 #, no-wrap
 msgid ""
 "* `options`*(object)*: some options.\n"
@@ -94,7 +100,7 @@ msgstr ""
 "* ``callback`*(object)*：执行此动作后的回调函数。 ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/modules/navigator.md:50
+#: /home/dev/download/weex/doc/modules/navigator.md:52
 #, no-wrap
 msgid ""
 "```js\n"

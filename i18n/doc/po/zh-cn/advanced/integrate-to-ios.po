@@ -2,7 +2,345 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 
-#. type: Plain text
+#. type: Title #
 #: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:1
-msgid "TODO"
-msgstr "待办事项 ???"
+#, no-wrap
+msgid "import Weex iOS to your project"
+msgstr "进口weex iOS项目 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:3
+#, no-wrap
+msgid "<a href=\"https://github.com/weexteam/article/issues/18\"  class=\"weex-translate\">cn</a>\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:5
+msgid ""
+"You will need to build Weex from source if you want to work on a new feature/"
+"bug fix, try out the latest features not released yet, or maintain your own "
+"fork with patches that cannot be merged to the core."
+msgstr ""
+"你将需要建立weex从源代码，如果你想做一个新的功能和bug修复，尝试不发布最新的功"
+"能，或保持自己的叉的补丁，不能合并到核心。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:7
+msgid ""
+"Assuming you have installed [iOS Develop Environment](https://developer."
+"apple.com/library/ios/documentation/IDEs/Conceptual/"
+"AppStoreDistributionTutorial/Setup/Setup.html) and [CocoaPods](https://"
+"guides.cocoapods.org/using/getting-started.html)."
+msgstr ""
+"假设你已经安装了iOS开发环境(https://developer.apple.com/library/ios/"
+"documentation/IDEs/Conceptual/AppStoreDistributionTutorial/Setup/Setup.html)"
+"[]和[](https://guides.cocoapods.org/using/getting-started."
+"html)CocoaPods。 ???"
+
+#. type: Title ####
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:8
+#, no-wrap
+msgid "1. Clone source from github"
+msgstr "1。从GitHub的克隆源 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:11
+msgid "First, you need to git clone `weex` from github:"
+msgstr "首先，你需要git clone`weex`从GitHub： ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:15
+msgid "``` git clone https://github.com/alibaba/weex.git ```"
+msgstr ""
+
+#. type: Title ####
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:15
+#, no-wrap
+msgid "2. Import WeexSDK to project"
+msgstr "2。进口weexsdk项目 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:18
+msgid "Copy the whole folder `/ios/sdk` to your project directory."
+msgstr "复制整个文件夹到你的工程目录`/ios/sdk`。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:20
+msgid ""
+"Before adding the dependencies, please confirm that the project directory "
+"already exists the Podfile. If not, create a new one. Then, edit this file, "
+"adding some necessary dependecis for the target."
+msgstr ""
+"加上之前的依赖，请确认项目目录已经存在，podfile。如果不是，创建一个新的。然"
+"后，编辑该文件，添加一些必要的dependecis目标。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:28
+#, no-wrap
+msgid ""
+"``` \n"
+"target 'YourTarget' do\n"
+"\tplatform :ios, '7.0'\n"
+"\tpod 'WeexSDK', :path=>'./sdk/'\n"
+"end\n"
+"```\n"
+"You can get your `YourTarget` below\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:30
+msgid ""
+"![img](http://img4.tbcdn.cn/"
+"L1/461/1/4d9f4d6a8441b44e4816c7778627824fb72c58de)"
+msgstr ""
+"!(http://img4.tbcdn.cn/L1/461/1/4d9f4d6a8441b44e4816c7778627824fb72c58de)"
+"[img] ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:32
+msgid ""
+"Run pod install in current directory, for a while, .xcworkspace will be "
+"created.  At this point, the dependencies have been established."
+msgstr ""
+"在当前目录下运行安装POD，一会儿，xcworkspace将被创建。在这一点上，已建立的依"
+"赖关系。 ???"
+
+#. type: Title ####
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:33
+#, no-wrap
+msgid "3. Init Weex Environment"
+msgstr "3。init weex环境 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:35
+msgid ""
+"We are used to doing some initial tasks in appDelegate. Of course, there is "
+"no exception. You can do this in `didFinishLaunchingWithOptions` as follows."
+msgstr ""
+"我们习惯于在AppDelegate做一些初始任务。当然，也不例外。你可以在"
+"`didFinishLaunchingWithOptions`如下做。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:41
+msgid ""
+"``` //business configuration [WXAppConfiguration setAppGroup:@\"AliApp\"]; "
+"[WXAppConfiguration setAppName:@\"WeexDemo\"]; [WXAppConfiguration "
+"setAppVersion:@\"1.0.0\"];"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:44
+#, no-wrap
+msgid ""
+"//init sdk enviroment   \n"
+"[WXSDKEngine initSDKEnviroment];\n"
+msgstr ""
+"//初始化SDK环境 ???\n"
+"[wxsdkengine initsdkenviroment]; ???\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:48
+msgid ""
+"//register custom module and component，optional [WXSDKEngine "
+"registerComponent:@\"MyView\" withClass:[MyViewComponent class]]; "
+"[WXSDKEngine registerModule:@\"event\" withClass:[WXEventModule class]];"
+msgstr ""
+"/ /登记定制模块和组件，可选[wxsdkengine registercomponent：@“我想”有："
+"[myviewcomponent类]];[wxsdkengine寄存器：@“事件”有：[wxeventmodule类]]; ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:51
+msgid ""
+"//register the implementation of protocol, optional [WXSDKEngine "
+"registerHandler:[WXNavigationDefaultImpl new] withProtocol:"
+"@protocol(WXNavigationProtocol)];"
+msgstr ""
+"/ /登记协议的实施，可选[wxsdkengine registerhandler：[新] "
+"wxnavigationdefaultimpl withprotocol：@协议(WXNavigationProtocol)]; ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:54
+#, no-wrap
+msgid ""
+"//set the log level    \n"
+"[WXLog setLogLevel:WXLogLevelVerbose];\n"
+msgstr ""
+"设置日志级别 ???\n"
+"[wxlog setloglevel：wxloglevelverbose]; ???\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:56
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:62
+msgid "```"
+msgstr ""
+
+#. type: Title ####
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:57
+#, no-wrap
+msgid "4. Render Weex Instance"
+msgstr "4。渲染weex实例 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:60
+msgid ""
+"Weex supports two different modes, the full page rendering and part of page "
+"rendering.  Something you have to do is to render weex view with specific "
+"URL, then add it to the parent container, which may be the viewController."
+msgstr ""
+"weex支持两种不同的模式，充分渲染页面和页面渲染部分。你要做的是与特定的URL呈现"
+"weex视图，然后添加到父容器，这可能是视图。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:62
+#, no-wrap
+msgid "#import <WeexSDK/WXSDKInstance.h>\n"
+msgstr "#进口<WeexSDK/WXSDKInstance.h>???\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:67
+#, no-wrap
+msgid ""
+"- (void)viewDidLoad \n"
+"{\n"
+"\t[super viewDidLoad];\n"
+msgstr ""
+"-(void)viewDidLoad ???\n"
+"{\n"
+" [super viewDidLoad];\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:72
+#, no-wrap
+msgid ""
+"\t_instance = [[WXSDKInstance alloc] init];\n"
+"\t_instance.viewController = self;\n"
+"    _instance.frame = self.view.frame; \n"
+"    [_instance renderWithURL:self.url options:@{@\"bundleUrl\":[self.url absoluteString]} data:nil];\n"
+msgstr ""
+" _instance = [[WXSDKInstance alloc] init];\n"
+" _instance.viewController = self;\n"
+"    _instance.frame = self.view.frame; ???\n"
+"    [_instance renderwithurl：self.url选项：“{”“bundleurl”：[self.url absolutestring] }数据：零]; ???\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:78
+#, no-wrap
+msgid ""
+"    __weak typeof(self) weakSelf = self;\n"
+"    _instance.onCreate = ^(UIView *view) {\n"
+"        [weakSelf.weexView removeFromSuperview];\n"
+"        [weakSelf.view addSubview:weakSelf.weexView];\n"
+"    };\n"
+msgstr ""
+"    __weak型(self)weakself =自我; ???\n"
+"    _instance.oncreate = ^(UIView *view){ ???\n"
+"        [weakself.weexview removeFromSuperview]; ???\n"
+"        [weakself.view译：weakself weexview]; ???\n"
+"    }; ???\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:82
+#, no-wrap
+msgid ""
+"    _instance.onFailed = ^(NSError *error) {\n"
+"    \t//process failure\n"
+"    };\n"
+msgstr ""
+"    _instance.onfailed = ^(NSError *error){ ???\n"
+"     //process failure\n"
+"    }; ???\n"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:89
+#, no-wrap
+msgid ""
+"    _instance.renderFinish = ^ (UIView *view) {\n"
+"    \t//process renderFinish\n"
+"    };\n"
+"}\n"
+"```\n"
+"WXSDKInstance is a very imporent class, which provides you with some basic methods and callbacks, such as renderWithURL、onCreate、onFailed and etc. You can understand their usage by reading WXSDKInstance.h.\n"
+msgstr ""
+"    _instance.renderfinish = ^(UIView *view){ ???\n"
+"     //process renderFinish\n"
+"    }; ???\n"
+"}\n"
+" ````???\n"
+"wxsdkinstance是一个非常imporent类，它为您提供了一些基本的方法和回调，如renderwithurl、onCreate、onfailed等，你可以通过阅读wxsdkinstance理解它们的用法。H. ???\n"
+
+#. type: Title ####
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:91
+#, no-wrap
+msgid "5. Destroy Weex Instance"
+msgstr "5。破坏weex实例 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:94
+msgid ""
+"Please release weex instance in dealloc stage of viewContoller, or it will "
+"lead to memory leak."
+msgstr "请释放weex实例在viewcontoller释放阶段，这或将导致内存泄漏。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:101
+#, no-wrap
+msgid ""
+"```\n"
+"- (void)dealloc\n"
+"{\n"
+"    [_instance destroyInstance];\n"
+"}\n"
+"```\n"
+msgstr ""
+
+#. type: Title ####
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:102
+#, no-wrap
+msgid "6. Build .IPA for Weex"
+msgstr "6。IPA weex建造。 ???"
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:105
+msgid ""
+"We can also pack all the JS files into the app's resources. This way you can "
+"run your app without development server and submit it to the AppStore."
+msgstr ""
+"我们也可以把所有的js文件到应用程序的资源。这样你就可以运行你的应用程序没有开"
+"发服务器并将其提交至AppStore。 ???"
+
+#. type: Bullet: '* '
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:109
+msgid ""
+"[Install weex-toolkit](https://github.com/alibaba/weex_toolchain/tree/master/"
+"toolkit) and transform your `.we` file to JS by running `weex index.we -o "
+"index.js`, `index.we` is the entry file of your app."
+msgstr ""
+"[安装](https://github.com/alibaba/weex_toolchain/tree/master/toolkit)weex工具"
+"包和改变你的`.we`` file to JS by running ``weex index.we -o index.js``, "
+"``index.we`是应用程序的输入文件。 ???"
+
+#. type: Bullet: '* '
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:109
+msgid ""
+"Move `index.js` to your app's Xcode project and add the file to your target."
+msgstr "移动你的应用程序的`index.js`Xcode项目和文件添加到你的目标。 ???"
+
+#. type: Bullet: '* '
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:109
+msgid ""
+"Replace `[_instance renderWithURL:'httpURL']` with: `[_instance "
+"renderWithURL: [[NSBundle mainBundle] URLForResource:@\"index\" "
+"withExtension:@\"js\"]]`"
+msgstr ""
+"更换`[_instance renderWithURL:'httpURL']`` with: ``[_instance renderWithURL: "
+"[[NSBundle mainBundle] URLForResource:@\"index\" withExtension:@\"js\"]]`???"
+
+#. type: Bullet: '* '
+#: /home/dev/download/weex/doc/advanced/integrate-to-ios.md:110
+msgid ""
+"Go for Product -> Archive in Xcode and follow the steps to build your .IPA "
+"file and submit it to the AppStore."
+msgstr "去产品->归档在Xcode和遵循的步骤建立你的.ipa文件并提交给AppStore。 ???"
+
+#~ msgid "TODO"
+#~ msgstr "待办事项 ???"

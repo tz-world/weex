@@ -8,14 +8,20 @@ msgstr ""
 msgid "List of the names of colors"
 msgstr "颜色名称列表 ???"
 
-#. type: Title ###
+#. type: Plain text
 #: /home/dev/download/weex/doc/references/color-names.md:3
+#, no-wrap
+msgid "<a href=\"https://github.com/weexteam/article/issues/38\"  class=\"weex-translate\">cn</a>\n"
+msgstr ""
+
+#. type: Title ###
+#: /home/dev/download/weex/doc/references/color-names.md:4
 #, no-wrap
 msgid "Basic color keywords:"
 msgstr "基本颜色关键字： ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/references/color-names.md:23
+#: /home/dev/download/weex/doc/references/color-names.md:24
 msgid ""
 "| Color Name | Hex rgb | | ---------- | ------- | | black | #000000 | | "
 "silver | #C0C0C0 | | gray | #808080 | | white | #FFFFFF | | maroon | #800000 "
@@ -30,13 +36,13 @@ msgstr ""
 "|水| #修改| ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/references/color-names.md:24
+#: /home/dev/download/weex/doc/references/color-names.md:25
 #, no-wrap
 msgid "Extended color keywords:"
 msgstr "扩展颜色关键字： ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/references/color-names.md:175
+#: /home/dev/download/weex/doc/references/color-names.md:176
 msgid ""
 "| Color Name | Hex rgb | | ---------- | ------- | | aliceblue | #F0F8FF | | "
 "antiquewhite | #FAEBD7 | | aqua | #00FFFF | | aquamarine | #7FFFD4 | | azure "

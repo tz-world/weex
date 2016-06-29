@@ -8,42 +8,48 @@ msgstr ""
 msgid "modal"
 msgstr "模态 ???"
 
-#. type: Title ##
+#. type: Plain text
 #: /home/dev/download/weex/doc/modules/modal.md:3
+#, no-wrap
+msgid "<span class=\"weex-version\">0.4</span>\n"
+msgstr ""
+
+#. type: Title ##
+#: /home/dev/download/weex/doc/modules/modal.md:4
 #, no-wrap
 msgid "Summary"
 msgstr "总结 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/modules/modal.md:6
+#: /home/dev/download/weex/doc/modules/modal.md:7
 msgid ""
 "A series of modal dialog api like `toast`, `alert`, `confirm` and `prompt`."
 msgstr ""
 "一系列的模态对话框API像`toast``, ``alert``, ``confirm`` and ``prompt`。 ???"
 
 #. type: Title ##
-#: /home/dev/download/weex/doc/modules/modal.md:7
+#: /home/dev/download/weex/doc/modules/modal.md:8
 #, no-wrap
 msgid "API"
 msgstr "美国石油学会 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/modules/modal.md:9
+#: /home/dev/download/weex/doc/modules/modal.md:10
 #, no-wrap
 msgid "toast(options)"
 msgstr "烤面包(options)???"
 
 #. type: Title ####
-#: /home/dev/download/weex/doc/modules/modal.md:11
-#: /home/dev/download/weex/doc/modules/modal.md:27
-#: /home/dev/download/weex/doc/modules/modal.md:50
+#: /home/dev/download/weex/doc/modules/modal.md:12
+#: /home/dev/download/weex/doc/modules/modal.md:28
+#: /home/dev/download/weex/doc/modules/modal.md:51
 #: /home/dev/download/weex/doc/modules/modal.md:82
 #, no-wrap
 msgid "Arguments"
 msgstr "争论 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/modules/modal.md:16
+#: /home/dev/download/weex/doc/modules/modal.md:17
 #, no-wrap
 msgid ""
 "* `options`*(object)*: some options.\n"
@@ -55,8 +61,8 @@ msgstr ""
 "  * ``duration`*(number)*：时间(seconds)，土司显示。 ???\n"
 
 #. type: Title ####
-#: /home/dev/download/weex/doc/modules/modal.md:18
-#: /home/dev/download/weex/doc/modules/modal.md:34
+#: /home/dev/download/weex/doc/modules/modal.md:19
+#: /home/dev/download/weex/doc/modules/modal.md:35
 #: /home/dev/download/weex/doc/modules/modal.md:63
 #: /home/dev/download/weex/doc/modules/modal.md:96
 #, no-wrap
@@ -64,25 +70,25 @@ msgid "Example"
 msgstr "例子 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/modules/modal.md:24
+#: /home/dev/download/weex/doc/modules/modal.md:25
 msgid ""
 "```javascript var modal = require('@weex-module/modal'); modal."
 "toast({'message': 'I am toast!', 'duration': 1}); ```"
 msgstr ""
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/modules/modal.md:25
+#: /home/dev/download/weex/doc/modules/modal.md:26
 #, no-wrap
 msgid "alert(options, callback)"
 msgstr "警报(options, callback)???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/modules/modal.md:33
+#: /home/dev/download/weex/doc/modules/modal.md:34
 #, no-wrap
 msgid ""
 "* `options`*(object)*: some options.\n"
 "  * `message`*(string)*: the message that the alert shows.\n"
-"  * `okTitle`*(string)*: the title of alert button.\n"
+"  * `okTitle`*(string)*: the title of alert button, default is OK.\n"
 "* `callback`*(function)*: callback when complete.\n"
 msgstr ""
 "*`options``*(object)*: some options.\n"
@@ -91,7 +97,7 @@ msgstr ""
 "* ``callback`*(function)*：回调时完成。 ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/modules/modal.md:47
+#: /home/dev/download/weex/doc/modules/modal.md:48
 #, no-wrap
 msgid ""
 "```javascript\n"
@@ -101,26 +107,26 @@ msgid ""
 "modal.alert({\n"
 "  message: arg1,\n"
 "  okTitle: arg2\n"
-"}, function(e) {\n"
+"}, function() {\n"
 "  // TODO after the alert is complete.\n"
 "})\n"
 "```\n"
 msgstr ""
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/modules/modal.md:48
+#: /home/dev/download/weex/doc/modules/modal.md:49
 #, no-wrap
 msgid "confirm(options, callback)"
 msgstr "确认(options, callback)???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/modules/modal.md:57
+#: /home/dev/download/weex/doc/modules/modal.md:58
 #, no-wrap
 msgid ""
 "* `options`*(object)*: some options.\n"
 "  * `message`*(string)*: the message that the confirm shows.\n"
-"  * `okTitle`*(string)*: the title of confirm button.\n"
-"  * `cancelTitle`*(string)*: the title of cancel button.\n"
+"  * `okTitle`*(string)*: the title of confirm button, default is 'OK'.\n"
+"  * `cancelTitle`*(string)*: the title of cancel button, default is 'Cancel'.\n"
 "* `callback`*(function)*: callback when complete.\n"
 msgstr ""
 "*`options``*(object)*: some options.\n"
@@ -130,17 +136,14 @@ msgstr ""
 "* ``callback`*(function)*：回调时完成。 ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/modules/modal.md:59
+#: /home/dev/download/weex/doc/modules/modal.md:60
 #: /home/dev/download/weex/doc/modules/modal.md:91
 msgid "This method has a callback function whose arguments will be:"
 msgstr "此方法有一个回调函数，该函数的参数将是： ???"
 
-#. type: Plain text
+#. type: Bullet: '* '
 #: /home/dev/download/weex/doc/modules/modal.md:62
-#, no-wrap
-msgid ""
-"* `e`*(object)*: a event object.\n"
-"  * `status`*(string)*: the title of the button that clicked by user.\n"
+msgid "`result`*(string)*: the title of the button that clicked by user."
 msgstr ""
 "* * *：`e``*(object)*: a event object.\n"
 "  * ``status`(string)的按钮，点击用户名称。 ???\n"
@@ -158,8 +161,8 @@ msgid ""
 "  message: arg1,\n"
 "  okTitle: arg2,\n"
 "  cancelTitle: arg3\n"
-"}, function(e) {\n"
-"  nativeLog(e.status)\n"
+"}, function(result) {\n"
+"  nativeLog(result)\n"
 "  // TODO after the confirm is complete.\n"
 "});\n"
 "```\n"
@@ -177,8 +180,8 @@ msgstr "提示(options, callback)???"
 msgid ""
 "* `options`*(object)*: some options.\n"
 "  * `message`*(string)*: the message that the prompt shows.\n"
-"  * `okTitle`*(string)*: the title of confirm button.\n"
-"  * `cancelTitle`*(string)*: the title of cancel button.\n"
+"  * `okTitle`*(string)*: the title of confirm button, default is 'OK'.\n"
+"  * `cancelTitle`*(string)*: the title of cancel button, default is 'Cancel'.\n"
 "* `callback`*(function)*: callback when complete.\n"
 msgstr ""
 "*`options``*(object)*: some options.\n"
@@ -191,8 +194,8 @@ msgstr ""
 #: /home/dev/download/weex/doc/modules/modal.md:95
 #, no-wrap
 msgid ""
-"* `e`*(object)*: a event object.\n"
-"  * `status`*(string)*: the title of the button that clicked by user.\n"
+"* `res`*(object)*: the argument will be a object, which has attributes `result` and `data`, like `{ result: 'OK', data: 'hello world' }`\n"
+"  * `result`*(string)*: the title of the button that clicked by user.\n"
 "  * `data`*(string)*: the value of the text that entered by user.\n"
 msgstr ""
 "*`e``*(object)*: a event object.\n"
@@ -212,8 +215,8 @@ msgid ""
 "  message: arg1,\n"
 "  okTitle: arg2,\n"
 "  cancelTitle: arg3\n"
-"}, function(e) {\n"
-"  nativeLog(e.status + ', ' + e.data);\n"
+"}, function(res) {\n"
+"  nativeLog(res.result + ', ' + res.data);\n"
 "  // TODO after the prompt is complete.\n"
 "});\n"
 "```\n"

@@ -8,14 +8,20 @@ msgstr ""
 msgid "&lt;wxc-navpage&gt;"
 msgstr "&lt;WXC navpage &gt; ???"
 
-#. type: Title ###
+#. type: Plain text
 #: /home/dev/download/weex/doc/components/wxc-navpage.md:3
+#, no-wrap
+msgid "<span class=\"weex-version\">0.5</span>\n"
+msgstr ""
+
+#. type: Title ###
+#: /home/dev/download/weex/doc/components/wxc-navpage.md:4
 #, no-wrap
 msgid "Summary"
 msgstr "总结 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/wxc-navpage.md:6
+#: /home/dev/download/weex/doc/components/wxc-navpage.md:7
 msgid ""
 "The \"wxc-navpage\" tag implements a specialized component that contains a "
 "navbar at the top of the window and an embed content page. You can customize "
@@ -27,26 +33,26 @@ msgstr ""
 "跳转，看到[](../modules/navigator.md)导航模块。 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/wxc-navpage.md:7
+#: /home/dev/download/weex/doc/components/wxc-navpage.md:8
 #, no-wrap
 msgid "Child Components"
 msgstr "子组件 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/wxc-navpage.md:10
+#: /home/dev/download/weex/doc/components/wxc-navpage.md:11
 msgid ""
 "This type of component supports all kinds of weex component as its child "
 "components."
 msgstr "这种类型的组件支持各种weex组件的子组件。 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/wxc-navpage.md:11
+#: /home/dev/download/weex/doc/components/wxc-navpage.md:12
 #, no-wrap
 msgid "Attributes"
 msgstr "属性 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/wxc-navpage.md:23
+#: /home/dev/download/weex/doc/components/wxc-navpage.md:24
 msgid ""
 "- `height`: &lt;length&gt; The height of the navbar. Default value is 88.  - "
 "`background-color`: &lt;color&gt;The backgroudColor of the navbar. Default "
@@ -73,26 +79,26 @@ msgstr ""
 "src`：&lt;字符串&gt;你想设置的rightitem ImageUrl。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/wxc-navpage.md:25
+#: /home/dev/download/weex/doc/components/wxc-navpage.md:26
 msgid ""
 "Other attributes please check out the [common attributes](../references/"
 "common-attrs.md)."
 msgstr "其他属性，请查看[共性](../references/common-attrs.md)。 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/wxc-navpage.md:26
+#: /home/dev/download/weex/doc/components/wxc-navpage.md:27
 #, no-wrap
 msgid "Styles"
 msgstr "款式 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/wxc-navpage.md:29
+#: /home/dev/download/weex/doc/components/wxc-navpage.md:30
 #, no-wrap
 msgid "**common styles**: check out the [common styles](../references/common-attrs.md)\n"
 msgstr "* * *：常见的方式查看[共同](../references/common-attrs.md)风格 ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/wxc-navpage.md:34
+#: /home/dev/download/weex/doc/components/wxc-navpage.md:35
 msgid ""
 "- support flexbox related styles - support box model related styles - "
 "support ``position`` related styles - support ``opacity``, ``background-"
@@ -102,13 +108,13 @@ msgstr ""
 "- support ````opacity````, ````background-color```等 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/wxc-navpage.md:35
+#: /home/dev/download/weex/doc/components/wxc-navpage.md:36
 #, no-wrap
 msgid "Events"
 msgstr "事件 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/wxc-navpage.md:39
+#: /home/dev/download/weex/doc/components/wxc-navpage.md:40
 msgid ""
 "- `naviBar.leftItem.click`: triggered when the leftItem of navbar is "
 "clicked. You need to register the observer in ready or create block.  - "
@@ -121,13 +127,13 @@ msgstr ""
 "创建块的观察者。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/wxc-navpage.md:41
+#: /home/dev/download/weex/doc/components/wxc-navpage.md:42
 #, no-wrap
 msgid "**common events**: check out the [common events](../references/common-event.md)\n"
 msgstr "* * *：常见的事件查看[事件](../references/common-event.md)常见 ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/wxc-navpage.md:44
+#: /home/dev/download/weex/doc/components/wxc-navpage.md:45
 msgid ""
 "- support `click` event. Check out [common events](../references/common-"
 "event.md)  - support `appear` / `disappear` event. Check out [common events]"
@@ -138,13 +144,13 @@ msgstr ""
 "common-event.md)常见 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/wxc-navpage.md:45
+#: /home/dev/download/weex/doc/components/wxc-navpage.md:46
 #, no-wrap
 msgid "Example"
 msgstr "例子 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/wxc-navpage.md:60
+#: /home/dev/download/weex/doc/components/wxc-navpage.md:61
 #, no-wrap
 msgid ""
 "```js\n"
@@ -163,7 +169,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/wxc-navpage.md:68
+#: /home/dev/download/weex/doc/components/wxc-navpage.md:69
 #, no-wrap
 msgid ""
 "        this.$on('naviBar.leftItem.click',function(e){\n"

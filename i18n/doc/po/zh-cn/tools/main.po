@@ -8,17 +8,32 @@ msgstr ""
 msgid "Service & Tools"
 msgstr "服务和工具 ???"
 
+#. type: Plain text
+#: /home/dev/download/weex/doc/tools/main.md:4
+msgid "Debug, playground app, transformer and more."
+msgstr "调试，操场上的应用程序，变压器等。 ???"
+
 #. type: Bullet: '* '
-#: /home/dev/download/weex/doc/tools/main.md:5
+#: /home/dev/download/weex/doc/tools/main.md:10
 msgid "[CLI](./cli.md)"
 msgstr "[气候](./cli.md)???"
 
 #. type: Bullet: '* '
-#: /home/dev/download/weex/doc/tools/main.md:5
+#: /home/dev/download/weex/doc/tools/main.md:10
 msgid "[Transformer](./transformer.md)"
 msgstr "[变](./transformer.md)???"
 
 #. type: Bullet: '* '
-#: /home/dev/download/weex/doc/tools/main.md:5
+#: /home/dev/download/weex/doc/tools/main.md:10
 msgid "[Playground App](./playground-app.md)"
 msgstr "[应用](./playground-app.md)操场 ???"
+
+#. type: Bullet: '* '
+#: /home/dev/download/weex/doc/tools/main.md:10
+msgid "[Devtools](./devtools.md)"
+msgstr "[工具](./devtools.md)???"
+
+#. type: Bullet: '* '
+#: /home/dev/download/weex/doc/tools/main.md:10
+msgid "[How-to-debug](./how-to-debug.md)"
+msgstr "[如何](./how-to-debug.md)调试 ???"

@@ -11,11 +11,19 @@ msgstr "自举 ???"
 #. type: Plain text
 #: /home/dev/download/weex/doc/references/bootstrap.md:4
 #, no-wrap
+msgid ""
+"<span class=\"weex-version\">0.4</span>\n"
+"<a href=\"https://github.com/weexteam/article/issues/29\"  class=\"weex-translate\">cn</a>\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/references/bootstrap.md:6
+#, no-wrap
 msgid "Besides its default meaning, `<script>` tag supports two more configuration with its `type` property *in the top level component of a page*.\n"
 msgstr "除了默认的意思，`<script>`` tag supports two more configuration with its ``type`财产*在一页*顶层组件。 ???\n"
 
 #. type: Bullet: '* '
-#: /home/dev/download/weex/doc/references/bootstrap.md:7
+#: /home/dev/download/weex/doc/references/bootstrap.md:9
 msgid ""
 "`type=\"data\"`: For initial data configuration, the data defined here will "
 "overwrite the data definition in the `<script>`."
@@ -24,12 +32,12 @@ msgstr ""
 "will overwrite the data definition in the ``<script>`。 ???"
 
 #. type: Bullet: '* '
-#: /home/dev/download/weex/doc/references/bootstrap.md:7
+#: /home/dev/download/weex/doc/references/bootstrap.md:9
 msgid "`type=\"config\"`: For configuration definition."
 msgstr " `type=\"config\"`：配置定义。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/references/bootstrap.md:12
+#: /home/dev/download/weex/doc/references/bootstrap.md:14
 #, no-wrap
 msgid ""
 "```\n"
@@ -39,7 +47,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/references/bootstrap.md:17
+#: /home/dev/download/weex/doc/references/bootstrap.md:19
 #, no-wrap
 msgid ""
 "<script type=\"config\">\n"
@@ -49,24 +57,24 @@ msgid ""
 msgstr ""
 
 #. type: Title ##
-#: /home/dev/download/weex/doc/references/bootstrap.md:18
+#: /home/dev/download/weex/doc/references/bootstrap.md:20
 #, no-wrap
 msgid "Initial data definition"
 msgstr "初始数据定义 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/references/bootstrap.md:21
+#: /home/dev/download/weex/doc/references/bootstrap.md:23
 #, no-wrap
 msgid "Sometimes, it is hard to maintain huge data structure in the default `<script>` tag. So Weex allows us to have a `<script type=\"data\">` tag to define initial data. The data defined in here will totally replace the data defined in the default `<script>` tag.\n"
 msgstr "有时，很难在默认`<script>`` tag. So Weex allows us to have a ``<script type=\"data\">`` tag to define initial data. The data defined in here will totally replace the data defined in the default ``<script>`标签保持庞大的数据结构。 ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/references/bootstrap.md:23
+#: /home/dev/download/weex/doc/references/bootstrap.md:25
 msgid "here is an example:"
 msgstr "这里是一个例子： ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/references/bootstrap.md:32
+#: /home/dev/download/weex/doc/references/bootstrap.md:34
 #, no-wrap
 msgid ""
 "```html\n"
@@ -80,19 +88,19 @@ msgid ""
 msgstr ""
 
 #. type: Title ##
-#: /home/dev/download/weex/doc/references/bootstrap.md:33
+#: /home/dev/download/weex/doc/references/bootstrap.md:35
 #, no-wrap
 msgid "script configuration"
 msgstr "脚本配置 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/references/bootstrap.md:36
+#: /home/dev/download/weex/doc/references/bootstrap.md:38
 #, no-wrap
 msgid "Weex also allows us to do some configuration with a `<script type=\"config\">`, So far, we only support the `downgrade` configs.\n"
 msgstr "weex也允许我们用一个`<script type=\"config\">``, So far, we only support the ``downgrade`配置做一些配置。 ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/references/bootstrap.md:40
+#: /home/dev/download/weex/doc/references/bootstrap.md:42
 msgid ""
 "- `downgrade.osVersion` - `downgrade.appVersion` - `downgrade.weexVersion` - "
 "`downgrade.deviceModel`"

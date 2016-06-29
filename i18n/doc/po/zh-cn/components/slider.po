@@ -8,14 +8,20 @@ msgstr ""
 msgid "&lt;slider&gt;"
 msgstr "&lt;滑块&gt; ???"
 
-#. type: Title ###
+#. type: Plain text
 #: /home/dev/download/weex/doc/components/slider.md:3
+#, no-wrap
+msgid "<span class=\"weex-version\">0.4</span>\n"
+msgstr ""
+
+#. type: Title ###
+#: /home/dev/download/weex/doc/components/slider.md:4
 #, no-wrap
 msgid "Summary"
 msgstr "总结 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/slider.md:6
+#: /home/dev/download/weex/doc/components/slider.md:7
 msgid ""
 "A slide's player to show slides (mostly as pictures) one page by another. "
 "The default interval between two slides is 3 seconds."
@@ -24,13 +30,13 @@ msgstr ""
 "秒。 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/slider.md:7
+#: /home/dev/download/weex/doc/components/slider.md:8
 #, no-wrap
 msgid "Child Components"
 msgstr "子组件 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/slider.md:10
+#: /home/dev/download/weex/doc/components/slider.md:11
 msgid ""
 "It supports all kinds of weex components as its slides, especially the "
 "`indicator` component which can be used only as a child component of "
@@ -40,13 +46,13 @@ msgstr ""
 "only as a child component of ``slider`。 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/slider.md:11
+#: /home/dev/download/weex/doc/components/slider.md:12
 #, no-wrap
 msgid "Attributes"
 msgstr "属性 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/slider.md:14
+#: /home/dev/download/weex/doc/components/slider.md:15
 msgid ""
 "- `auto-play`: &lt;boolean&gt; `true` | `false`. This value determines "
 "whether the slides plays automatically after the page rendering finished. "
@@ -57,26 +63,26 @@ msgstr ""
 "The default value is ``false`。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/slider.md:16
+#: /home/dev/download/weex/doc/components/slider.md:17
 msgid ""
 "Other attributes please check out the [common attributes](../references/"
 "common-attrs.md)."
 msgstr "其他属性，请查看[共性](../references/common-attrs.md)。 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/slider.md:17
+#: /home/dev/download/weex/doc/components/slider.md:18
 #, no-wrap
 msgid "Styles"
 msgstr "款式 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/slider.md:20
+#: /home/dev/download/weex/doc/components/slider.md:21
 #, no-wrap
 msgid "**common styles**: check out [common styles for components](../references/common-style.md)\n"
 msgstr "* * *：常见的方式检查[组件](../references/common-style.md)常见的风格 ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/slider.md:25
+#: /home/dev/download/weex/doc/components/slider.md:26
 msgid ""
 "- support flexbox related styles - support box model related styles - "
 "support ``position`` related styles - support ``opacity``, ``background-"
@@ -86,13 +92,13 @@ msgstr ""
 "- support ````opacity````, ````background-color```等 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/slider.md:26
+#: /home/dev/download/weex/doc/components/slider.md:27
 #, no-wrap
 msgid "Events"
 msgstr "事件 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/slider.md:29
+#: /home/dev/download/weex/doc/components/slider.md:30
 msgid ""
 "- `change`: triggerd when the slide's index is changed. The event object "
 "contains the attribute of `index`, which is the index number of the "
@@ -102,13 +108,13 @@ msgstr ""
 "contains the attribute of ``index`，这是当前显示的幻灯片的指数。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/slider.md:31
+#: /home/dev/download/weex/doc/components/slider.md:32
 #, no-wrap
 msgid "**common events**: check out the [common events](../references/common-event.md)\n"
 msgstr "* * *：常见的事件查看[事件](../references/common-event.md)常见 ???\n"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/slider.md:34
+#: /home/dev/download/weex/doc/components/slider.md:35
 msgid ""
 "- support `click` event. Check out [common events](../references/common-"
 "event.md)  - support `appear` / `disappear` event. Check out [common events]"
@@ -119,13 +125,13 @@ msgstr ""
 "common-event.md)常见 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/components/slider.md:35
+#: /home/dev/download/weex/doc/components/slider.md:36
 #, no-wrap
 msgid "Example"
 msgstr "例子 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/slider.md:46
+#: /home/dev/download/weex/doc/components/slider.md:47
 #, no-wrap
 msgid ""
 "```\n"
@@ -140,7 +146,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/components/slider.md:60
+#: /home/dev/download/weex/doc/components/slider.md:61
 #, no-wrap
 msgid ""
 "<script>\n"

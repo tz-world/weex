@@ -36,8 +36,8 @@ msgstr "weex代码 ???"
 #. type: Plain text
 #: /home/dev/download/weex/doc/demo/list.md:9
 msgid ""
-"See [list example](https://github.com/alibaba/weex/tree/master/examples/"
-"listDemo.we)."
+"See [list example](https://github.com/alibaba/weex/tree/dev/examples/"
+"component/list/list-demo.we)."
 msgstr ""
 "看到[例](https://github.com/alibaba/weex/tree/master/examples/listDemo.we)列"
 "表。 ???"

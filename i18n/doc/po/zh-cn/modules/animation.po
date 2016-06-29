@@ -8,42 +8,48 @@ msgstr ""
 msgid "animation"
 msgstr "动画 ???"
 
-#. type: Title ##
+#. type: Plain text
 #: /home/dev/download/weex/doc/modules/animation.md:3
+#, no-wrap
+msgid "<span class=\"weex-version\">0.4</span>\n"
+msgstr ""
+
+#. type: Title ##
+#: /home/dev/download/weex/doc/modules/animation.md:4
 #, no-wrap
 msgid "Summary"
 msgstr "总结 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/modules/animation.md:6
+#: /home/dev/download/weex/doc/modules/animation.md:7
 msgid "A series of animation api."
 msgstr "一系列动画的原料药。 ???"
 
 #. type: Title ##
-#: /home/dev/download/weex/doc/modules/animation.md:7
+#: /home/dev/download/weex/doc/modules/animation.md:8
 #, no-wrap
 msgid "API"
 msgstr "美国石油学会 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/modules/animation.md:9
+#: /home/dev/download/weex/doc/modules/animation.md:10
 #, no-wrap
 msgid "transition(node, options, callback)"
 msgstr "过渡(node, options, callback)???"
 
 #. type: Title ####
-#: /home/dev/download/weex/doc/modules/animation.md:11
+#: /home/dev/download/weex/doc/modules/animation.md:12
 #, no-wrap
 msgid "Arguments"
 msgstr "争论 ???"
 
 #. type: Bullet: '* '
-#: /home/dev/download/weex/doc/modules/animation.md:26
+#: /home/dev/download/weex/doc/modules/animation.md:27
 msgid "`node`*(Node)*: An element that will be animated."
 msgstr " `node`*(Node)*：一个元素，将动画。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/modules/animation.md:26
+#: /home/dev/download/weex/doc/modules/animation.md:27
 #, no-wrap
 msgid ""
 "* `options`*(object)*: Transition options. \n"
@@ -73,13 +79,13 @@ msgstr ""
 "***回调回调函数完成后调用的回调函数。 ???\n"
 
 #. type: Title ####
-#: /home/dev/download/weex/doc/modules/animation.md:27
+#: /home/dev/download/weex/doc/modules/animation.md:28
 #, no-wrap
 msgid "Example"
 msgstr "例子 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/modules/animation.md:35
+#: /home/dev/download/weex/doc/modules/animation.md:36
 #, no-wrap
 msgid ""
 "```html\n"
@@ -91,7 +97,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/modules/animation.md:57
+#: /home/dev/download/weex/doc/modules/animation.md:58
 #, no-wrap
 msgid ""
 "<script>\n"

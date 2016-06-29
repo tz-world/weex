@@ -8,70 +8,124 @@ msgstr ""
 msgid "stream"
 msgstr "流动 ???"
 
-#. type: Title ##
+#. type: Plain text
 #: /home/dev/download/weex/doc/modules/stream.md:3
+#, no-wrap
+msgid "<span class=\"weex-version\">0.4</span>\n"
+msgstr ""
+
+#. type: Title ##
+#: /home/dev/download/weex/doc/modules/stream.md:4
 #, no-wrap
 msgid "Summary"
 msgstr "总结 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/modules/stream.md:6
+#: /home/dev/download/weex/doc/modules/stream.md:7
 msgid "A series of stream api. It provides a network request."
 msgstr "一系列的流接口。它提供了一个网络请求。 ???"
 
 #. type: Title ##
-#: /home/dev/download/weex/doc/modules/stream.md:7
+#: /home/dev/download/weex/doc/modules/stream.md:8
 #, no-wrap
 msgid "API"
 msgstr "美国石油学会 ???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/modules/stream.md:9
+#: /home/dev/download/weex/doc/modules/stream.md:10
 #, no-wrap
-msgid "sendHttp(params, callback)"
-msgstr "sendhttp(params, callback)???"
+msgid "fetch(options, callback[,progressCallback])"
+msgstr "取(options, callback[,progressCallback])???"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/modules/stream.md:11
+#: /home/dev/download/weex/doc/modules/stream.md:12
 #, no-wrap
 msgid "Arguments"
 msgstr "争论 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/modules/stream.md:19
+#: /home/dev/download/weex/doc/modules/stream.md:32
 #, no-wrap
 msgid ""
-"* `params`*(object)*: the request parameters.\n"
-"  * `method`*(string)*: the HTTP method like `GET`, `POST`.\n"
+"* `options`*(object)*: the request options.\n"
+"  * `method`*(string)*: the HTTP method `GET` or `POST`.\n"
 "  * `url`*(string)*: the request url.\n"
-"  * `header`*(object)*: the HTTP request header.\n"
+"  * `headers`*(object)*: the HTTP request headers.\n"
+"  * `type`*(string)*: request type, 'json','text' or 'jsonp'(same as 'json' in native implementation)\n"
 "  * `body`*(string)*: the HTTP body.\n"
-"* `callback`*(function)*: A callback function whose argument is the response string of the request.\n"
+"* `callback`*(function)*: A callback function whose argument is the response object of the request. Callback function will receive a `response` object:   \n"
+"  * `status`*(number)*：response status code.\n"
+"  * `ok`*(boolean)*: true if status code is bewteen 200～299.\n"
+"  * `statusText`*(string)*：status text \n"
+"  * `data`: response data. It's a object if request option is `json`/`jsonp`, or *(string)* in other type value.\n"
+"  * `headers`*(object)*: response headers\n"
+"* `progressCallback`*(function)*: A progress callback. This callback will be invoked before request finished:   \n"
+"  * `readyState`*(number)*: Current request state.'1':request connection opened;'2':response headers received.;'3':response data is loading;\n"
+"  * `status`*(number)*：response status code.\n"
+"  * `length`*(number)*: bytes of data have received. You can read full length of response from 'headers'.\n"
+"  * `statusText`*(string)*：status text \n"
+"  * `headers`*(object)*: response headers\n"
 msgstr ""
-"*`params``*(object)*: the request parameters.\n"
-"  * ``method``*(string)*: the HTTP method like ``GET``, ``POST``.\n"
+"*`options``*(object)*: the request options.\n"
+"  * ``method``*(string)*: the HTTP method ``GET`` or ``POST``.\n"
 "  * ``url``*(string)*: the request url.\n"
-"  * ``header``*(object)*: the HTTP request header.\n"
+"  * ``headers``*(object)*: the HTTP request headers.\n"
+"  * ``type``*(string)*: request type, 'json','text' or 'jsonp'(same as 'json' in native implementation)\n"
 "  * ``body``*(string)*: the HTTP body.\n"
-"* ``callback`*(function)*：一个回调函数的参数是请求的响应字符串。 ???\n"
+"* ``callback``*(function)*: A callback function whose argument is the response object of the request. Callback function will receive a ``response`` object:   \n"
+"  * ``status``*(number)*：response status code.\n"
+"  * ``ok``*(boolean)*: true if status code is bewteen 200～299.\n"
+"  * ``statusText``*(string)*：status text \n"
+"  * ``data``: response data. It's a object if request option is ``json``/``jsonp``, or *(string)* in other type value.\n"
+"  * ``headers``*(object)*: response headers\n"
+"* ``progressCallback``*(function)*: A progress callback. This callback will be invoked before request finished:   \n"
+"  * ``readyState``*(number)*: Current request state.'1':request connection opened;'2':response headers received.;'3':response data is loading;\n"
+"  * ``status``*(number)*：response status code.\n"
+"  * ``length``*(number)*: bytes of data have received. You can read full length of response from 'headers'.\n"
+"  * ``statusText``*(string)*：status text \n"
+"  * ``headers`*(object)*：响应头 ???\n"
 
 #. type: Title ###
-#: /home/dev/download/weex/doc/modules/stream.md:20
+#: /home/dev/download/weex/doc/modules/stream.md:35
 #, no-wrap
 msgid "Example"
 msgstr "例子 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/modules/stream.md:31
+#: /home/dev/download/weex/doc/modules/stream.md:46
 #, no-wrap
 msgid ""
 "```javascript\n"
-"var stream = require('@weex-module/stream');\n"
-"stream.sendHttp({\n"
+"stream.fetch({\n"
 "  method: 'GET',\n"
-"  url: 'path/to/a/uri', // can't not support CORS yet!\n"
-"}, function(ret) {\n"
-"  // TODO after response\n"
-"});\n"
-"```\n"
+"  url: \"http://httpbin.org/get\",\n"
+"  type:'json'\n"
+"}, function(response) {\n"
+"  //process response\n"
+"},function(response){\n"
+"  console.log(\"bytes received:\"+response.length);\n"
 msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/modules/stream.md:49
+msgid "}); ```"
+msgstr "});````???"
+
+#~ msgid "sendHttp(params, callback)"
+#~ msgstr "sendhttp(params, callback)???"
+
+#~ msgid ""
+#~ "* `params`*(object)*: the request parameters.\n"
+#~ "  * `method`*(string)*: the HTTP method like `GET`, `POST`.\n"
+#~ "  * `url`*(string)*: the request url.\n"
+#~ "  * `header`*(object)*: the HTTP request header.\n"
+#~ "  * `body`*(string)*: the HTTP body.\n"
+#~ "* `callback`*(function)*: A callback function whose argument is the "
+#~ "response string of the request.\n"
+#~ msgstr ""
+#~ "*`params``*(object)*: the request parameters.\n"
+#~ "  * ``method``*(string)*: the HTTP method like ``GET``, ``POST``.\n"
+#~ "  * ``url``*(string)*: the request url.\n"
+#~ "  * ``header``*(object)*: the HTTP request header.\n"
+#~ "  * ``body``*(string)*: the HTTP body.\n"
+#~ "* ``callback`*(function)*：一个回调函数的参数是请求的响应字符串。 ???\n"

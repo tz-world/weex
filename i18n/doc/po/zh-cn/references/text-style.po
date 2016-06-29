@@ -10,6 +10,14 @@ msgstr "文本样式 ???"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/references/text-style.md:4
+#, no-wrap
+msgid ""
+"<span class=\"weex-version\">0.5</span>\n"
+"<a href=\"https://github.com/weexteam/article/issues/37\"  class=\"weex-translate\">cn</a>\n"
+msgstr ""
+
+#. type: Plain text
+#: /home/dev/download/weex/doc/references/text-style.md:6
 msgid ""
 "Text alike components share some common style rules. The text alike "
 "components currently includes [`text`](../components/text.md) and [`input`]"
@@ -19,54 +27,91 @@ msgstr ""
 "components/text.md) and [``input`](../components/input.md)。 ???"
 
 #. type: Title ##
-#: /home/dev/download/weex/doc/references/text-style.md:5
+#: /home/dev/download/weex/doc/references/text-style.md:7
 #, no-wrap
 msgid "Properties"
 msgstr "性能 ???"
 
-#. type: Plain text
-#: /home/dev/download/weex/doc/references/text-style.md:15
+#. type: Bullet: '- '
+#: /home/dev/download/weex/doc/references/text-style.md:16
 msgid ""
-"- `color`: &lt;colors&gt; this property set the foreground color of an "
-"component's text content.  - `font-size`: &lt;length&gt; this property "
-"specifies the size of the font.  - `font-style`: &lt;enum&gt; `normal` | "
-"`italic`. This property lets you select italic or normal faces within a font-"
-"family. Default value is `normal`.  - `font-weight`: &lt;enum&gt; `normal` | "
-"`bold`. This property specifies the boldness of the font. Default value is "
-"`normal`.  - `text-decoration`: &lt;enum&gt; `none` | `underline` | `line-"
-"through`. This property is used to set the text formatting to underline or "
-"line-through. The default value is `none`.  - `text-align`: &lt;enum&gt; "
-"`left` | `center` | `right`. This property describes how inline content like "
-"text is aligned in its parent component. The default value is `left`.  - "
+"`color`: &lt;colors&gt; this property set the foreground color of an "
+"component's text content."
+msgstr " `color`：&lt;颜色&gt;此属性设置一个组件的文本内容的前景颜色。 ???"
+
+#. type: Bullet: '- '
+#: /home/dev/download/weex/doc/references/text-style.md:16
+msgid ""
+"`font-size`: &lt;length&gt; this property specifies the size of the font."
+msgstr " `font-size`：&lt;长度&gt;此属性指定字体的大小。 ???"
+
+#. type: Bullet: '- '
+#: /home/dev/download/weex/doc/references/text-style.md:16
+msgid ""
+"`font-style`: &lt;enum&gt; `normal` | `italic`. This property lets you "
+"select italic or normal faces within a font-family. Default value is "
+"`normal`."
+msgstr ""
+" `font-style``: &lt;enum&gt; ``normal`` | ``italic``. This property lets you "
+"select italic or normal faces within a font-family. Default value is "
+"``normal`。 ???"
+
+#. type: Bullet: '- '
+#: /home/dev/download/weex/doc/references/text-style.md:16
+msgid ""
+"`font-weight`: &lt;enum&gt; `normal` | `bold`. This property specifies the "
+"boldness of the font. Default value is `normal`."
+msgstr ""
+" `font-weight``: &lt;enum&gt; ``normal`` | ``bold``. This property specifies "
+"the boldness of the font. Default value is ``normal`。 ???"
+
+#. type: Bullet: '- '
+#: /home/dev/download/weex/doc/references/text-style.md:16
+msgid ""
+"`text-decoration`: &lt;enum&gt; `none` | `underline` | `line-through`. This "
+"property is used to set the text formatting to underline or line-through. "
+"The default value is `none`."
+msgstr ""
+" `text-decoration``: &lt;enum&gt; ``none`` | ``underline`` | ``line-"
+"through``. This property is used to set the text formatting to underline or "
+"line-through. The default value is ``none`。 ???"
+
+#. type: Bullet: '- '
+#: /home/dev/download/weex/doc/references/text-style.md:16
+msgid ""
+"`text-align`: &lt;enum&gt; `left` | `center` | `right`. This property "
+"describes how inline content like text is aligned in its parent component. "
+"The default value is `left`."
+msgstr ""
+" `text-align``: &lt;enum&gt; ``left`` | ``center`` | ``right``. This "
+"property describes how inline content like text is aligned in its parent "
+"component. The default value is ``left`。 ???"
+
+#. type: Bullet: '- '
+#: /home/dev/download/weex/doc/references/text-style.md:16
+msgid ""
 "`font-family`:&lt;string&gt; this property set the font-family of the text. "
 "This property **doesn't guarteen** the given font will always be set to the "
 "text. If the specified font cannot be found at the device, a typeface "
 "fallback will occurr and the default typeface will be load. The fallback "
-"mechanism may vary in different devices.  - `text-overflow`:&lt;string&gt; "
-"`clip` | `ellipsis`. This property determines how overflowed content that is "
-"not displayed is signaled to users. It can be clipped, display an ellipsis."
+"mechanism may vary in different devices."
 msgstr ""
-"-`color``: &lt;colors&gt; this property set the foreground color of an "
-"component's text content.  - ``font-size``: &lt;length&gt; this property "
-"specifies the size of the font.  - ``font-style``: &lt;enum&gt; ``normal`` | "
-"``italic``. This property lets you select italic or normal faces within a "
-"font-family. Default value is ``normal``.  - ``font-weight``: &lt;enum&gt; "
-"``normal`` | ``bold``. This property specifies the boldness of the font. "
-"Default value is ``normal``.  - ``text-decoration``: &lt;enum&gt; ``none`` | "
-"``underline`` | ``line-through``. This property is used to set the text "
-"formatting to underline or line-through. The default value is ``none``.  - "
-"``text-align``: &lt;enum&gt; ``left`` | ``center`` | ``right``. This "
-"property describes how inline content like text is aligned in its parent "
-"component. The default value is ``left``.  - ``font-family``:&lt;string&gt; "
-"this property set the font-family of the text. This property **doesn't "
-"guarteen** the given font will always be set to the text. If the specified "
-"font cannot be found at the device, a typeface fallback will occurr and the "
-"default typeface will be load. The fallback mechanism may vary in different "
-"devices.  - ``text-overflow``:&lt;string&gt; ``clip`` | ``ellipsis`。这个属性"
-"决定了不显示的内容是如何将用户溢出。它将显示一个省略号。 ???"
+" `font-family`：&lt;字符串&gt;此属性设置文本的字体。这个属性并不guarteen **给"
+"定的字体会被设置为文本。如果没有指定的字体是在设备发现，字体回退发生和默认字"
+"体将负荷。回退机制可以在不同设备不同。 ???"
+
+#. type: Bullet: '- '
+#: /home/dev/download/weex/doc/references/text-style.md:16
+msgid ""
+"`text-overflow`:&lt;string&gt; `clip` | `ellipsis`. This property determines "
+"how overflowed content that is not displayed is signaled to users. It can be "
+"clipped, display an ellipsis."
+msgstr ""
+" `text-overflow``:&lt;string&gt; ``clip`` | ``ellipsis`。这个属性决定了不显示"
+"的内容是如何将用户溢出。它将显示一个省略号。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/references/text-style.md:17
+#: /home/dev/download/weex/doc/references/text-style.md:19
 msgid ""
 "The property `color` support multiple fomats of values, contains rgb, rgba, "
 "#fff, #ffffff, named-color."
@@ -75,12 +120,12 @@ msgstr ""
 "色。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/references/text-style.md:19
+#: /home/dev/download/weex/doc/references/text-style.md:21
 msgid "Example:"
 msgstr "例子: ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/references/text-style.md:27
+#: /home/dev/download/weex/doc/references/text-style.md:29
 msgid ""
 "``` .my-class { color: red; } .my-class { color: #f00; } .my-class { color: "
 "#ff0000; } .my-class { color: rgb(255, 0, 0); } .my-class { color: rgba(255, "
@@ -88,13 +133,13 @@ msgid ""
 msgstr ""
 
 #. type: Title ##
-#: /home/dev/download/weex/doc/references/text-style.md:28
+#: /home/dev/download/weex/doc/references/text-style.md:30
 #, no-wrap
 msgid "Type of Style Value"
 msgstr "风格价值类型 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/references/text-style.md:33
+#: /home/dev/download/weex/doc/references/text-style.md:35
 msgid ""
 "- length: number followed by length unit `px`, `px` can be omitted.  - "
 "colors: support multiple formats of values, including rgb (`rgb(255, 0, "
@@ -108,7 +153,48 @@ msgstr ""
 "(``#f00``), named color (``red`)。枚举值：数量有限的字符串值。 ???"
 
 #. type: Plain text
-#: /home/dev/download/weex/doc/references/text-style.md:35
+#: /home/dev/download/weex/doc/references/text-style.md:37
 #, no-wrap
 msgid "**Note:** [The list of color keywords.](./color-names.md)\n"
 msgstr "*注：* [关键词](./color-names.md)颜色列表。 ???\n"
+
+#~ msgid ""
+#~ "- `color`: &lt;colors&gt; this property set the foreground color of an "
+#~ "component's text content.  - `font-size`: &lt;length&gt; this property "
+#~ "specifies the size of the font.  - `font-style`: &lt;enum&gt; `normal` | "
+#~ "`italic`. This property lets you select italic or normal faces within a "
+#~ "font-family. Default value is `normal`.  - `font-weight`: &lt;enum&gt; "
+#~ "`normal` | `bold`. This property specifies the boldness of the font. "
+#~ "Default value is `normal`.  - `text-decoration`: &lt;enum&gt; `none` | "
+#~ "`underline` | `line-through`. This property is used to set the text "
+#~ "formatting to underline or line-through. The default value is `none`.  - "
+#~ "`text-align`: &lt;enum&gt; `left` | `center` | `right`. This property "
+#~ "describes how inline content like text is aligned in its parent "
+#~ "component. The default value is `left`.  - `font-family`:&lt;string&gt; "
+#~ "this property set the font-family of the text. This property **doesn't "
+#~ "guarteen** the given font will always be set to the text. If the "
+#~ "specified font cannot be found at the device, a typeface fallback will "
+#~ "occurr and the default typeface will be load. The fallback mechanism may "
+#~ "vary in different devices.  - `text-overflow`:&lt;string&gt; `clip` | "
+#~ "`ellipsis`. This property determines how overflowed content that is not "
+#~ "displayed is signaled to users. It can be clipped, display an ellipsis."
+#~ msgstr ""
+#~ "-`color``: &lt;colors&gt; this property set the foreground color of an "
+#~ "component's text content.  - ``font-size``: &lt;length&gt; this property "
+#~ "specifies the size of the font.  - ``font-style``: &lt;enum&gt; "
+#~ "``normal`` | ``italic``. This property lets you select italic or normal "
+#~ "faces within a font-family. Default value is ``normal``.  - ``font-"
+#~ "weight``: &lt;enum&gt; ``normal`` | ``bold``. This property specifies the "
+#~ "boldness of the font. Default value is ``normal``.  - ``text-"
+#~ "decoration``: &lt;enum&gt; ``none`` | ``underline`` | ``line-through``. "
+#~ "This property is used to set the text formatting to underline or line-"
+#~ "through. The default value is ``none``.  - ``text-align``: &lt;enum&gt; "
+#~ "``left`` | ``center`` | ``right``. This property describes how inline "
+#~ "content like text is aligned in its parent component. The default value "
+#~ "is ``left``.  - ``font-family``:&lt;string&gt; this property set the font-"
+#~ "family of the text. This property **doesn't guarteen** the given font "
+#~ "will always be set to the text. If the specified font cannot be found at "
+#~ "the device, a typeface fallback will occurr and the default typeface will "
+#~ "be load. The fallback mechanism may vary in different devices.  - ``text-"
+#~ "overflow``:&lt;string&gt; ``clip`` | ``ellipsis`。这个属性决定了不显示的内"
+#~ "容是如何将用户溢出。它将显示一个省略号。 ???"

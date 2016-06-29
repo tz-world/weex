@@ -9,16 +9,21 @@ msgid "Service & Tools"
 msgstr "服务和工具 ???"
 
 #. type: Bullet: '* '
-#: /home/dev/download/weex/doc/tools/README.md:5
+#: /home/dev/download/weex/doc/tools/README.md:6
 msgid "[CLI](./cli.md)"
 msgstr "[气候](./cli.md)???"
 
 #. type: Bullet: '* '
-#: /home/dev/download/weex/doc/tools/README.md:5
+#: /home/dev/download/weex/doc/tools/README.md:6
 msgid "[Transformer](./transformer.md)"
 msgstr "[变](./transformer.md)???"
 
 #. type: Bullet: '* '
-#: /home/dev/download/weex/doc/tools/README.md:5
+#: /home/dev/download/weex/doc/tools/README.md:6
 msgid "[Playground App](./playground-app.md)"
 msgstr "[应用](./playground-app.md)操场 ???"
+
+#. type: Bullet: '* '
+#: /home/dev/download/weex/doc/tools/README.md:6
+msgid "[Devtools](./devtools.md)"
+msgstr "[工具](./devtools.md)???"

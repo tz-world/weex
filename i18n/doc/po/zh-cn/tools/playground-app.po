@@ -24,8 +24,8 @@ msgstr ""
 #. type: Plain text
 #: /home/dev/download/weex/doc/tools/playground-app.md:7
 msgid ""
-"Android version of Playground App can be downloaded [here](http://empty-"
-"now).  iOS version will soon be ready to download."
+"Android version of Playground App can be downloaded [here](http://alibaba."
+"github.io/weex/download.html).  iOS version will soon be ready to download."
 msgstr ""
 "Android应用程序版本的操场上可以下载[这里](http://empty-now)。iOS版本将很快准"
 "备下载。 ???"
