@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Integrate to HTML5 · GitBook</title>
+        <title>Integrate to web · GitBook</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -488,7 +488,7 @@
                 <a href="integrate-to-html5.html">
             
                     
-                    Integrate to HTML5
+                    Integrate to web
             
                 </a>
             
@@ -527,7 +527,7 @@
                 <a href="extend-to-html5.html">
             
                     
-                    Extend to HTML5
+                    Extend to web
             
                 </a>
             
@@ -1279,7 +1279,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Integrate to HTML5</a>
+        <a href=".." >Integrate to web</a>
     </h1>
 </div>
 
@@ -1298,16 +1298,13 @@
 <p>Weex is a extendable cross-platform solution for dynamic programming and publishing projects, which is for developers to write code once and run the code everywhere.</p>
 <p>The bundle transformed from the source can currently run on android, ios and web platform. Weex HTML5 is a renderer for weex bundle to run on a webview or a modern browser etc.</p>
 <h3 id="get-weex-html5">Get Weex HTML5</h3>
-<p>Use npm to install the latest version of Weex HTML5, require it in your code by CommonJS and use it as a npm package. You should require Weex JS Framework as well, which is as a dependency to Weex HTML5.</p>
+<p>Use npm to install the latest version of Weex HTML5, require it in your code by CommonJS and use it as a npm package.</p>
 <h4 id="install-from-npm">Install from npm</h4>
 <p>Make sure you get the latest version by <code>npm install</code> or <code>npm update</code>. For more information of npm, please visit the <a href="https://docs.npmjs.com/" target="_blank">npm official site</a>.</p>
-<pre><code>npm install weex-jsframework
-npm install weex-html5
-</code></pre><p>require weex-jsframework and weex-html5:</p>
-<pre><code>require(&apos;weex-jsframework&apos;)
-var weex = require(&apos;weex-html5&apos;)
-</code></pre><p><strong>Note:</strong> Since Weex is in a beta test phase, not fully open-sourced yet, the <code>weex-jsframework</code> may haven&apos;t been published to npm yet. You may have to wait for our code to fully open-sourced and till then you can install it from npm anytime you want.</p>
-<h3 id="initialize-and-run">Initialize and run</h3>
+<pre><code>npm install weex-html5
+</code></pre><p>require weex-html5:</p>
+<pre><code>const weex = require(&apos;weex-html5&apos;)
+</code></pre><h3 id="initialize-and-run">Initialize and run</h3>
 <p>You can initialize weex through the API <code>init</code>. This method takes a config object as the first argument to confirm the runtime infomation and environment. Following parameters can be set by this config object:</p>
 <ul>
 <li><code>appId</code>: app instance id, can be either a string or a number</li>
@@ -1372,7 +1369,7 @@ weexInit()
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-        gitbook.page.hasChanged({"page":{"title":"Integrate to HTML5","level":"1.2.4.5","depth":3,"next":{"title":"Extend to Android","level":"1.2.4.6","depth":3,"path":"advanced/extend-to-android.md","ref":"advanced/extend-to-android.md","articles":[]},"previous":{"title":"Integrate to iOS","level":"1.2.4.4","depth":3,"path":"advanced/integrate-to-ios.md","ref":"advanced/integrate-to-ios.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.1.1","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"advanced/integrate-to-html5.md","mtime":"2016-06-28T09:28:34.130Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-06-29T02:10:01.930Z"},"basePath":"..","book":{"language":""}});
+        gitbook.page.hasChanged({"page":{"title":"Integrate to web","level":"1.2.4.5","depth":3,"next":{"title":"Extend to Android","level":"1.2.4.6","depth":3,"path":"advanced/extend-to-android.md","ref":"advanced/extend-to-android.md","articles":[]},"previous":{"title":"Integrate to iOS","level":"1.2.4.4","depth":3,"path":"advanced/integrate-to-ios.md","ref":"advanced/integrate-to-ios.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.1.1","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"advanced/integrate-to-html5.md","mtime":"2016-06-29T02:34:08.894Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-06-29T02:34:28.938Z"},"basePath":"..","book":{"language":""}});
         setTimeout(function(){
            window._rePostionVersion()
         },100);
