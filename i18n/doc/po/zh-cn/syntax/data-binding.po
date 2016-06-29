@@ -241,12 +241,12 @@ msgstr "特殊属性的数据绑定"
 #: /home/dev/download/weex/doc/syntax/data-binding.md:121
 #, no-wrap
 msgid "Styles: `style` or `class`"
-msgstr "款式：`style`` or ``class`???"
+msgstr "样式 ：`style` 或 `class`"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:124
 msgid "the style of a component can be bind using the `style` attribute:"
-msgstr "一个组件的风格可以用`style`属性绑定： ???"
+msgstr "一个组件的样式可以通过 `style` 属性来绑定："
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:130
@@ -264,7 +264,7 @@ msgstr ""
 msgid ""
 "while style can also get bound with `class` attribute, multiple classnames "
 "can be split by spaces:"
-msgstr "而风格也能得到一定`class`属性，多类名称可分空间： ???"
+msgstr "样式也能够通过 `class` 属性实现绑定，多个 classname 之间通过空格分隔:"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:141
@@ -286,19 +286,18 @@ msgid ""
 "here if `{{size}}` and `{{status}}` have empty value, then only `class="
 "\"title\"` will be rendered."
 msgstr ""
-"在这里，如果`{{size}}`` and ``{{status}}`` have empty value, then only "
-"``class=\"title\"`将呈现。 ???"
+"在上面的代码中如果 `{{size}}` 和 `{{status}}` 是空值, 就只有 `class=\"title\"` 会被渲染。"
 
 #. type: Bullet: '* '
 #: /home/dev/download/weex/doc/syntax/data-binding.md:145
 msgid "[See more about style and class](./style-n-class.md)"
-msgstr "[见更多的样式和类](./style-n-class.md)???"
+msgstr "[参见 样式和类](./style-n-class.md)"
 
 #. type: Title ###
 #: /home/dev/download/weex/doc/syntax/data-binding.md:146
 #, no-wrap
 msgid "Event Handler: `on...`"
-msgstr "事件处理程序：`on...`???"
+msgstr "事件响应：`on...`"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:149
@@ -308,8 +307,8 @@ msgid ""
 "don't need to add mustache around the method name or add parentheses to call "
 "it."
 msgstr ""
-"事件处理程序是一个属性的名称前缀`on...`。属性名称的另一部分是事件类型，值是事"
-"件处理程序名。我们不需要添加胡子在方法名称或加括号来调用它。 ???"
+"事件响应是一个以 `on` 为前缀的属性 。 属性名称的另一部分是事件类型，值是响应事"
+"件的函数名。调用时，我们无需添加 mustache 语法中的括号。"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:154
@@ -341,14 +340,14 @@ msgstr ""
 #: /home/dev/download/weex/doc/syntax/data-binding.md:166
 #, no-wrap
 msgid "`if` & `repeat`"
-msgstr " `if`` & ``repeat`???"
+msgstr " `if` & `repeat`"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:169
 msgid ""
 "`if` attribute can control the display of a component by a truthy/falsy "
 "value."
-msgstr " `if`属性可以控制显示组件的一个真实性/ falsy价值。 ???"
+msgstr " `if` 属性可以通过值的真/假，来控制一个组件是否显示。"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:177
@@ -385,12 +384,12 @@ msgstr ""
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:193
 msgid "We can also use `repeat` attribute to generate a list."
-msgstr "我们也可以用`repeat`属性生成一个列表。 ???"
+msgstr "`repeat` 属性可以用于生成一个列表。 "
 
 #. type: Bullet: '* '
 #: /home/dev/download/weex/doc/syntax/data-binding.md:195
 msgid "[See more about display logic control](./display-logic.md)"
-msgstr "[看更多关于显示逻辑控制](./display-logic.md)???"
+msgstr "[参见 显示逻辑控制](./display-logic.md)"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:197
