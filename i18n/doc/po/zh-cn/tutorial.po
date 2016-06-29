@@ -339,8 +339,8 @@ msgid ""
 "so your app get faster loading and less memory overhead than common Webview "
 "renderer."
 msgstr ""
-"在这里，我要强调的是，该列表是原生的渲染( not Webkit )，所以你的应用程序会"
-"有比普通的 Webview 更快的加载速度以及更少内存开销。"
+"在这里，我要强调的是，该列表是原生的渲染( not Webkit )，所以你的应用程序会有"
+"比普通的 Webview 更快的加载速度以及更少内存开销。"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/tutorial.md:123
@@ -490,4 +490,3 @@ msgstr ""
 "就像前面的例子，Slider可以被原生的渲染，无论是在weex playground，还是你的"
 "Android应用程序。Android整合请参阅[集成weex到您的Android程序](advanced/"
 "integrate-to-android.md)。 "
-
