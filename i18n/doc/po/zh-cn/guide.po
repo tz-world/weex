@@ -12,7 +12,7 @@ msgstr "指南"
 #: /home/dev/download/weex/doc/guide.md:3
 #, no-wrap
 msgid "***Keep calm and code on.***\n"
-msgstr "***心若止水 ，继续编码。\n"
+msgstr "***心若止水 ，继续编码。***\n"
 
 #~ msgid "[Tutorial](tutorial.md)"
 #~ msgstr "[教程](tutorial.md)???"
