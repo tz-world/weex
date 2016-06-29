@@ -229,7 +229,7 @@ msgstr ""
 #: /home/dev/download/weex/doc/syntax/data-binding.md:118
 #, no-wrap
 msgid "**NOTE: `data` and `methods` can't have duplicate fields. 'Cause in the execution context -- `this`, we can access both of them.**\n"
-msgstr "**注意：`data`` 和 ``methods`` 的字段不能重复。 'Cause in the execution context -- ``this`，我们可以访问他们的**。 ???\n"
+msgstr "**注意：`data`` 和 ``methods`` 的字段不能重复。 因为在执行上下文中 - 我们可以 `this` 同时访问这两者 **。 \n"
 
 #. type: Title ##
 #: /home/dev/download/weex/doc/syntax/data-binding.md:119
