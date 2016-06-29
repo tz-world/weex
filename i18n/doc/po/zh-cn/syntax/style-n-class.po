@@ -231,7 +231,7 @@ msgid ""
 "include `font-size`, `color`, etc."
 msgstr ""
 "CSS标准包含了很多样式，但weex只支持有限的样式，比如 盒模型，flexbox，"
-"positions。以及 `font-size``, ``color`，等。"
+"positions。以及 `font-size`, `color`，等。"
 
 #. type: Title ##
 #: /home/dev/download/weex/doc/syntax/style-n-class.md:82
@@ -245,7 +245,7 @@ msgid ""
 "Page [data](./data-binding.md) can be bound in `style` and `class` "
 "attribute. For example:"
 msgstr ""
-"[数据绑定](./data-binding.md) 能绑定在`style` 与 `class` 属性上。例如："
+"[数据绑定](./data-binding.md) 能用在 `style` 与 `class` 属性上。例如："
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/style-n-class.md:106
