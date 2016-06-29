@@ -405,7 +405,7 @@ msgstr "`repeat` 属性可以用于生成一个列表。 "
 #: /home/dev/download/weex/doc/syntax/data-binding.md:198
 #, no-wrap
 msgid "**NOTE: When you want to mutate an array in `data`. Something limitations existing below:**\n"
-msgstr "**注意：想改变在 `data` 数组，有些限制：** ???\n"
+msgstr "**注意：想改变在 `data` 数组，有些限制：** \n"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/data-binding.md:200
