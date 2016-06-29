@@ -1,61 +1,81 @@
-const {console} = global
-let logLevel
+const { console, nativeLog } = global
+const LEVELS = ['error', 'warn', 'info', 'log', 'debug']
+const levelMap = {}
 
-const LEVEL_MAP = {
-  __ERROR: 'error',
-  __WARN: 'warn',
-  __INFO: 'info',
-  __DEBUG: 'debug',
-  __VERBOSE: 'verbose'
+generateLevelMap()
+
+/* istanbul ignore if */
+if (
+  typeof console === 'undefined' || // Android
+  (global.WXEnvironment && global.WXEnvironment.platform === 'iOS') // iOS
+) {
+  global.console = {
+    debug: (...args) => {
+      if (checkLevel('debug')) { nativeLog(...format(args), '__DEBUG') }
+    },
+    log: (...args) => {
+      if (checkLevel('log')) { nativeLog(...format(args), '__LOG') }
+    },
+    info: (...args) => {
+      if (checkLevel('info')) { nativeLog(...format(args), '__INFO') }
+    },
+    warn: (...args) => {
+      if (checkLevel('warn')) { nativeLog(...format(args), '__WARN') }
+    },
+    error: (...args) => {
+      if (checkLevel('error')) { nativeLog(...format(args), '__ERROR') }
+    }
+  }
+}
+else { // HTML5
+  const { debug, log, info, warn, error } = console
+  console.__ori__ = { debug, log, info, warn, error }
+  console.debug = (...args) => {
+    if (checkLevel('debug')) { console.__ori__.debug.apply(console, args) }
+  }
+  console.log = (...args) => {
+    if (checkLevel('log')) { console.__ori__.log.apply(console, args) }
+  }
+  console.info = (...args) => {
+    if (checkLevel('info')) { console.__ori__.info.apply(console, args) }
+  }
+  console.warn = (...args) => {
+    if (checkLevel('warn')) { console.__ori__.warn.apply(console, args) }
+  }
+  console.error = (...args) => {
+    if (checkLevel('error')) { console.__ori__.error.apply(console, args) }
+  }
 }
 
-const LEVELS = ['error', 'warn', 'info', 'debug', 'verbose', 'all']
+function generateLevelMap () {
+  LEVELS.forEach(level => {
+    const levelIndex = LEVELS.indexOf(level)
+    levelMap[level] = {}
+    LEVELS.forEach(type => {
+      const typeIndex = LEVELS.indexOf(type)
+      if (typeIndex <= levelIndex) {
+        levelMap[level][type] = true
+      }
+    })
+  })
+}
 
 function normalize (v) {
-  var type = Object.prototype.toString.call(v)
+  const type = Object.prototype.toString.call(v)
   if (type.toLowerCase() === '[object object]') {
     v = JSON.stringify(v)
-  } else {
+  }
+  else {
     v = String(v)
   }
   return v
 }
 
-export function printlog(...args) {
-  const {WXEnvironment, nativeLog} = global
-
-  logLevel = (WXEnvironment &&
-                WXEnvironment.logLevel) ||
-                'info'
-
-  if (typeof nativeLog === 'function') {
-    let level = args.pop()
-    if (LEVELS.indexOf(LEVEL_MAP[level]) <=
-          LEVELS.indexOf(logLevel)) {
-      nativeLog(...args.map(v => normalize(v)), level)
-    }
-  }
+function checkLevel (type) {
+  const logLevel = (global.WXEnvironment && global.WXEnvironment.logLevel) || 'log'
+  return levelMap[logLevel] && levelMap[logLevel][type]
 }
 
-/* istanbul ignore if */
-if (typeof console === 'undefined' ||
-    // in jscore, it has `console` object without any keys.
-    Object.keys(console).length === 0) {
-  global.console = {
-    log: (...args) => { // __VERBOSE
-      printlog(...args, '__VERBOSE')
-    },
-    debug: (...args) => { // __DEBUG
-      printlog(...args, '__DEBUG')
-    },
-    info: (...args) => { // __INFO
-      printlog(...args, '__INFO')
-    },
-    warn: (...args) => { // __WARN
-      printlog(...args, '__WARN')
-    },
-    error: (...args) => { // __ERROR
-      printlog(...args, '__ERROR')
-    }
-  }
+function format (args) {
+  return args.map(v => normalize(v))
 }
