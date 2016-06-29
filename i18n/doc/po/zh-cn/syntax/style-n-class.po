@@ -149,7 +149,7 @@ msgstr "class 属性"
 #: /home/dev/download/weex/doc/syntax/style-n-class.md:57
 #, no-wrap
 msgid "The selectors of `<style>` label are matched with the class attribute of `<template>` label, we should use spaces to separate the class names. For example:\n"
-msgstr "对`<style>` 中的 class样式选择器 匹配 ``<template>` 中的 class 属性，多个类名之间用空格分开。例如： \n"
+msgstr "`<style>` 中的 class样式选择器 匹配 `<template>` 中的 class 属性，多个类名之间用空格分开。例如： \n"
 
 #. type: Plain text
 #: /home/dev/download/weex/doc/syntax/style-n-class.md:71
