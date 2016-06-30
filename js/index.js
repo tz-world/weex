@@ -13,7 +13,6 @@ function setPos(){
     setFloatEleCentre([$('.entrance div:nth-child(1)'),$('.entrance div:nth-child(2)')]); 
     setFloatEleCentre([$('.high-light div:nth-child(1)'), $('.high-light div:nth-child(2)')],1200); 
     setFloatEleCentre([$('.code-show .code') , $('.code-show .show')],1200);
-    //setFloatEleCentre([$('.subscription .text') , $('.subscription .input'),$('.subscription .btn')]);
 }
 
 

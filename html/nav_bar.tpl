@@ -5,18 +5,7 @@
     <div class="top-bar-left">
       <ul class="dropdown menu" data-dropdown-menu>
         <li>
-          <a href="index.html#subscriptionWeex">Docs</a>
-          <!--
-          <ul class="menu vertical">
-            <li><a href="index.html#subscriptionWeex">Tautorial</a></li>          
-            <li><a href="index.html#subscriptionWeex">Syntax</a></li>
-            <li><a href="index.html#subscriptionWeex">Howtos</a></li>
-            <li><a href="index.html#subscriptionWeex">Advanced</a></li>
-            <li><a href="index.html#subscriptionWeex">References</a></li>
-            <li><a href="index.html#subscriptionWeex">Demo</a></li>
-            <li><a href="index.html#subscriptionWeex">Service & Tools</a></li>
-          </ul>
-          -->
+          <a href="http://alibaba.github.io/weex/doc/">Docs</a>
         </li>
         <li  >      
           <script>
@@ -64,12 +53,12 @@
 
     <div class="top-bar-right">
       <ul class="menu">
-        <li><a href="index.html#subscriptionWeex">
+        <li><a href="//github.com/alibaba/weex">
             <script>
               if( location.pathname.indexOf("demo.html") != -1  || location.pathname.indexOf("download.html") != -1 ){
-              document.write(" <img class='github' src='img/github.png' alt='github' ><span class='text'>Apply for access</span>")                    
+              document.write(" <img class='github' src='img/github.png' alt='github' ><span class='text'>Github</span>")                    
               }else{
-              document.write(" <img class='github' src='img/github-light.png' alt='github' ><span class='text'>Apply for access</span>")          
+              document.write(" <img class='github' src='img/github-light.png' alt='github' ><span class='text'>Github</span>")          
               }
             </script>          
         </a></li>

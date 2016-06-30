@@ -148,6 +148,7 @@ body {
   .entrance a {
     color: white; }
   .entrance div:nth-child(1) {
+    cursor: pointer;
     background: #0055dd;
     border-radius: 2px;
     width: 166px;
@@ -155,6 +156,7 @@ body {
     line-height: 48px;
     float: left; }
   .entrance div:nth-child(2) {
+    cursor: pointer;
     box-sizing: border-box;
     margin-left: 10px;
     float: left;
