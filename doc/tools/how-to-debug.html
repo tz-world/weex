@@ -201,6 +201,11 @@ a.weex-translate{
     background-color: #de2810;
 }
 
+a.weex-translate.incomplete{
+  background-color: #777;                    
+}
+ 
+
 .wx-v{
     padding: 3px 7px;
     font-size: 12px;
@@ -271,7 +276,7 @@ function getTextWidth(text, font) {
 
 
 function rePostionVersion(vDis){
-    vDis =   vDis ? vDis : -20;
+    vDis =   vDis ? vDis : -28;
     if ($(".weex-version").length < 1){return ;}
     var vOffset = $(".weex-version").offset();
     var titleJObj = $(".weex-version").parents(".markdown-section").find("h1,h2,h3");
@@ -1586,7 +1591,7 @@ For example, you select &quot;Debug&quot;, the device will send &quot;error&quot
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Debug","level":"1.5.4","depth":2,"next":{"title":"FAQ","level":"1.6","depth":1,"path":"faq.md","ref":"faq.md","articles":[]},"previous":{"title":"Playground App","level":"1.5.3","depth":2,"path":"tools/playground-app.md","ref":"tools/playground-app.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"tools/how-to-debug.md","mtime":"2016-06-24T07:45:14.346Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-06-30T07:19:20.336Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Debug","level":"1.5.4","depth":2,"next":{"title":"FAQ","level":"1.6","depth":1,"path":"faq.md","ref":"faq.md","articles":[]},"previous":{"title":"Playground App","level":"1.5.3","depth":2,"path":"tools/playground-app.md","ref":"tools/playground-app.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"tools/how-to-debug.md","mtime":"2016-06-24T07:45:14.346Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-05T04:24:56.096Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

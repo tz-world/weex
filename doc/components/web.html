@@ -201,6 +201,11 @@ a.weex-translate{
     background-color: #de2810;
 }
 
+a.weex-translate.incomplete{
+  background-color: #777;                    
+}
+ 
+
 .wx-v{
     padding: 3px 7px;
     font-size: 12px;
@@ -271,7 +276,7 @@ function getTextWidth(text, font) {
 
 
 function rePostionVersion(vDis){
-    vDis =   vDis ? vDis : -20;
+    vDis =   vDis ? vDis : -28;
     if ($(".weex-version").length < 1){return ;}
     var vOffset = $(".weex-version").offset();
     var titleJObj = $(".weex-version").parents(".markdown-section").find("h1,h2,h3");
@@ -1519,7 +1524,8 @@ contentLoaded(window,function(){
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="web">&lt;web&gt;</h1>
-<p><span class="weex-version">0.5</span></p>
+<p><span class="weex-version">0.5</span>
+<a href="https://github.com/weexteam/article/wiki/%E6%AC%A2%E8%BF%8E%E5%8F%82%E4%B8%8EWeex%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91" class="weex-translate incomplete" target="_blank">cn</a></p>
 <h3 id="summary">Summary</h3>
 <p>Use web component to display any web content in the weex page. The <code>src</code> attribute is used to specify a special source. You also can use <code>webview</code> module to control some web operation such as goBack&#x3001;goForward and reload, see <a href="../modules/webview.html">webview module</a>.</p>
 <h3 id="child-components">Child Components</h3>
@@ -1600,7 +1606,7 @@ contentLoaded(window,function(){
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"web","level":"1.3.4.15","depth":3,"next":{"title":"wxc-tabbar","level":"1.3.4.16","depth":3,"path":"components/wxc-tabbar.md","ref":"components/wxc-tabbar.md","articles":[]},"previous":{"title":"a","level":"1.3.4.14","depth":3,"path":"components/a.md","ref":"components/a.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"components/web.md","mtime":"2016-06-30T07:14:10.262Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-06-30T07:19:20.336Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"web","level":"1.3.4.15","depth":3,"next":{"title":"wxc-tabbar","level":"1.3.4.16","depth":3,"path":"components/wxc-tabbar.md","ref":"components/wxc-tabbar.md","articles":[]},"previous":{"title":"a","level":"1.3.4.14","depth":3,"path":"components/a.md","ref":"components/a.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"components/web.md","mtime":"2016-07-05T04:01:53.513Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-05T04:24:56.096Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

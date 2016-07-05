@@ -201,6 +201,11 @@ a.weex-translate{
     background-color: #de2810;
 }
 
+a.weex-translate.incomplete{
+  background-color: #777;                    
+}
+ 
+
 .wx-v{
     padding: 3px 7px;
     font-size: 12px;
@@ -271,7 +276,7 @@ function getTextWidth(text, font) {
 
 
 function rePostionVersion(vDis){
-    vDis =   vDis ? vDis : -20;
+    vDis =   vDis ? vDis : -28;
     if ($(".weex-version").length < 1){return ;}
     var vOffset = $(".weex-version").offset();
     var titleJObj = $(".weex-version").parents(".markdown-section").find("h1,h2,h3");
@@ -1519,6 +1524,7 @@ contentLoaded(window,function(){
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="how-to-customize-native-apis-">How to customize native APIs ?</h1>
+<p><a href="https://github.com/weexteam/article/wiki/%E6%AC%A2%E8%BF%8E%E5%8F%82%E4%B8%8EWeex%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91" class="weex-translate incomplete" target="_blank">cn</a></p>
 <p>Weex SDK provides only rendering capabilities, rather than have other capabilities, such as network, picture, and URL redirection. If you want the these features, you need to implement it.<br>The example below will describe how to extend weex with native logic or &apos;bridge&apos; your existed native code.</p>
 <h2 id="a-urlhelper-example">A URLHelper Example</h2>
 <h3 id="create-your-own-wxmodule-in-native">Create your own <code>WXModule</code> in native:</h3>
@@ -1617,7 +1623,7 @@ URLHelper.openURL(<span class="hljs-string">&quot;http://www.taobao.com&quot;</s
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Customize native APIs","level":"1.2.3.4","depth":3,"next":{"title":"Debug in html5 renderer","level":"1.2.3.5","depth":3,"path":"how-to/debug-with-html5.md","ref":"how-to/debug-with-html5.md","articles":[]},"previous":{"title":"Customize a native Component","level":"1.2.3.3","depth":3,"path":"how-to/customize-a-native-component.md","ref":"how-to/customize-a-native-component.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"how-to/cuszomize-native-apis.md","mtime":"2016-06-17T03:23:23.316Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-06-30T07:19:20.336Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Customize native APIs","level":"1.2.3.4","depth":3,"next":{"title":"Debug in html5 renderer","level":"1.2.3.5","depth":3,"path":"how-to/debug-with-html5.md","ref":"how-to/debug-with-html5.md","articles":[]},"previous":{"title":"Customize a native Component","level":"1.2.3.3","depth":3,"path":"how-to/customize-a-native-component.md","ref":"how-to/customize-a-native-component.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"how-to/cuszomize-native-apis.md","mtime":"2016-07-05T03:58:23.901Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-05T04:24:56.096Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

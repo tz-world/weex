@@ -199,6 +199,11 @@ a.weex-translate{
     background-color: #de2810;
 }
 
+a.weex-translate.incomplete{
+  background-color: #777;                    
+}
+ 
+
 .wx-v{
     padding: 3px 7px;
     font-size: 12px;
@@ -269,7 +274,7 @@ function getTextWidth(text, font) {
 
 
 function rePostionVersion(vDis){
-    vDis =   vDis ? vDis : -20;
+    vDis =   vDis ? vDis : -28;
     if ($(".weex-version").length < 1){return ;}
     var vOffset = $(".weex-version").offset();
     var titleJObj = $(".weex-version").parents(".markdown-section").find("h1,h2,h3");
@@ -1517,7 +1522,8 @@ contentLoaded(window,function(){
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="virtual-dom-apis">Virtual DOM APIs</h1>
-<p><span class="weex-version">0.4</span></p>
+<p><span class="weex-version">0.4</span>
+<a href="https://github.com/weexteam/article/wiki/%E6%AC%A2%E8%BF%8E%E5%8F%82%E4%B8%8EWeex%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91" class="weex-translate incomplete" target="_blank">cn</a></p>
 <h3 id="document"><code>Document</code></h3>
 <p>Each instance has a corresponding document with the same id. A document has many nodes which compose a node tree.</p>
 <ul>
@@ -1620,7 +1626,7 @@ contentLoaded(window,function(){
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Virtual DOM APIs","level":"1.3.6.3","depth":3,"next":{"title":"Examples","level":"1.4","depth":1,"ref":"","articles":[{"title":"Hello World","level":"1.4.1","depth":2,"path":"demo/hello-world.md","ref":"demo/hello-world.md","articles":[]},{"title":"Modal","level":"1.4.2","depth":2,"path":"demo/modal.md","ref":"demo/modal.md","articles":[]},{"title":"List","level":"1.4.3","depth":2,"path":"demo/list.md","ref":"demo/list.md","articles":[]},{"title":"Slider","level":"1.4.4","depth":2,"path":"demo/slider.md","ref":"demo/slider.md","articles":[]},{"title":"Animation","level":"1.4.5","depth":2,"path":"demo/animation.md","ref":"demo/animation.md","articles":[]},{"title":"More","level":"1.4.6","depth":2,"url":"https://github.com/alibaba/weex/tree/dev/examples","ref":"https://github.com/alibaba/weex/tree/dev/examples","articles":[]}]},"previous":{"title":"JS Framework APIs","level":"1.3.6.2","depth":3,"path":"specs/js-framework-apis.md","ref":"specs/js-framework-apis.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"specs/virtual-dom-apis.md","mtime":"2016-06-30T07:14:10.282Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-06-30T07:19:20.336Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Virtual DOM APIs","level":"1.3.6.3","depth":3,"next":{"title":"Examples","level":"1.4","depth":1,"ref":"","articles":[{"title":"Hello World","level":"1.4.1","depth":2,"path":"demo/hello-world.md","ref":"demo/hello-world.md","articles":[]},{"title":"Modal","level":"1.4.2","depth":2,"path":"demo/modal.md","ref":"demo/modal.md","articles":[]},{"title":"List","level":"1.4.3","depth":2,"path":"demo/list.md","ref":"demo/list.md","articles":[]},{"title":"Slider","level":"1.4.4","depth":2,"path":"demo/slider.md","ref":"demo/slider.md","articles":[]},{"title":"Animation","level":"1.4.5","depth":2,"path":"demo/animation.md","ref":"demo/animation.md","articles":[]},{"title":"More","level":"1.4.6","depth":2,"url":"https://github.com/alibaba/weex/tree/dev/examples","ref":"https://github.com/alibaba/weex/tree/dev/examples","articles":[]}]},"previous":{"title":"JS Framework APIs","level":"1.3.6.2","depth":3,"path":"specs/js-framework-apis.md","ref":"specs/js-framework-apis.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"specs/virtual-dom-apis.md","mtime":"2016-07-05T04:06:29.730Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-05T04:24:56.096Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

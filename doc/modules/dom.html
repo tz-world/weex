@@ -201,6 +201,11 @@ a.weex-translate{
     background-color: #de2810;
 }
 
+a.weex-translate.incomplete{
+  background-color: #777;                    
+}
+ 
+
 .wx-v{
     padding: 3px 7px;
     font-size: 12px;
@@ -271,7 +276,7 @@ function getTextWidth(text, font) {
 
 
 function rePostionVersion(vDis){
-    vDis =   vDis ? vDis : -20;
+    vDis =   vDis ? vDis : -28;
     if ($(".weex-version").length < 1){return ;}
     var vOffset = $(".weex-version").offset();
     var titleJObj = $(".weex-version").parents(".markdown-section").find("h1,h2,h3");
@@ -1519,7 +1524,8 @@ contentLoaded(window,function(){
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="dom">dom</h1>
-<p><span class="weex-version">0.4</span></p>
+<p><span class="weex-version">0.4</span>
+<a href="https://github.com/weexteam/article/wiki/%E6%AC%A2%E8%BF%8E%E5%8F%82%E4%B8%8EWeex%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91" class="weex-translate incomplete" target="_blank">cn</a></p>
 <h2 id="summary">Summary</h2>
 <p>A series of dom apis that sending virtual-dom&apos;s messages to the native renderer to update the dom tree. The only API for developers to use in a <code>.we</code> file is <code>scrollToElement</code> <del>which you can use by calling the <code>$scrollTo</code> method</del>. Other APIs mentioned on this page should only be used through the native renderer in the <code>callNative</code> process.</p>
 <h2 id="api">API</h2>
@@ -1641,7 +1647,7 @@ dom.scrollToElement(<span class="hljs-keyword">this</span>.$el(<span class="hljs
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"dom","level":"1.3.5.1","depth":3,"next":{"title":"stream","level":"1.3.5.2","depth":3,"path":"modules/stream.md","ref":"modules/stream.md","articles":[]},"previous":{"title":"Built-in Modules","level":"1.3.5","depth":2,"path":"modules/main.md","ref":"modules/main.md","articles":[{"title":"dom","level":"1.3.5.1","depth":3,"path":"modules/dom.md","ref":"modules/dom.md","articles":[]},{"title":"stream","level":"1.3.5.2","depth":3,"path":"modules/stream.md","ref":"modules/stream.md","articles":[]},{"title":"modal","level":"1.3.5.3","depth":3,"path":"modules/modal.md","ref":"modules/modal.md","articles":[]},{"title":"animation","level":"1.3.5.4","depth":3,"path":"modules/animation.md","ref":"modules/animation.md","articles":[]},{"title":"webview","level":"1.3.5.5","depth":3,"path":"modules/webview.md","ref":"modules/webview.md","articles":[]},{"title":"navigator","level":"1.3.5.6","depth":3,"path":"modules/navigator.md","ref":"modules/navigator.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"modules/dom.md","mtime":"2016-06-30T07:14:10.270Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-06-30T07:19:20.336Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"dom","level":"1.3.5.1","depth":3,"next":{"title":"stream","level":"1.3.5.2","depth":3,"path":"modules/stream.md","ref":"modules/stream.md","articles":[]},"previous":{"title":"Built-in Modules","level":"1.3.5","depth":2,"path":"modules/main.md","ref":"modules/main.md","articles":[{"title":"dom","level":"1.3.5.1","depth":3,"path":"modules/dom.md","ref":"modules/dom.md","articles":[]},{"title":"stream","level":"1.3.5.2","depth":3,"path":"modules/stream.md","ref":"modules/stream.md","articles":[]},{"title":"modal","level":"1.3.5.3","depth":3,"path":"modules/modal.md","ref":"modules/modal.md","articles":[]},{"title":"animation","level":"1.3.5.4","depth":3,"path":"modules/animation.md","ref":"modules/animation.md","articles":[]},{"title":"webview","level":"1.3.5.5","depth":3,"path":"modules/webview.md","ref":"modules/webview.md","articles":[]},{"title":"navigator","level":"1.3.5.6","depth":3,"path":"modules/navigator.md","ref":"modules/navigator.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"modules/dom.md","mtime":"2016-07-05T04:05:32.794Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-05T04:24:56.096Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
