@@ -1525,16 +1525,16 @@ contentLoaded(window,function(){
                                 
                                 <h1 id="how-to-customize-a-native-component-">How to customize a native Component ?</h1>
 <p><a href="https://github.com/weexteam/article/wiki/%E6%AC%A2%E8%BF%8E%E5%8F%82%E4%B8%8EWeex%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91" class="weex-translate incomplete" target="_blank">cn</a></p>
-<p>Weex has wrap up the most critical platform components,such as ScrollView&#x3001;ListView&#x3001;Text&#x3001;Imageview. Certainly these components  can not completely meet your need. And  thousands of native UI components that alwaysly be  using in our project may be required to integrate into Weex easily. Fortunately,it&apos;s quite convenient to wrap up your own components that shuold be from any existing components.</p>
+<p>Weex has wrapped up the most critical platform components, such as <code>ScrollView</code>, <code>ListView</code>, <code>Text</code>, <code>Imageview</code> and so on. Certainly these components can not completely meet your need. And  thousands of native UI components that alwaysly be using in our project may be required to integrate into Weex easily. Fortunately, it&apos;s quite convenient to wrap up your own components that should be from any existing components.</p>
 <h5 id="step-by-step">Step By Step</h5>
 <ol>
-<li>Customize components must extend WXComponent or WXContainer  </li>
-<li>@WXComponentProp(name=value(value is attr or style of dsl)) for it be recognized by weex SDK.</li>
-<li>The access levels of mehtod must be <strong>public</strong></li>
-<li>The component class can not be an inner class  </li>
-<li>Component can not be obfuscated by tools like ProGuard  </li>
-<li>Component methods will be invoked in UI thread, do not contain time consuming operation here.  </li>
-<li>Weex params can be int, double, float, String, Map, List, self-defined class that implements WXObject interface </li>
+<li>Customized components must inherit from <code>WXComponent</code> or <code>WXContainer</code>;</li>
+<li>@WXComponentProp(name=value(value is attr or style of dsl)) for it be recognized by weex SDK;</li>
+<li>The access levels of method must be <strong>public</strong>;</li>
+<li>The component class can not be an inner class;</li>
+<li>Customized components should not be obfuscated by tools like ProGuard;</li>
+<li>Component methods will be invoked on the UI thread, so do not contain time-consuming operations here;  </li>
+<li>Weex parameter&apos;s type can be int, double, float, String, Map, List, self-defined class that implements WXObject interface;</li>
 </ol>
 <h4 id="refer-to-the-following-example">Refer to the following example:</h4>
 <pre><code>package com.taobao.weex.ui.component;
@@ -1607,7 +1607,7 @@ public class  MyViewComponent extends WXComponent{
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Customize a native Component","level":"1.2.3.3","depth":3,"next":{"title":"Customize native APIs","level":"1.2.3.4","depth":3,"path":"how-to/cuszomize-native-apis.md","ref":"how-to/cuszomize-native-apis.md","articles":[]},"previous":{"title":"Preview in Native","level":"1.2.3.2","depth":3,"path":"how-to/preview-in-playground-app.md","ref":"how-to/preview-in-playground-app.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"how-to/customize-a-native-component.md","mtime":"2016-07-06T03:43:47.129Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-06T03:47:59.177Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Customize a native Component","level":"1.2.3.3","depth":3,"next":{"title":"Customize native APIs","level":"1.2.3.4","depth":3,"path":"how-to/cuszomize-native-apis.md","ref":"how-to/cuszomize-native-apis.md","articles":[]},"previous":{"title":"Preview in Native","level":"1.2.3.2","depth":3,"path":"how-to/preview-in-playground-app.md","ref":"how-to/preview-in-playground-app.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"how-to/customize-a-native-component.md","mtime":"2016-07-06T07:54:24.218Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-06T09:39:04.961Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
