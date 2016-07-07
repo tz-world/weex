@@ -1421,7 +1421,20 @@ contentLoaded(window,function(){
             
         </li>
     
-        <li class="chapter " data-level="1.5.2" data-path="../tools/transformer.html">
+        <li class="chapter " data-level="1.5.2" data-path="../tools/devtools.html">
+            
+                <a href="../tools/devtools.html">
+            
+                    
+                    Devtools
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../tools/transformer.html">
             
                 <a href="../tools/transformer.html">
             
@@ -1434,25 +1447,12 @@ contentLoaded(window,function(){
             
         </li>
     
-        <li class="chapter " data-level="1.5.3" data-path="../tools/playground-app.html">
+        <li class="chapter " data-level="1.5.4" data-path="../tools/playground-app.html">
             
                 <a href="../tools/playground-app.html">
             
                     
                     Playground App
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.4" data-path="../tools/how-to-debug.html">
-            
-                <a href="../tools/how-to-debug.html">
-            
-                    
-                    Debug
             
                 </a>
             
@@ -1523,17 +1523,17 @@ contentLoaded(window,function(){
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="listvlisthlist">&lt;list&gt;(&lt;vlist&gt;,&lt;hlist&gt;)</h1>
+                                <h1 id="list">&lt;list&gt;</h1>
 <p><span class="weex-version">0.4</span>
 <a href="https://github.com/weexteam/article/wiki/%E6%AC%A2%E8%BF%8E%E5%8F%82%E4%B8%8EWeex%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91" class="weex-translate incomplete" target="_blank">cn</a></p>
 <h3 id="summary">Summary</h3>
-<p>A fixed height container which has multiple child components (cells) arranged in one column. If total height of its child components is higher then the height of itself, the whole child components are scrollable and it&apos;s high-performanced.   </p>
-<p><strong>Notes:</strong> height of <code>list</code> must be specified (list&apos;s styles must contain <code>height</code> or pair of <code>top</code>, <code>bottom</code> or flex value if outter container&apos;s <code>flex-direction</code> value is <code>column</code>).</p>
-<h3 id="orientation">Orientation</h3>
-<p>The <code>list</code> is alias of <code>vlist</code> which display component in vertical oritentation, and <code>hlist</code> for the horizontal scroll component.   </p>
+<p>A core component which provides the most popular features for using a list of items.  </p>
+<p>It can provide better experience and performace with smooth scrolling and memory reusing.</p>
 <h3 id="child-components">Child Components</h3>
+<p><strong>Notes:</strong> The <code>list</code>&apos;s subcomponents can only contain <code>cell</code>, <code>header</code>, <code>refresh</code>, <code>loading</code> or fixed-position components. Other kind of components will not be displayed correctly.</p>
 <ul>
-<li><code>cell</code> is a available candidate to be used as a child component for <code>list</code>.</li>
+<li><code>cell</code> defines the attributes and behavior of the cells that appear in list. </li>
+<li><code>header</code> <sup class="wx-v">0.6.1</sup> header which will stick to the top when it reaches the top of the screen. </li>
 <li><code>refresh</code> component can be used inside list to add pull to refresh functionality.</li>
 <li><code>loading</code> component can be used inside list to add loading view at the bottom of scroller.</li>
 </ul>
@@ -1542,22 +1542,6 @@ contentLoaded(window,function(){
 <li><code>loadmoreoffset</code>: &lt;number&gt; the offset distance downwards the bottom of the list to trigger the loadmore event, which is triggered when the list scrolls down near enough to the bottom.</li>
 </ul>
 <p>Other attributes please check out the <a href="../references/common-attrs.html">common attributes</a>.</p>
-<ul>
-<li><code>transform</code>: &lt;string&gt; define item transformation. See next section for mmore detail.</li>
-</ul>
-<h3 id="item-transformation">Item Transformation</h3>
-<p>The <code>tranform</code> attribute allow you tranlate,rotate,scale and change transparency of item according distance between item and list component&apos;s center. Item right in middle has no transformation applied.   </p>
-<p>The value is a simple expression, like    </p>
-<pre><code>transform(value,[...valueN]);[...transformN(value,[...valueN]);]
-</code></pre><p>Very similar to the 2D transform in CSS3.<br>For example,    </p>
-<pre><code>transform=&quot;scale(0.5,0.5);translate(100,0)&quot;
-</code></pre><p>This means the item will scale to 50% of the origin size and translate 100 in x axis when it arrive the edge of list component.<br><strong>The value you set is the transform will apply to the Edge-Item</strong>.<br>These transform functions are supported:  </p>
-<ul>
-<li><code>scale(x,y)</code>: scale item, x and y should be a positive float number. </li>
-<li><code>translate(x,y)</code>: translate item, <code>x</code> and <code>y</code> shoule be integer numbers. </li>
-<li><code>opacity(n)</code>: change the transparency of item, <code>n</code> must in <code>[0,1.0]</code>.</li>
-<li><code>rotate(n)</code>: rotate item, n is integer number.</li>
-</ul>
 <h3 id="styles">Styles</h3>
 <p><strong>common styles</strong>: check out <a href="../references/common-style.html">common styles for components</a></p>
 <ul>
@@ -1569,8 +1553,6 @@ contentLoaded(window,function(){
 <h3 id="events">Events</h3>
 <ul>
 <li><code>loadmore</code> <sup class="wx-v">0.5</sup>: if the list scrolls to bottom, this event will be triggered immediately. You can load the next page of items in this event handler.</li>
-<li><code>onappear</code> <sup class="wx-v">0.5</sup>: if the list&apos;s cells scroll to visible area, this event will be triggered when list is stopped. You can do something in this event handler.</li>
-<li><code>ondisappear</code> <sup class="wx-v">0.5</sup>: if the list&apos;s cells scroll to invisible area, this event will be triggered when list is stopped. You can do something in this event handler.</li>
 </ul>
 <p><strong>common events</strong>: check out the <a href="../references/common-event.html">common events</a></p>
 <ul>
@@ -1579,6 +1561,8 @@ contentLoaded(window,function(){
 <li>support <code>refresh</code> event  <sup class="wx-v">0.5</sup>.  If a refresh component is inside scroller, this event will be triggered when the scroller is swiping down.</li>
 <li>support <code>loading</code> event .  If a loading component is inside scroller, this event will be triggered when user scrolling to the bottom.</li>
 </ul>
+<h3 id="api">API</h3>
+<p>All cells or cell&apos;s subcomponents in list support the <code>scrollToElement</code> API in <a href="../modules/dom.html">dom module</a></p>
 <h3 id="example">Example</h3>
 <p>see <a href="https://github.com/alibaba/weex/blob/example/examples/component/list/list-basic.we" target="_blank">list-basic demo</a></p>
 
@@ -1624,7 +1608,7 @@ contentLoaded(window,function(){
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"list","level":"1.3.4.7","depth":3,"next":{"title":"cell","level":"1.3.4.7.1","depth":4,"path":"components/cell.md","ref":"components/cell.md","articles":[]},"previous":{"title":"scroller","level":"1.3.4.6","depth":3,"path":"components/scroller.md","ref":"components/scroller.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"components/list.md","mtime":"2016-07-06T07:31:43.678Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-06T09:39:04.961Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"list","level":"1.3.4.7","depth":3,"next":{"title":"cell","level":"1.3.4.7.1","depth":4,"path":"components/cell.md","ref":"components/cell.md","articles":[]},"previous":{"title":"scroller","level":"1.3.4.6","depth":3,"path":"components/scroller.md","ref":"components/scroller.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"components/list.md","mtime":"2016-07-07T09:01:15.998Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-07T09:01:49.623Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
