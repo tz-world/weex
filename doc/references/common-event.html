@@ -1432,6 +1432,38 @@ contentLoaded(window,function(){
             
 
             
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.2.1" data-path="../tools/devtools-android.html">
+            
+                <a href="../tools/devtools-android.html">
+            
+                    
+                    Weex devtools (Android)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.2" data-path="../tools/devtools-ios.html">
+            
+                <a href="../tools/devtools-ios.html">
+            
+                    
+                    Weex devtools (IOS)
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
         </li>
     
         <li class="chapter " data-level="1.5.3" data-path="../tools/transformer.html">
@@ -1553,6 +1585,38 @@ contentLoaded(window,function(){
 <li><code>timestamp</code>: Timestamp when event is triggered.</li>
 <li><code>direction</code>: The direction in which the scroller is scrolling. Should be <code>up</code> or <code>down</code></li>
 </ul>
+<h2 id="page-event">Page event</h2>
+<p><span class="weex-version">0.6.1</span></p>
+<p>Weex provides you with simple management of page status, such as <code>viewappear</code> and <code>viewdisappear</code>&#xFF0C;</p>
+<p>The <code>viewappear</code> event will be triggered when page is about to show or before any animations are configured for showing. For example, when calling <code>push</code> method in navigator module, this event will be trigged in new page. </p>
+<p>The <code>viewdisappear</code> event will be triggeded when page is about to dismiss.  </p>
+<p>Different from <code>appear</code> and <code>disappear</code> of component, these two events focus on the status of whole page, <code>so they must be bound to the root component</code>.</p>
+<p>e.g.</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">onviewappear</span>=<span class="hljs-string">&quot;viewappear&quot;</span> <span class="hljs-attr">onviewdisappear</span>=<span class="hljs-string">&quot;viewdisappear&quot;</span>&gt;</span>
+          ......
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-built_in">module</span>.exports = {
+    methods: {
+      viewappear: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+        <span class="hljs-comment">// handle view appear event</span>
+      },
+      viewdisappear: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+        <span class="hljs-comment">// handle view disappear event</span>
+    }
+  }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>In addititon&#xFF0C;these events also can be bound to body component which is not root actually such as <code>wxc-navpage</code>.</p>
+<p><strong>event object</strong></p>
+<ul>
+<li><code>type</code>: <code>viewappear</code> or <code>viewdisappear</code></li>
+<li><code>target</code>: The object where event is triggered</li>
+<li><code>timestamp</code>: Timestamp when event is triggered.</li>
+</ul>
 
                                 
                                 </section>
@@ -1596,7 +1660,7 @@ contentLoaded(window,function(){
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Common Event","level":"1.3.4.3","depth":3,"next":{"title":"Special Element","level":"1.3.4.4","depth":3,"path":"components/special-element.md","ref":"components/special-element.md","articles":[]},"previous":{"title":"Color","level":"1.3.4.2.2","depth":4,"path":"references/color-names.md","ref":"references/color-names.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"references/common-event.md","mtime":"2016-07-07T09:10:16.500Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-07T09:10:21.918Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Common Event","level":"1.3.4.3","depth":3,"next":{"title":"Special Element","level":"1.3.4.4","depth":3,"path":"components/special-element.md","ref":"components/special-element.md","articles":[]},"previous":{"title":"Color","level":"1.3.4.2.2","depth":4,"path":"references/color-names.md","ref":"references/color-names.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"references/common-event.md","mtime":"2016-07-07T13:27:32.131Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-07T13:53:05.767Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
