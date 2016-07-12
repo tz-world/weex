@@ -1,0 +1,25 @@
+<!doctype html>
+<html class="no-js" lang="">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Weex</title>
+        <meta name="description" content="weex project website">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <script src="js/vendor/mobile-detect.min.js"></script>
+    </head>
+    
+    <body>
+         <h5 style="text-align:center;">please open this link in system browser</h5> 
+    </body>
+    <script>
+        var md = new MobileDetect(window.navigator.userAgent);         
+            if ( md.is("iPhone") )  {
+                location = "https://itunes.apple.com/cn/app/weex-playground/id1130862662?mt=8"
+            }else{
+                location = "http://download.taobaocdn.com/freedom/39794/andriod/playground.apk"
+            }
+    </script>
+
+</html>
