@@ -1,0 +1,8 @@
+mgachine:
+  node:
+    version: 4.2.1
+
+general:
+  branches:
+    ignore:
+      - gh-pages #  ignore  weex website
