@@ -1565,6 +1565,34 @@ Maybe a network problem, try a proxy or VPN.</p>
 <p>This&apos;s is caused by weex-toolkit&apos;s dependency &apos;http-server&apos;, whose old version is not working well in chinese windows environment. We have fixed that, you should upgrade weex-toolkit before use that.</p>
 <h2 id="playground-app-display-nothing-white-screen-after-scan">Playground app display nothing (white screen) after scan</h2>
 <p>Best way to find out what&apos;s happening is read debug log, you can follow <a href="https://github.com/alibaba/weex/blob/doc/doc/tools/how-to-debug.md" target="_blank">this document</a> to firgure out how to do that.</p>
+<h2 id="about-ecmascript-version">About ECMAScript Version</h2>
+<p>Weex uses JSCore in iOS and uses v8 in Android. So they both support ECMAScript 5 spec. Additionally, we do some polyfills in native environment:</p>
+<ul>
+<li><code>Promise</code> in iOS/Android</li>
+<li>Timer APIs (<code>setTimeout</code>/<code>clearTimeout</code>/<code>setInterval</code>/<code>clearInterval</code>) in iOS/Android</li>
+<li><code>console</code> in iOS/Android</li>
+</ul>
+<p>In Browser we contains a polyfill of <code>Promise</code> temporarily. In the future developers can choose whether to import a polyfill by configurations.</p>
+<p>You can also write ES6 syntax by <code>babel</code> with <code>webpack</code>. The loader will convert ES6 syntax into ES5 automatically.</p>
+<p>If you want more ES6 polyfills you can import them into the JS Bundle as you like.</p>
+<h2 id="dependencies-in-frontend">Dependencies in frontend</h2>
+<p>In Weex you may have some ways to import/require a component or a JS module. Take ES5 syntax for example:</p>
+<ul>
+<li><code>require(&apos;xxx.js&apos;)</code>: depends on a JS file</li>
+<li><code>require(&apos;npm-module-name&apos;)</code>: depends on a NPM module</li>
+<li><code>require(&apos;xxx.we&apos;)</code>: include a <code>we</code> file to register a Weex custom component</li>
+<li><code>require(&apos;@weex-module/xxx&apos;)</code>: depends on a Weex native module. Notice that it is supported only in <code>*.we</code> file not <code>*.js</code> file. If you want to use Weex native module in a <code>*.js</code> file, temporarily you may write like this:</li>
+</ul>
+<pre><code class="lang-javascript"><span class="hljs-comment">// use this piece of code below to get Weex native module &quot;modal&quot;</span>
+<span class="hljs-keyword">var</span> modal
+__weex_define__(<span class="hljs-string">&apos;@weex-temp/x&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">__weex_require__</span>) </span>{
+  modal = __weex_require__(<span class="hljs-string">&apos;@weex-module/modal&apos;</span>)
+})
+
+<span class="hljs-comment">// use APIs in &quot;modal&quot; module</span>
+modal.toast({message: <span class="hljs-string">&apos;hello&apos;</span>})
+</code></pre>
+<p>We will bring a better syntax design in the future.</p>
 
                                 
                                 </section>
@@ -1604,7 +1632,7 @@ Maybe a network problem, try a proxy or VPN.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"FAQ","level":"1.6","depth":1,"previous":{"title":"Playground App","level":"1.5.4","depth":2,"path":"tools/playground-app.md","ref":"tools/playground-app.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"faq.md","mtime":"2016-07-13T10:08:36.260Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-13T10:08:43.876Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"FAQ","level":"1.6","depth":1,"previous":{"title":"Playground App","level":"1.5.4","depth":2,"path":"tools/playground-app.md","ref":"tools/playground-app.md","articles":[]},"dir":"ltr"},"config":{"plugins":["header","disqus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"weex-doc"},"search":{},"layout":{"headerPath":"_layouts/header.html"},"lunr":{"maxIndexSize":1000000},"header":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Weex","gitbook":"3.1.1","description":"Weex Document Site"},"file":{"path":"faq.md","mtime":"2016-07-13T10:14:46.059Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-13T10:14:50.155Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
