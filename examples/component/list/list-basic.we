@@ -21,7 +21,9 @@
 
 <style>
   .list {
-
+    height: 810px;
+    border-width: 10px;
+    border-color: orange;
   }
   .count {
     font-size: 48px;
